@@ -15,35 +15,35 @@ const featuredPrompts = prompts.filter(p => p.data.featured).slice(0, 3);
 >
   <div class="flex flex-col gap-16 py-4">
     {/* Hero Banner Section */}
-    <section class="relative text-center py-16 px-6 rounded-3xl glass-panel overflow-hidden border border-slate-200/80 dark:border-slate-800/80 shadow-2xl">
-      {/* Background ambient lighting glow */}
-      <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-indigo-500/20 dark:bg-indigo-500/30 rounded-full blur-3xl pointer-events-none"></div>
-      <div class="absolute -bottom-24 right-10 w-80 h-80 bg-purple-500/20 dark:bg-purple-500/25 rounded-full blur-3xl pointer-events-none"></div>
+    <section class="relative text-center py-16 px-6 rounded-3xl stitch-card overflow-hidden border border-indigo-500/30 shadow-2xl">
+      {/* Background ambient lighting glow Orbs */}
+      <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-indigo-600/25 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-32 right-10 w-96 h-96 bg-purple-600/25 rounded-full blur-3xl pointer-events-none"></div>
 
       <div class="relative z-10 max-w-3xl mx-auto space-y-6">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-500/10 dark:bg-indigo-500/20 text-indigo-700 dark:text-indigo-300 text-xs sm:text-sm font-bold border border-indigo-500/20 shadow-inner">
-          <span class="animate-pulse">✨</span> 2026 AI 트렌드 & 실용 스마트 툴 플랫폼
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full stitch-pill text-xs sm:text-sm font-bold shadow-inner">
+          <span class="animate-pulse text-amber-400">✨</span> Google Stitch UI 엔진으로 설계된 2026 AI 허브
         </div>
 
-        <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.15]">
-          일상과 업무를 <br class="hidden sm:inline" />
-          스마트하게 <span class="gradient-text">rab8bit</span>
+        <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-[1.15]">
+          생산성의 한계를 넘다 <br class="hidden sm:inline" />
+          스마트 플랫폼 <span class="gradient-text-stitch">rab8bit</span>
         </h1>
 
-        <p class="text-base sm:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto font-normal leading-relaxed">
-          실시간 단위 변환기부터 사다리 타기, 최신 AI 트렌드 및 검증된 프롬프트 라이브러리를 한곳에서 경험해 보세요.
+        <p class="text-base sm:text-xl text-slate-300 max-w-2xl mx-auto font-normal leading-relaxed">
+          실시간 단위 변환기부터 사다리 타기, 최신 AI 트렌드 및 원클릭 검증 프롬프트 라이브러리까지.
         </p>
 
         <div class="pt-4 flex flex-wrap items-center justify-center gap-4">
           <a
             href="/tools/unit-converter"
-            class="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 hover:from-indigo-500 hover:to-pink-500 text-white font-bold text-sm shadow-xl shadow-indigo-600/30 hover:shadow-indigo-600/50 transition-all hover:scale-105 active:scale-95 flex items-center gap-2"
+            class="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:from-indigo-400 hover:to-pink-400 text-white font-bold text-sm shadow-lg shadow-purple-500/30 transition-all hover:scale-105 active:scale-95 flex items-center gap-2"
           >
-            <span>📐 단위 변환기 바로가기</span>
+            <span>📐 단위 변환기 시작</span>
           </a>
           <a
             href="/prompts"
-            class="px-6 py-3.5 rounded-2xl bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 font-bold text-sm border border-slate-200 dark:border-slate-700/80 shadow-md hover:bg-slate-50 dark:hover:bg-slate-800 transition-all hover:scale-105 active:scale-95 flex items-center gap-2"
+            class="px-6 py-3.5 rounded-2xl bg-slate-900/90 text-slate-200 font-bold text-sm border border-indigo-500/30 shadow-md hover:bg-slate-800 transition-all hover:scale-105 active:scale-95 flex items-center gap-2"
           >
             <span>💡 프롬프트 모음</span>
           </a>
@@ -53,10 +53,10 @@ const featuredPrompts = prompts.filter(p => p.data.featured).slice(0, 3);
 
     {/* Web Tools Section */}
     <section class="space-y-6">
-      <div class="flex items-end justify-between border-b border-slate-200/80 dark:border-slate-800/80 pb-4">
+      <div class="flex items-end justify-between border-b border-indigo-500/20 pb-4">
         <div>
-          <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 tracking-wider uppercase">Utilities</span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">🛠️ 무료 스마트 도구</h2>
+          <span class="text-xs font-bold text-indigo-400 tracking-wider uppercase">Utilities</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white">🛠️ 스마트 유틸리티 도구</h2>
         </div>
       </div>
 
@@ -64,25 +64,25 @@ const featuredPrompts = prompts.filter(p => p.data.featured).slice(0, 3);
         {/* Tool 1: Unit Converter */}
         <a
           href="/tools/unit-converter"
-          class="group relative card-hover p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-lg overflow-hidden flex flex-col justify-between"
+          class="group relative stitch-card p-8 rounded-3xl overflow-hidden flex flex-col justify-between"
         >
-          <div class="absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 dark:bg-indigo-500/20 rounded-bl-full group-hover:scale-110 transition-transform"></div>
-          
+          <div class="absolute top-0 right-0 w-36 h-36 bg-indigo-500/10 rounded-bl-full group-hover:scale-110 transition-transform"></div>
+
           <div class="space-y-4 relative z-10">
-            <div class="w-14 h-14 rounded-2xl bg-indigo-50 dark:bg-indigo-950/80 border border-indigo-100 dark:border-indigo-900/50 flex items-center justify-center text-3xl shadow-inner">
+            <div class="w-14 h-14 rounded-2xl bg-indigo-950/80 border border-indigo-500/30 flex items-center justify-center text-3xl shadow-inner">
               📐
             </div>
             <div>
-              <h3 class="text-2xl font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+              <h3 class="text-2xl font-bold text-white group-hover:text-indigo-400 transition-colors">
                 실시간 단위 변환기
               </h3>
-              <p class="text-sm text-slate-600 dark:text-slate-400 mt-2 leading-relaxed">
+              <p class="text-sm text-slate-400 mt-2 leading-relaxed">
                 평수(㎡), 무게(kg/lb), 길이(cm/inch) 등 일상 및 업무 필수 단위를 실시간으로 즉시 변환합니다.
               </p>
             </div>
           </div>
 
-          <div class="mt-8 pt-4 border-t border-slate-100 dark:border-slate-800/60 flex items-center justify-between text-xs font-bold text-indigo-600 dark:text-indigo-400">
+          <div class="mt-8 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-bold text-indigo-400">
             <span>평수 · 무게 · 길이 지원</span>
             <span class="group-hover:translate-x-1.5 transition-transform flex items-center gap-1">
               변환기 실행 &rarr;
@@ -93,25 +93,25 @@ const featuredPrompts = prompts.filter(p => p.data.featured).slice(0, 3);
         {/* Tool 2: Ladder Game */}
         <a
           href="/tools/ladder-game"
-          class="group relative card-hover p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-lg overflow-hidden flex flex-col justify-between"
+          class="group relative stitch-card p-8 rounded-3xl overflow-hidden flex flex-col justify-between"
         >
-          <div class="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 dark:bg-purple-500/20 rounded-bl-full group-hover:scale-110 transition-transform"></div>
+          <div class="absolute top-0 right-0 w-36 h-36 bg-purple-500/10 rounded-bl-full group-hover:scale-110 transition-transform"></div>
 
           <div class="space-y-4 relative z-10">
-            <div class="w-14 h-14 rounded-2xl bg-purple-50 dark:bg-purple-950/80 border border-purple-100 dark:border-purple-900/50 flex items-center justify-center text-3xl shadow-inner">
+            <div class="w-14 h-14 rounded-2xl bg-purple-950/80 border border-purple-500/30 flex items-center justify-center text-3xl shadow-inner">
               🪜
             </div>
             <div>
-              <h3 class="text-2xl font-bold text-slate-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+              <h3 class="text-2xl font-bold text-white group-hover:text-purple-400 transition-colors">
                 랜덤 사다리 타기
               </h3>
-              <p class="text-sm text-slate-600 dark:text-slate-400 mt-2 leading-relaxed">
-                점심 내기, 벌칙 정하기! SVG 라인 연출과 URL 결과 공유 기능을 지원하는 흥미진진 사다리 게임.
+              <p class="text-sm text-slate-400 mt-2 leading-relaxed">
+                점심 내기, 벌칙 정하기! SVG 라인 연출과 URL 결과 공유 기능을 지원하는 사다리 게임.
               </p>
             </div>
           </div>
 
-          <div class="mt-8 pt-4 border-t border-slate-100 dark:border-slate-800/60 flex items-center justify-between text-xs font-bold text-purple-600 dark:text-purple-400">
+          <div class="mt-8 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-bold text-purple-400">
             <span>2~12명 · 결과 URL 공유</span>
             <span class="group-hover:translate-x-1.5 transition-transform flex items-center gap-1">
               게임 시작 &rarr;
@@ -123,12 +123,12 @@ const featuredPrompts = prompts.filter(p => p.data.featured).slice(0, 3);
 
     {/* AI Prompts Section */}
     <section class="space-y-6">
-      <div class="flex items-end justify-between border-b border-slate-200/80 dark:border-slate-800/80 pb-4">
+      <div class="flex items-end justify-between border-b border-indigo-500/20 pb-4">
         <div>
-          <span class="text-xs font-bold text-purple-600 dark:text-purple-400 tracking-wider uppercase">Prompts Library</span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">💡 검증된 AI 프롬프트</h2>
+          <span class="text-xs font-bold text-purple-400 tracking-wider uppercase">Prompts Library</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white">💡 검증된 AI 프롬프트</h2>
         </div>
-        <a href="/prompts" class="text-xs sm:text-sm font-bold text-purple-600 dark:text-purple-400 hover:underline">
+        <a href="/prompts" class="text-xs sm:text-sm font-bold text-purple-400 hover:underline">
           전체 보기 &rarr;
         </a>
       </div>
@@ -137,30 +137,30 @@ const featuredPrompts = prompts.filter(p => p.data.featured).slice(0, 3);
         {featuredPrompts.map((item) => (
           <a
             href={`/prompts/${item.id}`}
-            class="group card-hover p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-md flex flex-col justify-between"
+            class="group stitch-card p-6 rounded-2xl flex flex-col justify-between"
           >
             <div class="space-y-3">
               <div class="flex items-center justify-between">
-                <span class="px-3 py-1 bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 text-xs font-semibold rounded-full border border-purple-100 dark:border-purple-900/50">
+                <span class="px-3 py-1 bg-purple-950/80 text-purple-300 text-xs font-semibold rounded-full border border-purple-800/50">
                   {item.data.category}
                 </span>
                 {item.data.featured && (
-                  <span class="text-[10px] font-bold px-2 py-0.5 bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300 rounded">
+                  <span class="text-[10px] font-bold px-2 py-0.5 bg-amber-900/60 text-amber-300 rounded border border-amber-700/50">
                     HOT
                   </span>
                 )}
               </div>
 
-              <h3 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+              <h3 class="text-lg font-bold text-white group-hover:text-purple-400 transition-colors">
                 {item.data.title}
               </h3>
 
-              <p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-3 leading-relaxed">
+              <p class="text-xs text-slate-400 line-clamp-3 leading-relaxed">
                 {item.data.description}
               </p>
             </div>
 
-            <div class="mt-6 pt-3 border-t border-slate-100 dark:border-slate-800/60 flex items-center justify-between text-xs text-purple-600 dark:text-purple-400 font-bold">
+            <div class="mt-6 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-purple-400 font-bold">
               <span>원클릭 복사</span>
               <span class="group-hover:translate-x-1 transition-transform">
                 자세히 보기 &rarr;
@@ -173,12 +173,12 @@ const featuredPrompts = prompts.filter(p => p.data.featured).slice(0, 3);
 
     {/* AI News Section */}
     <section class="space-y-6">
-      <div class="flex items-end justify-between border-b border-slate-200/80 dark:border-slate-800/80 pb-4">
+      <div class="flex items-end justify-between border-b border-indigo-500/20 pb-4">
         <div>
-          <span class="text-xs font-bold text-indigo-600 dark:text-indigo-400 tracking-wider uppercase">Editorial</span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">📰 최신 AI 뉴스 & 실무 팁</h2>
+          <span class="text-xs font-bold text-indigo-400 tracking-wider uppercase">Editorial</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white">📰 최신 AI 뉴스 & 실무 팁</h2>
         </div>
-        <a href="/news" class="text-xs sm:text-sm font-bold text-indigo-600 dark:text-indigo-400 hover:underline">
+        <a href="/news" class="text-xs sm:text-sm font-bold text-indigo-400 hover:underline">
           전체 보기 &rarr;
         </a>
       </div>
@@ -187,23 +187,23 @@ const featuredPrompts = prompts.filter(p => p.data.featured).slice(0, 3);
         {latestNews.map((post) => (
           <a
             href={`/news/${post.id}`}
-            class="group card-hover p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800/80 shadow-md flex flex-col justify-between"
+            class="group stitch-card p-6 rounded-2xl flex flex-col justify-between"
           >
             <div class="space-y-3">
-              <span class="inline-block px-3 py-1 bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 text-xs font-semibold rounded-full border border-indigo-100 dark:border-indigo-900/50">
+              <span class="inline-block px-3 py-1 bg-indigo-950/80 text-indigo-300 text-xs font-semibold rounded-full border border-indigo-800/50">
                 {post.data.category}
               </span>
-              <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+              <h3 class="text-xl font-bold text-white group-hover:text-indigo-400 transition-colors">
                 {post.data.title}
               </h3>
-              <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 line-clamp-2 leading-relaxed">
+              <p class="text-xs sm:text-sm text-slate-400 line-clamp-2 leading-relaxed">
                 {post.data.description}
               </p>
             </div>
 
-            <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800/60 flex justify-between items-center text-xs text-slate-500 dark:text-slate-400">
+            <div class="mt-6 pt-4 border-t border-slate-800/80 flex justify-between items-center text-xs text-slate-400">
               <span>{post.data.pubDate.toISOString().split('T')[0]}</span>
-              <span class="text-indigo-600 dark:text-indigo-400 font-bold group-hover:translate-x-1 transition-transform">
+              <span class="text-indigo-400 font-bold group-hover:translate-x-1 transition-transform">
                 아티클 읽기 &rarr;
               </span>
             </div>
