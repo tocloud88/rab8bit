@@ -1,0 +1,70 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('news');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'NewsArticle',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.pubDate.toISOString(),
+  author: {
+    '@type': 'Organization',
+    name: post.data.author,
+  },
+};
+---
+
+<Layout title={`${post.data.title} | rab8bit`} description={post.data.description}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  
+  <article class="max-w-3xl mx-auto space-y-8">
+    <div class="space-y-4 text-center border-b border-slate-200 dark:border-slate-800 pb-8">
+      <div class="inline-flex items-center gap-2">
+        <span class="px-3 py-1 bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 text-xs font-semibold rounded-full border border-indigo-100 dark:border-indigo-900/50">
+          {post.data.category}
+        </span>
+        <span class="text-xs text-slate-500">
+          {post.data.pubDate.toISOString().split('T')[0]}
+        </span>
+      </div>
+
+      <h1 class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white leading-tight">
+        {post.data.title}
+      </h1>
+
+      <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base max-w-xl mx-auto">
+        {post.data.description}
+      </p>
+
+      <div class="flex items-center justify-center gap-2 text-xs text-slate-500 pt-2">
+        <span>작성자: {post.data.author}</span>
+      </div>
+    </div>
+
+    <div class="prose prose-slate dark:prose-invert max-w-none space-y-4">
+      <Content />
+    </div>
+
+    {/* Footer Navigation */}
+    <div class="pt-8 border-t border-slate-200 dark:border-slate-800 flex justify-between items-center">
+      <a
+        href="/news"
+        class="inline-flex items-center text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:underline"
+      >
+        &larr; 목록으로 돌아가기
+      </a>
+    </div>
+  </article>
+</Layout>

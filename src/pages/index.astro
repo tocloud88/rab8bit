@@ -1,25 +1,138 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const news = await getCollection('news');
+const latestNews = news.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()).slice(0, 2);
+
+const prompts = await getCollection('prompts');
+const featuredPrompts = prompts.filter(p => p.data.featured).slice(0, 3);
 ---
 
-<Layout title="rab8bit | AI 팁 및 생활도구 허브" description="rab8bit은 직장인과 학생을 위한 실용적인 생활도구와 최신 AI 활용 팁을 제공합니다.">
-	<div class="flex flex-col gap-12 py-8">
-		<section class="text-center space-y-4">
-			<h1 class="text-4xl md:text-6xl font-bold tracking-tight">생활을 스마트하게, <span class="text-blue-600">rab8bit</span></h1>
-			<p class="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">빠르고 정확한 웹 도구들과 최신 AI 트렌드를 한 곳에서 만나보세요.</p>
-		</section>
+<Layout title="rab8bit | AI 팁, 프롬프트 & 스마트 도구 허브" description="rab8bit은 직장인과 학생을 위한 실용적인 웹 도구와 최신 AI 트렌드 및 프롬프트를 제공합니다.">
+  <div class="flex flex-col gap-12 py-6">
+    {/* Hero Section */}
+    <section class="text-center space-y-4 py-8 bg-gradient-to-b from-indigo-50/50 via-purple-50/20 to-transparent dark:from-indigo-950/20 dark:via-purple-950/10 dark:to-transparent rounded-3xl p-6 sm:p-12 border border-indigo-100/50 dark:border-indigo-900/30">
+      <div class="inline-flex items-center gap-2 px-3 py-1 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 text-xs font-semibold rounded-full">
+        ✨ 2026 AI 트렌드 & 무료 스마트 도구
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+        일상을 스마트하게, <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">rab8bit</span>
+      </h1>
+      <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+        실시간 단위 변환기부터 검증된 AI 프롬프트 라이브러리와 최신 AI 소식까지 한곳에서 만나보세요.
+      </p>
+    </section>
 
-		<section class="grid md:grid-cols-2 gap-6">
-			<div class="p-6 rounded-2xl bg-white dark:bg-slate-900 shadow-sm border hover:shadow-md transition-shadow">
-				<h2 class="text-2xl font-semibold mb-2">단위 변환기</h2>
-				<p class="text-slate-600 dark:text-slate-400 mb-4">평방미터, 무게, 길이, 환율 등 모든 단위를 한눈에 실시간으로 변환합니다.</p>
-				<a href="/tools/unit-converter" class="text-blue-600 font-medium hover:underline">바로가기 &rarr;</a>
-			</div>
-			<div class="p-6 rounded-2xl bg-white dark:bg-slate-900 shadow-sm border hover:shadow-md transition-shadow">
-				<h2 class="text-2xl font-semibold mb-2">사다리 게임</h2>
-				<p class="text-slate-600 dark:text-slate-400 mb-4">점심 메뉴, 벌칙 정하기. 빠르고 공정한 랜덤 사다리 게임을 즐겨보세요.</p>
-				<a href="/tools/ladder-game" class="text-blue-600 font-medium hover:underline">바로가기 &rarr;</a>
-			</div>
-		</section>
-	</div>
+    {/* Web Tools Section */}
+    <section class="space-y-4">
+      <div class="flex items-center justify-between">
+        <h2 class="text-2xl font-bold text-slate-900 dark:text-white">🛠️ 필수 스마트 도구</h2>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <a
+          href="/tools/unit-converter"
+          class="group p-6 rounded-2xl bg-white dark:bg-slate-800/80 shadow-sm border border-slate-200 dark:border-slate-700/80 hover:shadow-xl hover:-translate-y-1 transition-all"
+        >
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-3xl">📐</span>
+            <span class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 group-hover:translate-x-1 transition-transform">
+              사용하기 &rarr;
+            </span>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-1 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+            실시간 단위 변환기
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+            평수(㎡), 무개(kg/lb), 길이(cm/inch) 등 실생활 필수 단위를 즉시 다중 변환합니다.
+          </p>
+        </a>
+
+        <a
+          href="/tools/ladder-game"
+          class="group p-6 rounded-2xl bg-white dark:bg-slate-800/80 shadow-sm border border-slate-200 dark:border-slate-700/80 hover:shadow-xl hover:-translate-y-1 transition-all"
+        >
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-3xl">🪜</span>
+            <span class="text-xs font-semibold text-purple-600 dark:text-purple-400 group-hover:translate-x-1 transition-transform">
+              사용하기 &rarr;
+            </span>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-1 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+            랜덤 사다리 타기
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+            점심 내기, 벌칙 정하기! 애니메이션 연출과 결과 공유 링크를 지원합니다.
+          </p>
+        </a>
+      </div>
+    </section>
+
+    {/* AI Prompts Section */}
+    <section class="space-y-4">
+      <div class="flex items-center justify-between">
+        <h2 class="text-2xl font-bold text-slate-900 dark:text-white">💡 검증된 AI 프롬프트</h2>
+        <a href="/prompts" class="text-xs font-semibold text-purple-600 dark:text-purple-400 hover:underline">
+          전체 보기 &rarr;
+        </a>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {featuredPrompts.map((item) => (
+          <a
+            href={`/prompts/${item.id}`}
+            class="group p-5 rounded-2xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/80 hover:shadow-lg transition-all flex flex-col justify-between"
+          >
+            <div class="space-y-2">
+              <span class="px-2.5 py-0.5 bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 text-[11px] font-semibold rounded-full border border-purple-100 dark:border-purple-900/50">
+                {item.data.category}
+              </span>
+              <h3 class="font-bold text-slate-900 dark:text-white text-base group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                {item.data.title}
+              </h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-2">
+                {item.data.description}
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-700/50 flex justify-end text-xs text-purple-600 dark:text-purple-400 font-medium">
+              복사하기 &rarr;
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    {/* AI News Section */}
+    <section class="space-y-4">
+      <div class="flex items-center justify-between">
+        <h2 class="text-2xl font-bold text-slate-900 dark:text-white">📰 최신 AI 뉴스 & 팁</h2>
+        <a href="/news" class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">
+          전체 보기 &rarr;
+        </a>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {latestNews.map((post) => (
+          <a
+            href={`/news/${post.id}`}
+            class="group p-6 rounded-2xl bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/80 hover:shadow-lg transition-all flex flex-col justify-between"
+          >
+            <div class="space-y-2">
+              <span class="text-xs text-indigo-600 dark:text-indigo-400 font-semibold">
+                {post.data.category}
+              </span>
+              <h3 class="font-bold text-slate-900 dark:text-white text-lg group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                {post.data.title}
+              </h3>
+              <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 line-clamp-2">
+                {post.data.description}
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-700/50 flex justify-between items-center text-xs text-slate-400">
+              <span>{post.data.pubDate.toISOString().split('T')[0]}</span>
+              <span class="text-indigo-600 dark:text-indigo-400 font-medium">읽기 &rarr;</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  </div>
 </Layout>
