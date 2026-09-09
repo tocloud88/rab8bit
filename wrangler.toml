@@ -1,3 +1,5 @@
 name = "reb8bit"
 compatibility_date = "2026-09-09"
-pages_build_output_dir = "./dist"
+
+[assets]
+directory = "./dist"
