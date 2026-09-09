@@ -1,0 +1,16 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import LadderGame from '../../components/tools/LadderGame';
+---
+<Layout title="사다리 게임 | 랜덤 결과 추첨기 - rab8bit" description="2인부터 12인까지 참여 가능한 실시간 사다리 게임. 점심 메뉴, 벌칙 정하기에 활용하세요.">
+	<h1 class="text-3xl font-bold mb-6 text-center">사다리 게임</h1>
+	<div class="py-8">
+		<LadderGame client:load />
+	</div>
+	
+	<!-- SEO Text Area -->
+	<div class="mt-12 prose dark:prose-invert max-w-none">
+		<h2>사다리 게임 이용 가이드</h2>
+		<p>참가자 수를 설정하고 항목을 입력하여 빠르고 공정하게 결과를 추첨하는 방법에 대한 설명이 제공됩니다.</p>
+	</div>
+</Layout>

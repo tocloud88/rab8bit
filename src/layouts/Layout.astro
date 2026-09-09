@@ -1,0 +1,45 @@
+---
+import SEO from '../components/SEO.astro';
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="ko">
+	<head>
+		<SEO title={title} description={description} />
+	</head>
+	<body class="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-50 flex flex-col font-sans">
+		<header class="border-b bg-white dark:bg-slate-900 sticky top-0 z-50">
+			<div class="container mx-auto px-4 h-16 flex items-center justify-between">
+				<a href="/" class="text-xl font-bold tracking-tight">rab8bit</a>
+				<nav class="hidden md:flex gap-6">
+					<a href="/tools/unit-converter" class="hover:text-blue-600 transition-colors">단위변환기</a>
+					<a href="/tools/ladder-game" class="hover:text-blue-600 transition-colors">사다리게임</a>
+					<a href="/news" class="hover:text-blue-600 transition-colors">AI 뉴스</a>
+					<a href="/prompts" class="hover:text-blue-600 transition-colors">프롬프트</a>
+				</nav>
+			</div>
+		</header>
+		<main class="flex-1 container mx-auto px-4 py-8">
+			<slot />
+		</main>
+		<footer class="border-t bg-slate-100 dark:bg-slate-900 py-8">
+			<div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-500">
+				<p>&copy; {new Date().getFullYear()} rab8bit. All rights reserved.</p>
+				<div class="flex gap-4">
+					<a href="/about" class="hover:underline">서비스 소개</a>
+					<a href="/terms" class="hover:underline">이용약관</a>
+					<a href="/privacy-policy" class="hover:underline">개인정보처리방침</a>
+					<a href="/contact" class="hover:underline">문의하기</a>
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>

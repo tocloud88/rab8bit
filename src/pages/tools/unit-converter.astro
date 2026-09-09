@@ -1,0 +1,16 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import UnitConverter from '../../components/tools/UnitConverter';
+---
+<Layout title="단위 변환기 | 빠르고 정확한 무료 계산기 - rab8bit" description="길이, 넓이, 무게, 부피, 온도, 데이터, 환율 등 실생활에 필요한 모든 단위를 실시간으로 변환합니다.">
+	<h1 class="text-3xl font-bold mb-6 text-center">단위 변환기</h1>
+	<div class="py-8">
+		<UnitConverter client:load />
+	</div>
+	
+	<!-- SEO Text Area -->
+	<div class="mt-12 prose dark:prose-invert max-w-none">
+		<h2>평수 계산기 및 단위 변환 가이드</h2>
+		<p>아파트 공급면적과 전용면적의 차이, 1평 = 3.305785m² 계산 공식 등 다양한 단위 변환에 대한 상세한 가이드가 이 영역에 1,000자 내외로 작성됩니다.</p>
+	</div>
+</Layout>
