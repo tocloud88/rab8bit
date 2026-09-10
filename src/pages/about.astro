@@ -1,9 +1,51 @@
 ---
 import Layout from '../layouts/Layout.astro';
 ---
-<Layout title="서비스 소개 | rab8bit">
-	<div class="max-w-3xl mx-auto prose dark:prose-invert">
-		<h1>서비스 소개</h1>
-		<p>rab8bit은 직장인과 학생들의 일상을 더욱 편리하게 만들어주는 웹 기반 생활도구와 최신 AI 트렌드를 제공하는 허브 서비스입니다.</p>
-	</div>
+
+<Layout
+  title="서비스 소개 | rab8bit (래빗비트)"
+  description="rab8bit(래빗비트)은 8비트 감성의 귀여운 토끼 마스코트와 함께 최신 생성형 AI 트렌드, 검증된 실무 프롬프트, 130+ 스마트 웹 유틸리티 도구를 제공합니다."
+>
+  <div class="container mx-auto px-4 py-8 max-w-3xl space-y-8">
+    {/* Hero Brand Showcase */}
+    <div class="text-center space-y-4 p-8 rounded-3xl stitch-card border border-indigo-500/30">
+      <div class="w-24 h-24 mx-auto rounded-2xl bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 p-1 shadow-xl shadow-purple-500/25">
+        <div class="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center p-2">
+          <img src="/logo.png" alt="rab8bit 8비트 토끼 로고" class="w-full h-full object-contain [image-rendering:pixelated]" />
+        </div>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        rab<span class="gradient-text-stitch">8bit</span> (래빗비트)
+      </h1>
+
+      <p class="text-sm sm:text-base text-slate-300 max-w-lg mx-auto leading-relaxed">
+        빠르고 민첩한 토끼(Rabbit)처럼, 8-bit 감성의 위트와 실용적인 AI & 웹 테크놀로지를 전해드립니다.
+      </p>
+    </div>
+
+    {/* Brand Story & Mission */}
+    <div class="space-y-6 text-slate-300 leading-relaxed text-sm sm:text-base bg-slate-900/40 p-6 sm:p-8 rounded-3xl border border-slate-800">
+      <h2 class="text-xl font-bold text-white flex items-center gap-2 border-b border-slate-800 pb-3">
+        <span>🚀</span> 우리의 미션
+      </h2>
+      <p>
+        <strong>rab8bit</strong>은 직장인, 학생, 크리에이터, 개발자 등 일상 속에서 더 높은 생산성을 추구하는 모든 분들을 위한 <strong>올인원 AI & 스마트 유틸리티 플랫폼</strong>입니다.
+      </p>
+      <p>
+        복잡한 프로그램 설치나 유료 결제 없이 브라우저에서 즉시 실행되는 130여 종의 웹 도구와, 현업에서 검증된 370여 개의 고성능 AI 프롬프트·GPTs 지침, 54편의 심층 블로그 가이드를 100% 무료로 제공합니다.
+      </p>
+
+      <h2 class="text-xl font-bold text-white flex items-center gap-2 border-b border-slate-800 pb-3 pt-4">
+        <span>🌟</span> 주요 제공 서비스
+      </h2>
+      <ul class="space-y-2 list-disc list-inside text-slate-400">
+        <li><strong class="text-white">AI 인사이트 & 블로그</strong>: 최신 AI 모델 트렌드, 제미나이/클로드/ChatGPT 실무 팁 54편</li>
+        <li><strong class="text-white">검증된 프롬프트 라이브러리</strong>: 업무, 마케팅, 코딩에 바로 복사하는 370+ 프롬프트 & 커스텀 지침</li>
+        <li><strong class="text-white">스마트 유틸리티 도구</strong>: 단위 변환기, QR코드 생성기, JSON 포맷터 등 130+ 웹 앱</li>
+        <li><strong class="text-white">바나나 AI 갤러리</strong>: 고화질 생성 이미지와 프롬프트 공유</li>
+        <li><strong class="text-white">글로벌 AI 사이트 큐레이션</strong>: 분야별 152개 검증 AI 디렉토리</li>
+      </ul>
+    </div>
+  </div>
 </Layout>
