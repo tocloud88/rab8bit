@@ -28,6 +28,15 @@ const navItems = [
 <html lang="ko" class="scroll-smooth dark">
   <head>
     <SEO title={title} description={description} />
+    <script is:inline>
+      // Initialize theme from localStorage or system preference
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'light') {
+        document.documentElement.classList.remove('dark');
+      } else {
+        document.documentElement.classList.add('dark');
+      }
+    </script>
   </head>
   <body class="min-h-screen text-slate-100 flex flex-col font-sans antialiased stitch-bg selection:bg-indigo-500 selection:text-white">
     {/* Header with Category Menus */}
@@ -79,15 +88,46 @@ const navItems = [
           })}
         </nav>
 
-        {/* Right Section: Integrated Search & Quick Actions */}
-        <div class="flex items-center gap-2">
-          {/* AI Prompt CTA */}
-          <a
-            href="/prompts"
-            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:from-indigo-400 hover:to-pink-400 text-white text-xs font-bold shadow-md shadow-purple-500/20 transition-all hover:scale-105 active:scale-95 shrink-0"
+        {/* Right Section: Integrated Search & Dark Mode Toggle Button */}
+        <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+          {/* Integrated Search Input Form */}
+          <form action="/search" method="GET" class="relative flex items-center">
+            <input
+              type="text"
+              name="q"
+              placeholder="통합 검색..."
+              class="w-32 sm:w-44 md:w-52 bg-slate-900/90 text-slate-200 text-xs rounded-full pl-4 pr-8 py-1.5 border border-slate-700/80 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all placeholder:text-slate-400 shadow-inner"
+            />
+            <button
+              type="submit"
+              aria-label="통합 검색 실행"
+              class="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white transition-colors p-0.5"
+            >
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-4.35-4.35m0 0a7.5 7.5 0 10-10.6-10.6 7.5 7.5 0 0010.6 10.6z" />
+              </svg>
+            </button>
+          </form>
+
+          {/* Dark / Light Mode Toggle Button */}
+          <button
+            id="theme-toggle-btn"
+            type="button"
+            aria-label="다크 모드 / 라이트 모드 전환"
+            title="다크 모드 / 라이트 모드 전환"
+            class="p-2 rounded-full text-slate-300 hover:text-amber-400 hover:bg-slate-800/80 transition-all focus:outline-none flex items-center justify-center"
           >
-            <span>✨ 프롬프트</span>
-          </a>
+            {/* Sun Icon (Visible in dark mode) */}
+            <svg id="theme-sun-icon" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="4" />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41m14.14-14.14l-1.41 1.41" />
+            </svg>
+
+            {/* Moon Icon (Visible in light mode) */}
+            <svg id="theme-moon-icon" class="w-4 h-4 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+          </button>
         </div>
       </div>
 
@@ -154,5 +194,42 @@ const navItems = [
         </div>
       </div>
     </footer>
+
+    {/* Theme Toggle Client Script */}
+    <script>
+      function setupThemeToggle() {
+        const toggleBtn = document.getElementById('theme-toggle-btn');
+        const sunIcon = document.getElementById('theme-sun-icon');
+        const moonIcon = document.getElementById('theme-moon-icon');
+
+        function updateIcons() {
+          const isDark = document.documentElement.classList.contains('dark');
+          if (isDark) {
+            sunIcon?.classList.remove('hidden');
+            moonIcon?.classList.add('hidden');
+          } else {
+            sunIcon?.classList.add('hidden');
+            moonIcon?.classList.remove('hidden');
+          }
+        }
+
+        updateIcons();
+
+        toggleBtn?.addEventListener('click', () => {
+          const isDark = document.documentElement.classList.contains('dark');
+          if (isDark) {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+          } else {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+          }
+          updateIcons();
+        });
+      }
+
+      setupThemeToggle();
+      document.addEventListener('astro:after-swap', setupThemeToggle);
+    </script>
   </body>
 </html>
