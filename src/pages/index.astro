@@ -6,7 +6,7 @@ const news = await getCollection('news');
 const latestNews = news.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()).slice(0, 2);
 
 const prompts = await getCollection('prompts');
-const featuredPrompts = prompts.filter(p => p.data.featured).slice(0, 3);
+const featuredPrompts = prompts.slice(0, 4);
 ---
 
 <Layout 
@@ -31,7 +31,7 @@ const featuredPrompts = prompts.filter(p => p.data.featured).slice(0, 3);
         </h1>
 
         <p class="text-base sm:text-xl text-slate-300 max-w-2xl mx-auto font-normal leading-relaxed">
-          실시간 단위 변환기부터 사다리 타기, 최신 AI 트렌드 및 원클릭 검증 프롬프트 라이브러리까지.
+          152개 추천 AI 사이트부터 29종 무료 스마트 도구, 검증된 프롬프트 라이브러리까지.
         </p>
 
         <div class="pt-4 flex flex-wrap items-center justify-center gap-4">
@@ -57,7 +57,7 @@ const featuredPrompts = prompts.filter(p => p.data.featured).slice(0, 3);
       </div>
     </section>
 
-    {/* Web Tools Section */}
+    {/* Web Tools Section (Mobile 2 cols, Desktop 4 cols) */}
     <section class="space-y-6">
       <div class="flex items-end justify-between border-b border-indigo-500/20 pb-4">
         <div>
@@ -69,32 +69,30 @@ const featuredPrompts = prompts.filter(p => p.data.featured).slice(0, 3);
         </a>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-5">
         {/* Tool 1: Unit Converter */}
         <a
           href="/tools/unit-converter"
-          class="group relative stitch-card p-8 rounded-3xl overflow-hidden flex flex-col justify-between"
+          class="group relative stitch-card p-4 sm:p-6 rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col justify-between border border-indigo-500/20 hover:border-indigo-500/50 transition-all"
         >
-          <div class="absolute top-0 right-0 w-36 h-36 bg-indigo-500/10 rounded-bl-full group-hover:scale-110 transition-transform"></div>
-
-          <div class="space-y-4 relative z-10">
-            <div class="w-14 h-14 rounded-2xl bg-indigo-950/80 border border-indigo-500/30 flex items-center justify-center text-3xl shadow-inner">
+          <div class="space-y-3 relative z-10">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-indigo-950/80 border border-indigo-500/30 flex items-center justify-center text-xl sm:text-2xl shadow-inner">
               📐
             </div>
             <div>
-              <h3 class="text-2xl font-bold text-white group-hover:text-indigo-400 transition-colors">
+              <h3 class="text-sm sm:text-lg font-bold text-white group-hover:text-indigo-400 transition-colors line-clamp-1">
                 실시간 단위 변환기
               </h3>
-              <p class="text-sm text-slate-400 mt-2 leading-relaxed">
-                평수(㎡), 무게(kg/lb), 길이(cm/inch) 등 일상 및 업무 필수 단위를 실시간으로 즉시 변환합니다.
+              <p class="text-[11px] sm:text-xs text-slate-400 mt-1 leading-relaxed line-clamp-2">
+                평수(㎡), 무게, 길이 등 일상 및 업무 필수 단위 즉시 변환.
               </p>
             </div>
           </div>
 
-          <div class="mt-8 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-bold text-indigo-400">
-            <span>평수 · 무게 · 길이 지원</span>
-            <span class="group-hover:translate-x-1.5 transition-transform flex items-center gap-1">
-              변환기 실행 &rarr;
+          <div class="mt-4 pt-2.5 border-t border-slate-800/80 flex items-center justify-between text-[11px] sm:text-xs font-bold text-indigo-400">
+            <span class="text-slate-500 text-[10px]">변환</span>
+            <span class="group-hover:translate-x-1 transition-transform">
+              실행 &rarr;
             </span>
           </div>
         </a>
@@ -102,35 +100,87 @@ const featuredPrompts = prompts.filter(p => p.data.featured).slice(0, 3);
         {/* Tool 2: Ladder Game */}
         <a
           href="/tools/ladder-game"
-          class="group relative stitch-card p-8 rounded-3xl overflow-hidden flex flex-col justify-between"
+          class="group relative stitch-card p-4 sm:p-6 rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col justify-between border border-purple-500/20 hover:border-purple-500/50 transition-all"
         >
-          <div class="absolute top-0 right-0 w-36 h-36 bg-purple-500/10 rounded-bl-full group-hover:scale-110 transition-transform"></div>
-
-          <div class="space-y-4 relative z-10">
-            <div class="w-14 h-14 rounded-2xl bg-purple-950/80 border border-purple-500/30 flex items-center justify-center text-3xl shadow-inner">
+          <div class="space-y-3 relative z-10">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-purple-950/80 border border-purple-500/30 flex items-center justify-center text-xl sm:text-2xl shadow-inner">
               🪜
             </div>
             <div>
-              <h3 class="text-2xl font-bold text-white group-hover:text-purple-400 transition-colors">
+              <h3 class="text-sm sm:text-lg font-bold text-white group-hover:text-purple-400 transition-colors line-clamp-1">
                 랜덤 사다리 타기
               </h3>
-              <p class="text-sm text-slate-400 mt-2 leading-relaxed">
-                점심 내기, 벌칙 정하기! SVG 라인 연출과 URL 결과 공유 기능을 지원하는 사다리 게임.
+              <p class="text-[11px] sm:text-xs text-slate-400 mt-1 leading-relaxed line-clamp-2">
+                점심 내기, 벌칙 정하기! 2~12인 실시간 사다리 게임.
               </p>
             </div>
           </div>
 
-          <div class="mt-8 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs font-bold text-purple-400">
-            <span>2~12명 · 결과 URL 공유</span>
-            <span class="group-hover:translate-x-1.5 transition-transform flex items-center gap-1">
-              게임 시작 &rarr;
+          <div class="mt-4 pt-2.5 border-t border-slate-800/80 flex items-center justify-between text-[11px] sm:text-xs font-bold text-purple-400">
+            <span class="text-slate-500 text-[10px]">게임</span>
+            <span class="group-hover:translate-x-1 transition-transform">
+              시작 &rarr;
+            </span>
+          </div>
+        </a>
+
+        {/* Tool 3: Character Counter */}
+        <a
+          href="/tools/character-counter"
+          class="group relative stitch-card p-4 sm:p-6 rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col justify-between border border-pink-500/20 hover:border-pink-500/50 transition-all"
+        >
+          <div class="space-y-3 relative z-10">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-pink-950/80 border border-pink-500/30 flex items-center justify-center text-xl sm:text-2xl shadow-inner">
+              ✍️
+            </div>
+            <div>
+              <h3 class="text-sm sm:text-lg font-bold text-white group-hover:text-pink-400 transition-colors line-clamp-1">
+                글자·단어 카운터
+              </h3>
+              <p class="text-[11px] sm:text-xs text-slate-400 mt-1 leading-relaxed line-clamp-2">
+                공백 포함/제외 글자수, 바이트수, 원고지 매수 실시간 계산.
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-2.5 border-t border-slate-800/80 flex items-center justify-between text-[11px] sm:text-xs font-bold text-pink-400">
+            <span class="text-slate-500 text-[10px]">텍스트</span>
+            <span class="group-hover:translate-x-1 transition-transform">
+              실행 &rarr;
+            </span>
+          </div>
+        </a>
+
+        {/* Tool 4: Roulette */}
+        <a
+          href="/tools/roulette"
+          class="group relative stitch-card p-4 sm:p-6 rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col justify-between border border-amber-500/20 hover:border-amber-500/50 transition-all"
+        >
+          <div class="space-y-3 relative z-10">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-amber-950/80 border border-amber-500/30 flex items-center justify-center text-xl sm:text-2xl shadow-inner">
+              🎯
+            </div>
+            <div>
+              <h3 class="text-sm sm:text-lg font-bold text-white group-hover:text-amber-400 transition-colors line-clamp-1">
+                결정의 룰렛
+              </h3>
+              <p class="text-[11px] sm:text-xs text-slate-400 mt-1 leading-relaxed line-clamp-2">
+                점심 메뉴와 벌칙자 추첨! 회전 애니메이션 룰렛 게임.
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-4 pt-2.5 border-t border-slate-800/80 flex items-center justify-between text-[11px] sm:text-xs font-bold text-amber-400">
+            <span class="text-slate-500 text-[10px]">추첨</span>
+            <span class="group-hover:translate-x-1 transition-transform">
+              돌리기 &rarr;
             </span>
           </div>
         </a>
       </div>
     </section>
 
-    {/* AI Prompts Section */}
+    {/* AI Prompts Section (Mobile 2 cols, Desktop 4 cols) */}
     <section class="space-y-6">
       <div class="flex items-end justify-between border-b border-indigo-500/20 pb-4">
         <div>
@@ -142,37 +192,37 @@ const featuredPrompts = prompts.filter(p => p.data.featured).slice(0, 3);
         </a>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-5">
         {featuredPrompts.map((item) => (
           <a
             href={`/prompts/${item.id}`}
-            class="group stitch-card p-6 rounded-2xl flex flex-col justify-between"
+            class="group stitch-card p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl flex flex-col justify-between border border-indigo-500/20 hover:border-purple-500/50 transition-all"
           >
-            <div class="space-y-3">
+            <div class="space-y-2.5">
               <div class="flex items-center justify-between">
-                <span class="px-3 py-1 bg-purple-950/80 text-purple-300 text-xs font-semibold rounded-full border border-purple-800/50">
+                <span class="px-2 py-0.5 bg-purple-950/80 text-purple-300 text-[10px] font-semibold rounded-full border border-purple-800/50">
                   {item.data.category}
                 </span>
                 {item.data.featured && (
-                  <span class="text-[10px] font-bold px-2 py-0.5 bg-amber-900/60 text-amber-300 rounded border border-amber-700/50">
+                  <span class="text-[9px] font-bold px-1.5 py-0.2 bg-amber-900/60 text-amber-300 rounded border border-amber-700/50">
                     HOT
                   </span>
                 )}
               </div>
 
-              <h3 class="text-lg font-bold text-white group-hover:text-purple-400 transition-colors">
+              <h3 class="text-sm sm:text-base font-bold text-white group-hover:text-purple-400 transition-colors line-clamp-2 leading-snug">
                 {item.data.title}
               </h3>
 
-              <p class="text-xs text-slate-400 line-clamp-3 leading-relaxed">
+              <p class="text-[11px] sm:text-xs text-slate-400 line-clamp-2 leading-relaxed">
                 {item.data.description}
               </p>
             </div>
 
-            <div class="mt-6 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-purple-400 font-bold">
-              <span>원클릭 복사</span>
+            <div class="mt-4 pt-2.5 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-purple-400 font-bold">
+              <span class="text-slate-500 text-[10px]">원클릭 복사</span>
               <span class="group-hover:translate-x-1 transition-transform">
-                자세히 보기 &rarr;
+                보기 &rarr;
               </span>
             </div>
           </a>

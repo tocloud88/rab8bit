@@ -369,32 +369,32 @@ export default function ToolsDirectory() {
         <span>총 <strong className="text-indigo-400 font-bold">{filteredTools.length}</strong>개의 도구가 검색되었습니다.</span>
       </div>
 
-      {/* Tools Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* Tools Grid (Mobile 2 cols, Desktop 4 cols) */}
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
         {filteredTools.map((tool) => {
           const isFav = favorites.includes(tool.slug);
           return (
             <a
               key={tool.slug}
               href={`/tools/${tool.slug}`}
-              className="group stitch-card p-6 rounded-3xl border border-indigo-500/20 hover:border-indigo-500/50 transition-all duration-300 shadow-xl flex flex-col justify-between relative overflow-hidden"
+              className="group stitch-card p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl border border-indigo-500/20 hover:border-indigo-500/50 transition-all duration-300 shadow-xl flex flex-col justify-between relative overflow-hidden"
             >
-              <div className="space-y-4">
-                <div className="flex items-start justify-between">
-                  <div className="w-12 h-12 rounded-2xl bg-indigo-950/80 border border-indigo-500/30 flex items-center justify-center text-2xl shadow-inner group-hover:scale-110 transition-transform">
+              <div className="space-y-2.5">
+                <div className="flex items-start justify-between gap-1">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-indigo-950/80 border border-indigo-500/30 flex items-center justify-center text-xl sm:text-2xl shadow-inner group-hover:scale-110 transition-transform shrink-0">
                     {tool.icon}
                   </div>
 
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1 shrink-0">
                     {tool.badge && (
-                      <span className="text-[11px] px-2.5 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 font-semibold border border-indigo-500/30">
+                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 font-semibold border border-indigo-500/30 hidden sm:inline-block">
                         {tool.badge}
                       </span>
                     )}
                     <button
                       onClick={(e) => toggleFavorite(tool.slug, e)}
                       title={isFav ? '즐겨찾기 해제' : '즐겨찾기 추가'}
-                      className="p-1.5 rounded-xl hover:bg-slate-800 text-base transition-transform active:scale-90"
+                      className="p-1 rounded-lg hover:bg-slate-800 text-xs sm:text-sm transition-transform active:scale-90"
                     >
                       {isFav ? '❤️' : '🤍'}
                     </button>
@@ -402,27 +402,27 @@ export default function ToolsDirectory() {
                 </div>
 
                 <div>
-                  <h3 className="text-xl font-bold text-white group-hover:text-indigo-400 transition-colors">
+                  <h3 className="text-sm sm:text-lg font-bold text-white group-hover:text-indigo-400 transition-colors leading-snug line-clamp-1">
                     {tool.title}
                   </h3>
-                  <p className="text-xs text-slate-400 mt-2 leading-relaxed line-clamp-2">
+                  <p className="text-[11px] sm:text-xs text-slate-400 mt-1 leading-relaxed line-clamp-2">
                     {tool.description}
                   </p>
                 </div>
 
-                <div className="flex flex-wrap gap-1.5 pt-1">
-                  {tool.tags.map((tag) => (
-                    <span key={tag} className="text-[10px] px-2 py-0.5 rounded-md bg-slate-900 text-slate-500 border border-slate-800/80">
+                <div className="hidden sm:flex flex-wrap gap-1 pt-0.5">
+                  {tool.tags.slice(0, 2).map((tag) => (
+                    <span key={tag} className="text-[9px] sm:text-[10px] px-1.5 py-0.2 rounded-md bg-slate-900 text-slate-500 border border-slate-800/80">
                       #{tag}
                     </span>
                   ))}
                 </div>
               </div>
 
-              <div className="mt-6 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs font-bold text-indigo-400">
-                <span className="text-slate-500 text-[11px]">{tool.category}</span>
-                <span className="group-hover:translate-x-1 transition-transform flex items-center gap-1">
-                  도구 실행 &rarr;
+              <div className="mt-4 pt-2.5 border-t border-slate-800/80 flex items-center justify-between text-[11px] sm:text-xs font-bold text-indigo-400">
+                <span className="text-slate-500 text-[10px] sm:text-[11px]">{tool.category}</span>
+                <span className="group-hover:translate-x-1 transition-transform flex items-center gap-0.5">
+                  실행 &rarr;
                 </span>
               </div>
             </a>

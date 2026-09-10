@@ -199,8 +199,8 @@ export default function AiToolsDirectory() {
         )}
       </div>
 
-      {/* AI Tools Cards Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {/* AI Tools Cards Grid (Mobile 2 cols, Desktop 4 cols) */}
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
         {filteredTools.map((tool) => {
           const isFav = favorites.includes(tool.name);
           const styling = CATEGORY_COLORS[tool.category] || {
@@ -212,30 +212,30 @@ export default function AiToolsDirectory() {
           return (
             <div
               key={tool.name}
-              className={`group stitch-card p-6 rounded-3xl border border-indigo-500/20 ${styling.border} transition-all duration-300 shadow-xl flex flex-col justify-between relative overflow-hidden`}
+              className={`group stitch-card p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl border border-indigo-500/20 ${styling.border} transition-all duration-300 shadow-xl flex flex-col justify-between relative overflow-hidden`}
             >
               {/* Subtle top glow gradient */}
-              <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl ${styling.glow} to-transparent rounded-bl-full group-hover:scale-125 transition-transform pointer-events-none`} />
+              <div className={`absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl ${styling.glow} to-transparent rounded-bl-full group-hover:scale-125 transition-transform pointer-events-none`} />
 
-              <div className="space-y-3 relative z-10">
+              <div className="space-y-2.5 relative z-10">
                 {/* Header: Category Badge & Favorite Button */}
-                <div className="flex items-start justify-between gap-2">
-                  <span className={`text-[11px] px-2.5 py-0.5 rounded-full font-bold border ${styling.badge} truncate max-w-[190px]`}>
+                <div className="flex items-start justify-between gap-1">
+                  <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold border ${styling.badge} truncate max-w-[110px] sm:max-w-[150px]`}>
                     {tool.category}
                   </span>
 
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-0.5 shrink-0">
                     <button
                       onClick={(e) => copyLink(tool, e)}
                       title="웹사이트 링크 복사"
-                      className="p-1.5 rounded-xl hover:bg-slate-800 text-slate-400 hover:text-white text-xs transition-colors"
+                      className="p-1 rounded-lg hover:bg-slate-800 text-slate-400 hover:text-white text-xs transition-colors"
                     >
-                      {copiedName === tool.name ? '✓ 복사됨' : '🔗'}
+                      {copiedName === tool.name ? '✓' : '🔗'}
                     </button>
                     <button
                       onClick={(e) => toggleFavorite(tool.name, e)}
                       title={isFav ? '즐겨찾기 해제' : '즐겨찾기 추가'}
-                      className="p-1.5 rounded-xl hover:bg-slate-800 text-sm transition-transform active:scale-90"
+                      className="p-1 rounded-lg hover:bg-slate-800 text-xs sm:text-sm transition-transform active:scale-90"
                     >
                       {isFav ? '❤️' : '🤍'}
                     </button>
@@ -244,21 +244,21 @@ export default function AiToolsDirectory() {
 
                 {/* Name */}
                 <div>
-                  <h3 className="text-xl font-extrabold text-white group-hover:text-indigo-400 transition-colors">
+                  <h3 className="text-sm sm:text-lg font-extrabold text-white group-hover:text-indigo-400 transition-colors leading-snug line-clamp-1">
                     {tool.name}
                   </h3>
-                  <p className="text-xs text-slate-300 mt-2 leading-relaxed line-clamp-3">
+                  <p className="text-[11px] sm:text-xs text-slate-300 mt-1 leading-relaxed line-clamp-2 sm:line-clamp-3">
                     {tool.description}
                   </p>
                 </div>
 
                 {/* Keywords */}
                 {tool.keywords && tool.keywords.length > 0 && (
-                  <div className="flex flex-wrap gap-1.5 pt-1">
-                    {tool.keywords.map((k) => (
+                  <div className="hidden sm:flex flex-wrap gap-1 pt-0.5">
+                    {tool.keywords.slice(0, 3).map((k) => (
                       <span
                         key={k}
-                        className="text-[10px] px-2 py-0.5 rounded-md bg-slate-900/80 text-slate-400 border border-slate-800"
+                        className="text-[9px] sm:text-[10px] px-1.5 py-0.2 rounded bg-slate-900/80 text-slate-400 border border-slate-800"
                       >
                         #{k}
                       </span>
@@ -268,8 +268,8 @@ export default function AiToolsDirectory() {
               </div>
 
               {/* Footer: Visit Site CTA */}
-              <div className="mt-6 pt-3 border-t border-slate-800/80 flex items-center justify-between relative z-10">
-                <span className="text-[11px] text-slate-500 font-mono truncate max-w-[140px]">
+              <div className="mt-4 pt-2.5 border-t border-slate-800/80 flex items-center justify-between relative z-10 gap-1">
+                <span className="hidden sm:inline text-[10px] text-slate-500 font-mono truncate max-w-[90px]">
                   {tool.link.replace(/^https?:\/\//, '').replace(/\/$/, '')}
                 </span>
 
@@ -277,9 +277,9 @@ export default function AiToolsDirectory() {
                   href={tool.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-3 py-1.5 rounded-xl bg-indigo-600/80 hover:bg-indigo-600 text-white text-xs font-bold transition-all shadow-md flex items-center gap-1 group-hover:scale-105"
+                  className="w-full sm:w-auto text-center px-2.5 py-1.5 rounded-xl bg-indigo-600/80 hover:bg-indigo-600 text-white text-[11px] sm:text-xs font-bold transition-all shadow-md flex items-center justify-center gap-1 group-hover:scale-105"
                 >
-                  <span>사이트 방문</span>
+                  <span>방문</span>
                   <span>&rarr;</span>
                 </a>
               </div>

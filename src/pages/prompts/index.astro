@@ -20,42 +20,42 @@ const sortedPrompts = prompts.sort((a, b) => b.data.pubDate.valueOf() - a.data.p
       </p>
     </div>
 
-    {/* Prompts Grid */}
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    {/* Prompts Grid (Mobile 2 cols, Desktop 4 cols) */}
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-5">
       {sortedPrompts.map((item) => (
         <a
           href={`/prompts/${item.id}`}
-          class="group bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700/80 rounded-2xl p-6 transition-all hover:shadow-xl hover:-translate-y-1 flex flex-col justify-between"
+          class="group stitch-card rounded-2xl sm:rounded-3xl p-3.5 sm:p-5 transition-all hover:shadow-xl hover:-translate-y-1 flex flex-col justify-between border border-indigo-500/20 hover:border-purple-500/50"
         >
-          <div class="space-y-3">
+          <div class="space-y-2.5">
             <div class="flex items-center justify-between">
-              <span class="px-3 py-1 bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 text-xs font-semibold rounded-full border border-purple-100 dark:border-purple-900/50">
+              <span class="px-2 py-0.5 bg-purple-950/60 text-purple-300 text-[10px] font-semibold rounded-full border border-purple-800/50">
                 {item.data.category}
               </span>
               {item.data.featured && (
-                <span class="text-[10px] font-bold px-2 py-0.5 bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300 rounded">
+                <span class="text-[9px] font-bold px-1.5 py-0.2 bg-amber-900/50 text-amber-300 rounded">
                   추천
                 </span>
               )}
             </div>
 
-            <h2 class="text-lg font-bold text-slate-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+            <h2 class="text-sm sm:text-base font-bold text-white group-hover:text-purple-400 transition-colors leading-snug line-clamp-2">
               {item.data.title}
             </h2>
 
-            <p class="text-xs text-slate-600 dark:text-slate-400 line-clamp-3">
+            <p class="text-[11px] sm:text-xs text-slate-400 line-clamp-2">
               {item.data.description}
             </p>
           </div>
 
-          <div class="pt-4 mt-4 border-t border-slate-100 dark:border-slate-700/50 flex items-center justify-between text-xs text-slate-500">
-            <div class="flex flex-wrap gap-1">
-              {item.data.tags.slice(0, 2).map((t) => (
-                <span class="text-[10px] text-slate-400">#{t}</span>
+          <div class="pt-3 mt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-500">
+            <div class="hidden sm:flex flex-wrap gap-1">
+              {item.data.tags.slice(0, 1).map((t) => (
+                <span class="text-[9px] text-slate-400">#{t}</span>
               ))}
             </div>
-            <span class="font-medium text-purple-600 dark:text-purple-400 group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-              복사하기 &rarr;
+            <span class="font-medium text-purple-400 group-hover:translate-x-1 transition-transform inline-flex items-center gap-0.5 text-[11px]">
+              복사 &rarr;
             </span>
           </div>
         </a>
