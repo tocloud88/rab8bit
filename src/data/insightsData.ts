@@ -15,7 +15,27 @@ export interface InsightItem {
 
 export const INSIGHTS_DATA: InsightItem[] = [
   {
-    "id": 92,
+    "id": "ai-pet-duck-reinforcement-learning",
+    "category": "AI 트렌드",
+    "access": "공개",
+    "title": "399달러 AI 펫 오리, 두 마리 입양했습니다. 강화학습 기초부터 전부 알려드립니다",
+    "video_url": "https://www.youtube.com/watch?v=4mXhWbJObI8",
+    "description": "399달러 AI 펫 오리를 직접 입양하여 언박싱하고, 인공지능 강화학습(Reinforcement Learning)의 원리와 실생활 로보틱스 적용 기초를 알기 쉽게 설명해 드립니다.",
+    "download_url": null,
+    "thumbnail": "https://i.ytimg.com/vi/4mXhWbJObI8/hqdefault.jpg",
+    "tags": [
+      "AI펫",
+      "강화학습",
+      "AI오리",
+      "로보틱스",
+      "AI하드웨어"
+    ],
+    "date": "2026-09-10",
+    "sort_order": 92,
+    "is_new": 1
+  },
+  {
+    "id": "92",
     "category": "GEMINI 활용",
     "access": "공개",
     "title": "제미나이 하나로 리서치·이미지·영상·음악까지｜Gemini 사용법 1부",
