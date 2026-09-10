@@ -1,0 +1,81 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const faqs = [
+  {
+    q: 'rab8bit(래빗비트)은 어떤 서비스인가요?',
+    a: 'rab8bit은 2026년 최신 생성형 AI 트렌드, 검증된 프롬프트 라이브러리, 커스텀 GPTs 챗봇 지침, 150+ 추천 AI 사이트 모음 및 실용적인 130+ 스마트 웹 유틸리티 도구를 무료로 제공하는 종합 올인원 AI & 생산성 플랫폼입니다.'
+  },
+  {
+    q: '사이트 내의 모든 도구와 프롬프트는 무료로 이용 가능한가요?',
+    a: '네, rab8bit에서 제공하는 모든 자체 웹 도구(단위 변환기, QR코드 생성기, JSON 포맷터 등), 프롬프트 복사, AI 인사이트 및 아티클은 회원가입이나 유료 결제 없이 100% 무료로 이용하실 수 있습니다.'
+  },
+  {
+    q: '제공되는 프롬프트는 어떤 AI 모델에서 사용할 수 있나요?',
+    a: 'ChatGPT(GPT-4o, GPT-5), 구글 Gemini(Gemini 2.5/3 Pro), Anthropic Claude 3.5/3.7 Sonnet, DeepSeek, Grok, Midjourney, 나노바나나 등 최신 주요 LLM 및 이미지 생성 모델에서 모두 테스트 및 검증되었습니다.'
+  },
+  {
+    q: '원클릭 프롬프트 복사 기능은 어떻게 사용하나요?',
+    a: '프롬프트 또는 GPTs 지침 카드 우측 하단의 [복사] 버튼을 누르면 클립보드에 지침문이 즉시 복사됩니다. 대화창에 바로 붙여넣기(Ctrl+V / Cmd+V)하여 사용하시면 됩니다.'
+  },
+  {
+    q: '새로운 AI 도구나 프롬프트를 제안하거나 피드백을 남기려면 어떻게 하나요?',
+    a: '상단 메뉴의 [문의] 페이지를 통해 추가를 희망하는 AI 툴, 추천 프롬프트, 또는 기능 개선 제안을 언제든 자유롭게 보내주실 수 있습니다.'
+  },
+  {
+    q: '모바일에서도 데스크톱과 동일하게 사용할 수 있나요?',
+    a: '네, rab8bit은 최신 반응형 디자인(Mobile 2열, Web 4열 그리드)이 완벽하게 적용되어 있어 스마트폰, 태블릿, PC 등 모든 기기 환경에서 최적화된 사용성을 제공합니다.'
+  }
+];
+---
+
+<Layout
+  title="자주 묻는 질문 (FAQ) - rab8bit"
+  description="rab8bit 서비스 이용 방법, AI 도구 및 프롬프트 활용법에 대한 자주 묻는 질문들을 확인하세요."
+>
+  <div class="container mx-auto px-4 py-8 max-w-3xl space-y-8">
+    {/* Header */}
+    <div class="text-center space-y-3">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-bold">
+        <span>❓</span> 자주 묻는 질문
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+        도움말 & <span class="gradient-text-stitch">FAQ</span>
+      </h1>
+      <p class="text-sm sm:text-base text-slate-400">
+        rab8bit 이용에 관해 가장 자주 묻는 질문과 답변을 정리했습니다.
+      </p>
+    </div>
+
+    {/* FAQ Accordion List */}
+    <div class="space-y-4">
+      {faqs.map((faq, idx) => (
+        <details class="group stitch-card rounded-2xl p-5 border border-indigo-500/20 open:border-indigo-500/50 transition-all">
+          <summary class="flex justify-between items-center font-bold text-sm sm:text-base text-white cursor-pointer list-none select-none">
+            <span class="flex items-center gap-3">
+              <span class="text-indigo-400 font-extrabold text-sm">Q{idx + 1}.</span>
+              <span>{faq.q}</span>
+            </span>
+            <span class="text-indigo-400 group-open:rotate-180 transition-transform text-xs font-bold ml-2">
+              ▼
+            </span>
+          </summary>
+          <div class="mt-4 pt-3 border-t border-slate-800/80 text-xs sm:text-sm text-slate-300 leading-relaxed pl-7">
+            {faq.a}
+          </div>
+        </details>
+      ))}
+    </div>
+
+    {/* Help CTA */}
+    <div class="text-center p-6 rounded-2xl bg-slate-900/50 border border-indigo-500/20 space-y-3">
+      <p class="text-sm text-slate-300">원하시는 답변을 찾지 못하셨나요?</p>
+      <a
+        href="/contact"
+        class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 text-white text-xs sm:text-sm font-bold shadow-lg shadow-indigo-500/30 hover:scale-105 transition-all"
+      >
+        <span>💬</span> 1:1 문의 남기기
+      </a>
+    </div>
+  </div>
+</Layout>

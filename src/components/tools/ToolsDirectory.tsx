@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
+import { GPTPARK_TOOLS_DATA, type GptparkToolItem } from '../../data/gptparkToolsData';
 
-export interface ToolItem {
+export interface InteractiveToolItem {
   slug: string;
   title: string;
   description: string;
-  category: '텍스트' | '계산기' | '변환' | '랜덤/게임' | '개발 도구' | '이미지' | '지식/사전';
+  category: string;
   icon: string;
   badge?: string;
   tags: string[];
 }
 
-export const ALL_TOOLS: ToolItem[] = [
+export const INTERACTIVE_TOOLS: InteractiveToolItem[] = [
   // 1. Text
   {
     slug: 'character-counter',
@@ -44,7 +45,7 @@ export const ALL_TOOLS: ToolItem[] = [
     slug: 'unit-converter',
     title: '실시간 단위 변환기',
     description: '길이, 무게, 넓이(평수), 부피, 온도, 데이터 등 일상의 모든 단위를 실시간으로 즉시 변환합니다.',
-    category: '변환',
+    category: '변환/계산',
     icon: '📐',
     badge: '추천',
     tags: ['평수', '무게', '길이', '온도', '실시간']
@@ -53,7 +54,7 @@ export const ALL_TOOLS: ToolItem[] = [
     slug: 'age-calculator',
     title: '나이 계산기',
     description: '생년월일을 입력하면 법적 만 나이, 연 나이, 세는 나이와 총 살아온 일수, 띠, 별자리를 확인합니다.',
-    category: '계산기',
+    category: '변환/계산',
     icon: '🎂',
     badge: '생활 필수',
     tags: ['만나이', '생일', '띠', '살아온날']
@@ -62,7 +63,7 @@ export const ALL_TOOLS: ToolItem[] = [
     slug: 'lunar-converter',
     title: '음력·양력 변환기',
     description: '음력과 양력 사이의 날짜를 쉽게 상호 변환하고, 해당 연도의 60갑자 간지와 띠를 확인합니다.',
-    category: '변환',
+    category: '변환/계산',
     icon: '🌙',
     tags: ['음력', '양력', '60갑자', '윤달']
   },
@@ -70,7 +71,7 @@ export const ALL_TOOLS: ToolItem[] = [
     slug: 'birthday-secret',
     title: '나의 탄생 비밀',
     description: '생일만 입력하면 나의 탄생화(꽃말), 탄생석(보석말), 탄생목, 고유 탄생색을 한눈에 확인합니다.',
-    category: '지식/사전',
+    category: '지식/정보',
     icon: '💎',
     badge: '흥미',
     tags: ['탄생석', '탄생화', '꽃말', '생일']
@@ -79,7 +80,7 @@ export const ALL_TOOLS: ToolItem[] = [
     slug: 'knitting-gauge',
     title: '뜨개 게이지 계산기',
     description: '스와치(10cm)의 코/단 수와 완성 치수를 기반으로 필요한 총 코 수와 단 수를 자동 환산합니다.',
-    category: '계산기',
+    category: '변환/계산',
     icon: '🧶',
     tags: ['뜨개질', '게이지', '코수계산', '단수']
   },
@@ -89,7 +90,7 @@ export const ALL_TOOLS: ToolItem[] = [
     slug: 'ladder-game',
     title: '사다리 타기',
     description: '2인부터 12인까지 참여 가능한 실시간 사다리 게임. 점심 메뉴 고르기, 커피 내기, 벌칙 추첨.',
-    category: '랜덤/게임',
+    category: '게임/추첨',
     icon: '🪜',
     badge: '팀 게임',
     tags: ['사다리타기', '점심내기', '벌칙', '추첨']
@@ -98,348 +99,397 @@ export const ALL_TOOLS: ToolItem[] = [
     slug: 'roulette',
     title: '결정의 룰렛',
     description: '선택지들을 입력하고 룰렛을 힘차게 돌려보세요. 점심 메뉴와 순번을 공정하게 결정합니다.',
-    category: '랜덤/게임',
+    category: '게임/추첨',
     icon: '🎯',
-    badge: '꿀잼',
-    tags: ['룰렛돌리기', '메뉴결정', '랜덤추첨']
+    tags: ['룰렛', '점심추천', '결정장애', '랜덤']
   },
   {
     slug: 'lotto-generator',
-    title: '로또 6/45 번호 생성기',
-    description: '원하는 고정수와 제외수를 설정하고 공정한 난수 알고리즘으로 행운의 로또 번호를 추출합니다.',
-    category: '랜덤/게임',
-    icon: '🍀',
-    badge: '행운',
-    tags: ['로또번호', '645', '제외수', '번호추출']
-  },
-  {
-    slug: 'speed-quiz',
-    title: '스피드 퀴즈 제시어',
-    description: '동물, 음식, 영화, 속담, MZ 신조어 제시어를 화면에 띄우고 60초 타이머와 점수판으로 즐기는 파티 퀴즈.',
-    category: '랜덤/게임',
-    icon: '⏱️',
-    badge: '파티용',
-    tags: ['스피드퀴즈', 'MT게임', '타이머', '제시어']
+    title: '로또 번호 생성기',
+    description: '제외 번호 지정 및 번호 합 통계 시뮬레이션 기반의 스마트 행운 로또 번호 6개 추천.',
+    category: '게임/추첨',
+    icon: '🎱',
+    badge: '대박기원',
+    tags: ['로또', '행운번호', '추첨', '번호생성']
   },
   {
     slug: 'charades',
     title: '몸으로 말해요',
-    description: '말없이 오직 몸짓과 제스처만으로 제시어를 표현하고 맞추는 파티·레크리에이션 제스처 게임.',
-    category: '랜덤/게임',
+    description: '영화, 속담, 동물, 인물 등 500+개 제시어로 즐기는 모임 파티 필수 스피드 제스처 게임.',
+    category: '게임/추첨',
     icon: '🕺',
-    badge: '레크리에이션',
-    tags: ['제스처게임', '몸으로말해요', '모임게임']
+    badge: '파티 필수',
+    tags: ['몸으로말해요', '제스처게임', '엠티', '파티게임']
+  },
+  {
+    slug: 'speed-quiz',
+    title: '스피드 퀴즈',
+    description: '타이머와 점수판이 탑재된 실시간 단어 맞히기 스피드 퀴즈. 레크리에이션 진행용.',
+    category: '게임/추첨',
+    icon: '⚡',
+    tags: ['스피드퀴즈', '낱말게임', '레크리에이션', '타이머']
   },
 
   // 4. Developer Tools
   {
     slug: 'json-formatter',
-    title: 'JSON 정렬 및 검증',
-    description: '복잡하거나 깨진 JSON 문자열을 보기 좋게 들여쓰기 정렬하고 구문 오류를 검증하거나 한 줄 압축합니다.',
-    category: '개발 도구',
-    icon: '💻',
-    badge: '개발 필수',
-    tags: ['JSON', '포맷터', '검증', '압축']
+    title: 'JSON 포맷터 & 뷰어',
+    description: '복잡한 JSON 데이터를 검증, 정렬, 압축(Minify)하고 트리 구조로 직관적으로 시각화합니다.',
+    category: '개발/코딩',
+    icon: '⚙️',
+    badge: '개발자 추천',
+    tags: ['JSON', '포맷터', '검증', 'Beautify']
   },
   {
     slug: 'jwt-decoder',
-    title: 'JWT 디코더',
-    description: '서버 전송 없이 브라우저에서 안전하게 JWT 헤더, 페이로드 클레임, 만료 시각을 분석합니다.',
-    category: '개발 도구',
-    icon: '🛡️',
-    tags: ['JWT', '토큰디코더', '보안', '클레임']
+    title: 'JWT 토큰 디코더',
+    description: '서버 전송 없이 브라우저에서 안전하게 JWT Header와 Payload를 디코딩하고 만료시간을 확인합니다.',
+    category: '개발/코딩',
+    icon: '🔐',
+    badge: '안전 보장',
+    tags: ['JWT', '디코더', 'Token', '보안']
   },
   {
     slug: 'base64-encoder',
     title: 'Base64 인코더/디코더',
-    description: '텍스트와 파일을 Base64로 인코딩하거나 디코딩합니다. UTF-8 한글 및 URL-Safe 모드 지원.',
-    category: '개발 도구',
+    description: '텍스트와 이미지 파일을 브라우저 내에서 즉시 Base64 문자열로 상호 변환하고 복사합니다.',
+    category: '개발/코딩',
     icon: '🔤',
-    tags: ['Base64', '인코딩', '디코딩', '파일변환']
+    tags: ['Base64', '인코딩', '디코딩', 'DataURI']
   },
   {
     slug: 'url-encoder',
-    title: 'URL 인코더 / 디코더',
-    description: '한글/특수문자 URL 퍼센트 인코딩 및 디코딩, URL 쿼리스트링 파라미터 구조 자동 분석.',
-    category: '개발 도구',
+    title: 'URL 인코더/디코더',
+    description: 'URL 특수문자 및 한글 쿼리스트링을 encodeURI / decodeURI 표준 규격으로 상호 변환합니다.',
+    category: '개발/코딩',
     icon: '🔗',
-    tags: ['URL인코딩', '퍼센트인코딩', '쿼리스트링']
+    tags: ['URL', '인코딩', 'URI', '쿼리스트링']
   },
   {
     slug: 'cron-parser',
-    title: '크론 표현식 해석기',
-    description: 'Unix/Linux Cron 표현식을 이해하기 쉬운 한국어 문장으로 자동 변환하고 실행 일정을 분석합니다.',
-    category: '개발 도구',
+    title: 'Cron 표현식 번역기',
+    description: '난해한 Cron 정기작업 표현식을 사람이 읽기 쉬운 한국어 설명 및 다음 실행 예정 시각으로 해석합니다.',
+    category: '개발/코딩',
     icon: '⏰',
-    tags: ['크론', 'Cron', '스케줄러', '서버']
+    tags: ['Cron', '스케줄러', 'Crontab', '리눅스']
   },
   {
     slug: 'my-ip',
-    title: '내 아이피 찾기 (My IP)',
-    description: '현재 접속 중인 내 컴퓨터와 스마트폰의 공인 IP 주소(IPv4)를 실시간으로 확인하고 복사합니다.',
-    category: '개발 도구',
+    title: '내 IP & 환경 확인',
+    description: '현재 접속 중인 공인 IP 주소, 국가/도시 위치, ISP, 브라우저 User-Agent 정보를 실시간 확인합니다.',
+    category: '개발/코딩',
     icon: '🌐',
-    tags: ['내아이피', 'IP확인', '네트워크', '공인IP']
+    tags: ['IP주소', '공인IP', '위치', '브라우저정보']
   },
+
+  // 5. Image & Media
   {
     slug: 'qr-code',
     title: 'QR 코드 생성기',
-    description: '웹사이트 URL, 와이파이 자동 접속, 텍스트를 커스텀 컬러 QR 코드로 즉시 생성하고 PNG로 저장합니다.',
-    category: '개발 도구',
+    description: 'URL, 와이파이 접속, 텍스트를 고화질 커스텀 색상 QR 코드로 즉시 생성하고 PNG로 저장합니다.',
+    category: '이미지/미디어',
     icon: '📱',
-    badge: '인기',
-    tags: ['QR코드', '와이파이QR', 'QR만들기', '다운로드']
+    badge: '무료 다운로드',
+    tags: ['QR코드', '와이파이QR', '바코드', '생성기']
   },
   {
     slug: 'barcode-generator',
     title: '바코드 생성기',
-    description: 'Code 128, EAN-13, Code 39 등 범용 1D 바코드를 무료로 생성하고 이미지로 다운로드합니다.',
-    category: '개발 도구',
-    icon: '🏷️',
-    tags: ['바코드', 'Code128', 'EAN13', '물류']
+    description: 'CODE128, EAN-13, UPC 등 표준 규격 바코드를 실시간 렌더링하고 이미지로 다운로드합니다.',
+    category: '이미지/미디어',
+    icon: '📊',
+    tags: ['바코드', 'CODE128', 'EAN13', '라벨']
   },
-
-  // 5. Image Tools
   {
     slug: 'transparent-background',
-    title: '배경 투명 만들기 (누끼)',
-    description: '서버 업로드 없이 브라우저에서 100% 안전하게 사진/로고의 단색 배경을 투명하게 지우고 PNG로 저장합니다.',
-    category: '이미지',
-    icon: '🎨',
-    badge: '강력 추천',
-    tags: ['누끼따기', '투명배경', '배경제거', '로컬처리']
+    title: '누끼 이미지 배경 투명화',
+    description: '클릭 한 번으로 특정 배경색을 감지하여 투명한 PNG 이미지로 즉시 변환합니다 (Canvas 처리).',
+    category: '이미지/미디어',
+    icon: '🪄',
+    badge: '로컬 처리',
+    tags: ['누끼따기', '투명화', '배경제거', 'PNG']
   },
 
-  // 6. Knowledge & Curations
+  // 6. Knowledge & Daily
   {
     slug: 'new-word',
-    title: '신조어 용어사전',
-    description: '요즘 유행하는 MZ 신조어, 인터넷 밈, 최신 IT 기술 용어의 정확한 뜻과 실전 예문을 찾아보는 사전.',
-    category: '지식/사전',
-    icon: '💬',
-    tags: ['신조어', 'MZ유행어', '밈', '용어사전']
-  },
-  {
-    slug: 'dev-people',
-    title: '개발 인물 사전',
-    description: '소프트웨어 역사의 주요 거장들과 프로그래밍 언어 창시자들의 업적과 철학 명언을 소개합니다.',
-    category: '지식/사전',
-    icon: '👨‍💻',
-    tags: ['개발인물', '리눅스', 'C언어', '파이썬', '역사']
+    title: '최신 신조어·밈 사전',
+    description: '2026년 최신 유행어와 MZ 밈 신조어의 유래, 정확한 뜻, 실전 대화 예시를 한눈에 검색합니다.',
+    category: '지식/정보',
+    icon: '📖',
+    badge: '매월 업데이트',
+    tags: ['신조어', '유행어', 'MZ세대', '밈']
   },
   {
     slug: 'howto',
-    title: '하우투 실전 가이드',
-    description: 'Claude Code CLI 사용법, 프롬프트 ROSE 공식, Cloudflare 배포 등 핵심 튜토리얼 모음.',
-    category: '지식/사전',
-    icon: '📚',
-    badge: '가이드',
-    tags: ['하우투', 'ClaudeCode', '프롬프트공식', '배포']
-  },
-  {
-    slug: 'bookmarks',
-    title: '추천 즐겨찾기',
-    description: '웹 프레임워크, AI 도구, UI 디자인 리소스 등 개발자와 크리에이터가 엄선한 필수 사이트 모음.',
-    category: '지식/사전',
-    icon: '⭐',
-    tags: ['즐겨찾기', '개발자추천', '디자인리소스', 'AI도구']
+    title: '생활의 꿀팁 백과',
+    description: '청소, 요리, 옷 관리, 자취생 꿀팁 등 일상 속 번거로운 문제들의 1분 명쾌한 해결법 모음.',
+    category: '지식/정보',
+    icon: '💡',
+    tags: ['생활팁', '자취', '청소법', '꿀팁']
   },
   {
     slug: 'qna-a-day',
-    title: '1일 1질문 다이어리',
-    description: '매일 주어지는 깊이 있는 질문에 생각을 기록하며 나를 돌아보는 365일 성찰 질문 일기장.',
-    category: '지식/사전',
-    icon: '🌱',
-    tags: ['1일1질문', '성찰일기', '다이어리', '기록']
-  },
-  {
-    slug: 'rankings',
-    title: '별별 랭킹',
-    description: '최신 AI 모델 벤치마크, 인기 프로그래밍 언어, 역대 전 세계 박스오피스 영화 순위 큐레이션.',
-    category: '지식/사전',
-    icon: '📊',
-    tags: ['순위', 'AI모델랭킹', '언어순위', '박스오피스']
+    title: '하루 한 줄 질문',
+    description: '매일 새로운 질문에 답하며 나 자신을 돌아보는 디지털 다이어리 & 생각 기록장.',
+    category: '지식/정보',
+    icon: '📝',
+    tags: ['일기', '자아성찰', '질문다이어리', '기록']
   },
   {
     slug: 'restaurant-map',
-    title: '맛집 큐레이션 리스트',
-    description: '성수, 을지로, 강남, 연남 등 주요 핫플레이스의 검증된 대표 맛집과 시그니처 메뉴 목록.',
-    category: '지식/사전',
-    icon: '🍽️',
-    tags: ['맛집', '핫플', '점심추천', '성수동', '을지로']
+    title: '주변 맛집 & 편의시설 탐색',
+    description: '현재 내 위치를 기반으로 주변의 맛집, 카페, 편의점, 주유소 위치를 지도에서 즉시 탐색합니다.',
+    category: '지식/정보',
+    icon: '🗺️',
+    tags: ['맛집', '주변탐색', '지도', '카페']
+  },
+  {
+    slug: 'bookmarks',
+    title: '자주 찾는 포털 바로가기',
+    description: '국내 주요 포털, 쇼핑몰, 금융, 공공기관의 공식 바로가기 링크를 깔끔하게 모아두었습니다.',
+    category: '지식/정보',
+    icon: '⭐',
+    tags: ['바로가기', '포털', '즐겨찾기', '링크모음']
+  },
+  {
+    slug: 'rankings',
+    title: '실시간 트렌드 랭킹',
+    description: '영화 순위, 음원 차트, 도서 베스트셀러 등 실시간 인기 트렌드를 한눈에 브리핑합니다.',
+    category: '지식/정보',
+    icon: '🏆',
+    tags: ['실시간', '랭킹', '트렌드', '베스트셀러']
+  },
+  {
+    slug: 'dev-people',
+    title: 'IT 개발자 성향 테스트',
+    description: '몇 가지 질문으로 나의 개발자 페르소나와 최적의 기술 스택 궁합을 재미있게 분석해드립니다.',
+    category: '지식/정보',
+    icon: '🧑‍💻',
+    tags: ['심리테스트', '개발자', '성향분석', '테스트']
   }
 ];
 
 export default function ToolsDirectory() {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [activeTab, setActiveTab] = useState<'all' | 'interactive' | 'directory'>('all');
   const [selectedCategory, setSelectedCategory] = useState<string>('전체');
-  const [favorites, setFavorites] = useState<string[]>([]);
-  const [showOnlyFavs, setShowOnlyFavs] = useState<boolean>(false);
+  const [searchQuery, setSearchQuery] = useState<string>('');
 
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem('rab8bit_fav_tools');
-      if (saved) setFavorites(JSON.parse(saved));
-    } catch {}
+  // Extract all categories from both sets
+  const categories = useMemo(() => {
+    const cats = new Set<string>();
+    INTERACTIVE_TOOLS.forEach(t => cats.add(t.category));
+    GPTPARK_TOOLS_DATA.forEach(t => { if (t.category) cats.add(t.category); });
+    return ['전체', ...Array.from(cats)];
   }, []);
 
-  const toggleFavorite = (slug: string, e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    const updated = favorites.includes(slug)
-      ? favorites.filter(s => s !== slug)
-      : [...favorites, slug];
-    setFavorites(updated);
-    try {
-      localStorage.setItem('rab8bit_fav_tools', JSON.stringify(updated));
-    } catch {}
-  };
+  // Filter interactive tools
+  const filteredInteractive = useMemo(() => {
+    if (activeTab === 'directory') return [];
+    return INTERACTIVE_TOOLS.filter(item => {
+      const matchCategory = selectedCategory === '전체' || item.category === selectedCategory;
+      const q = searchQuery.toLowerCase().trim();
+      const matchSearch = !q ||
+        item.title.toLowerCase().includes(q) ||
+        item.description.toLowerCase().includes(q) ||
+        item.tags.some(t => t.toLowerCase().includes(q));
+      return matchCategory && matchSearch;
+    });
+  }, [activeTab, selectedCategory, searchQuery]);
 
-  const categories = ['전체', '텍스트', '계산기', '변환', '랜덤/게임', '개발 도구', '이미지', '지식/사전'];
+  // Filter gptpark tools
+  const filteredGptpark = useMemo(() => {
+    if (activeTab === 'interactive') return [];
+    return GPTPARK_TOOLS_DATA.filter(item => {
+      const matchCategory = selectedCategory === '전체' || item.category === selectedCategory;
+      const q = searchQuery.toLowerCase().trim();
+      const matchSearch = !q ||
+        item.title.toLowerCase().includes(q) ||
+        item.description.toLowerCase().includes(q);
+      return matchCategory && matchSearch;
+    });
+  }, [activeTab, selectedCategory, searchQuery]);
 
-  const filteredTools = ALL_TOOLS.filter((tool) => {
-    const matchesSearch =
-      tool.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      tool.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      tool.tags.some(t => t.toLowerCase().includes(searchTerm.toLowerCase()));
-
-    const matchesCategory =
-      selectedCategory === '전체' || tool.category === selectedCategory;
-
-    const matchesFav = !showOnlyFavs || favorites.includes(tool.slug);
-
-    return matchesSearch && matchesCategory && matchesFav;
-  });
+  const totalCount = filteredInteractive.length + filteredGptpark.length;
 
   return (
-    <div className="space-y-8 max-w-6xl mx-auto">
-      {/* Search and Category Filter Bar */}
-      <div className="space-y-4">
-        {/* Search Input */}
-        <div className="relative max-w-2xl mx-auto">
-          <input
-            type="text"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="원하는 도구를 검색하세요 (예: 단위, 사다리, 로또, QR, JWT, JSON, 누끼)..."
-            className="w-full bg-slate-900/90 text-white pl-12 pr-4 py-4 rounded-2xl border border-indigo-500/30 text-sm sm:text-base font-semibold focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 shadow-xl placeholder:text-slate-500"
-          />
-          <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-lg">🔍</span>
-          {searchTerm && (
-            <button
-              onClick={() => setSearchTerm('')}
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-slate-400 hover:text-white"
-            >
-              ✕ 지우기
-            </button>
-          )}
+    <div className="space-y-6">
+      {/* Top Switcher */}
+      <div className="flex justify-center">
+        <div className="inline-flex p-1.5 rounded-2xl bg-slate-900/90 border border-indigo-500/25 backdrop-blur-xl shadow-lg shadow-indigo-950/40">
+          <button
+            onClick={() => setActiveTab('all')}
+            className={`px-4 sm:px-5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${
+              activeTab === 'all'
+                ? 'bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-md'
+                : 'text-slate-400 hover:text-white'
+            }`}
+          >
+            전체 도구 ({INTERACTIVE_TOOLS.length + GPTPARK_TOOLS_DATA.length})
+          </button>
+          <button
+            onClick={() => setActiveTab('interactive')}
+            className={`px-4 sm:px-5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${
+              activeTab === 'interactive'
+                ? 'bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-md'
+                : 'text-slate-400 hover:text-white'
+            }`}
+          >
+            ⚡ 웹 앱 도구 ({INTERACTIVE_TOOLS.length})
+          </button>
+          <button
+            onClick={() => setActiveTab('directory')}
+            className={`px-4 sm:px-5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${
+              activeTab === 'directory'
+                ? 'bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-md'
+                : 'text-slate-400 hover:text-white'
+            }`}
+          >
+            🛠️ 프로그램 디렉토리 ({GPTPARK_TOOLS_DATA.length})
+          </button>
         </div>
+      </div>
 
-        {/* Category Pills & Favorite Filter */}
-        <div className="flex flex-wrap items-center justify-center gap-2 pt-2">
-          {categories.map((cat) => (
+      {/* Filter & Search Bar */}
+      <div className="flex flex-col md:flex-row gap-4 items-center justify-between bg-slate-900/60 p-4 rounded-2xl border border-indigo-500/20 backdrop-blur-xl">
+        {/* Category Pills */}
+        <div className="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 scrollbar-none">
+          {categories.map(cat => (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2 rounded-2xl text-xs sm:text-sm font-bold transition-all ${
+              className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
                 selectedCategory === cat
-                  ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-500/30 scale-105'
-                  : 'bg-slate-900/80 text-slate-400 hover:text-white border border-slate-800'
+                  ? 'bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-md shadow-indigo-500/25 scale-105'
+                  : 'bg-slate-800/80 text-slate-300 hover:text-white hover:bg-slate-700/80 border border-slate-700/50'
               }`}
             >
               {cat}
             </button>
           ))}
+        </div>
 
-          <button
-            onClick={() => setShowOnlyFavs(!showOnlyFavs)}
-            className={`px-4 py-2 rounded-2xl text-xs sm:text-sm font-bold transition-all flex items-center gap-1.5 ${
-              showOnlyFavs
-                ? 'bg-pink-600 text-white shadow-lg shadow-pink-600/30 scale-105'
-                : 'bg-slate-900/80 text-pink-400 border border-pink-500/30 hover:bg-slate-800'
-            }`}
-          >
-            <span>❤️ 즐겨찾기 ({favorites.length})</span>
-          </button>
+        {/* Search Input */}
+        <div className="relative w-full md:w-72">
+          <input
+            type="text"
+            placeholder="도구 이름, 기능, 키워드 검색..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full bg-slate-950/80 border border-slate-700/80 rounded-xl px-4 py-2 pl-9 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
+          />
+          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-xs">🔍</span>
+          {searchQuery && (
+            <button
+              onClick={() => setSearchQuery('')}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-white text-xs"
+            >
+              ✕
+            </button>
+          )}
         </div>
       </div>
 
-      {/* Counter */}
-      <div className="flex items-center justify-between text-xs text-slate-400 px-2">
-        <span>총 <strong className="text-indigo-400 font-bold">{filteredTools.length}</strong>개의 도구가 검색되었습니다.</span>
-      </div>
-
-      {/* Tools Grid (Mobile 2 cols, Desktop 4 cols) */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
-        {filteredTools.map((tool) => {
-          const isFav = favorites.includes(tool.slug);
-          return (
-            <a
-              key={tool.slug}
-              href={`/tools/${tool.slug}`}
-              className="group stitch-card p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl border border-indigo-500/20 hover:border-indigo-500/50 transition-all duration-300 shadow-xl flex flex-col justify-between relative overflow-hidden"
-            >
-              <div className="space-y-2.5">
-                <div className="flex items-start justify-between gap-1">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-indigo-950/80 border border-indigo-500/30 flex items-center justify-center text-xl sm:text-2xl shadow-inner group-hover:scale-110 transition-transform shrink-0">
-                    {tool.icon}
-                  </div>
-
-                  <div className="flex items-center gap-1 shrink-0">
-                    {tool.badge && (
-                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 font-semibold border border-indigo-500/30 hidden sm:inline-block">
-                        {tool.badge}
-                      </span>
-                    )}
-                    <button
-                      onClick={(e) => toggleFavorite(tool.slug, e)}
-                      title={isFav ? '즐겨찾기 해제' : '즐겨찾기 추가'}
-                      className="p-1 rounded-lg hover:bg-slate-800 text-xs sm:text-sm transition-transform active:scale-90"
-                    >
-                      {isFav ? '❤️' : '🤍'}
-                    </button>
-                  </div>
-                </div>
-
-                <div>
-                  <h3 className="text-sm sm:text-lg font-bold text-white group-hover:text-indigo-400 transition-colors leading-snug line-clamp-1">
-                    {tool.title}
-                  </h3>
-                  <p className="text-[11px] sm:text-xs text-slate-400 mt-1 leading-relaxed line-clamp-2">
-                    {tool.description}
-                  </p>
-                </div>
-
-                <div className="hidden sm:flex flex-wrap gap-1 pt-0.5">
-                  {tool.tags.slice(0, 2).map((tag) => (
-                    <span key={tag} className="text-[9px] sm:text-[10px] px-1.5 py-0.2 rounded-md bg-slate-900 text-slate-500 border border-slate-800/80">
-                      #{tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="mt-4 pt-2.5 border-t border-slate-800/80 flex items-center justify-between text-[11px] sm:text-xs font-bold text-indigo-400">
-                <span className="text-slate-500 text-[10px] sm:text-[11px]">{tool.category}</span>
-                <span className="group-hover:translate-x-1 transition-transform flex items-center gap-0.5">
-                  실행 &rarr;
-                </span>
-              </div>
-            </a>
-          );
-        })}
-      </div>
-
-      {filteredTools.length === 0 && (
-        <div className="text-center py-16 stitch-card rounded-3xl border border-slate-800 space-y-3">
-          <span className="text-4xl">🔍</span>
-          <p className="text-slate-400 text-sm font-semibold">검색 조건에 일치하는 도구가 없습니다.</p>
-          <button
-            onClick={() => { setSearchTerm(''); setSelectedCategory('전체'); setShowOnlyFavs(false); }}
-            className="px-4 py-2 rounded-xl bg-indigo-600 text-white text-xs font-bold"
+      {/* Unified 4 Cols Web / 2 Cols Mobile Grid */}
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-5">
+        {/* 1. Interactive Built-in Tools */}
+        {filteredInteractive.map(item => (
+          <a
+            key={item.slug}
+            href={`/tools/${item.slug}`}
+            className="stitch-card p-3.5 sm:p-5 rounded-2xl flex flex-col justify-between group hover:border-indigo-500/50 transition-all duration-300 hover:-translate-y-1"
           >
-            전체 목록 보기
-          </button>
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <span className="text-2xl sm:text-3xl p-2 rounded-xl bg-indigo-950/50 border border-indigo-800/30 group-hover:scale-110 transition-transform">
+                  {item.icon}
+                </span>
+                {item.badge && (
+                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 font-bold border border-indigo-500/30">
+                    {item.badge}
+                  </span>
+                )}
+              </div>
+
+              <div>
+                <span className="text-[10px] text-indigo-400 font-semibold">{item.category}</span>
+                <h3 className="font-bold text-xs sm:text-sm text-white group-hover:text-indigo-400 transition-colors line-clamp-1 leading-snug">
+                  {item.title}
+                </h3>
+              </div>
+
+              <p className="text-[11px] sm:text-xs text-slate-400 line-clamp-2 leading-relaxed">
+                {item.description}
+              </p>
+            </div>
+
+            <div className="mt-3 pt-2.5 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-indigo-400 font-bold">
+              <span className="text-slate-500 text-[10px]">웹 앱 실행</span>
+              <span className="group-hover:translate-x-1 transition-transform">실행 &rarr;</span>
+            </div>
+          </a>
+        ))}
+
+        {/* 2. GPT PARK Programs & Tools */}
+        {filteredGptpark.map(tool => (
+          <div
+            key={tool.id}
+            className="stitch-card p-3.5 sm:p-5 rounded-2xl flex flex-col justify-between group hover:border-purple-500/50 transition-all duration-300 hover:-translate-y-1"
+          >
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <span className="text-2xl sm:text-3xl p-2 rounded-xl bg-purple-950/50 border border-purple-800/30 group-hover:scale-110 transition-transform">
+                  🛠️
+                </span>
+                {tool.is_new ? (
+                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-pink-500/20 text-pink-400 font-bold border border-pink-500/30">
+                    NEW
+                  </span>
+                ) : null}
+              </div>
+
+              <div>
+                <span className="text-[10px] text-purple-400 font-semibold">{tool.category || '프로그램'}</span>
+                <h3 className="font-bold text-xs sm:text-sm text-white group-hover:text-purple-400 transition-colors line-clamp-1 leading-snug">
+                  {tool.title}
+                </h3>
+              </div>
+
+              <p className="text-[11px] sm:text-xs text-slate-400 line-clamp-2 leading-relaxed">
+                {tool.description}
+              </p>
+            </div>
+
+            <div className="mt-3 pt-2.5 border-t border-slate-800/80 flex items-center gap-2">
+              <a
+                href={tool.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 py-1.5 px-2 rounded-xl bg-purple-600/20 hover:bg-purple-600 text-purple-300 hover:text-white text-[11px] font-bold transition-all flex items-center justify-center gap-1 border border-purple-500/30"
+              >
+                <span>🚀</span>
+                <span>{tool.button_text || '프로그램 열기'}</span>
+              </a>
+              {tool.related_video_url && (
+                <a
+                  href={tool.related_video_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="py-1.5 px-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-[11px] font-bold border border-slate-700"
+                  title="관련 영상 보기"
+                >
+                  ▶
+                </a>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {totalCount === 0 && (
+        <div className="text-center py-16 bg-slate-900/30 rounded-2xl border border-slate-800">
+          <p className="text-4xl mb-3">🛠️</p>
+          <p className="text-slate-400 text-sm font-medium">검색된 도구가 없습니다.</p>
         </div>
       )}
     </div>

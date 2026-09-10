@@ -1,228 +1,140 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
+import { BLOGS_DATA } from '../data/blogsData';
+import { INSIGHTS_DATA } from '../data/insightsData';
+import { PROMPTS_DATA } from '../data/promptsData';
+import { GPTS_DATA } from '../data/gptsData';
+import { GALLERY_DATA } from '../data/galleryData';
+import { EBOOKS_DATA } from '../data/ebooksData';
+import { INTERACTIVE_TOOLS } from '../components/tools/ToolsDirectory';
 
-const news = await getCollection('news');
-const latestNews = news.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()).slice(0, 2);
-
-const prompts = await getCollection('prompts');
-const featuredPrompts = prompts.slice(0, 4);
+const latestBlogs = BLOGS_DATA.slice(0, 4);
+const featuredInsights = INSIGHTS_DATA.slice(0, 4);
+const featuredPrompts = PROMPTS_DATA.slice(0, 4);
+const featuredTools = INTERACTIVE_TOOLS.slice(0, 4);
+const featuredGallery = GALLERY_DATA.slice(0, 4);
+const featuredEbooks = EBOOKS_DATA.slice(0, 4);
 ---
 
 <Layout 
-  title="rab8bit | AI 팁, 프롬프트 & 스마트 도구 허브" 
-  description="rab8bit은 직장인과 학생을 위한 실용적인 웹 도구와 최신 AI 트렌드 및 프롬프트를 제공합니다."
+  title="rab8bit | AI 인사이트, 프롬프트, 도구 & 갤러리 올인원 플랫폼" 
+  description="최신 AI 블로그, 90+ 영상 인사이트, 370+ 프롬프트·GPTs 지침, 150+ 추천 AI 사이트, 130+ 스마트 웹 도구를 제공하는 종합 포털입니다."
 >
-  <div class="flex flex-col gap-16 py-4">
+  <div class="flex flex-col gap-14 py-2">
     {/* Hero Banner Section */}
-    <section class="relative text-center py-16 px-6 rounded-3xl stitch-card overflow-hidden border border-indigo-500/30 shadow-2xl">
-      {/* Background ambient lighting glow Orbs */}
+    <section class="relative text-center py-14 px-6 rounded-3xl stitch-card overflow-hidden border border-indigo-500/30 shadow-2xl">
       <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-indigo-600/25 rounded-full blur-3xl pointer-events-none"></div>
       <div class="absolute -bottom-32 right-10 w-96 h-96 bg-purple-600/25 rounded-full blur-3xl pointer-events-none"></div>
 
-      <div class="relative z-10 max-w-3xl mx-auto space-y-6">
+      <div class="relative z-10 max-w-4xl mx-auto space-y-6">
         <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full stitch-pill text-xs sm:text-sm font-bold shadow-inner">
-          <span class="animate-pulse text-amber-400">✨</span> Google Stitch UI 엔진으로 설계된 2026 AI 허브
+          <span class="animate-pulse text-amber-400">✨</span> 2026 AI 인사이트 & 스마트 도구 올인원 플랫폼
         </div>
 
-        <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-[1.15]">
-          생산성의 한계를 넘다 <br class="hidden sm:inline" />
-          스마트 플랫폼 <span class="gradient-text-stitch">rab8bit</span>
+        <h1 class="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-[1.15]">
+          AI와 생산성의 모든 것 <br class="hidden sm:inline" />
+          <span class="gradient-text-stitch">rab8bit 포털</span>
         </h1>
 
-        <p class="text-base sm:text-xl text-slate-300 max-w-2xl mx-auto font-normal leading-relaxed">
-          152개 추천 AI 사이트부터 29종 무료 스마트 도구, 검증된 프롬프트 라이브러리까지.
+        <p class="text-sm sm:text-lg text-slate-300 max-w-2xl mx-auto font-normal leading-relaxed">
+          54편의 AI 심층 아티클, 91편의 실무 인사이트, 370+ 검증된 프롬프트와 130+ 스마트 도구를 한곳에서 만나보세요.
         </p>
 
-        <div class="pt-4 flex flex-wrap items-center justify-center gap-4">
+        {/* Quick Category Navigation Pills */}
+        <div class="pt-2 flex flex-wrap items-center justify-center gap-2.5 max-w-3xl mx-auto">
           <a
-            href="/ai-tools"
-            class="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:from-indigo-400 hover:to-pink-400 text-white font-bold text-sm shadow-lg shadow-purple-500/30 transition-all hover:scale-105 active:scale-95 flex items-center gap-2"
+            href="/blog"
+            class="px-3.5 py-2 rounded-xl bg-slate-900/90 hover:bg-indigo-600 text-slate-200 hover:text-white font-bold text-xs border border-indigo-500/30 transition-all hover:scale-105"
           >
-            <span>🤖 추천 AI 사이트 (152종)</span>
+            📝 블로그 (54)
+          </a>
+          <a
+            href="/insights"
+            class="px-3.5 py-2 rounded-xl bg-slate-900/90 hover:bg-indigo-600 text-slate-200 hover:text-white font-bold text-xs border border-indigo-500/30 transition-all hover:scale-105"
+          >
+            🎬 인사이트 (91)
           </a>
           <a
             href="/tools"
-            class="px-6 py-3.5 rounded-2xl bg-slate-900/90 text-slate-200 font-bold text-sm border border-indigo-500/30 shadow-md hover:bg-slate-800 transition-all hover:scale-105 active:scale-95 flex items-center gap-2"
+            class="px-3.5 py-2 rounded-xl bg-slate-900/90 hover:bg-indigo-600 text-slate-200 hover:text-white font-bold text-xs border border-indigo-500/30 transition-all hover:scale-105"
           >
-            <span>🛠️ 29종 스마트 도구</span>
+            🛠️ 웹 도구 (130+)
           </a>
           <a
             href="/prompts"
-            class="px-6 py-3.5 rounded-2xl bg-slate-900/90 text-slate-200 font-bold text-sm border border-indigo-500/30 shadow-md hover:bg-slate-800 transition-all hover:scale-105 active:scale-95 flex items-center gap-2"
+            class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-bold text-xs shadow-md shadow-indigo-500/25 transition-all hover:scale-105"
           >
-            <span>💡 프롬프트 모음</span>
+            💬 프롬프트 (274)
+          </a>
+          <a
+            href="/gpts"
+            class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold text-xs shadow-md shadow-purple-500/25 transition-all hover:scale-105"
+          >
+            🤖 챗봇지침 (100)
+          </a>
+          <a
+            href="/gallery"
+            class="px-3.5 py-2 rounded-xl bg-yellow-500/15 hover:bg-yellow-500 text-yellow-300 hover:text-slate-950 font-bold text-xs border border-yellow-500/30 transition-all hover:scale-105"
+          >
+            🍌 바나나 갤러리 (33)
+          </a>
+          <a
+            href="/ai-tools"
+            class="px-3.5 py-2 rounded-xl bg-slate-900/90 hover:bg-indigo-600 text-slate-200 hover:text-white font-bold text-xs border border-indigo-500/30 transition-all hover:scale-105"
+          >
+            🌐 추천 AI (152)
+          </a>
+          <a
+            href="/ebooks"
+            class="px-3.5 py-2 rounded-xl bg-emerald-500/15 hover:bg-emerald-500 text-emerald-300 hover:text-slate-950 font-bold text-xs border border-emerald-500/30 transition-all hover:scale-105"
+          >
+            📚 전자책 (14)
           </a>
         </div>
       </div>
     </section>
 
-    {/* Web Tools Section (Mobile 2 cols, Desktop 4 cols) */}
-    <section class="space-y-6">
-      <div class="flex items-end justify-between border-b border-indigo-500/20 pb-4">
+    {/* 1. AI Blog Latest Section (4 cols Web, 2 cols Mobile) */}
+    <section class="space-y-4">
+      <div class="flex items-end justify-between border-b border-indigo-500/20 pb-3">
         <div>
-          <span class="text-xs font-bold text-indigo-400 tracking-wider uppercase">29 Utilities</span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-white">🛠️ 스마트 유틸리티 도구</h2>
+          <span class="text-xs font-bold text-indigo-400 tracking-wider uppercase">Editorial</span>
+          <h2 class="text-xl sm:text-2xl font-extrabold text-white">📰 최신 AI 블로그 & 인사이트</h2>
         </div>
-        <a href="/tools" class="text-xs sm:text-sm font-bold text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
-          전체 29종 도구 보기 &rarr;
+        <a href="/blog" class="text-xs sm:text-sm font-bold text-indigo-400 hover:underline">
+          전체 54편 보기 &rarr;
         </a>
       </div>
 
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-5">
-        {/* Tool 1: Unit Converter */}
-        <a
-          href="/tools/unit-converter"
-          class="group relative stitch-card p-4 sm:p-6 rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col justify-between border border-indigo-500/20 hover:border-indigo-500/50 transition-all"
-        >
-          <div class="space-y-3 relative z-10">
-            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-indigo-950/80 border border-indigo-500/30 flex items-center justify-center text-xl sm:text-2xl shadow-inner">
-              📐
-            </div>
-            <div>
-              <h3 class="text-sm sm:text-lg font-bold text-white group-hover:text-indigo-400 transition-colors line-clamp-1">
-                실시간 단위 변환기
-              </h3>
-              <p class="text-[11px] sm:text-xs text-slate-400 mt-1 leading-relaxed line-clamp-2">
-                평수(㎡), 무게, 길이 등 일상 및 업무 필수 단위 즉시 변환.
-              </p>
-            </div>
-          </div>
-
-          <div class="mt-4 pt-2.5 border-t border-slate-800/80 flex items-center justify-between text-[11px] sm:text-xs font-bold text-indigo-400">
-            <span class="text-slate-500 text-[10px]">변환</span>
-            <span class="group-hover:translate-x-1 transition-transform">
-              실행 &rarr;
-            </span>
-          </div>
-        </a>
-
-        {/* Tool 2: Ladder Game */}
-        <a
-          href="/tools/ladder-game"
-          class="group relative stitch-card p-4 sm:p-6 rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col justify-between border border-purple-500/20 hover:border-purple-500/50 transition-all"
-        >
-          <div class="space-y-3 relative z-10">
-            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-purple-950/80 border border-purple-500/30 flex items-center justify-center text-xl sm:text-2xl shadow-inner">
-              🪜
-            </div>
-            <div>
-              <h3 class="text-sm sm:text-lg font-bold text-white group-hover:text-purple-400 transition-colors line-clamp-1">
-                랜덤 사다리 타기
-              </h3>
-              <p class="text-[11px] sm:text-xs text-slate-400 mt-1 leading-relaxed line-clamp-2">
-                점심 내기, 벌칙 정하기! 2~12인 실시간 사다리 게임.
-              </p>
-            </div>
-          </div>
-
-          <div class="mt-4 pt-2.5 border-t border-slate-800/80 flex items-center justify-between text-[11px] sm:text-xs font-bold text-purple-400">
-            <span class="text-slate-500 text-[10px]">게임</span>
-            <span class="group-hover:translate-x-1 transition-transform">
-              시작 &rarr;
-            </span>
-          </div>
-        </a>
-
-        {/* Tool 3: Character Counter */}
-        <a
-          href="/tools/character-counter"
-          class="group relative stitch-card p-4 sm:p-6 rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col justify-between border border-pink-500/20 hover:border-pink-500/50 transition-all"
-        >
-          <div class="space-y-3 relative z-10">
-            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-pink-950/80 border border-pink-500/30 flex items-center justify-center text-xl sm:text-2xl shadow-inner">
-              ✍️
-            </div>
-            <div>
-              <h3 class="text-sm sm:text-lg font-bold text-white group-hover:text-pink-400 transition-colors line-clamp-1">
-                글자·단어 카운터
-              </h3>
-              <p class="text-[11px] sm:text-xs text-slate-400 mt-1 leading-relaxed line-clamp-2">
-                공백 포함/제외 글자수, 바이트수, 원고지 매수 실시간 계산.
-              </p>
-            </div>
-          </div>
-
-          <div class="mt-4 pt-2.5 border-t border-slate-800/80 flex items-center justify-between text-[11px] sm:text-xs font-bold text-pink-400">
-            <span class="text-slate-500 text-[10px]">텍스트</span>
-            <span class="group-hover:translate-x-1 transition-transform">
-              실행 &rarr;
-            </span>
-          </div>
-        </a>
-
-        {/* Tool 4: Roulette */}
-        <a
-          href="/tools/roulette"
-          class="group relative stitch-card p-4 sm:p-6 rounded-2xl sm:rounded-3xl overflow-hidden flex flex-col justify-between border border-amber-500/20 hover:border-amber-500/50 transition-all"
-        >
-          <div class="space-y-3 relative z-10">
-            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-amber-950/80 border border-amber-500/30 flex items-center justify-center text-xl sm:text-2xl shadow-inner">
-              🎯
-            </div>
-            <div>
-              <h3 class="text-sm sm:text-lg font-bold text-white group-hover:text-amber-400 transition-colors line-clamp-1">
-                결정의 룰렛
-              </h3>
-              <p class="text-[11px] sm:text-xs text-slate-400 mt-1 leading-relaxed line-clamp-2">
-                점심 메뉴와 벌칙자 추첨! 회전 애니메이션 룰렛 게임.
-              </p>
-            </div>
-          </div>
-
-          <div class="mt-4 pt-2.5 border-t border-slate-800/80 flex items-center justify-between text-[11px] sm:text-xs font-bold text-amber-400">
-            <span class="text-slate-500 text-[10px]">추첨</span>
-            <span class="group-hover:translate-x-1 transition-transform">
-              돌리기 &rarr;
-            </span>
-          </div>
-        </a>
-      </div>
-    </section>
-
-    {/* AI Prompts Section (Mobile 2 cols, Desktop 4 cols) */}
-    <section class="space-y-6">
-      <div class="flex items-end justify-between border-b border-indigo-500/20 pb-4">
-        <div>
-          <span class="text-xs font-bold text-purple-400 tracking-wider uppercase">Prompts Library</span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-white">💡 검증된 AI 프롬프트</h2>
-        </div>
-        <a href="/prompts" class="text-xs sm:text-sm font-bold text-purple-400 hover:underline">
-          전체 보기 &rarr;
-        </a>
-      </div>
-
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-5">
-        {featuredPrompts.map((item) => (
+        {latestBlogs.map((post) => (
           <a
-            href={`/prompts/${item.id}`}
-            class="group stitch-card p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl flex flex-col justify-between border border-indigo-500/20 hover:border-purple-500/50 transition-all"
+            href={`/blog/${post.id}`}
+            class="stitch-card rounded-2xl overflow-hidden flex flex-col justify-between group hover:border-indigo-500/50 transition-all hover:-translate-y-1"
           >
-            <div class="space-y-2.5">
-              <div class="flex items-center justify-between">
-                <span class="px-2 py-0.5 bg-purple-950/80 text-purple-300 text-[10px] font-semibold rounded-full border border-purple-800/50">
-                  {item.data.category}
-                </span>
-                {item.data.featured && (
-                  <span class="text-[9px] font-bold px-1.5 py-0.2 bg-amber-900/60 text-amber-300 rounded border border-amber-700/50">
-                    HOT
-                  </span>
-                )}
-              </div>
-
-              <h3 class="text-sm sm:text-base font-bold text-white group-hover:text-purple-400 transition-colors line-clamp-2 leading-snug">
-                {item.data.title}
-              </h3>
-
-              <p class="text-[11px] sm:text-xs text-slate-400 line-clamp-2 leading-relaxed">
-                {item.data.description}
-              </p>
+            <div class="relative aspect-[16/10] w-full overflow-hidden bg-slate-950">
+              {post.thumbnail ? (
+                <img
+                  src={post.thumbnail}
+                  alt={post.title}
+                  loading="lazy"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              ) : (
+                <div class="w-full h-full flex items-center justify-center bg-indigo-950/40 text-indigo-400 text-2xl">
+                  📝
+                </div>
+              )}
             </div>
-
-            <div class="mt-4 pt-2.5 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-purple-400 font-bold">
-              <span class="text-slate-500 text-[10px]">원클릭 복사</span>
-              <span class="group-hover:translate-x-1 transition-transform">
-                보기 &rarr;
+            <div class="p-3.5 sm:p-4 flex-1 flex flex-col justify-between space-y-2">
+              <div>
+                <span class="text-[10px] text-slate-500">{post.date}</span>
+                <h3 class="font-bold text-xs sm:text-sm text-white group-hover:text-indigo-400 transition-colors line-clamp-2 leading-snug">
+                  {post.title}
+                </h3>
+              </div>
+              <span class="text-[11px] text-indigo-400 font-bold pt-2 border-t border-slate-800">
+                읽기 &rarr;
               </span>
             </div>
           </a>
@@ -230,43 +142,220 @@ const featuredPrompts = prompts.slice(0, 4);
       </div>
     </section>
 
-    {/* AI News Section */}
-    <section class="space-y-6">
-      <div class="flex items-end justify-between border-b border-indigo-500/20 pb-4">
+    {/* 2. AI Video Insights Section (4 cols Web, 2 cols Mobile) */}
+    <section class="space-y-4">
+      <div class="flex items-end justify-between border-b border-indigo-500/20 pb-3">
         <div>
-          <span class="text-xs font-bold text-indigo-400 tracking-wider uppercase">Editorial</span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-white">📰 최신 AI 뉴스 & 실무 팁</h2>
+          <span class="text-xs font-bold text-indigo-400 tracking-wider uppercase">Video & Guides</span>
+          <h2 class="text-xl sm:text-2xl font-extrabold text-white">🎬 AI 실무 영상 & 인사이트</h2>
         </div>
-        <a href="/news" class="text-xs sm:text-sm font-bold text-indigo-400 hover:underline">
-          전체 보기 &rarr;
+        <a href="/insights" class="text-xs sm:text-sm font-bold text-indigo-400 hover:underline">
+          전체 91편 보기 &rarr;
         </a>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {latestNews.map((post) => (
-          <a
-            href={`/news/${post.id}`}
-            class="group stitch-card p-6 rounded-2xl flex flex-col justify-between"
-          >
-            <div class="space-y-3">
-              <span class="inline-block px-3 py-1 bg-indigo-950/80 text-indigo-300 text-xs font-semibold rounded-full border border-indigo-800/50">
-                {post.data.category}
-              </span>
-              <h3 class="text-xl font-bold text-white group-hover:text-indigo-400 transition-colors">
-                {post.data.title}
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-5">
+        {featuredInsights.map((item) => (
+          <div class="stitch-card rounded-2xl overflow-hidden flex flex-col justify-between group hover:border-indigo-500/50 transition-all hover:-translate-y-1">
+            <div class="relative aspect-video w-full overflow-hidden bg-slate-950">
+              {item.thumbnail ? (
+                <img
+                  src={item.thumbnail}
+                  alt={item.title}
+                  loading="lazy"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              ) : (
+                <div class="w-full h-full flex items-center justify-center bg-indigo-950/40 text-indigo-400 text-2xl">
+                  🎬
+                </div>
+              )}
+              {item.category && (
+                <span class="absolute bottom-2 left-2 px-2 py-0.5 text-[10px] font-semibold rounded bg-slate-950/80 text-indigo-300">
+                  {item.category}
+                </span>
+              )}
+            </div>
+            <div class="p-3.5 sm:p-4 flex-1 flex flex-col justify-between space-y-2">
+              <h3 class="font-bold text-xs sm:text-sm text-white group-hover:text-indigo-400 transition-colors line-clamp-2 leading-snug">
+                {item.title}
               </h3>
-              <p class="text-xs sm:text-sm text-slate-400 line-clamp-2 leading-relaxed">
-                {post.data.description}
+              <div class="pt-2 border-t border-slate-800 flex items-center justify-between">
+                <a href="/insights" class="text-[11px] text-indigo-400 font-bold hover:underline">
+                  영상 보기 &rarr;
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    {/* 3. Smart Utilities & Tools Section (4 cols Web, 2 cols Mobile) */}
+    <section class="space-y-4">
+      <div class="flex items-end justify-between border-b border-indigo-500/20 pb-3">
+        <div>
+          <span class="text-xs font-bold text-indigo-400 tracking-wider uppercase">Utilities</span>
+          <h2 class="text-xl sm:text-2xl font-extrabold text-white">🛠️ 인기 스마트 유틸리티 도구</h2>
+        </div>
+        <a href="/tools" class="text-xs sm:text-sm font-bold text-indigo-400 hover:underline">
+          전체 130+ 도구 보기 &rarr;
+        </a>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-5">
+        {featuredTools.map((tool) => (
+          <a
+            href={`/tools/${tool.slug}`}
+            class="stitch-card p-3.5 sm:p-5 rounded-2xl flex flex-col justify-between group hover:border-indigo-500/50 transition-all hover:-translate-y-1"
+          >
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-2xl p-2 rounded-xl bg-indigo-950/50 border border-indigo-800/30">
+                  {tool.icon}
+                </span>
+                {tool.badge && (
+                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 font-bold">
+                    {tool.badge}
+                  </span>
+                )}
+              </div>
+              <h3 class="font-bold text-xs sm:text-sm text-white group-hover:text-indigo-400 transition-colors line-clamp-1">
+                {tool.title}
+              </h3>
+              <p class="text-[11px] text-slate-400 line-clamp-2">
+                {tool.description}
               </p>
             </div>
+            <div class="mt-3 pt-2 border-t border-slate-800 flex items-center justify-between text-[11px] text-indigo-400 font-bold">
+              <span>웹 앱 실행</span>
+              <span class="group-hover:translate-x-1 transition-transform">실행 &rarr;</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
 
-            <div class="mt-6 pt-4 border-t border-slate-800/80 flex justify-between items-center text-xs text-slate-400">
-              <span>{post.data.pubDate.toISOString().split('T')[0]}</span>
-              <span class="text-indigo-400 font-bold group-hover:translate-x-1 transition-transform">
-                아티클 읽기 &rarr;
+    {/* 4. AI Prompts Showcase Section (4 cols Web, 2 cols Mobile) */}
+    <section class="space-y-4">
+      <div class="flex items-end justify-between border-b border-indigo-500/20 pb-3">
+        <div>
+          <span class="text-xs font-bold text-purple-400 tracking-wider uppercase">Prompts</span>
+          <h2 class="text-xl sm:text-2xl font-extrabold text-white">💬 실전 AI 프롬프트 라이브러리</h2>
+        </div>
+        <a href="/prompts" class="text-xs sm:text-sm font-bold text-purple-400 hover:underline">
+          전체 370+ 프롬프트 & GPTs 보기 &rarr;
+        </a>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-5">
+        {featuredPrompts.map((p) => (
+          <div class="stitch-card p-3.5 sm:p-5 rounded-2xl flex flex-col justify-between group hover:border-purple-500/50 transition-all hover:-translate-y-1">
+            <div class="space-y-2">
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-950 text-purple-300 border border-purple-800/50">
+                {p.category_name || '프롬프트'}
+              </span>
+              <h3 class="font-bold text-xs sm:text-sm text-white group-hover:text-purple-400 transition-colors line-clamp-2 leading-snug">
+                {p.title}
+              </h3>
+              <p class="text-[11px] text-slate-400 line-clamp-2">
+                {p.description}
+              </p>
+            </div>
+            <div class="mt-3 pt-2 border-t border-slate-800 flex items-center justify-between text-[11px] text-purple-400 font-bold">
+              <a href="/prompts" class="w-full text-center py-1.5 rounded-lg bg-purple-600/20 hover:bg-purple-600 text-purple-300 hover:text-white transition-colors">
+                프롬프트 복사 &rarr;
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    {/* 5. Banana AI Gallery Showcase (4 cols Web, 2 cols Mobile) */}
+    <section class="space-y-4">
+      <div class="flex items-end justify-between border-b border-indigo-500/20 pb-3">
+        <div>
+          <span class="text-xs font-bold text-yellow-400 tracking-wider uppercase">Gallery</span>
+          <h2 class="text-xl sm:text-2xl font-extrabold text-white">🍌 바나나 AI 갤러리</h2>
+        </div>
+        <a href="/gallery" class="text-xs sm:text-sm font-bold text-yellow-400 hover:underline">
+          전체 33작품 보기 &rarr;
+        </a>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-5">
+        {featuredGallery.map((img) => (
+          <a
+            href="/gallery"
+            class="stitch-card rounded-2xl overflow-hidden flex flex-col justify-between group hover:border-yellow-500/50 transition-all hover:-translate-y-1"
+          >
+            <div class="relative aspect-square w-full overflow-hidden bg-slate-950">
+              <img
+                src={img.image_url}
+                alt={img.title}
+                loading="lazy"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+            <div class="p-3.5 flex-1 flex flex-col justify-between">
+              <h3 class="font-bold text-xs sm:text-sm text-white group-hover:text-yellow-400 transition-colors line-clamp-1">
+                {img.title}
+              </h3>
+              <span class="text-[11px] text-yellow-400 font-semibold pt-2 border-t border-slate-800">
+                프롬프트 확인 &rarr;
               </span>
             </div>
           </a>
+        ))}
+      </div>
+    </section>
+
+    {/* 6. AI Ebooks & Guides Showcase (4 cols Web, 2 cols Mobile) */}
+    <section class="space-y-4">
+      <div class="flex items-end justify-between border-b border-indigo-500/20 pb-3">
+        <div>
+          <span class="text-xs font-bold text-emerald-400 tracking-wider uppercase">E-Books</span>
+          <h2 class="text-xl sm:text-2xl font-extrabold text-white">📚 AI 전문 가이드 & 전자책</h2>
+        </div>
+        <a href="/ebooks" class="text-xs sm:text-sm font-bold text-emerald-400 hover:underline">
+          전체 14종 전자책 보기 &rarr;
+        </a>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-5">
+        {featuredEbooks.map((eb) => (
+          <div class="stitch-card rounded-2xl overflow-hidden flex flex-col justify-between group hover:border-emerald-500/50 transition-all hover:-translate-y-1">
+            <div class="relative aspect-[3/4] w-full overflow-hidden bg-slate-950">
+              {eb.thumbnail ? (
+                <img
+                  src={eb.thumbnail}
+                  alt={eb.title}
+                  loading="lazy"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              ) : (
+                <div class="w-full h-full flex items-center justify-center bg-emerald-950/40 text-emerald-400 text-3xl">
+                  📚
+                </div>
+              )}
+            </div>
+            <div class="p-3.5 flex-1 flex flex-col justify-between space-y-2">
+              <h3 class="font-bold text-xs sm:text-sm text-white group-hover:text-emerald-400 transition-colors line-clamp-1">
+                {eb.title}
+              </h3>
+              <div class="pt-2 border-t border-slate-800">
+                <a
+                  href={eb.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="w-full block text-center py-1.5 rounded-lg bg-emerald-500/10 hover:bg-emerald-500 text-emerald-300 hover:text-slate-950 text-xs font-bold transition-all border border-emerald-500/30"
+                >
+                  가이드 열기 &rarr;
+                </a>
+              </div>
+            </div>
+          </div>
         ))}
       </div>
     </section>
