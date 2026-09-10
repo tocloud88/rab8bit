@@ -11,10 +11,10 @@
   --bg-main: #f8fafc;
   --bg-subtle: #f1f5f9;
   --bg-header: rgba(255, 255, 255, 0.9);
-  --header-border: rgba(226, 232, 240, 0.9);
+  --header-border: #e2e8f0;
   
   --card-bg: rgba(255, 255, 255, 0.95);
-  --card-border: rgba(226, 232, 240, 1);
+  --card-border: #e2e8f0;
   --card-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
   
   --text-main: #0f172a;
@@ -43,7 +43,7 @@
 html.dark {
   --bg-main: #090d16;
   --bg-subtle: #0f172a;
-  --bg-header: rgba(10, 15, 29, 0.92);
+  --bg-header: rgba(9, 13, 22, 0.88);
   --header-border: rgba(99, 102, 241, 0.2);
   
   --card-bg: rgba(15, 23, 42, 0.7);
@@ -58,7 +58,7 @@ html.dark {
   --input-bg: rgba(15, 23, 42, 0.95);
   --input-border: rgba(51, 65, 85, 0.8);
   
-  --footer-bg: rgba(10, 15, 29, 0.95);
+  --footer-bg: rgba(9, 13, 22, 0.95);
   --footer-border: rgba(99, 102, 241, 0.2);
   
   --accent-color: #818cf8;
@@ -135,7 +135,17 @@ html.dark .gradient-text-stitch {
   -webkit-text-fill-color: transparent;
 }
 
-/* Universal Light Mode Contrast Overrides for components */
+/* Header & Footer Rules */
+header {
+  border-bottom-color: var(--header-border) !important;
+  background-color: var(--bg-header) !important;
+}
+footer {
+  border-top-color: var(--footer-border) !important;
+  background-color: var(--footer-bg) !important;
+}
+
+/* Universal Light Mode Contrast Overrides */
 html:not(.dark) .text-white {
   color: #0f172a !important;
 }
@@ -178,17 +188,6 @@ html:not(.dark) .border-slate-800\/80,
 html:not(.dark) .border-slate-700,
 html:not(.dark) .border-slate-700\/80,
 html:not(.dark) .border-slate-700\/50 {
-  border-color: #e2e8f0 !important;
-}
-
-/* Header & Modal in light mode */
-html:not(.dark) header {
-  background-color: rgba(255, 255, 255, 0.92) !important;
-  border-color: #e2e8f0 !important;
-  box-shadow: 0 4px 15px -3px rgba(0, 0, 0, 0.05) !important;
-}
-html:not(.dark) footer {
-  background-color: #f8fafc !important;
   border-color: #e2e8f0 !important;
 }
 
