@@ -1,0 +1,32 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import FindReplace from '../../components/tools/FindReplace';
+---
+
+<Layout 
+  title="문장 바꾸기 | 다중 단어 일괄 치환 & 정규식 지원 - rab8bit"
+  description="여러 단어나 문장을 한 번에 찾아 원하는 텍스트로 일괄 치환합니다. 대소문자 구분 및 정규표현식(RegEx)을 완벽 지원합니다."
+>
+  <div class="max-w-4xl mx-auto space-y-8">
+    <div class="text-center space-y-2">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full stitch-pill text-xs font-bold">
+        🔄 텍스트 일괄 변환
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white">문장 바꾸기 (다중 단어 치환)</h1>
+      <p class="text-slate-400 text-sm sm:text-base">
+        여러 개의 단어나 문장 치환 규칙을 등록하여 한 번에 원하는 결과로 변환하고 복사하세요.
+      </p>
+    </div>
+
+    <FindReplace client:load />
+
+    <!-- Guide -->
+    <div class="mt-12 stitch-card p-6 rounded-3xl border border-indigo-500/20 space-y-3 text-sm text-slate-300">
+      <h2 class="text-lg font-bold text-white">💡 활용 팁</h2>
+      <p class="text-slate-400">
+        • <strong>규칙 추가</strong>: 여러 단어를 한 번에 치환해야 할 때 '+ 규칙 추가하기' 버튼을 눌러 규칙을 무제한으로 설정할 수 있습니다.<br/>
+        • <strong>정규표현식 지원</strong>: 특수 패턴(예: 이메일, 전화번호, 공백 정리 등)을 정규식으로 한 번에 찾아 교체할 수 있습니다.
+      </p>
+    </div>
+  </div>
+</Layout>

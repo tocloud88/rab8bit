@@ -1,0 +1,23 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import RestaurantList from '../../components/tools/RestaurantList';
+---
+
+<Layout 
+  title="맛집 리스트 | 직장인·학생 추천 서울 핫플레이스 맛집 큐레이션 - rab8bit"
+  description="성수, 을지로, 강남, 연남, 한남 등 주요 핫플레이스의 검증된 대표 맛집과 시그니처 메뉴, 평점 정보를 카테고리별로 모아 제공합니다."
+>
+  <div class="max-w-4xl mx-auto space-y-8">
+    <div class="text-center space-y-2">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full stitch-pill text-xs font-bold">
+        🍽️ 맛집 & 미식 큐레이션
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white">맛집 큐레이션 리스트</h1>
+      <p class="text-slate-400 text-sm sm:text-base">
+        직장인 점심 회식부터 주말 데이트까지 믿고 가는 지역별 대표 맛집을 확인하세요.
+      </p>
+    </div>
+
+    <RestaurantList client:load />
+  </div>
+</Layout>

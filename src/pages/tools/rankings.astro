@@ -1,0 +1,23 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CuratedRankings from '../../components/tools/CuratedRankings';
+---
+
+<Layout 
+  title="별별 랭킹 | 최신 AI 모델·프로그래밍 언어·글로벌 박스오피스 순위 - rab8bit"
+  description="최신 AI 모델 벤치마크 순위, 가장 사랑받는 프로그래밍 언어, 역대 전 세계 흥행 영화 등 다양한 분야의 신뢰할 수 있는 랭킹 목록을 확인하세요."
+>
+  <div class="max-w-4xl mx-auto space-y-8">
+    <div class="text-center space-y-2">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full stitch-pill text-xs font-bold">
+        📊 트렌드 & 랭킹 큐레이션
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white">별별 랭킹</h1>
+      <p class="text-slate-400 text-sm sm:text-base">
+        인공지능, 개발 기술, 문화 콘텐츠 등 다채로운 분야의 최신 순위와 핵심 지표를 확인하세요.
+      </p>
+    </div>
+
+    <CuratedRankings client:load />
+  </div>
+</Layout>

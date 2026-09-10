@@ -1,0 +1,35 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CharacterCounter from '../../components/tools/CharacterCounter';
+---
+
+<Layout 
+  title="글자·단어 카운터 | 공백 포함/제외 실시간 글자수 세기 - rab8bit"
+  description="자기소개서, 블로그, 리포트 작성 시 공백 포함/제외 글자수, 단어수, 바이트수, 원고지 매수 및 예상 읽기 시간을 실시간으로 계산합니다."
+>
+  <div class="max-w-4xl mx-auto space-y-8">
+    <div class="text-center space-y-2">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full stitch-pill text-xs font-bold">
+        ✍️ 텍스트 유틸리티
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white">글자·단어 카운터</h1>
+      <p class="text-slate-400 text-sm sm:text-base">
+        텍스트를 입력하거나 붙여넣으면 실시간으로 글자 수, 단어 수, 바이트 수, 원고지 분량을 계산합니다.
+      </p>
+    </div>
+
+    <CharacterCounter client:load />
+
+    <!-- SEO & Usage Guide -->
+    <div class="mt-12 stitch-card p-6 rounded-3xl border border-indigo-500/20 space-y-4 text-sm text-slate-300">
+      <h2 class="text-lg font-bold text-white flex items-center gap-2">
+        <span>📖</span> 글자수 세기 활용 가이드
+      </h2>
+      <ul class="list-disc list-inside space-y-2 text-slate-400">
+        <li><strong>자기소개서 & 입사지원서</strong>: 대부분의 기업 채용 시스템은 공백 포함 글자수 또는 바이트(Byte) 수 기준을 사용합니다.</li>
+        <li><strong>네이버 블로그 / 포스팅</strong>: 검색 상위 노출을 위해 통상 1,500~2,500자 분량이 권장됩니다.</li>
+        <li><strong>발표 및 스피치 대본</strong>: 1분당 약 300~350자 정도의 말하기 속도를 기준으로 발표 분량을 가늠할 수 있습니다.</li>
+      </ul>
+    </div>
+  </div>
+</Layout>

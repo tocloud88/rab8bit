@@ -1,0 +1,23 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Base64Tool from '../../components/tools/Base64Tool';
+---
+
+<Layout 
+  title="Base64 인코더/디코더 | 텍스트·이미지·파일 Base64 상호 변환 - rab8bit"
+  description="텍스트와 이미지, 파일을 Base64 문자열로 인코딩하거나 Base64를 원본으로 디코딩합니다. UTF-8 한글 지원 및 URL-Safe 모드를 완벽 지원합니다."
+>
+  <div class="max-w-4xl mx-auto space-y-8">
+    <div class="text-center space-y-2">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full stitch-pill text-xs font-bold">
+        🔤 데이터 인코딩 도구
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white">Base64 인코더 / 디코더</h1>
+      <p class="text-slate-400 text-sm sm:text-base">
+        텍스트 및 파일을 Base64로 즉시 변환하거나 Base64 문자열을 원본으로 복원하세요.
+      </p>
+    </div>
+
+    <Base64Tool client:load />
+  </div>
+</Layout>

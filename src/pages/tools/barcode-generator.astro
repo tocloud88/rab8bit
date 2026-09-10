@@ -1,0 +1,23 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BarcodeGenerator from '../../components/tools/BarcodeGenerator';
+---
+
+<Layout 
+  title="바코드 생성기 | Code 128·EAN-13·Code 39 무료 바코드 만들기 - rab8bit"
+  description="상품 바코드, 재고 관리용 Code 128, EAN-13, Code 39 바코드를 온라인에서 무료로 생성하고 고화질 이미지로 즉시 다운로드하세요."
+>
+  <div class="max-w-4xl mx-auto space-y-8">
+    <div class="text-center space-y-2">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full stitch-pill text-xs font-bold">
+        🏷️ 물류 & 개발자 도구
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white">바코드 생성기</h1>
+      <p class="text-slate-400 text-sm sm:text-base">
+        숫자나 문자를 입력하여 유통 및 물류 표준 1D 바코드를 즉시 생성하고 저장하세요.
+      </p>
+    </div>
+
+    <BarcodeGenerator client:load />
+  </div>
+</Layout>

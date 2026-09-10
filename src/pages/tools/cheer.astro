@@ -1,0 +1,23 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CheerBoard from '../../components/tools/CheerBoard';
+---
+
+<Layout 
+  title="모두의 전광판 | 콘서트·스포츠 경기 네온 LED 응원 전광판 - rab8bit"
+  description="스마트폰 화면을 화려한 네온 LED 전광판으로 변신시키세요. 콘서트, 팬미팅, 스포츠 경기, 공항 피켓용 풀스크린 텍스트 전광판입니다."
+>
+  <div class="max-w-4xl mx-auto space-y-8">
+    <div class="text-center space-y-2">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full stitch-pill text-xs font-bold">
+        📣 네온 LED 전광판
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white">모두의 응원 전광판</h1>
+      <p class="text-slate-400 text-sm sm:text-base">
+        응원 문구를 입력하고 색상과 크기를 조절한 뒤, 전체화면으로 크게 띄워 시선을 사로잡으세요.
+      </p>
+    </div>
+
+    <CheerBoard client:load />
+  </div>
+</Layout>

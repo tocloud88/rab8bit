@@ -1,0 +1,23 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CharadesGame from '../../components/tools/CharadesGame';
+---
+
+<Layout 
+  title="몸으로 말해요 제시어 게임 | 레크리에이션·MT·가족 모임 제스처 퀴즈 - rab8bit"
+  description="동작, 직업, 감정, 사물 등 다양한 카테고리의 제시어를 말없이 오직 몸짓(제스처)만으로 설명하고 맞추는 파티용 몸으로 말해요 게임기입니다."
+>
+  <div class="max-w-4xl mx-auto space-y-8">
+    <div class="text-center space-y-2">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full stitch-pill text-xs font-bold">
+        🕺 제스처 파티 게임
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white">몸으로 말해요</h1>
+      <p class="text-slate-400 text-sm sm:text-base">
+        목소리를 내지 않고 오직 몸짓만으로 제시어를 표현하여 팀원과 함께 정답을 맞혀보세요.
+      </p>
+    </div>
+
+    <CharadesGame client:load />
+  </div>
+</Layout>

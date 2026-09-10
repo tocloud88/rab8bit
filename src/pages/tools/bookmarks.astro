@@ -1,0 +1,23 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CuratedBookmarks from '../../components/tools/CuratedBookmarks';
+---
+
+<Layout 
+  title="추천 즐겨찾기 | 개발·AI·디자인 필수 사이트 & 리소스 큐레이션 - rab8bit"
+  description="웹 개발, 인공지능(AI), UI 디자인, 호스팅 인프라 등 업무와 학습의 생산성을 극대화해주는 엄선된 필수 사이트 링크 모음입니다."
+>
+  <div class="max-w-4xl mx-auto space-y-8">
+    <div class="text-center space-y-2">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full stitch-pill text-xs font-bold">
+        ⭐ 개발 & 디자인 큐레이션
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white">추천 즐겨찾기</h1>
+      <p class="text-slate-400 text-sm sm:text-base">
+        개발자와 크리에이터가 매일 즐겨 찾는 최고의 필수 웹 리소스를 엄선했습니다.
+      </p>
+    </div>
+
+    <CuratedBookmarks client:load />
+  </div>
+</Layout>

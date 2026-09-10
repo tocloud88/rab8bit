@@ -1,0 +1,23 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import UrlTool from '../../components/tools/UrlTool';
+---
+
+<Layout 
+  title="URL 인코더/디코더 | URI 퍼센트 인코딩·쿼리스트링 파서 - rab8bit"
+  description="한글 및 특수문자가 포함된 URL을 퍼센트 인코딩(%XX)으로 변환하거나 디코딩합니다. URL 쿼리 파라미터 자동 분석 기능을 지원합니다."
+>
+  <div class="max-w-4xl mx-auto space-y-8">
+    <div class="text-center space-y-2">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full stitch-pill text-xs font-bold">
+        🌐 웹 개발자 도구
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white">URL 인코더 / 디코더</h1>
+      <p class="text-slate-400 text-sm sm:text-base">
+        URL 및 쿼리 파라미터를 안전하게 인코딩/디코딩하고 매개변수 구조를 확인하세요.
+      </p>
+    </div>
+
+    <UrlTool client:load />
+  </div>
+</Layout>

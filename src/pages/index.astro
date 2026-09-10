@@ -36,10 +36,16 @@ const featuredPrompts = prompts.filter(p => p.data.featured).slice(0, 3);
 
         <div class="pt-4 flex flex-wrap items-center justify-center gap-4">
           <a
-            href="/tools/unit-converter"
+            href="/ai-tools"
             class="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:from-indigo-400 hover:to-pink-400 text-white font-bold text-sm shadow-lg shadow-purple-500/30 transition-all hover:scale-105 active:scale-95 flex items-center gap-2"
           >
-            <span>📐 단위 변환기 시작</span>
+            <span>🤖 추천 AI 사이트 (152종)</span>
+          </a>
+          <a
+            href="/tools"
+            class="px-6 py-3.5 rounded-2xl bg-slate-900/90 text-slate-200 font-bold text-sm border border-indigo-500/30 shadow-md hover:bg-slate-800 transition-all hover:scale-105 active:scale-95 flex items-center gap-2"
+          >
+            <span>🛠️ 29종 스마트 도구</span>
           </a>
           <a
             href="/prompts"
@@ -55,9 +61,12 @@ const featuredPrompts = prompts.filter(p => p.data.featured).slice(0, 3);
     <section class="space-y-6">
       <div class="flex items-end justify-between border-b border-indigo-500/20 pb-4">
         <div>
-          <span class="text-xs font-bold text-indigo-400 tracking-wider uppercase">Utilities</span>
+          <span class="text-xs font-bold text-indigo-400 tracking-wider uppercase">29 Utilities</span>
           <h2 class="text-2xl sm:text-3xl font-extrabold text-white">🛠️ 스마트 유틸리티 도구</h2>
         </div>
+        <a href="/tools" class="text-xs sm:text-sm font-bold text-indigo-400 hover:text-indigo-300 flex items-center gap-1">
+          전체 29종 도구 보기 &rarr;
+        </a>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">

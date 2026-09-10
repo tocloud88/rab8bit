@@ -1,0 +1,23 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import QrCodeGenerator from '../../components/tools/QrCodeGenerator';
+---
+
+<Layout 
+  title="QR 코드 생성기 | 무료 QR 만들기·와이파이·URL·색상 커스텀 - rab8bit"
+  description="웹사이트 주소(URL), Wi-Fi 자동 접속 정보, 텍스트를 무료 QR 코드로 변환하고 색상을 커스텀하여 고화질 PNG 이미지로 다운로드하세요."
+>
+  <div class="max-w-4xl mx-auto space-y-8">
+    <div class="text-center space-y-2">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full stitch-pill text-xs font-bold">
+        📱 모바일 & 웹 유틸리티
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white">QR 코드 생성기</h1>
+      <p class="text-slate-400 text-sm sm:text-base">
+        원하는 링크나 와이파이 정보를 입력하고 맞춤형 QR 코드를 즉시 제작하여 다운로드하세요.
+      </p>
+    </div>
+
+    <QrCodeGenerator client:load />
+  </div>
+</Layout>

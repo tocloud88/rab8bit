@@ -1,0 +1,23 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BackgroundRemover from '../../components/tools/BackgroundRemover';
+---
+
+<Layout 
+  title="배경 투명 만들기 | 무료 사진 누끼따기·단색 배경 지우기 - rab8bit"
+  description="서버 업로드 없이 100% 브라우저에서 안전하게 사진 및 로고의 단색 배경(흰색, 검정색 등)을 투명하게 지우고 PNG로 다운로드하세요."
+>
+  <div class="max-w-4xl mx-auto space-y-8">
+    <div class="text-center space-y-2">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full stitch-pill text-xs font-bold">
+        🎨 이미지 & 그래픽 도구
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white">배경 투명 만들기 (누끼 따기)</h1>
+      <p class="text-slate-400 text-sm sm:text-base">
+        이미지를 올리고 원하는 배경 색상을 지정하여 손쉽게 투명 배경 PNG로 변환하세요.
+      </p>
+    </div>
+
+    <BackgroundRemover client:load />
+  </div>
+</Layout>

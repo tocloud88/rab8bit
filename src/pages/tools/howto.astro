@@ -1,0 +1,23 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import HowtoGuides from '../../components/tools/HowtoGuides';
+---
+
+<Layout 
+  title="하우투 실전 가이드 | AI 개발·프롬프트 엔지니어링·웹 배포 튜토리얼 - rab8bit"
+  description="Claude Code 설치 및 CLI 사용법, 고품질 프롬프트 작성 ROSE 프레임워크, Cloudflare Pages 무료 배포 등 핵심 실전 가이드를 단계별로 안내합니다."
+>
+  <div class="max-w-5xl mx-auto space-y-8">
+    <div class="text-center space-y-2">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full stitch-pill text-xs font-bold">
+        📚 실전 가이드 아카이브
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white">하우투 (How-To) 실전 가이드</h1>
+      <p class="text-slate-400 text-sm sm:text-base">
+        인공지능 도구, 프롬프트 엔지니어링, 모던 웹 개발 실무 팁을 한눈에 살펴보세요.
+      </p>
+    </div>
+
+    <HowtoGuides client:load />
+  </div>
+</Layout>

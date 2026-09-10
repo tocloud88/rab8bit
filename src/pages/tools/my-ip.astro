@@ -1,0 +1,23 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import MyIpTool from '../../components/tools/MyIpTool';
+---
+
+<Layout 
+  title="내 IP 주소 확인 | 공인 IPv4·IPv6 주소 및 환경 확인 - rab8bit"
+  description="현재 접속 중인 내 컴퓨터/스마트폰의 공인 IP 주소(Public IPv4)를 실시간으로 확인하고 원클릭으로 복사할 수 있는 네트워크 유틸리티입니다."
+>
+  <div class="max-w-4xl mx-auto space-y-8">
+    <div class="text-center space-y-2">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full stitch-pill text-xs font-bold">
+        🌐 네트워크 유틸리티
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white">내 아이피 찾기 (My IP)</h1>
+      <p class="text-slate-400 text-sm sm:text-base">
+        현재 기기의 공인 IP 주소와 브라우저 환경 정보를 한눈에 확인하세요.
+      </p>
+    </div>
+
+    <MyIpTool client:load />
+  </div>
+</Layout>

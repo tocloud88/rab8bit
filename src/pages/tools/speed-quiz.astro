@@ -1,0 +1,23 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SpeedQuiz from '../../components/tools/SpeedQuiz';
+---
+
+<Layout 
+  title="스피드 퀴즈 제시어 게임 | 파티·MT·동아리·술자리 타이머 퀴즈 - rab8bit"
+  description="동물, 음식, 영화, 속담, MZ 신조어 등 카테고리별 제시어를 화면에 띄우고 60초 타이머와 점수판으로 즐기는 단체 스피드 퀴즈 게임기입니다."
+>
+  <div class="max-w-4xl mx-auto space-y-8">
+    <div class="text-center space-y-2">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full stitch-pill text-xs font-bold">
+        🎮 파티 레크리에이션 게임
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white">스피드 퀴즈 제시어</h1>
+      <p class="text-slate-400 text-sm sm:text-base">
+        동물, 음식, 영화, 속담 등 카테고리를 골라 설명하고 제한시간 내에 최대한 많은 정답을 맞혀보세요.
+      </p>
+    </div>
+
+    <SpeedQuiz client:load />
+  </div>
+</Layout>

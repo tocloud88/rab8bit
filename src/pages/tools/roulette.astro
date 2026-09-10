@@ -1,0 +1,23 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import RouletteGame from '../../components/tools/RouletteGame';
+---
+
+<Layout 
+  title="결정의 룰렛 | 점심 메뉴·벌칙·순번 정하기 랜덤 룰렛 돌리기 - rab8bit"
+  description="선택 장애 극복을 위한 공정한 온라인 랜덤 룰렛 돌리기 게임. 점심 메뉴 추천, 벌칙자 추첨, 내기, 순서 정하기에 자유롭게 커스텀하여 사용하세요."
+>
+  <div class="max-w-4xl mx-auto space-y-8">
+    <div class="text-center space-y-2">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full stitch-pill text-xs font-bold">
+        🎯 랜덤 추첨 게임
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white">결정의 룰렛</h1>
+      <p class="text-slate-400 text-sm sm:text-base">
+        고민되는 선택지들을 입력하고 룰렛을 힘차게 돌려보세요. 운명이 결정해 줍니다!
+      </p>
+    </div>
+
+    <RouletteGame client:load />
+  </div>
+</Layout>

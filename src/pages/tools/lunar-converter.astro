@@ -1,0 +1,31 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import LunarConverter from '../../components/tools/LunarConverter';
+---
+
+<Layout 
+  title="음력 양력 변환기 | 음양력 변환·60갑자·띠·윤달 계산 - rab8bit"
+  description="생일, 제사, 명절 날짜를 위한 실시간 음력/양력 상호 변환기. 60갑자와 간지(干支), 띠 정보, 윤달 여부를 간편하게 확인하세요."
+>
+  <div class="max-w-4xl mx-auto space-y-8">
+    <div class="text-center space-y-2">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full stitch-pill text-xs font-bold">
+        🌙 음양력 달력 변환
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white">음력·양력 변환기</h1>
+      <p class="text-slate-400 text-sm sm:text-base">
+        양력과 음력 날짜를 상호 변환하고, 해당 연도의 60갑자 간지와 띠 정보를 확인하세요.
+      </p>
+    </div>
+
+    <LunarConverter client:load />
+
+    <div class="mt-12 stitch-card p-6 rounded-3xl border border-indigo-500/20 space-y-3 text-sm text-slate-300">
+      <h2 class="text-lg font-bold text-white">💡 음력과 윤달 안내</h2>
+      <p class="text-slate-400">
+        • <strong>음력(태음력)</strong>: 달의 위상 변화(삭망월, 약 29.53일)를 기준으로 한 달을 29일 또는 30일로 정합니다.<br/>
+        • <strong>윤달(閏月)</strong>: 양력 1년(365.24일)과 음력 1년(약 354일) 사이의 약 11일 오차를 맞추기 위해 약 19년에 7번 추가하는 여분의 달입니다.
+      </p>
+    </div>
+  </div>
+</Layout>

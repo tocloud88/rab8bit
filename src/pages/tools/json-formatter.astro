@@ -1,0 +1,23 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import JsonFormatter from '../../components/tools/JsonFormatter';
+---
+
+<Layout 
+  title="JSON 정렬 및 검증기 | JSON 포맷터·유효성 검사·압축기 - rab8bit"
+  description="깨지거나 복잡한 JSON 문자열을 보기 좋게 들여쓰기 정렬하고, 구문 오류(Syntax Error) 검증 및 한 줄 압축(Minify)을 무료로 제공합니다."
+>
+  <div class="max-w-5xl mx-auto space-y-8">
+    <div class="text-center space-y-2">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full stitch-pill text-xs font-bold">
+        💻 개발자 유틸리티
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white">JSON 정렬 및 검증</h1>
+      <p class="text-slate-400 text-sm sm:text-base">
+        JSON 데이터를 실시간으로 보기 쉽게 정렬하고 구문 오류를 검증하거나 전송용으로 압축하세요.
+      </p>
+    </div>
+
+    <JsonFormatter client:load />
+  </div>
+</Layout>

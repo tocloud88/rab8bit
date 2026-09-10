@@ -1,0 +1,23 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import DevPeopleDictionary from '../../components/tools/DevPeopleDictionary';
+---
+
+<Layout 
+  title="개발 인물 사전 | 소프트웨어 역사를 바꾼 거장들의 이야기 - rab8bit"
+  description="앨런 튜링, 데니스 리치, 리누스 토발즈, 팀 버너스리, 귀도 반 로섬 등 오늘날의 컴퓨터와 프로그래밍 언어를 만든 거장들의 역사와 명언을 소개합니다."
+>
+  <div class="max-w-4xl mx-auto space-y-8">
+    <div class="text-center space-y-2">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full stitch-pill text-xs font-bold">
+        👨‍💻 컴퓨터 과학 & 역사
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white">개발 인물 사전</h1>
+      <p class="text-slate-400 text-sm sm:text-base">
+        소프트웨어 역사의 주요 거장들과 프로그래밍 언어의 창시자들의 업적과 철학을 만나보세요.
+      </p>
+    </div>
+
+    <DevPeopleDictionary client:load />
+  </div>
+</Layout>

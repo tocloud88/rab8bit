@@ -1,0 +1,34 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AiToolsDirectory from '../../components/ai-tools/AiToolsDirectory';
+---
+
+<Layout 
+  title="추천 AI 웹사이트 & 도구 모음 (152종) - rab8bit" 
+  description="152개 이상의 엄선된 최고의 AI 웹사이트와 도구 모음. 대화형 AI, 코드 개발, 비디오/오디오 생성, 업무 자동화, 리서치, 비즈니스 등 카테고리별 AI 서비스를 한눈에 찾아보세요."
+>
+  <div class="space-y-10 max-w-6xl mx-auto py-4">
+    <!-- Header Hero Banner -->
+    <div class="relative text-center py-10 px-6 rounded-3xl stitch-card overflow-hidden border border-indigo-500/30 shadow-2xl">
+      <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-24 right-10 w-80 h-80 bg-purple-600/20 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="relative z-10 max-w-3xl mx-auto space-y-4">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full stitch-pill text-xs font-bold">
+          ✨ 152개 엄선 AI 도구 아카이브
+        </div>
+
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+          추천 <span class="gradient-text-stitch">AI 웹사이트 & 도구 모음</span>
+        </h1>
+
+        <p class="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed">
+          대화형 AI, 코드 개발, 비디오/오디오 제작, 업무 자동화 에이전트 등 업무와 창작의 생산성을 극대화하는 글로벌 최신 AI 도구를 카테고리별로 확인하세요.
+        </p>
+      </div>
+    </div>
+
+    <!-- Interactive Directory Directory -->
+    <AiToolsDirectory client:load />
+  </div>
+</Layout>

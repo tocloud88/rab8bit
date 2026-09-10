@@ -1,0 +1,23 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import KnittingGauge from '../../components/tools/KnittingGauge';
+---
+
+<Layout 
+  title="뜨개 게이지 계산기 | 대바늘·코바늘 코/단 수 자동 환산 - rab8bit"
+  description="뜨개질 스와치(10cm)의 코 수와 단 수를 입력하여 원하는 가로/세로 완성 치수에 필요한 정확한 코 수와 단 수를 자동으로 계산합니다."
+>
+  <div class="max-w-4xl mx-auto space-y-8">
+    <div class="text-center space-y-2">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full stitch-pill text-xs font-bold">
+        🧶 뜨개질 유틸리티
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white">뜨개 게이지 계산기</h1>
+      <p class="text-slate-400 text-sm sm:text-base">
+        스와치(10cm x 10cm)의 코/단 수와 만들고자 하는 작품 크기를 입력하면 필요한 코 수와 단 수를 즉시 계산합니다.
+      </p>
+    </div>
+
+    <KnittingGauge client:load />
+  </div>
+</Layout>

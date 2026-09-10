@@ -1,0 +1,23 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import NewWordDictionary from '../../components/tools/NewWordDictionary';
+---
+
+<Layout 
+  title="신조어 용어사전 | 2026 MZ 유행어·인터넷 밈·최신 IT 용어 백과 - rab8bit"
+  description="알잘딱깔센, 중꺾마, 갓생 등 최신 MZ 세대 유행어와 인터넷 밈, 필수 IT/AI 기술 용어의 정확한 뜻과 실전 예시를 찾아보는 백과사전입니다."
+>
+  <div class="max-w-4xl mx-auto space-y-8">
+    <div class="text-center space-y-2">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full stitch-pill text-xs font-bold">
+        💬 트렌드 & 지식 사전
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white">신조어 용어사전</h1>
+      <p class="text-slate-400 text-sm sm:text-base">
+        요즘 유행하는 MZ 신조어, 인터넷 밈, 최신 테크 용어를 뜻과 실전 예문으로 쉽게 알아보세요.
+      </p>
+    </div>
+
+    <NewWordDictionary client:load />
+  </div>
+</Layout>
