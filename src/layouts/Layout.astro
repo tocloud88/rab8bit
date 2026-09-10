@@ -164,35 +164,279 @@ const navItems = [
     </main>
 
     {/* Footer */}
-    <footer class="border-t border-[var(--footer-border)] bg-[var(--footer-bg)] backdrop-blur-2xl py-12 transition-colors duration-300">
-      <div class="container mx-auto px-4 space-y-8">
+    <footer class="border-t border-[var(--footer-border)] bg-[var(--footer-bg)] backdrop-blur-2xl pt-14 pb-12 transition-colors duration-300">
+      <div class="container mx-auto px-4 space-y-12">
+        {/* Brand & Mission Banner */}
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 pb-8 border-b border-[var(--header-border)]">
           <div class="space-y-2">
-            <div class="flex items-center gap-2.5">
-              <img src="/logo.svg" alt="rab8bit 로고" class="w-8 h-8 object-contain [image-rendering:pixelated]" />
+            <a href="/" class="flex items-center gap-2.5 group inline-flex">
+              <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-indigo-500/15 via-purple-500/15 to-pink-500/15 border border-indigo-500/30 flex items-center justify-center p-1 group-hover:scale-105 transition-all">
+                <img src="/logo.svg" alt="rab8bit 로고" class="w-full h-full object-contain [image-rendering:pixelated]" />
+              </div>
               <span class="font-heading font-extrabold text-2xl tracking-tight text-slate-900 dark:text-white">
                 rab<span class="gradient-text-stitch">8bit</span>
               </span>
-            </div>
-            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-md">
-              Google Stitch 스타일 네온 디스플레이 & AI 프롬프트 라이브러리와 스마트 유틸리티 툴을 선사합니다.
+            </a>
+            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-xl leading-relaxed">
+              최신 AI 인사이트, 370+ 검증된 프롬프트와 GPTs 지침, 130+ 인터랙티브 스마트 도구 및 엄선된 AI 디렉토리를 제공하는 올인원 플랫폼입니다.
             </p>
           </div>
 
-          <div class="flex flex-wrap gap-4 text-xs font-semibold text-slate-600 dark:text-slate-400">
-            <a href="/about" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">서비스 소개</a>
-            <a href="/faq" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">FAQ</a>
-            <a href="/terms" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">이용약관</a>
-            <a href="/privacy-policy" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">개인정보처리방침</a>
-            <a href="/contact" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">문의하기</a>
+          <div class="flex items-center gap-2">
+            <a
+              href="/search"
+              class="px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-900/80 hover:bg-indigo-600 dark:hover:bg-indigo-600 text-slate-700 dark:text-slate-300 hover:text-white text-xs font-bold border border-slate-200 dark:border-indigo-500/20 transition-all flex items-center gap-1.5"
+            >
+              <span>🔍</span> 전체 통합 검색
+            </a>
+            <a
+              href="/tools"
+              class="px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-md shadow-indigo-500/20 transition-all flex items-center gap-1.5"
+            >
+              <span>⚡</span> 스마트 도구 전체보기 (130+)
+            </a>
           </div>
         </div>
 
-        <div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+        {/* Multi-Column OpenAI Style Sitemap Grid */}
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 text-xs">
+          {/* Column 1: AI 콘텐츠 & 리서치 */}
+          <div class="space-y-3.5">
+            <h4 class="font-bold text-slate-900 dark:text-slate-100 uppercase tracking-wider text-[13px] flex items-center gap-1.5">
+              <span>📚</span> 콘텐츠 & 리서치
+            </h4>
+            <ul class="space-y-2.5">
+              <li>
+                <a href="/blog" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center justify-between">
+                  <span>블로그 아티클</span>
+                  <span class="text-[10px] px-1.5 py-0.5 rounded bg-indigo-500/10 text-indigo-500 font-bold">55</span>
+                </a>
+              </li>
+              <li>
+                <a href="/insights" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center justify-between">
+                  <span>영상 인사이트</span>
+                  <span class="text-[10px] px-1.5 py-0.5 rounded bg-purple-500/10 text-purple-500 font-bold">92</span>
+                </a>
+              </li>
+              <li>
+                <a href="/prompts" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center justify-between">
+                  <span>프롬프트 라이브러리</span>
+                  <span class="text-[10px] px-1.5 py-0.5 rounded bg-pink-500/10 text-pink-500 font-bold">274</span>
+                </a>
+              </li>
+              <li>
+                <a href="/gpts" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center justify-between">
+                  <span>GPTs 맞춤 지침</span>
+                  <span class="text-[10px] px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-500 font-bold">100</span>
+                </a>
+              </li>
+              <li>
+                <a href="/ebooks" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  실무 AI 전자책
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 2: AI 도구 & 갤러리 */}
+          <div class="space-y-3.5">
+            <h4 class="font-bold text-slate-900 dark:text-slate-100 uppercase tracking-wider text-[13px] flex items-center gap-1.5">
+              <span>🤖</span> AI 에코시스템
+            </h4>
+            <ul class="space-y-2.5">
+              <li>
+                <a href="/ai-tools" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center justify-between">
+                  <span>추천 AI 도구 디렉토리</span>
+                  <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-500 font-bold">152+</span>
+                </a>
+              </li>
+              <li>
+                <a href="/gallery" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-1">
+                  <span>🍌 바나나 이미지 갤러리</span>
+                </a>
+              </li>
+              <li>
+                <a href="/blog/openai-gpt-6-astra-release-analysis" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-1">
+                  <span>GPT-6 Astra 분석</span>
+                  <span class="text-[9px] px-1 py-0.2 rounded bg-rose-500/15 text-rose-500 font-bold">NEW</span>
+                </a>
+              </li>
+              <li>
+                <a href="/blog/ai-self-explanation-verification-guide" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  AI 자기 설명 검증법
+                </a>
+              </li>
+              <li>
+                <a href="/blog/vibe-coding-google-ai-studio-auth" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  바이브 코딩 가이드
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 3: 인기 생활 유틸리티 */}
+          <div class="space-y-3.5">
+            <h4 class="font-bold text-slate-900 dark:text-slate-100 uppercase tracking-wider text-[13px] flex items-center gap-1.5">
+              <span>🛠️</span> 스마트 생활 도구
+            </h4>
+            <ul class="space-y-2.5">
+              <li>
+                <a href="/tools/lotto-generator" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  로또 번호 생성기
+                </a>
+              </li>
+              <li>
+                <a href="/tools/age-calculator" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  만 나이 & D-Day 계산기
+                </a>
+              </li>
+              <li>
+                <a href="/tools/qr-code" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  QR 코드 생성기
+                </a>
+              </li>
+              <li>
+                <a href="/tools/barcode-generator" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  바코드 생성기
+                </a>
+              </li>
+              <li>
+                <a href="/tools/unit-converter" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  단위 변환기
+                </a>
+              </li>
+              <li>
+                <a href="/tools/lunar-converter" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  음양력 변환기
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 4: 개발자 & 텍스트 도구 */}
+          <div class="space-y-3.5">
+            <h4 class="font-bold text-slate-900 dark:text-slate-100 uppercase tracking-wider text-[13px] flex items-center gap-1.5">
+              <span>💻</span> 개발자 유틸리티
+            </h4>
+            <ul class="space-y-2.5">
+              <li>
+                <a href="/tools/json-formatter" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  JSON 포맷터 & 검증기
+                </a>
+              </li>
+              <li>
+                <a href="/tools/jwt-decoder" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  JWT 토큰 디코더
+                </a>
+              </li>
+              <li>
+                <a href="/tools/base64-encoder" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  Base64 인코더 / 디코더
+                </a>
+              </li>
+              <li>
+                <a href="/tools/url-encoder" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  URL 인코더 / 디코더
+                </a>
+              </li>
+              <li>
+                <a href="/tools/cron-parser" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  크론(Cron) 표현식 분석기
+                </a>
+              </li>
+              <li>
+                <a href="/tools/my-ip" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  내 공인 IP 확인
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 5: 인터랙티브 & 게임 */}
+          <div class="space-y-3.5">
+            <h4 class="font-bold text-slate-900 dark:text-slate-100 uppercase tracking-wider text-[13px] flex items-center gap-1.5">
+              <span>🎮</span> 인터랙티브 & 게임
+            </h4>
+            <ul class="space-y-2.5">
+              <li>
+                <a href="/tools/ladder-game" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  사다리 타기 게임
+                </a>
+              </li>
+              <li>
+                <a href="/tools/roulette" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  돌림판 룰렛 게임
+                </a>
+              </li>
+              <li>
+                <a href="/tools/speed-quiz" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  스피드 퀴즈 & 초성 게임
+                </a>
+              </li>
+              <li>
+                <a href="/tools/qna-a-day" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  하루 한 질문 문답
+                </a>
+              </li>
+              <li>
+                <a href="/tools/birthday-secret" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  생일의 비밀 알아보기
+                </a>
+              </li>
+              <li>
+                <a href="/tools/cheer" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  오늘의 응원 한마디
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 6: 안내 및 정책 */}
+          <div class="space-y-3.5">
+            <h4 class="font-bold text-slate-900 dark:text-slate-100 uppercase tracking-wider text-[13px] flex items-center gap-1.5">
+              <span>ℹ️</span> 안내 및 정책
+            </h4>
+            <ul class="space-y-2.5">
+              <li>
+                <a href="/about" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  서비스 소개 (About)
+                </a>
+              </li>
+              <li>
+                <a href="/faq" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  자주 묻는 질문 (FAQ)
+                </a>
+              </li>
+              <li>
+                <a href="/contact" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  문의하기 (Contact)
+                </a>
+              </li>
+              <li>
+                <a href="/terms" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  이용약관
+                </a>
+              </li>
+              <li>
+                <a href="/privacy-policy" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  개인정보처리방침
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom Copyright & Tech Stack */}
+        <div class="pt-8 border-t border-[var(--header-border)] flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-500 dark:text-slate-400">
           <p>&copy; {new Date().getFullYear()} rab8bit.com. All rights reserved.</p>
-          <p class="text-[11px] text-slate-500 dark:text-slate-400 flex items-center gap-1">
+          <div class="flex items-center gap-4 text-[11px]">
+            <span class="flex items-center gap-1">
+              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              All Services Operational
+            </span>
+            <span class="text-slate-300 dark:text-slate-700">|</span>
             <span>Powered by Gemini & Stitch UI Engine</span>
-          </p>
+          </div>
         </div>
       </div>
     </footer>
