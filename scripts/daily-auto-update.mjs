@@ -36,15 +36,18 @@ function getKSTDate() {
   };
 }
 
-// SVG Hooking Thumbnail Generator
+// SVG Hooking Thumbnail Generator (High Impact & Super Legible)
 function generateHookSvg(width, height, badge, title1, title2) {
-  return `<svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">
+  const w = width || 1280;
+  const h = height || 720;
+  return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <radialGradient id="vignette" cx="50%" cy="50%" r="70%">
-      <stop offset="0%" stop-color="#000000" stop-opacity="0.1"/>
-      <stop offset="60%" stop-color="#000000" stop-opacity="0.35"/>
-      <stop offset="100%" stop-color="#000000" stop-opacity="0.65"/>
-    </radialGradient>
+    <linearGradient id="bgScrim" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#000000" stop-opacity="0.35"/>
+      <stop offset="35%" stop-color="#000000" stop-opacity="0.5"/>
+      <stop offset="70%" stop-color="#000000" stop-opacity="0.65"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.8"/>
+    </linearGradient>
     <linearGradient id="badgeGrad" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0%" stop-color="#e11d48"/>
       <stop offset="50%" stop-color="#ec4899"/>
@@ -52,32 +55,36 @@ function generateHookSvg(width, height, badge, title1, title2) {
     </linearGradient>
     <linearGradient id="yellowText" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#ffffff"/>
-      <stop offset="30%" stop-color="#fef08a"/>
-      <stop offset="100%" stop-color="#f59e0b"/>
+      <stop offset="25%" stop-color="#fef08a"/>
+      <stop offset="100%" stop-color="#fbbf24"/>
     </linearGradient>
-    <filter id="heavyTextShadow" x="-30%" y="-30%" width="160%" height="160%">
-      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#000000" flood-opacity="1"/>
-      <feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#000000" flood-opacity="0.95"/>
+    <filter id="megaShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000000" flood-opacity="1"/>
+      <feDropShadow dx="0" dy="16" stdDeviation="16" flood-color="#000000" flood-opacity="0.9"/>
+    </filter>
+    <filter id="badgeShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000000" flood-opacity="0.8"/>
     </filter>
   </defs>
 
-  <rect width="${width}" height="${height}" fill="url(#vignette)"/>
+  <rect width="${w}" height="${h}" fill="url(#bgScrim)"/>
+  <rect x="70" y="80" width="${w - 140}" height="${h - 160}" rx="32" fill="#030712" fill-opacity="0.55" stroke="#ffffff" stroke-opacity="0.25" stroke-width="2.5" filter="url(#badgeShadow)"/>
 
-  <g transform="translate(${width / 2}, ${height * 0.22})" filter="url(#heavyTextShadow)">
-    <rect x="-160" y="-22" width="320" height="44" rx="22" fill="url(#badgeGrad)" stroke="#ffffff" stroke-opacity="0.4" stroke-width="1.5"/>
-    <text x="0" y="8" text-anchor="middle" font-family="sans-serif" font-size="21" font-weight="900" fill="#ffffff" letter-spacing="1">
+  <g transform="translate(${w / 2}, 165)" filter="url(#badgeShadow)">
+    <rect x="-240" y="-32" width="480" height="64" rx="32" fill="url(#badgeGrad)" stroke="#ffffff" stroke-width="2.5" stroke-opacity="0.6"/>
+    <text x="0" y="11" text-anchor="middle" font-family="'Pretendard', 'Noto Sans KR', sans-serif" font-size="32" font-weight="900" fill="#ffffff" letter-spacing="1">
       ${badge}
     </text>
   </g>
 
-  <g transform="translate(${width / 2}, ${height * 0.52})" filter="url(#heavyTextShadow)">
-    <text x="0" y="0" text-anchor="middle" font-family="sans-serif" font-size="70" font-weight="900" fill="#ffffff" stroke="#000000" stroke-width="10" paint-order="stroke fill" letter-spacing="-1">
+  <g transform="translate(${w / 2}, 360)" filter="url(#megaShadow)">
+    <text x="0" y="0" text-anchor="middle" font-family="'Pretendard', 'Noto Sans KR', sans-serif" font-size="94" font-weight="900" fill="#ffffff" stroke="#000000" stroke-width="14" paint-order="stroke fill" letter-spacing="-1.5">
       ${title1}
     </text>
   </g>
 
-  <g transform="translate(${width / 2}, ${height * 0.76})" filter="url(#heavyTextShadow)">
-    <text x="0" y="0" text-anchor="middle" font-family="sans-serif" font-size="60" font-weight="900" fill="url(#yellowText)" stroke="#000000" stroke-width="9" paint-order="stroke fill" letter-spacing="-0.5">
+  <g transform="translate(${w / 2}, 520)" filter="url(#megaShadow)">
+    <text x="0" y="0" text-anchor="middle" font-family="'Pretendard', 'Noto Sans KR', sans-serif" font-size="82" font-weight="900" fill="url(#yellowText)" stroke="#000000" stroke-width="12" paint-order="stroke fill" letter-spacing="-1">
       ${title2}
     </text>
   </g>
@@ -276,23 +283,20 @@ async function updateDailyContent() {
 
       try {
         const baseImgPath = path.join(ROOT_DIR, blogTemplate.baseImage);
-        if (fs.existsSync(baseImgPath)) {
-          const orig = fs.readFileSync(baseImgPath);
-          const meta = await sharp(orig).metadata();
-          const w = meta.width || 1200;
-          const h = meta.height || 675;
+          const resizedBg = await sharp(baseImgPath)
+            .resize(1280, 720, { fit: 'cover', position: 'center' })
+            .toBuffer();
 
-          const svgStr = generateHookSvg(w, h, blogTemplate.badge, blogTemplate.title1, blogTemplate.title2);
+          const svgStr = generateHookSvg(1280, 720, blogTemplate.badge, blogTemplate.title1, blogTemplate.title2);
           const svgBuf = Buffer.from(svgStr);
 
-          const out = await sharp(orig)
+          const out = await sharp(resizedBg)
             .composite([{ input: svgBuf, top: 0, left: 0 }])
-            .jpeg({ quality: 94 })
+            .jpeg({ quality: 95 })
             .toBuffer();
 
           fs.writeFileSync(thumbAbsPath, out);
           console.log(`   🎨 Generated Hooking Thumbnail: ${thumbRelPath}`);
-        }
       } catch (e) {
         console.warn('   ⚠️ Thumbnail generation warning:', e.message);
       }

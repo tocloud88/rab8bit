@@ -107,24 +107,24 @@ export default function BlogDirectory() {
             </div>
 
             {/* Content */}
-            <div className="p-3.5 sm:p-4 flex-1 flex flex-col justify-between space-y-2">
+            <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-2.5">
               <div>
-                <div className="flex items-center gap-1.5 text-[10px] text-slate-500 mb-1">
+                <div className="flex items-center gap-1.5 text-xs text-slate-500 mb-1.5 font-medium">
                   <span>{post.date}</span>
                   <span>•</span>
                   <span>{post.author}</span>
                 </div>
-                <h3 className="font-bold text-xs sm:text-sm text-white group-hover:text-indigo-400 transition-colors line-clamp-2 leading-snug">
+                <h3 className="font-bold text-sm sm:text-base text-slate-100 group-hover:text-indigo-400 transition-colors line-clamp-2 leading-snug">
                   {post.title}
                 </h3>
-                <p className="mt-1 text-[11px] text-slate-400 line-clamp-2 leading-relaxed">
+                <p className="mt-1.5 text-xs text-slate-400 line-clamp-2 leading-relaxed">
                   {post.excerpt}
                 </p>
               </div>
 
               {/* Tags & Action */}
-              <div className="pt-2 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-indigo-400 font-bold">
-                <span className="text-slate-500 text-[10px] truncate max-w-[90px]">
+              <div className="pt-2.5 border-t border-slate-800/80 flex items-center justify-between text-xs text-indigo-400 font-bold">
+                <span className="text-slate-500 text-xs truncate max-w-[100px]">
                   {post.tags && post.tags[0] ? `#${post.tags[0]}` : '블로그'}
                 </span>
                 <span className="group-hover:translate-x-1 transition-transform">
