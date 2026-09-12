@@ -17,725 +17,768 @@ function escapeXml(str) {
     .replace(/'/g, '&apos;');
 }
 
-// -----------------------------------------------------------------------------
-// Dedicated Content-Aware Visual Generators
-// Each generator creates a unique background, specific domain graphics, and crisp editorial typography.
-// -----------------------------------------------------------------------------
+export function calcFontSize(text, baseSize, maxChars) {
+  if (!text) return baseSize;
+  const len = text.length;
+  if (len <= maxChars) return baseSize;
+  return Math.round(baseSize * (maxChars / len));
+}
 
-// Visual theme configurations based on post ID / subject
-export function getPostVisualTheme(post) {
-  const id = post.id || '';
-  const title = post.title || '';
-  const tags = (post.tags || []).join(' ');
-  const text = (id + ' ' + title + ' ' + tags).toLowerCase();
+// -----------------------------------------------------------------------------
+// Content Analyzer: Extracts punchy 2-line hooking copy & theme
+// -----------------------------------------------------------------------------
+export function parseHookingCopy(post) {
+  const rawTitle = (post.title || '').trim();
+  const tags = post.tags || [];
+  
+  let badge = tags[0] || '2026 AI 트렌드';
+  let title1 = '';
+  let title2 = '';
+  let subTag = (post.excerpt || '2026 대한민국 1위 AI 포털').slice(0, 24) + '...';
 
-  if (text.includes('gpt-6') || text.includes('astra') || text.includes('에이전트') || text.includes('agent')) {
-    return 'ai_agent';
-  } else if (text.includes('설명 검증') || text.includes('hallucination') || text.includes('믿으면 안') || text.includes('오해') || text.includes('한계')) {
-    return 'ai_audit';
-  } else if (text.includes('재테크') || text.includes('주가') || text.includes('수익률') || text.includes('stock') || text.includes('강의')) {
-    return 'ai_finance';
-  } else if (text.includes('크롬') || text.includes('브라우저') || text.includes('chrome') || text.includes('browser')) {
-    return 'browser_ai';
-  } else if (text.includes('웹사이트') || text.includes('클로드 스킬') || text.includes('claude skills') || text.includes('아티팩트') || text.includes('artifacts')) {
-    return 'web_design';
-  } else if (text.includes('논문') || text.includes('보고서') || text.includes('요약') || text.includes('pdf') || text.includes('100만 토큰') || text.includes('문서 분석')) {
-    return 'doc_summary';
-  } else if (text.includes('회의') || text.includes('업무 시간') || text.includes('생산성') || text.includes('일잘러') || text.includes('시간 관리')) {
-    return 'meeting_productivity';
-  } else if (text.includes('예스맨') || text.includes('조언자') || text.includes('프롬프트') || text.includes('prompt') || text.includes('시스템 프롬프트')) {
-    return 'prompt_engineering';
-  } else if (text.includes('90개') || text.includes('프로그램') || text.includes('바이브 코딩') || text.includes('vibe coding') || text.includes('1인 창업') || text.includes('1인개발')) {
-    return 'app_matrix';
-  } else if (text.includes('애드센스') || text.includes('adsense') || text.includes('seo') || text.includes('aeo') || text.includes('검색')) {
-    return 'seo_adsense';
-  } else if (text.includes('레트로') || text.includes('게임') || text.includes('game') || text.includes('8bit')) {
-    return 'retro_game';
-  } else if (text.includes('canvas') || text.includes('캔버스') || text.includes('workspace')) {
-    return 'gemini_canvas';
-  } else if (text.includes('open webui') || text.includes('로컬') || text.includes('local llm') || text.includes('ollama')) {
-    return 'local_llm';
-  } else if (text.includes('탐지') || text.includes('gptzero') || text.includes('휴머나이징') || text.includes('인간화')) {
-    return 'humanizing';
-  } else if (text.includes('cursor') || text.includes('windsurf') || text.includes('copilot') || text.includes('코딩')) {
-    return 'code_battle';
-  } else if (text.includes('rag') || text.includes('벡터') || text.includes('검색 증강')) {
-    return 'rag_architecture';
-  } else if (text.includes('n8n') || text.includes('자동화') || text.includes('뉴스레터') || text.includes('automation')) {
-    return 'workflow_automation';
-  } else if (text.includes('terminal') || text.includes('터미널') || text.includes('cli') || text.includes('claude code')) {
-    return 'terminal_cli';
-  } else if (text.includes('음악') || text.includes('lyria') || text.includes('music') || text.includes('작곡')) {
-    return 'music_ai';
-  } else if (text.includes('이미지') || text.includes('미드저니') || text.includes('나노바나나') || text.includes('image')) {
-    return 'image_ai';
-  } else if (text.includes('멀티모달') || text.includes('gpt4o') || text.includes('multimodal')) {
-    return 'multimodal_ai';
-  } else if (text.includes('빅4') || text.includes('비교') || text.includes('vs') || text.includes('대결')) {
-    return 'model_battle';
-  } else if (text.includes('오케스트레이션') || text.includes('autogen') || text.includes('crewai')) {
-    return 'multi_agent';
-  } else if (text.includes('스냅블로그') || text.includes('네이버블로그') || text.includes('티스토리')) {
-    return 'blog_auto';
-  } else if (text.includes('익스텐션') || text.includes('드라이브') || text.includes('유튜브')) {
-    return 'google_ecosystem';
-  } else if (text.includes('리더') || text.includes('리더십') || text.includes('스마트 워크')) {
-    return 'leadership_ai';
+  // Colon or quote split
+  if (rawTitle.includes(':')) {
+    const parts = rawTitle.split(':');
+    badge = parts[0].replace(/\[.*?\]/g, '').trim().slice(0, 14);
+    const rest = parts.slice(1).join(':').trim();
+    const words = rest.split(' ');
+    const mid = Math.ceil(words.length / 2);
+    title1 = words.slice(0, mid).join(' ');
+    title2 = words.slice(mid).join(' ');
+  } else if (rawTitle.includes('—') || rawTitle.includes('-')) {
+    const parts = rawTitle.split(/[—-]/);
+    title1 = parts[0].trim().replace(/["'“”]/g, '');
+    title2 = (parts[1] || '').trim().replace(/["'“”]/g, '');
   } else {
-    return 'tech_insight_general';
+    const words = rawTitle.split(' ');
+    const mid = Math.ceil(words.length / 2);
+    title1 = words.slice(0, mid).join(' ');
+    title2 = words.slice(mid).join(' ');
   }
-}
 
-// -----------------------------------------------------------------------------
-// Graphic Builders for specific themes
-// -----------------------------------------------------------------------------
+  // Clean brackets and special chars
+  title1 = title1.replace(/["'“”]/g, '').trim();
+  title2 = title2.replace(/["'“”]/g, '').trim();
 
-function renderThemeIllustration(theme, w, h) {
-  switch (theme) {
-    case 'ai_agent':
-      return `
-        <!-- AI Agent / Autonomous System Graphic -->
-        <g transform="translate(${w * 0.72}, ${h * 0.5})">
-          <circle cx="0" cy="0" r="170" fill="none" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="6,6" opacity="0.4"/>
-          <circle cx="0" cy="0" r="120" fill="none" stroke="#60a5fa" stroke-width="2" opacity="0.6"/>
-          <circle cx="0" cy="0" r="70" fill="url(#agentCoreGrad)" filter="url(#glow)"/>
-          
-          <!-- Orbiting Agent Nodes -->
-          <g transform="rotate(25)">
-            <circle cx="120" cy="0" r="14" fill="#38bdf8"/>
-            <text x="120" y="4" text-anchor="middle" font-size="9" font-family="sans-serif" font-weight="900" fill="#030712">TASK</text>
-          </g>
-          <g transform="rotate(145)">
-            <circle cx="120" cy="0" r="14" fill="#a855f7"/>
-            <text x="120" y="4" text-anchor="middle" font-size="9" font-family="sans-serif" font-weight="900" fill="#ffffff">TOOL</text>
-          </g>
-          <g transform="rotate(265)">
-            <circle cx="120" cy="0" r="14" fill="#10b981"/>
-            <text x="120" y="4" text-anchor="middle" font-size="9" font-family="sans-serif" font-weight="900" fill="#030712">EXEC</text>
-          </g>
-          
-          <!-- Floating Holographic HUD Panels -->
-          <g transform="translate(-160, -90)">
-            <rect width="130" height="60" rx="10" fill="#0f172a" fill-opacity="0.85" stroke="#38bdf8" stroke-width="1.5"/>
-            <text x="12" y="24" font-family="monospace" font-size="11" font-weight="700" fill="#38bdf8">AGENT_STATUS</text>
-            <text x="12" y="44" font-family="monospace" font-size="13" font-weight="900" fill="#4ade80">AUTONOMOUS ✔</text>
-          </g>
-          <g transform="translate(60, 60)">
-            <rect width="130" height="55" rx="10" fill="#0f172a" fill-opacity="0.85" stroke="#a855f7" stroke-width="1.5"/>
-            <text x="12" y="22" font-family="monospace" font-size="11" font-weight="700" fill="#c084fc">CONTEXT_WINDOW</text>
-            <text x="12" y="42" font-family="monospace" font-size="13" font-weight="900" fill="#38bdf8">1,050,000 TKN</text>
-          </g>
-        </g>
-      `;
-
-    case 'ai_audit':
-      return `
-        <!-- Model Self-Explanation & Hallucination Audit Graphic -->
-        <g transform="translate(${w * 0.73}, ${h * 0.5})">
-          <!-- Logic Decision Tree Grid -->
-          <rect x="-170" y="-120" width="340" height="240" rx="18" fill="#0f172a" fill-opacity="0.8" stroke="#ef4444" stroke-width="1.5"/>
-          
-          <path d="M -100 0 L -30 -50 L 50 -50 M -30 -50 L 50 10 M -100 0 L -30 60 L 50 60" fill="none" stroke="#64748b" stroke-width="3"/>
-          <circle cx="-100" cy="0" r="16" fill="#3b82f6"/>
-          <circle cx="-30" cy="-50" r="14" fill="#eab308"/>
-          <circle cx="-30" cy="60" r="14" fill="#10b981"/>
-          <circle cx="50" cy="-50" r="14" fill="#ef4444"/>
-          <circle cx="50" cy="10" r="14" fill="#10b981"/>
-          <circle cx="50" cy="60" r="14" fill="#3b82f6"/>
-          
-          <!-- Big Magnifying Glass Inspection Lens -->
-          <g transform="translate(40, -10) rotate(-25)">
-            <circle cx="0" cy="0" r="55" fill="#1e293b" fill-opacity="0.7" stroke="#38bdf8" stroke-width="5" filter="url(#glow)"/>
-            <line x1="38" y1="38" x2="85" y2="85" stroke="#94a3b8" stroke-width="12" stroke-linecap="round"/>
-            <text x="0" y="5" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="900" fill="#f87171">AUDIT !</text>
-          </g>
-
-          <!-- Hallucination vs Fact Verification Badge -->
-          <g transform="translate(-140, 75)">
-            <rect width="140" height="34" rx="8" fill="#ef4444" fill-opacity="0.2" stroke="#ef4444" stroke-width="1.5"/>
-            <text x="70" y="22" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="800" fill="#fca5a5">⚠️ 환각(검증) 필수</text>
-          </g>
-        </g>
-      `;
-
-    case 'ai_finance':
-      return `
-        <!-- AI Stock & Wealth Terminal Graphic -->
-        <g transform="translate(${w * 0.72}, ${h * 0.5})">
-          <rect x="-180" y="-125" width="360" height="250" rx="16" fill="#090d16" stroke="#f59e0b" stroke-width="1.5"/>
-          
-          <!-- Candlestick chart simulation -->
-          <line x1="-120" y1="60" x2="-120" y2="-20" stroke="#10b981" stroke-width="2"/>
-          <rect x="-132" y="10" width="24" height="40" rx="3" fill="#10b981"/>
-          
-          <line x1="-70" y1="30" x2="-70" y2="-60" stroke="#10b981" stroke-width="2"/>
-          <rect x="-82" y="-40" width="24" height="50" rx="3" fill="#10b981"/>
-          
-          <line x1="-20" y1="10" x2="-20" y2="-40" stroke="#ef4444" stroke-width="2"/>
-          <rect x="-32" y="-25" width="24" height="30" rx="3" fill="#ef4444"/>
-
-          <line x1="30" y1="40" x2="30" y2="-80" stroke="#10b981" stroke-width="2"/>
-          <rect x="18" y="-60" width="24" height="70" rx="3" fill="#10b981"/>
-
-          <line x1="80" y1="-10" x2="80" y2="-100" stroke="#10b981" stroke-width="2"/>
-          <rect x="68" y="-90" width="24" height="60" rx="3" fill="#10b981"/>
-
-          <!-- Exponential Golden Trend Line -->
-          <path d="M -150 70 Q -30 20 110 -85" fill="none" stroke="#fbbf24" stroke-width="4" filter="url(#glow)"/>
-
-          <!-- Growth ROI Pill -->
-          <g transform="translate(30, 60)">
-            <rect width="130" height="42" rx="10" fill="#047857" stroke="#34d399" stroke-width="1.5"/>
-            <text x="65" y="26" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="900" fill="#ffffff">ROI +342.8% ▲</text>
-          </g>
-        </g>
-      `;
-
-    case 'browser_ai':
-      return `
-        <!-- Chrome & Browser Autonomous AI Graphic -->
-        <g transform="translate(${w * 0.72}, ${h * 0.5})">
-          <!-- Browser Frame -->
-          <rect x="-180" y="-120" width="360" height="240" rx="14" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
-          <!-- Browser Tab Bar -->
-          <rect x="-180" y="-120" width="360" height="36" rx="14" fill="#1e293b"/>
-          <circle cx="-160" cy="-102" r="5" fill="#ef4444"/>
-          <circle cx="-145" cy="-102" r="5" fill="#eab308"/>
-          <circle cx="-130" cy="-102" r="5" fill="#22c55e"/>
-          
-          <!-- URL bar -->
-          <rect x="-110" y="-112" width="220" height="20" rx="6" fill="#0f172a"/>
-          <text x="-95" y="-98" font-family="monospace" font-size="10" fill="#94a3b8">https://agent.chrome.ai</text>
-          
-          <!-- Chrome AI Logo in center -->
-          <circle cx="0" cy="15" r="55" fill="#1e293b" stroke="#38bdf8" stroke-width="3"/>
-          <circle cx="0" cy="15" r="28" fill="#3b82f6"/>
-          <path d="M 0 -40 L 45 10 L 15 55 Z" fill="#ef4444" opacity="0.85"/>
-          <path d="M 45 10 L 0 70 L -45 20 Z" fill="#22c55e" opacity="0.85"/>
-          <path d="M -45 20 L -15 -35 L 25 -10 Z" fill="#eab308" opacity="0.85"/>
-
-          <!-- Autonomous Cursor Pointer -->
-          <g transform="translate(60, 45)">
-            <polygon points="0,0 24,18 14,19 19,30 13,32 8,21 0,26" fill="#38bdf8" stroke="#ffffff" stroke-width="2" filter="url(#glow)"/>
-          </g>
-        </g>
-      `;
-
-    case 'web_design':
-      return `
-        <!-- Web Design & Claude Skills Graphic -->
-        <g transform="translate(${w * 0.72}, ${h * 0.5})">
-          <!-- Isometric Modern Web Mockup -->
-          <g transform="rotate(-6) skewX(-4)">
-            <rect x="-170" y="-110" width="340" height="220" rx="16" fill="#090d16" stroke="#818cf8" stroke-width="2" filter="url(#glow)"/>
-            
-            <!-- Header bar -->
-            <rect x="-150" y="-90" width="100" height="14" rx="4" fill="#6366f1"/>
-            <rect x="70" y="-90" width="60" height="14" rx="7" fill="#10b981"/>
-            
-            <!-- Hero Card -->
-            <rect x="-150" y="-60" width="180" height="70" rx="10" fill="#1e1b4b" stroke="#4f46e5" stroke-width="1"/>
-            <rect x="-135" y="-45" width="120" height="12" rx="4" fill="#a5b4fc"/>
-            <rect x="-135" y="-25" width="80" height="10" rx="4" fill="#6366f1"/>
-            
-            <!-- Interactive Widgets -->
-            <rect x="50" y="-60" width="80" height="70" rx="10" fill="#1e293b" stroke="#38bdf8" stroke-width="1"/>
-            <circle cx="90" cy="-25" r="18" fill="#0284c7"/>
-
-            <!-- Bottom Cards Grid -->
-            <rect x="-150" y="25" width="85" height="60" rx="8" fill="#1e293b"/>
-            <rect x="-55" y="25" width="85" height="60" rx="8" fill="#1e293b"/>
-            <rect x="40" y="25" width="90" height="60" rx="8" fill="#312e81" stroke="#a855f7" stroke-width="1"/>
-          </g>
-        </g>
-      `;
-
-    case 'doc_summary':
-      return `
-        <!-- Document / Research Paper 3-Line Summary Graphic -->
-        <g transform="translate(${w * 0.72}, ${h * 0.5})">
-          <!-- Layered PDF Documents -->
-          <g transform="translate(-40, -20) rotate(-8)">
-            <rect x="-80" y="-90" width="160" height="200" rx="10" fill="#1e293b" stroke="#475569" stroke-width="1.5"/>
-            <line x1="-60" y1="-60" x2="40" y2="-60" stroke="#64748b" stroke-width="4" stroke-linecap="round"/>
-            <line x1="-60" y1="-40" x2="20" y2="-40" stroke="#64748b" stroke-width="4" stroke-linecap="round"/>
-          </g>
-
-          <g transform="translate(0, 0)">
-            <rect x="-90" y="-100" width="180" height="220" rx="12" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
-            
-            <!-- Laser Scanning Beam -->
-            <line x1="-80" y1="-30" x2="80" y2="-30" stroke="#38bdf8" stroke-width="3" filter="url(#glow)"/>
-            
-            <!-- 3 Glowing Golden Summary Bullets -->
-            <g transform="translate(-70, 0)">
-              <circle cx="10" cy="0" r="6" fill="#fbbf24"/>
-              <rect x="25" y="-5" width="115" height="10" rx="4" fill="#fef08a"/>
-              
-              <circle cx="10" cy="30" r="6" fill="#fbbf24"/>
-              <rect x="25" y="25" width="95" height="10" rx="4" fill="#fef08a"/>
-              
-              <circle cx="10" cy="60" r="6" fill="#fbbf24"/>
-              <rect x="25" y="55" width="105" height="10" rx="4" fill="#fef08a"/>
-            </g>
-
-            <!-- 3-Line Badge -->
-            <g transform="translate(30, -80)">
-              <rect width="65" height="26" rx="6" fill="#0284c7"/>
-              <text x="32" y="17" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="900" fill="#ffffff">3줄 요약</text>
-            </g>
-          </g>
-        </g>
-      `;
-
-    case 'meeting_productivity':
-      return `
-        <!-- Meeting Automation & Productivity Graphic -->
-        <g transform="translate(${w * 0.72}, ${h * 0.5})">
-          <!-- Voice Soundwave to Action Items Container -->
-          <rect x="-170" y="-115" width="340" height="230" rx="16" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
-          
-          <!-- Soundwave Animation Bars -->
-          <g transform="translate(-130, -50)">
-            <rect x="0" y="5" width="6" height="20" rx="3" fill="#34d399"/>
-            <rect x="12" y="-10" width="6" height="50" rx="3" fill="#10b981"/>
-            <rect x="24" y="-25" width="6" height="80" rx="3" fill="#38bdf8"/>
-            <rect x="36" y="-5" width="6" height="40" rx="3" fill="#10b981"/>
-            <rect x="48" y="10" width="6" height="10" rx="3" fill="#34d399"/>
-          </g>
-          <text x="-60" y="-45" font-family="sans-serif" font-size="12" font-weight="700" fill="#94a3b8">실시간 회의 음성 분석</text>
-
-          <!-- Generated Action Checklist Cards -->
-          <g transform="translate(-140, 0)">
-            <rect width="280" height="40" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
-            <circle cx="20" cy="20" r="10" fill="#10b981"/>
-            <text x="20" y="24" text-anchor="middle" font-size="10" font-weight="900" fill="#ffffff">✔</text>
-            <text x="42" y="24" font-family="sans-serif" font-size="12" font-weight="700" fill="#e2e8f0">담당자 지정 및 마감일 자동 매핑</text>
-          </g>
-
-          <g transform="translate(-140, 50)">
-            <rect width="280" height="40" rx="8" fill="#1e293b" stroke="#334155" stroke-width="1"/>
-            <circle cx="20" cy="20" r="10" fill="#10b981"/>
-            <text x="20" y="24" text-anchor="middle" font-size="10" font-weight="900" fill="#ffffff">✔</text>
-            <text x="42" y="24" font-family="sans-serif" font-size="12" font-weight="700" fill="#e2e8f0">주간 업무 시간 3.8% 단축 완성</text>
-          </g>
-        </g>
-      `;
-
-    case 'prompt_engineering':
-      return `
-        <!-- Expert Strategic Advisor Prompt Graphic -->
-        <g transform="translate(${w * 0.72}, ${h * 0.5})">
-          <!-- Chat Evolution Diagram: Yes-Man to Advisor -->
-          <rect x="-170" y="-120" width="340" height="240" rx="16" fill="#090d16" stroke="#8b5cf6" stroke-width="1.5"/>
-          
-          <!-- Old Yes-Man bubble -->
-          <g transform="translate(-140, -85)">
-            <rect width="210" height="45" rx="10" fill="#334155" opacity="0.6"/>
-            <text x="15" y="26" font-family="sans-serif" font-size="12" fill="#94a3b8">"네, 말씀하신 내용이 맞습니다!" ❌</text>
-          </g>
-
-          <!-- Downward Transformation Arrow -->
-          <path d="M -35 -30 L -35 -5" fill="none" stroke="#a855f7" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow)"/>
-
-          <!-- High-Value Strategic Advisor Bubble -->
-          <g transform="translate(-140, 5)">
-            <rect width="280" height="85" rx="12" fill="#1e1b4b" stroke="#c084fc" stroke-width="2" filter="url(#glow)"/>
-            <text x="15" y="28" font-family="sans-serif" font-size="13" font-weight="800" fill="#f43f5e">🔥 비판적 전략 분석 보고서</text>
-            <text x="15" y="52" font-family="sans-serif" font-size="11" font-weight="600" fill="#e2e8f0">1. 리스크 요인 3가지 도출</text>
-            <text x="15" y="70" font-family="sans-serif" font-size="11" font-weight="600" fill="#38bdf8">2. 최적화 대안 시뮬레이션 제안</text>
-          </g>
-        </g>
-      `;
-
-    case 'app_matrix':
-      return `
-        <!-- 90 AI Apps Matrix / Vibe Coding Graphic -->
-        <g transform="translate(${w * 0.72}, ${h * 0.5})">
-          <!-- 3x3 Isometric App Matrix Grid -->
-          <g transform="rotate(-10) skewX(-8)">
-            <rect x="-140" y="-110" width="75" height="60" rx="10" fill="#1d4ed8" stroke="#60a5fa" stroke-width="1.5"/>
-            <text x="-102" y="-75" text-anchor="middle" font-size="20">⚡</text>
-            
-            <rect x="-50" y="-110" width="75" height="60" rx="10" fill="#047857" stroke="#34d399" stroke-width="1.5"/>
-            <text x="-12" y="-75" text-anchor="middle" font-size="20">📊</text>
-
-            <rect x="40" y="-110" width="75" height="60" rx="10" fill="#b91c1c" stroke="#f87171" stroke-width="1.5"/>
-            <text x="78" y="-75" text-anchor="middle" font-size="20">🎯</text>
-
-            <rect x="-140" y="-35" width="75" height="60" rx="10" fill="#6d28d9" stroke="#a78bfa" stroke-width="1.5"/>
-            <text x="-102" y="0" text-anchor="middle" font-size="20">🤖</text>
-
-            <rect x="-50" y="-35" width="75" height="60" rx="10" fill="#c2410c" stroke="#fb923c" stroke-width="1.5"/>
-            <text x="-12" y="0" text-anchor="middle" font-size="20">🚀</text>
-
-            <rect x="40" y="-35" width="75" height="60" rx="10" fill="#0369a1" stroke="#38bdf8" stroke-width="1.5"/>
-            <text x="78" y="0" text-anchor="middle" font-size="20">💡</text>
-
-            <rect x="-140" y="40" width="75" height="60" rx="10" fill="#4338ca" stroke="#818cf8" stroke-width="1.5"/>
-            <text x="-102" y="75" text-anchor="middle" font-size="20">🎮</text>
-
-            <rect x="-50" y="40" width="75" height="60" rx="10" fill="#0f766e" stroke="#2dd4bf" stroke-width="1.5"/>
-            <text x="-12" y="75" text-anchor="middle" font-size="20">⚙️</text>
-
-            <rect x="40" y="40" width="75" height="60" rx="10" fill="#be185d" stroke="#f472b6" stroke-width="1.5"/>
-            <text x="78" y="75" text-anchor="middle" font-size="20">✨</text>
-          </g>
-
-          <!-- 90 Apps Badge -->
-          <g transform="translate(40, -100)">
-            <rect width="105" height="34" rx="17" fill="#facc15" filter="url(#glow)"/>
-            <text x="52" y="22" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="900" fill="#000000">90개 APP</text>
-          </g>
-        </g>
-      `;
-
-    case 'seo_adsense':
-      return `
-        <!-- AdSense & SEO Optimization Graphic -->
-        <g transform="translate(${w * 0.72}, ${h * 0.5})">
-          <rect x="-170" y="-120" width="340" height="240" rx="16" fill="#090d16" stroke="#10b981" stroke-width="2"/>
-          
-          <!-- AdSense Blue Banner -->
-          <rect x="-150" y="-100" width="300" height="50" rx="10" fill="#1e3a8a"/>
-          <circle cx="-120" cy="-75" r="14" fill="#3b82f6"/>
-          <text x="-120" y="-69" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="900" fill="#ffffff">$</text>
-          <text x="-95" y="-69" font-family="sans-serif" font-size="16" font-weight="900" fill="#ffffff">Google AdSense 통과</text>
-
-          <!-- Audit Checklist -->
-          <g transform="translate(-145, -30)">
-            <rect width="290" height="35" rx="8" fill="#14532d" stroke="#22c55e" stroke-width="1"/>
-            <text x="15" y="22" font-family="sans-serif" font-size="12" font-weight="700" fill="#86efac">✔ '가치 없는 콘텐츠' 사유 완벽 해소</text>
-          </g>
-
-          <g transform="translate(-145, 15)">
-            <rect width="290" height="35" rx="8" fill="#14532d" stroke="#22c55e" stroke-width="1"/>
-            <text x="15" y="22" font-family="sans-serif" font-size="12" font-weight="700" fill="#86efac">✔ 고품질 E-E-A-T 구조화 프레임워크</text>
-          </g>
-
-          <g transform="translate(-145, 60)">
-            <rect width="135" height="30" rx="6" fill="#1e293b"/>
-            <text x="67" y="20" text-anchor="middle" font-family="monospace" font-size="12" font-weight="800" fill="#38bdf8">SEO: 99/100</text>
-            
-            <rect x="155" y="0" width="135" height="30" rx="6" fill="#1e293b"/>
-            <text x="222" y="20" text-anchor="middle" font-family="monospace" font-size="12" font-weight="800" fill="#facc15">AEO: OPTIMIZED</text>
-          </g>
-        </g>
-      `;
-
-    case 'retro_game':
-      return `
-        <!-- Retro 8-bit Gaming Graphic -->
-        <g transform="translate(${w * 0.72}, ${h * 0.5})">
-          <!-- Arcade Cabinet & D-pad Matrix -->
-          <rect x="-170" y="-120" width="340" height="240" rx="16" fill="#180b2b" stroke="#f43f5e" stroke-width="2"/>
-          
-          <!-- CRT Scanlines simulation -->
-          <rect x="-150" y="-100" width="300" height="130" rx="10" fill="#0a0518" stroke="#a855f7" stroke-width="1.5"/>
-          
-          <!-- Pixel Sprite Hero -->
-          <g transform="translate(-80, -40)">
-            <rect x="0" y="0" width="16" height="16" fill="#fbbf24"/>
-            <rect x="16" y="0" width="16" height="16" fill="#fbbf24"/>
-            <rect x="32" y="0" width="16" height="16" fill="#fbbf24"/>
-            <rect x="16" y="16" width="16" height="16" fill="#f43f5e"/>
-            <rect x="0" y="32" width="16" height="16" fill="#38bdf8"/>
-            <rect x="32" y="32" width="16" height="16" fill="#38bdf8"/>
-          </g>
-
-          <text x="20" y="-30" font-family="monospace" font-size="18" font-weight="900" fill="#38bdf8">STAGE 01</text>
-          <text x="20" y="-5" font-family="monospace" font-size="22" font-weight="900" fill="#facc15">999,990 PTS</text>
-
-          <!-- D-Pad and Buttons Control Board -->
-          <g transform="translate(-100, 70)">
-            <!-- D-Pad -->
-            <rect x="-30" y="-10" width="60" height="20" rx="4" fill="#334155"/>
-            <rect x="-10" y="-30" width="20" height="60" rx="4" fill="#334155"/>
-          </g>
-          <g transform="translate(80, 70)">
-            <circle cx="-25" cy="0" r="14" fill="#f43f5e"/>
-            <text x="-25" y="5" text-anchor="middle" font-family="sans-serif" font-weight="900" fill="#ffffff">B</text>
-            <circle cx="15" cy="-10" r="14" fill="#38bdf8"/>
-            <text x="15" y="-5" text-anchor="middle" font-family="sans-serif" font-weight="900" fill="#ffffff">A</text>
-          </g>
-        </g>
-      `;
-
-    case 'terminal_cli':
-      return `
-        <!-- Terminal CLI / Claude Code & Codex CLI Graphic -->
-        <g transform="translate(${w * 0.72}, ${h * 0.5})">
-          <rect x="-180" y="-120" width="360" height="240" rx="14" fill="#0c1017" stroke="#22c55e" stroke-width="1.5"/>
-          <rect x="-180" y="-120" width="360" height="34" rx="14" fill="#161b22"/>
-          <circle cx="-160" cy="-103" r="5" fill="#ef4444"/>
-          <circle cx="-145" cy="-103" r="5" fill="#eab308"/>
-          <circle cx="-130" cy="-103" r="5" fill="#22c55e"/>
-          <text x="0" y="-98" text-anchor="middle" font-family="monospace" font-size="11" fill="#8b949e">claude-code — terminal</text>
-
-          <!-- Code diff and bash lines -->
-          <text x="-160" y="-60" font-family="monospace" font-size="13" font-weight="700" fill="#58a6ff">$ claude refactor --autonomous</text>
-          <text x="-160" y="-35" font-family="monospace" font-size="12" fill="#7ee787">+ 14 files refactored (0 errors)</text>
-          <text x="-160" y="-15" font-family="monospace" font-size="12" fill="#7ee787">+ build passes in 1.4s</text>
-          <text x="-160" y="10" font-family="monospace" font-size="13" font-weight="700" fill="#58a6ff">$ git commit -m "feat: complete"</text>
-          <text x="-160" y="35" font-family="monospace" font-size="12" fill="#d2a8ff">[main 8e94a] ready for deploy</text>
-
-          <!-- Blinking Cursor -->
-          <rect x="-160" y="55" width="10" height="16" fill="#22c55e"/>
-        </g>
-      `;
-
-    default:
-      return `
-        <!-- Futuristic AI Core & Synaptic Network Graphic -->
-        <g transform="translate(${w * 0.72}, ${h * 0.5})">
-          <circle cx="0" cy="0" r="140" fill="none" stroke="#6366f1" stroke-width="1.5" stroke-dasharray="8,8" opacity="0.5"/>
-          <circle cx="0" cy="0" r="90" fill="url(#agentCoreGrad)" filter="url(#glow)"/>
-          
-          <!-- Neural nodes connected -->
-          <line x1="-120" y1="-80" x2="0" y2="0" stroke="#38bdf8" stroke-width="2"/>
-          <line x1="120" y1="-60" x2="0" y2="0" stroke="#a855f7" stroke-width="2"/>
-          <line x1="-100" y1="90" x2="0" y2="0" stroke="#34d399" stroke-width="2"/>
-          <line x1="110" y1="80" x2="0" y2="0" stroke="#f43f5e" stroke-width="2"/>
-          
-          <circle cx="-120" cy="-80" r="14" fill="#38bdf8"/>
-          <circle cx="120" cy="-60" r="14" fill="#a855f7"/>
-          <circle cx="-100" cy="90" r="14" fill="#34d399"/>
-          <circle cx="110" cy="80" r="14" fill="#f43f5e"/>
-
-          <text x="0" y="6" text-anchor="middle" font-family="monospace" font-size="18" font-weight="900" fill="#ffffff">AI 2026</text>
-        </g>
-      `;
-  }
-}
-
-// -----------------------------------------------------------------------------
-// Master Blog Thumbnail Generator (Full 16:9 Canvas: 1280x720)
-// Layout:
-// - Dynamic Content-Themed Gradient Backdrop & Atmospheric Ambient Lights
-// - Left Side (x: 50 ~ 580px): Sleek Editorial Typography & Badge (Title, Subtitle, Tag)
-// - Right Side (x: 580 ~ 1230px): 100% Unique Bespoke Vector Visual Illustration
-// -----------------------------------------------------------------------------
-export function renderContentAwareBlogSVG(post, w = 1280, h = 720) {
-  const theme = getPostVisualTheme(post);
-
-  // Extract clean editorial titles
-  const titleParts = (post.title || '').split(':');
-  const mainHeadline = (titleParts[1] || titleParts[0]).trim();
-  const preCategory = titleParts.length > 1 ? titleParts[0].trim() : (post.tags && post.tags[0] ? post.tags[0] : '2026 AI INSIGHT');
-
-  // Palette settings per theme
-  const themesPalette = {
-    ai_agent: {
-      bgGrad: ['#030712', '#0c1938', '#0f2759'],
-      badgeBg: '#2563eb',
-      badgeText: '#ffffff',
-      headlineColor: '#ffffff',
-      accentColor: '#38bdf8',
-      glowColor: '#3b82f6'
-    },
-    ai_audit: {
-      bgGrad: ['#09050b', '#200a18', '#3b0d1e'],
-      badgeBg: '#dc2626',
-      badgeText: '#ffffff',
-      headlineColor: '#ffffff',
-      accentColor: '#f87171',
-      glowColor: '#ef4444'
-    },
-    ai_finance: {
-      bgGrad: ['#030908', '#06201b', '#0a3528'],
-      badgeBg: '#d97706',
-      badgeText: '#ffffff',
-      headlineColor: '#ffffff',
-      accentColor: '#34d399',
-      glowColor: '#10b981'
-    },
-    browser_ai: {
-      bgGrad: ['#030712', '#081c2e', '#0b2e4c'],
-      badgeBg: '#0284c7',
-      badgeText: '#ffffff',
-      headlineColor: '#ffffff',
-      accentColor: '#38bdf8',
-      glowColor: '#0ea5e9'
-    },
-    web_design: {
-      bgGrad: ['#050515', '#130d36', '#211652'],
-      badgeBg: '#6366f1',
-      badgeText: '#ffffff',
-      headlineColor: '#ffffff',
-      accentColor: '#a5b4fc',
-      glowColor: '#818cf8'
-    },
-    doc_summary: {
-      bgGrad: ['#020b14', '#071f38', '#0d3257'],
-      badgeBg: '#0284c7',
-      badgeText: '#ffffff',
-      headlineColor: '#ffffff',
-      accentColor: '#fbbf24',
-      glowColor: '#38bdf8'
-    },
-    meeting_productivity: {
-      bgGrad: ['#020c09', '#08261e', '#0d3d2f'],
-      badgeBg: '#059669',
-      badgeText: '#ffffff',
-      headlineColor: '#ffffff',
-      accentColor: '#6ee7b7',
-      glowColor: '#10b981'
-    },
-    prompt_engineering: {
-      bgGrad: ['#0c051a', '#1e0c3b', '#351661'],
-      badgeBg: '#7c3aed',
-      badgeText: '#ffffff',
-      headlineColor: '#ffffff',
-      accentColor: '#c084fc',
-      glowColor: '#a855f7'
-    },
-    app_matrix: {
-      bgGrad: ['#05081c', '#101a47', '#1a2b6e'],
-      badgeBg: '#e11d48',
-      badgeText: '#ffffff',
-      headlineColor: '#ffffff',
-      accentColor: '#facc15',
-      glowColor: '#38bdf8'
-    },
-    seo_adsense: {
-      bgGrad: ['#020b08', '#092419', '#103d2b'],
-      badgeBg: '#047857',
-      badgeText: '#ffffff',
-      headlineColor: '#ffffff',
-      accentColor: '#4ade80',
-      glowColor: '#22c55e'
-    },
-    retro_game: {
-      bgGrad: ['#12041e', '#2e0847', '#4b0c6e'],
-      badgeBg: '#e11d48',
-      badgeText: '#ffffff',
-      headlineColor: '#ffffff',
-      accentColor: '#38bdf8',
-      glowColor: '#f43f5e'
-    },
-    terminal_cli: {
-      bgGrad: ['#02060d', '#081320', '#0e2033'],
-      badgeBg: '#15803d',
-      badgeText: '#ffffff',
-      headlineColor: '#ffffff',
-      accentColor: '#4ade80',
-      glowColor: '#22c55e'
+  if (!title2) {
+    if (title1.length > 10) {
+      const half = Math.floor(title1.length / 2);
+      title2 = title1.slice(half).trim();
+      title1 = title1.slice(0, half).trim();
+    } else {
+      title2 = '완벽 가이드';
     }
-  };
-
-  const pal = themesPalette[theme] || themesPalette.ai_agent;
-
-  // Split headline for 2 lines if needed
-  let line1 = mainHeadline;
-  let line2 = '';
-  if (mainHeadline.length > 18) {
-    const words = mainHeadline.split(' ');
-    const half = Math.ceil(words.length / 2);
-    line1 = words.slice(0, half).join(' ');
-    line2 = words.slice(half).join(' ');
   }
+
+  return { badge, title1, title2, subTag };
+}
+
+// ==============================================================================
+// STYLE 1: Eco Clean / Fresh News 3D Ribbon (Reference: "한국형 무공해차")
+// Features: Slanted 3D Ribbon Box + Dual-tone Ultra Bold Typography + Circular Accent Arrows + Scenery Horizon
+// ==============================================================================
+export function renderStyle1_FreshNews(w, h, post, variantIdx = 0) {
+  const { badge, title1, title2, subTag } = parseHookingCopy(post);
+  const title1Size = calcFontSize(title1, 106, 9);
+  const title2Size = calcFontSize(title2, 114, 10);
+  const boxWidth = Math.max(760, title1.length * 72 + 120);
+
+  const sceneries = [
+    // 0: Azure Sky & Road Horizon
+    {
+      bgGrad: ['#ffffff', '#f0f9ff', '#dbeafe'],
+      boxGrad: ['#1d4ed8', '#2563eb'],
+      textGrad: ['#1d4ed8', '#0284c7'],
+      arrowGrad: ['#fef08a', '#facc15', '#f59e0b'],
+      hills: ['#bae6fd', '#7dd3fc'],
+      sunColor: '#fbbf24',
+      badgeBg: '#1e40af',
+      subPillBg: '#0f172a',
+      subPillText: '#ffffff'
+    },
+    // 1: Fresh Mint & Emerald Eco
+    {
+      bgGrad: ['#ffffff', '#f0fdf4', '#dcfce7'],
+      boxGrad: ['#047857', '#059669'],
+      textGrad: ['#065f46', '#059669'],
+      arrowGrad: ['#67e8f9', '#34d399', '#10b981'],
+      hills: ['#a7f3d0', '#6ee7b7'],
+      sunColor: '#10b981',
+      badgeBg: '#065f46',
+      subPillBg: '#064e3b',
+      subPillText: '#ffffff'
+    },
+    // 2: Sunrise Coral & Sunset Lavender
+    {
+      bgGrad: ['#ffffff', '#fff1f2', '#ffe4e6'],
+      boxGrad: ['#e11d48', '#f43f5e'],
+      textGrad: ['#be123c', '#e11d48'],
+      arrowGrad: ['#fde047', '#fb7185', '#e11d48'],
+      hills: ['#fbcfe8', '#f472b6'],
+      sunColor: '#fb7185',
+      badgeBg: '#9f1239',
+      subPillBg: '#881337',
+      subPillText: '#ffffff'
+    },
+    // 3: Cyber Ice & Ultra Indigo
+    {
+      bgGrad: ['#ffffff', '#f8fafc', '#e0e7ff'],
+      boxGrad: ['#4338ca', '#6366f1'],
+      textGrad: ['#3730a3', '#4f46e5'],
+      arrowGrad: ['#38bdf8', '#818cf8', '#4338ca'],
+      hills: ['#c7d2fe', '#a5b4fc'],
+      sunColor: '#6366f1',
+      badgeBg: '#312e81',
+      subPillBg: '#1e1b4b',
+      subPillText: '#ffffff'
+    },
+    // 4: Champagne Gold & Luxury Amber
+    {
+      bgGrad: ['#ffffff', '#fffbeb', '#fef3c7'],
+      boxGrad: ['#b45309', '#d97706'],
+      textGrad: ['#92400e', '#b45309'],
+      arrowGrad: ['#fef08a', '#facc15', '#d97706'],
+      hills: ['#fde68a', '#fcd34d'],
+      sunColor: '#f59e0b',
+      badgeBg: '#78350f',
+      subPillBg: '#451a03',
+      subPillText: '#ffffff'
+    }
+  ];
+
+  const sc = sceneries[variantIdx % sceneries.length];
 
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}">
   <defs>
-    <!-- Background Gradient -->
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="${pal.bgGrad[0]}"/>
-      <stop offset="60%" stop-color="${pal.bgGrad[1]}"/>
-      <stop offset="100%" stop-color="${pal.bgGrad[2]}"/>
+    <linearGradient id="s1BgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="${sc.bgGrad[0]}"/>
+      <stop offset="60%" stop-color="${sc.bgGrad[1]}"/>
+      <stop offset="100%" stop-color="${sc.bgGrad[2]}"/>
     </linearGradient>
 
-    <!-- Core AI Orb Gradient -->
-    <radialGradient id="agentCoreGrad" cx="40%" cy="40%" r="60%">
-      <stop offset="0%" stop-color="#ffffff"/>
-      <stop offset="40%" stop-color="${pal.glowColor}"/>
-      <stop offset="100%" stop-color="${pal.bgGrad[1]}"/>
-    </radialGradient>
+    <linearGradient id="s1BoxGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="${sc.boxGrad[0]}"/>
+      <stop offset="100%" stop-color="${sc.boxGrad[1]}"/>
+    </linearGradient>
 
-    <!-- Glow Filter -->
-    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
-      <feGaussianBlur stdDeviation="16" result="blur"/>
-      <feMerge>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
+    <linearGradient id="s1TextGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="${sc.textGrad[0]}"/>
+      <stop offset="100%" stop-color="${sc.textGrad[1]}"/>
+    </linearGradient>
 
-    <!-- Text Shadow -->
-    <filter id="textGlow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="6" stdDeviation="12" flood-color="#000000" flood-opacity="0.9"/>
+    <linearGradient id="s1ArrowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="${sc.arrowGrad[0]}"/>
+      <stop offset="50%" stop-color="${sc.arrowGrad[1]}"/>
+      <stop offset="100%" stop-color="${sc.arrowGrad[2]}"/>
+    </linearGradient>
+
+    <filter id="s1Shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.25"/>
     </filter>
   </defs>
 
-  <!-- 1. Background Canvas -->
-  <rect width="${w}" height="${h}" fill="url(#bgGrad)"/>
+  <!-- Background Canvas -->
+  <rect width="${w}" height="${h}" fill="url(#s1BgGrad)"/>
 
-  <!-- 2. Ambient Tech Circuit Grid Lines -->
-  <g opacity="0.15" stroke="${pal.accentColor}" stroke-width="1">
-    <line x1="0" y1="120" x2="${w}" y2="120"/>
-    <line x1="0" y1="240" x2="${w}" y2="240"/>
-    <line x1="0" y1="360" x2="${w}" y2="360"/>
-    <line x1="0" y1="480" x2="${w}" y2="480"/>
-    <line x1="0" y1="600" x2="${w}" y2="600"/>
-    <line x1="200" y1="0" x2="200" y2="${h}"/>
-    <line x1="400" y1="0" x2="400" y2="${h}"/>
-    <line x1="600" y1="0" x2="600" y2="${h}"/>
-    <line x1="800" y1="0" x2="800" y2="${h}"/>
-    <line x1="1000" y1="0" x2="1000" y2="${h}"/>
+  <!-- Sun & Atmospheric Sky -->
+  <circle cx="160" cy="110" r="55" fill="${sc.sunColor}" opacity="0.9"/>
+  <ellipse cx="230" cy="130" rx="90" ry="35" fill="#ffffff" opacity="0.8"/>
+  <ellipse cx="140" cy="140" rx="70" ry="25" fill="#ffffff" opacity="0.9"/>
+
+  <!-- Rolling Hills Horizon -->
+  <path d="M 0 620 Q 300 480 700 580 T 1280 500 L 1280 720 L 0 720 Z" fill="${sc.hills[0]}" opacity="0.7"/>
+  <path d="M 0 660 Q 400 540 850 640 T 1280 570 L 1280 720 L 0 720 Z" fill="${sc.hills[1]}" opacity="0.85"/>
+
+  <!-- Bottom Perspective Highway/Stage -->
+  <polygon points="460,720 540,560 740,560 820,720" fill="#ffffff" opacity="0.95"/>
+  <line x1="640" y1="560" x2="640" y2="720" stroke="${sc.textGrad[0]}" stroke-width="8" stroke-dasharray="24,18"/>
+
+  <!-- Yellow Circular Orbiting Arrow -->
+  <g transform="translate(${w / 2}, ${h / 2 - 20}) rotate(-12)" filter="url(#s1Shadow)">
+    <path d="M -300 0 A 300 240 0 1 1 270 90" fill="none" stroke="url(#s1ArrowGrad)" stroke-width="24" stroke-linecap="round"/>
+    <polygon points="270,40 325,100 240,120" fill="${sc.arrowGrad[2]}"/>
+    
+    <!-- Sparkles -->
+    <path d="M 280 -140 L 290 -115 L 315 -105 L 290 -95 L 280 -70 L 270 -95 L 245 -105 L 270 -115 Z" fill="${sc.sunColor}"/>
+    <path d="M -260 140 L -252 160 L -232 168 L -252 176 L -260 196 L -268 176 L -288 168 L -268 160 Z" fill="${sc.arrowGrad[1]}"/>
   </g>
 
-  <!-- 3. Right Side: 100% Unique Bespoke Visual Artwork -->
-  ${renderThemeIllustration(theme, w, h)}
-
-  <!-- 4. Left Side: Clean High-Impact Editorial Typography -->
-  <g transform="translate(70, 0)" filter="url(#textGlow)">
+  <!-- Central Dynamic Typography (-6.5 deg dynamic tilt) -->
+  <g transform="translate(${w / 2}, ${h / 2 - 10}) rotate(-6.5)" filter="url(#s1Shadow)">
     
-    <!-- Top Category Badge -->
-    <g transform="translate(0, 150)">
-      <rect width="auto" height="42" rx="21" fill="${pal.badgeBg}" filter="url(#glow)"/>
-      <rect x="0" y="0" width="${Math.max(160, preCategory.length * 20 + 40)}" height="42" rx="21" fill="${pal.badgeBg}"/>
-      <circle cx="22" cy="21" r="6" fill="#ffffff"/>
-      <text x="36" y="27" font-family="'Paperlogy', sans-serif" font-size="18" font-weight="900" fill="${pal.badgeText}" letter-spacing="1">
-        ${escapeXml(preCategory)}
+    <!-- Top Curved Category Arch -->
+    <g transform="translate(0, -115)">
+      <path d="M -160 25 Q 0 -20 160 25" fill="none" stroke="${sc.badgeBg}" stroke-width="40" stroke-linecap="round"/>
+      <text x="0" y="16" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="24" font-weight="900" fill="#ffffff">
+        ${escapeXml(badge)}
       </text>
     </g>
 
-    <!-- Main Headline Line 1 -->
-    <text x="0" y="270" font-family="'Paperlogy', 'Noto Sans KR', sans-serif" font-size="52" font-weight="900" fill="${pal.headlineColor}" letter-spacing="-1.5">
-      ${escapeXml(line1)}
+    <!-- 3D Ribbon Box for Title 1 -->
+    <g transform="translate(0, 5)">
+      <!-- 3D Drop Shadow Box -->
+      <polygon points="${-boxWidth / 2 + 10},-60 ${boxWidth / 2 + 40},-60 ${boxWidth / 2 - 10},70 ${-boxWidth / 2 - 40},70" fill="#000000" opacity="0.35"/>
+      <!-- Main Solid Box -->
+      <polygon points="${-boxWidth / 2},-70 ${boxWidth / 2 + 30},-70 ${boxWidth / 2 - 20},60 ${-boxWidth / 2 - 50},60" fill="url(#s1BoxGrad)"/>
+      <polygon points="${-boxWidth / 2},-70 ${boxWidth / 2 + 30},-70 ${boxWidth / 2 + 25},-55 ${-boxWidth / 2 - 5},-55" fill="#ffffff" opacity="0.35"/>
+      
+      <!-- Text 1 (White with heavy stroke) -->
+      <text x="-5" y="18" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="${title1Size}" font-weight="900" fill="#ffffff" stroke="${sc.badgeBg}" stroke-width="10" paint-order="stroke fill" letter-spacing="-2">
+        ${escapeXml(title1)}
+      </text>
+    </g>
+
+    <!-- Title 2 (Massive Solid Blue Text with 3D White/Dark Outlines) -->
+    <g transform="translate(0, 140)">
+      <!-- 3D Extrusion Shadow -->
+      <text x="0" y="8" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="${title2Size}" font-weight="900" fill="#000000" opacity="0.3" stroke="#000000" stroke-width="16" paint-order="stroke fill" letter-spacing="-3">
+        ${escapeXml(title2)}
+      </text>
+      <!-- Main Text -->
+      <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="${title2Size}" font-weight="900" fill="url(#s1TextGrad)" stroke="#ffffff" stroke-width="14" paint-order="stroke fill" letter-spacing="-3">
+        ${escapeXml(title2)}
+      </text>
+    </g>
+  </g>
+
+  <!-- Bottom Crisp Subtitle Pill -->
+  <g transform="translate(${w / 2}, ${h - 60})" filter="url(#s1Shadow)">
+    <rect x="-300" y="-22" width="600" height="44" rx="22" fill="${sc.subPillBg}"/>
+    <text x="0" y="7" text-anchor="middle" font-family="'Paperlogy', 'Noto Sans KR', sans-serif" font-size="20" font-weight="800" fill="${sc.subPillText}">
+      ✦ ${escapeXml(subTag)}
     </text>
+  </g>
+</svg>`;
+}
 
-    <!-- Main Headline Line 2 (if present) -->
-    ${
-      line2
-        ? `<text x="0" y="345" font-family="'Paperlogy', 'Noto Sans KR', sans-serif" font-size="50" font-weight="900" fill="${pal.accentColor}" letter-spacing="-1.5">
-            ${escapeXml(line2)}
-          </text>`
-        : ''
+// ==============================================================================
+// STYLE 2: Comic Pop / Starburst Electric Punch (Reference: "슬기로운 전기차생활")
+// Features: Dynamic Comic Starburst + Lightning Bolts + 2-tone Stacked 3D Block Typography + Plug/Circuit
+// ==============================================================================
+export function renderStyle2_ComicPop(w, h, post, variantIdx = 0) {
+  const { badge, title1, title2, subTag } = parseHookingCopy(post);
+  const title1Size = calcFontSize(title1, 108, 9);
+  const title2Size = calcFontSize(title2, 118, 9);
+  const boxWidth = Math.max(740, title1.length * 80 + 80);
+
+  const sceneries = [
+    // 0: Royal Blue & Electric Mint
+    {
+      bgGrad: ['#1e1b4b', '#1e3a8a', '#0284c7'],
+      starGrad: ['#dc2626', '#b91c1c'],
+      secondLineColor: '#34d399',
+      lightningColor: '#facc15',
+      pillBg: '#047857',
+      pillText: '#ffffff'
+    },
+    // 1: Cyber Violet & High-Voltage Yellow
+    {
+      bgGrad: ['#170529', '#3b0764', '#6b21a8'],
+      starGrad: ['#0284c7', '#0369a1'],
+      secondLineColor: '#facc15',
+      lightningColor: '#38bdf8',
+      pillBg: '#e11d48',
+      pillText: '#ffffff'
+    },
+    // 2: Crimson Dark & Electric Cyan
+    {
+      bgGrad: ['#1c040b', '#4c0519', '#881337'],
+      starGrad: ['#7c3aed', '#6d28d9'],
+      secondLineColor: '#38bdf8',
+      lightningColor: '#facc15',
+      pillBg: '#4338ca',
+      pillText: '#ffffff'
+    },
+    // 3: Deep Emerald & Gold
+    {
+      bgGrad: ['#021810', '#064e3b', '#047857'],
+      starGrad: ['#d97706', '#b45309'],
+      secondLineColor: '#fbbf24',
+      lightningColor: '#6ee7b7',
+      pillBg: '#1e3a8a',
+      pillText: '#ffffff'
+    },
+    // 4: Midnight Onyx & Neon Orange
+    {
+      bgGrad: ['#030712', '#0f172a', '#1e293b'],
+      starGrad: ['#e11d48', '#be123c'],
+      secondLineColor: '#fb923c',
+      lightningColor: '#facc15',
+      pillBg: '#7c3aed',
+      pillText: '#ffffff'
     }
+  ];
 
-    <!-- Bottom Excerpt Highlight Bar -->
-    <g transform="translate(0, ${line2 ? 430 : 360})">
-      <rect x="0" y="0" width="540" height="52" rx="12" fill="#0f172a" fill-opacity="0.85" stroke="${pal.accentColor}" stroke-width="1.5"/>
-      <text x="24" y="32" font-family="'Noto Sans KR', sans-serif" font-size="19" font-weight="700" fill="#e2e8f0">
-        ✦ ${escapeXml((post.excerpt || '2026 최신 AI 실전 가이드').slice(0, 26))}...
+  const sc = sceneries[variantIdx % sceneries.length];
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}">
+  <defs>
+    <linearGradient id="s2BgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="${sc.bgGrad[0]}"/>
+      <stop offset="50%" stop-color="${sc.bgGrad[1]}"/>
+      <stop offset="100%" stop-color="${sc.bgGrad[2]}"/>
+    </linearGradient>
+
+    <linearGradient id="s2StarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="${sc.starGrad[0]}"/>
+      <stop offset="100%" stop-color="${sc.starGrad[1]}"/>
+    </linearGradient>
+
+    <filter id="s2ComicShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="${w}" height="${h}" fill="url(#s2BgGrad)"/>
+
+  <!-- Comic Halftone & Angular Speed Strips -->
+  <g opacity="0.25">
+    <polygon points="0,0 200,0 120,720 0,720" fill="#f43f5e"/>
+    <polygon points="1080,0 1280,0 1280,720 1160,720" fill="#38bdf8"/>
+    <polygon points="150,0 280,0 100,720 0,720" fill="#facc15"/>
+    <polygon points="1000,0 1150,0 1280,720 1200,720" fill="#4ade80"/>
+  </g>
+
+  <!-- Floating Confetti & Sparks -->
+  <g opacity="0.85">
+    <circle cx="200" cy="180" r="14" fill="#38bdf8"/>
+    <circle cx="1080" cy="160" r="16" fill="#f43f5e"/>
+    <circle cx="240" cy="540" r="12" fill="#facc15"/>
+    <circle cx="1050" cy="560" r="15" fill="#4ade80"/>
+    <polygon points="180,320 210,340 170,360" fill="#a855f7"/>
+    <polygon points="1100,380 1130,410 1080,420" fill="#facc15"/>
+  </g>
+
+  <!-- Giant Comic Starburst Backdrop -->
+  <g transform="translate(${w / 2}, ${h / 2 - 10})" filter="url(#s2ComicShadow)">
+    <polygon points="
+      0,-250 50,-130 180,-230 130,-100 270,-130 170,-20 300,30 170,80 250,200 120,150 140,270 30,170
+      -20,270 -60,160 -180,240 -130,110 -280,140 -180,20 -300,-40 -170,-80 -250,-190 -110,-140 -120,-260 -20,-160
+    " fill="url(#s2StarGrad)" stroke="#000000" stroke-width="12"/>
+
+    <!-- Lightning Bolt Graphics -->
+    <polygon points="210,-170 230,-120 205,-115 245,-60 215,-70 235,-10 185,-65 210,-70" fill="${sc.lightningColor}" stroke="#000000" stroke-width="5"/>
+    <polygon points="-210,120 -230,70 -205,65 -245,10 -215,20 -235,-40 -185,15 -210,20" fill="${sc.lightningColor}" stroke="#000000" stroke-width="5"/>
+  </g>
+
+  <!-- Electric Plug Wire Loop -->
+  <g transform="translate(${w / 2}, ${h / 2 - 10})" filter="url(#s2ComicShadow)">
+    <path d="M -340 10 Q -400 120 -200 160 Q 200 180 340 100" fill="none" stroke="#000000" stroke-width="24" stroke-linecap="round"/>
+    <path d="M 330 95 L 375 110 L 360 145 L 315 130 Z" fill="#000000"/>
+    <rect x="370" y="105" width="22" height="6" fill="#fbbf24" stroke="#000000" stroke-width="2"/>
+    <rect x="360" y="125" width="22" height="6" fill="#fbbf24" stroke="#000000" stroke-width="2"/>
+  </g>
+
+  <!-- Central Dynamic Headline (-4 deg dynamic tilt) -->
+  <g transform="translate(${w / 2}, ${h / 2 - 15}) rotate(-4)" filter="url(#s2ComicShadow)">
+    
+    <!-- Top Black Box for Title 1 -->
+    <g transform="translate(0, -60)">
+      <rect x="${-boxWidth / 2}" y="-65" width="${boxWidth}" height="120" rx="16" fill="#000000" stroke="#000000" stroke-width="8"/>
+      <text x="0" y="24" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="${title1Size}" font-weight="900" fill="#ffffff" letter-spacing="-2">
+        ${escapeXml(title1)}
       </text>
     </g>
 
-    <!-- Footer Meta: Date & rab8bit Brand -->
-    <g transform="translate(0, ${h - 100})">
-      <text x="0" y="0" font-family="monospace" font-size="16" font-weight="700" fill="#94a3b8">
-        DATE // ${escapeXml(post.date || '2026.09')} · rab8bit.com Tech Insight
+    <!-- Bottom Giant Neon Text for Title 2 -->
+    <g transform="translate(0, 85)">
+      <!-- 3D Extrusion -->
+      <text x="0" y="14" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="${title2Size}" font-weight="900" fill="#000000" stroke="#000000" stroke-width="22" paint-order="stroke fill" letter-spacing="-3">
+        ${escapeXml(title2)}
+      </text>
+      <!-- Main Neon Text -->
+      <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="${title2Size}" font-weight="900" fill="${sc.secondLineColor}" stroke="#000000" stroke-width="16" paint-order="stroke fill" letter-spacing="-3">
+        ${escapeXml(title2)}
+      </text>
+
+      <!-- Lightning icon embedded inside Title 2 -->
+      <g transform="translate(${Math.min(260, title2.length * 35)}, -35)">
+        <polygon points="0,-25 15,0 2,0 12,25 -15,5 0,5" fill="${sc.lightningColor}" stroke="#000000" stroke-width="4"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- Bottom Highlight Subtitle Pill -->
+  <g transform="translate(${w / 2}, ${h - 55})" filter="url(#s2ComicShadow)">
+    <rect x="-280" y="-22" width="560" height="44" rx="22" fill="${sc.pillBg}" stroke="#000000" stroke-width="4"/>
+    <text x="0" y="7" text-anchor="middle" font-family="'Paperlogy', 'Noto Sans KR', sans-serif" font-size="19" font-weight="900" fill="${sc.pillText}">
+      ⚡ ${escapeXml(subTag)}
+    </text>
+  </g>
+</svg>`;
+}
+
+// ==============================================================================
+// STYLE 3: Street Graffiti & Caution Tech (Reference: "VENDAS")
+// Features: Diagonal Caution Tape + Acid Neon 3D Graffiti Headline + Tech Stickers & Badges
+// ==============================================================================
+export function renderStyle3_StreetGraffiti(w, h, post, variantIdx = 0) {
+  const { badge, title1, title2, subTag } = parseHookingCopy(post);
+  const title1Size = calcFontSize(title1, 95, 10);
+  const title2Size = calcFontSize(title2, 120, 8);
+
+  const sceneries = [
+    // 0: Cobalt Blue & Acid Lime
+    {
+      bgGrad: ['#0f172a', '#1e3a8a', '#1d4ed8'],
+      starColor: '#000000',
+      graffitiFill: '#ccff00',
+      graffitiStroke: '#000000',
+      accentTagBg: '#ccff00',
+      accentTagText: '#000000'
+    },
+    // 1: Deep Purple & Electric Cyan
+    {
+      bgGrad: ['#1e0836', '#4c1d95', '#6d28d9'],
+      starColor: '#000000',
+      graffitiFill: '#22d3ee',
+      graffitiStroke: '#000000',
+      accentTagBg: '#facc15',
+      accentTagText: '#000000'
+    },
+    // 2: Crimson & High-Voltage Yellow
+    {
+      bgGrad: ['#1c040b', '#7f1d1d', '#b91c1c'],
+      starColor: '#000000',
+      graffitiFill: '#fde047',
+      graffitiStroke: '#000000',
+      accentTagBg: '#38bdf8',
+      accentTagText: '#000000'
+    },
+    // 3: Toxic Emerald & Hot Pink
+    {
+      bgGrad: ['#021b14', '#064e3b', '#047857'],
+      starColor: '#000000',
+      graffitiFill: '#f43f5e',
+      graffitiStroke: '#000000',
+      accentTagBg: '#4ade80',
+      accentTagText: '#000000'
+    },
+    // 4: Pitch Black & Pure Acid Volt
+    {
+      bgGrad: ['#030712', '#0f172a', '#18181b'],
+      starColor: '#000000',
+      graffitiFill: '#a3e635',
+      graffitiStroke: '#000000',
+      accentTagBg: '#f43f5e',
+      accentTagText: '#ffffff'
+    }
+  ];
+
+  const sc = sceneries[variantIdx % sceneries.length];
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}">
+  <defs>
+    <linearGradient id="s3BgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="${sc.bgGrad[0]}"/>
+      <stop offset="50%" stop-color="${sc.bgGrad[1]}"/>
+      <stop offset="100%" stop-color="${sc.bgGrad[2]}"/>
+    </linearGradient>
+
+    <!-- Caution Stripe Pattern -->
+    <pattern id="s3CautionPattern" width="60" height="60" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="30" height="60" fill="#facc15"/>
+      <rect x="30" width="30" height="60" fill="#000000"/>
+    </pattern>
+
+    <filter id="s3Shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#000000" flood-opacity="0.75"/>
+    </filter>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="${w}" height="${h}" fill="url(#s3BgGrad)"/>
+
+  <!-- Half-tone grid dots -->
+  <g opacity="0.2" fill="#ffffff">
+    <circle cx="100" cy="140" r="4"/><circle cx="130" cy="140" r="4"/><circle cx="160" cy="140" r="4"/><circle cx="190" cy="140" r="4"/>
+    <circle cx="100" cy="170" r="4"/><circle cx="130" cy="170" r="4"/><circle cx="160" cy="170" r="4"/><circle cx="190" cy="170" r="4"/>
+    <circle cx="100" cy="200" r="4"/><circle cx="130" cy="200" r="4"/><circle cx="160" cy="200" r="4"/><circle cx="190" cy="200" r="4"/>
+    
+    <circle cx="1080" cy="500" r="4"/><circle cx="1110" cy="500" r="4"/><circle cx="1140" cy="500" r="4"/><circle cx="1170" cy="500" r="4"/>
+    <circle cx="1080" cy="530" r="4"/><circle cx="1110" cy="530" r="4"/><circle cx="1140" cy="530" r="4"/><circle cx="1170" cy="530" r="4"/>
+  </g>
+
+  <!-- Top-Left Diagonal Caution Tape -->
+  <g transform="translate(-80, 50) rotate(-22)">
+    <rect width="450" height="42" fill="url(#s3CautionPattern)" stroke="#000000" stroke-width="4"/>
+    <rect x="40" y="6" width="370" height="30" fill="#000000"/>
+    <text x="225" y="27" text-anchor="middle" font-family="monospace" font-size="16" font-weight="900" fill="#facc15" letter-spacing="3">
+      ⚠️ KEEP OUT! CAUTION // AI INSIGHT
+    </text>
+  </g>
+
+  <!-- Bottom-Right Diagonal Caution Tape -->
+  <g transform="translate(${w - 320}, ${h - 20}) rotate(-18)">
+    <rect width="450" height="42" fill="url(#s3CautionPattern)" stroke="#000000" stroke-width="4"/>
+    <rect x="40" y="6" width="370" height="30" fill="#000000"/>
+    <text x="225" y="27" text-anchor="middle" font-family="monospace" font-size="16" font-weight="900" fill="#facc15" letter-spacing="3">
+      ⚡ SPECIAL HOT DEAL $420
+    </text>
+  </g>
+
+  <!-- Big Dark Silhouette Star Backdrop -->
+  <g transform="translate(${w / 2}, ${h / 2 - 10})" filter="url(#s3Shadow)">
+    <polygon points="
+      0,-220 55,-70 215,-70 90,30 140,185 0,95 -140,185 -90,30 -215,-70 -55,-70
+    " fill="${sc.starColor}" stroke="${sc.graffitiFill}" stroke-width="4"/>
+  </g>
+
+  <!-- Tech Stickers (Smiley, Peace Hand, Barcode, Radiation) -->
+  <g transform="translate(140, ${h - 180}) rotate(12)" filter="url(#s3Shadow)">
+    <polygon points="0,-40 45,35 -45,35" fill="#facc15" stroke="#000000" stroke-width="4"/>
+    <circle cx="0" cy="15" r="8" fill="#000000"/>
+    <text x="0" y="10" text-anchor="middle" font-size="20">☠️</text>
+  </g>
+
+  <g transform="translate(${w - 150}, 160) rotate(8)" filter="url(#s3Shadow)">
+    <circle cx="0" cy="0" r="45" fill="#facc15" stroke="#000000" stroke-width="6"/>
+    <circle cx="-16" cy="-10" r="6" fill="#000000"/>
+    <circle cx="16" cy="-10" r="6" fill="#000000"/>
+    <path d="M -22 10 Q 0 34 22 10" fill="none" stroke="#000000" stroke-width="6" stroke-linecap="round"/>
+  </g>
+
+  <g transform="translate(${w - 180}, ${h - 140}) rotate(-10)" filter="url(#s3Shadow)">
+    <rect x="-65" y="-30" width="130" height="60" rx="8" fill="#ffffff" stroke="#000000" stroke-width="4"/>
+    <text x="0" y="-8" text-anchor="middle" font-family="monospace" font-size="12" font-weight="900" fill="#000000">100% VERIFIED</text>
+    <line x1="-50" y1="5" x2="-50" y2="20" stroke="#000000" stroke-width="3"/>
+    <line x1="-42" y1="5" x2="-42" y2="20" stroke="#000000" stroke-width="5"/>
+    <line x1="-30" y1="5" x2="-30" y2="20" stroke="#000000" stroke-width="2"/>
+    <line x1="-20" y1="5" x2="-20" y2="20" stroke="#000000" stroke-width="6"/>
+    <line x1="-5" y1="5" x2="-5" y2="20" stroke="#000000" stroke-width="3"/>
+    <line x1="10" y1="5" x2="10" y2="20" stroke="#000000" stroke-width="5"/>
+    <line x1="25" y1="5" x2="25" y2="20" stroke="#000000" stroke-width="2"/>
+    <line x1="40" y1="5" x2="40" y2="20" stroke="#000000" stroke-width="6"/>
+  </g>
+
+  <!-- Central High-Impact 3D Graffiti Headline (-4.5 deg dynamic tilt) -->
+  <g transform="translate(${w / 2}, ${h / 2 - 10}) rotate(-4.5) skewX(-3)" filter="url(#s3Shadow)">
+    
+    <!-- Top Stencil Badge -->
+    <g transform="translate(0, -90)">
+      <rect x="-140" y="-20" width="280" height="40" rx="6" fill="#ffffff" stroke="#000000" stroke-width="4"/>
+      <text x="0" y="7" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="18" font-weight="900" fill="#000000" letter-spacing="2">
+        ✦ ${escapeXml(badge)}
       </text>
     </g>
+
+    <!-- Line 1 (White Ultra Bold with Thick Black Shadow) -->
+    <g transform="translate(0, 5)">
+      <text x="0" y="8" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="${title1Size}" font-weight="900" fill="#000000" stroke="#000000" stroke-width="20" paint-order="stroke fill" letter-spacing="-2">
+        ${escapeXml(title1)}
+      </text>
+      <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="${title1Size}" font-weight="900" fill="#ffffff" stroke="#000000" stroke-width="14" paint-order="stroke fill" letter-spacing="-2">
+        ${escapeXml(title1)}
+      </text>
+    </g>
+
+    <!-- Line 2 (Massive Acid Volt Neon with 3D Extrusion) -->
+    <g transform="translate(0, 115)">
+      <text x="0" y="16" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="${title2Size}" font-weight="900" fill="#000000" stroke="#000000" stroke-width="24" paint-order="stroke fill" letter-spacing="-3">
+        ${escapeXml(title2)}
+      </text>
+      <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="${title2Size}" font-weight="900" fill="${sc.graffitiFill}" stroke="#000000" stroke-width="16" paint-order="stroke fill" letter-spacing="-3">
+        ${escapeXml(title2)}
+      </text>
+    </g>
+  </g>
+
+  <!-- Bottom Tag Sticker -->
+  <g transform="translate(${w / 2}, ${h - 55}) rotate(2)" filter="url(#s3Shadow)">
+    <rect x="-240" y="-20" width="480" height="40" rx="8" fill="${sc.accentTagBg}" stroke="#000000" stroke-width="4"/>
+    <text x="0" y="6" text-anchor="middle" font-family="'Paperlogy', 'Noto Sans KR', sans-serif" font-size="18" font-weight="900" fill="${sc.accentTagText}">
+      🔥 ${escapeXml(subTag)}
+    </text>
+  </g>
+</svg>`;
+}
+
+// ==============================================================================
+// STYLE 4: Editorial Kinetic Dark (Reference: "갓생살다")
+// Features: Sleek Dark Canvas + Repeated Wireframe Outline Typography Echo + Massive Slanted White Headline + Colorful Multi-Sticker Pills
+// ==============================================================================
+export function renderStyle4_EditorialKinetic(w, h, post, variantIdx = 0) {
+  const { badge, title1, title2, subTag } = parseHookingCopy(post);
+  const title1Size = calcFontSize(title1, 110, 8);
+  const title2Size = calcFontSize(title2, 120, 8);
+
+  const sceneries = [
+    // 0: Onyx Slate & Electric Blue/Yellow Stickers
+    {
+      bgGrad: ['#090d16', '#111827', '#1f2937'],
+      wireColor: '#38bdf8',
+      stickers: ['#2563eb', '#facc15', '#10b981', '#f43f5e'],
+      secondLineColor: '#ffffff'
+    },
+    // 1: Midnight Purple & Magenta/Cyan Stickers
+    {
+      bgGrad: ['#0f051d', '#1e0c3b', '#2e1065'],
+      wireColor: '#c084fc',
+      stickers: ['#9333ea', '#38bdf8', '#fbbf24', '#ec4899'],
+      secondLineColor: '#facc15'
+    },
+    // 2: Deep Forest & Mint/Orange Stickers
+    {
+      bgGrad: ['#02140d', '#062d1f', '#064e3b'],
+      wireColor: '#34d399',
+      stickers: ['#059669', '#f97316', '#38bdf8', '#facc15'],
+      secondLineColor: '#6ee7b7'
+    },
+    // 3: Dark Crimson & Gold/Cyan Stickers
+    {
+      bgGrad: ['#140207', '#2e0813', '#4c0519'],
+      wireColor: '#f87171',
+      stickers: ['#e11d48', '#facc15', '#06b6d4', '#8b5cf6'],
+      secondLineColor: '#fde047'
+    },
+    // 4: Cyber Navy & Violet/Lime Stickers
+    {
+      bgGrad: ['#030712', '#0c1938', '#0f2759'],
+      wireColor: '#818cf8',
+      stickers: ['#4f46e5', '#a3e635', '#f43f5e', '#38bdf8'],
+      secondLineColor: '#38bdf8'
+    }
+  ];
+
+  const sc = sceneries[variantIdx % sceneries.length];
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}">
+  <defs>
+    <linearGradient id="s4BgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="${sc.bgGrad[0]}"/>
+      <stop offset="50%" stop-color="${sc.bgGrad[1]}"/>
+      <stop offset="100%" stop-color="${sc.bgGrad[2]}"/>
+    </linearGradient>
+
+    <filter id="s4Shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#000000" flood-opacity="0.85"/>
+    </filter>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="${w}" height="${h}" fill="url(#s4BgGrad)"/>
+
+  <!-- Repeated Wireframe Outline Typography Echoes (Top & Bottom) -->
+  <g transform="translate(${w / 2}, 110) rotate(-4.5) skewX(-4)" opacity="0.22">
+    <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="125" font-weight="900" fill="none" stroke="${sc.wireColor}" stroke-width="2.5" letter-spacing="-3">
+      ${escapeXml(title1)} ${escapeXml(title2)}
+    </text>
+  </g>
+  <g transform="translate(${w / 2}, ${h - 40}) rotate(-4.5) skewX(-4)" opacity="0.22">
+    <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="125" font-weight="900" fill="none" stroke="${sc.wireColor}" stroke-width="2.5" letter-spacing="-3">
+      ${escapeXml(title1)} ${escapeXml(title2)}
+    </text>
+  </g>
+
+  <!-- Colorful Kinetic Stickers Scattered Around -->
+  <!-- 1. Top-Left Pill -->
+  <g transform="translate(180, 100) rotate(-12)" filter="url(#s4Shadow)">
+    <rect x="-85" y="-22" width="170" height="44" rx="22" fill="${sc.stickers[0]}"/>
+    <text x="0" y="7" text-anchor="middle" font-family="'Paperlogy', sans-serif" font-size="16" font-weight="900" fill="#ffffff" letter-spacing="1">
+      ✦ START NOW
+    </text>
+  </g>
+
+  <!-- 2. Top-Right Oval Sticker -->
+  <g transform="translate(${w - 200}, 90) rotate(14)" filter="url(#s4Shadow)">
+    <ellipse cx="0" cy="0" rx="65" ry="32" fill="${sc.stickers[3]}"/>
+    <text x="0" y="6" text-anchor="middle" font-family="'Paperlogy', sans-serif" font-size="15" font-weight="900" fill="#ffffff">
+      ${escapeXml(badge)}
+    </text>
+  </g>
+
+  <!-- 3. Bottom-Left Pill -->
+  <g transform="translate(190, ${h - 130}) rotate(8)" filter="url(#s4Shadow)">
+    <rect x="-95" y="-22" width="190" height="44" rx="22" fill="${sc.stickers[1]}"/>
+    <text x="0" y="7" text-anchor="middle" font-family="'Paperlogy', sans-serif" font-size="15" font-weight="900" fill="#000000">
+      ✔ AI 최적화 완료
+    </text>
+  </g>
+
+  <!-- 4. Bottom-Right Pill -->
+  <g transform="translate(${w - 180}, ${h - 130}) rotate(-8)" filter="url(#s4Shadow)">
+    <rect x="-90" y="-22" width="180" height="44" rx="22" fill="${sc.stickers[2]}"/>
+    <text x="0" y="7" text-anchor="middle" font-family="'Paperlogy', sans-serif" font-size="16" font-weight="900" fill="#ffffff" letter-spacing="1">
+      ★ 실전 적용 100%
+    </text>
+  </g>
+
+  <!-- Central Solid Giant White Headline (-4.5 deg dynamic tilt) -->
+  <g transform="translate(${w / 2}, ${h / 2 - 10}) rotate(-4.5) skewX(-4)" filter="url(#s4Shadow)">
+    
+    <!-- Top Mini Arch Badge -->
+    <g transform="translate(0, -90)">
+      <rect x="-120" y="-18" width="240" height="36" rx="18" fill="${sc.stickers[0]}"/>
+      <text x="0" y="6" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="16" font-weight="900" fill="#ffffff">
+        ${escapeXml(badge)}
+      </text>
+    </g>
+
+    <!-- Main Solid Bold White Headline (Line 1) -->
+    <g transform="translate(0, 15)">
+      <text x="0" y="10" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="${title1Size}" font-weight="900" fill="#000000" stroke="#000000" stroke-width="20" paint-order="stroke fill" letter-spacing="-3">
+        ${escapeXml(title1)}
+      </text>
+      <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="${title1Size}" font-weight="900" fill="#ffffff" stroke="#000000" stroke-width="14" paint-order="stroke fill" letter-spacing="-3">
+        ${escapeXml(title1)}
+      </text>
+    </g>
+
+    <!-- Line 2 (Second Line with High Contrast Color) -->
+    <g transform="translate(0, 115)">
+      <text x="0" y="10" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="${title2Size}" font-weight="900" fill="#000000" stroke="#000000" stroke-width="20" paint-order="stroke fill" letter-spacing="-3">
+        ${escapeXml(title2)}
+      </text>
+      <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="${title2Size}" font-weight="900" fill="${sc.secondLineColor}" stroke="#000000" stroke-width="14" paint-order="stroke fill" letter-spacing="-3">
+        ${escapeXml(title2)}
+      </text>
+    </g>
+  </g>
+
+  <!-- Bottom Center Subtitle Bar -->
+  <g transform="translate(${w / 2}, ${h - 55})" filter="url(#s4Shadow)">
+    <rect x="-260" y="-20" width="520" height="40" rx="20" fill="#000000" stroke="${sc.stickers[1]}" stroke-width="2"/>
+    <text x="0" y="6" text-anchor="middle" font-family="'Paperlogy', 'Noto Sans KR', sans-serif" font-size="18" font-weight="800" fill="#ffffff">
+      ✦ ${escapeXml(subTag)}
+    </text>
   </g>
 </svg>`;
 }
 
 // -----------------------------------------------------------------------------
-// Generate all 59 thumbnails
+// Master Dispatcher: Selects Style & Dynamic Background Scenery per post
 // -----------------------------------------------------------------------------
-export async function generateAllContentAwareThumbnails() {
-  console.log('🚀 Generating 100% Content-Aware Bespoke Blog Thumbnails...');
+export function renderMasterHookThumbnail(post, index, w = 1280, h = 720) {
+  // 4 Core Reference Styles
+  const styleTypes = ['style1', 'style2', 'style3', 'style4'];
+  const style = styleTypes[index % styleTypes.length];
+  const variantIdx = Math.floor(index / styleTypes.length);
+
+  switch (style) {
+    case 'style1':
+      return renderStyle1_FreshNews(w, h, post, variantIdx);
+    case 'style2':
+      return renderStyle2_ComicPop(w, h, post, variantIdx);
+    case 'style3':
+      return renderStyle3_StreetGraffiti(w, h, post, variantIdx);
+    case 'style4':
+    default:
+      return renderStyle4_EditorialKinetic(w, h, post, variantIdx);
+  }
+}
+
+// Backward compatibility alias
+export function renderContentAwareBlogSVG(post, w = 1280, h = 720) {
+  const hash = (post.id || '').split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+  return renderMasterHookThumbnail(post, hash, w, h);
+}
+
+// -----------------------------------------------------------------------------
+// Generate All 59 Thumbnails
+// -----------------------------------------------------------------------------
+export async function generateAllHookThumbnails() {
+  console.log('🚀 Generating Ultra-Sharp High-Converting Hook Thumbnails for All Blog Posts...');
   const outDir = path.join(ROOT_DIR, 'public/images/blogs');
   if (!fs.existsSync(outDir)) {
     fs.mkdirSync(outDir, { recursive: true });
@@ -757,20 +800,21 @@ export async function generateAllContentAwareThumbnails() {
   }
 
   let count = 0;
-  for (const post of blogsData) {
-    const svg = renderContentAwareBlogSVG(post, 1280, 720);
+  for (let i = 0; i < blogsData.length; i++) {
+    const post = blogsData[i];
+    const svg = renderMasterHookThumbnail(post, i, 1280, 720);
     const targetFile = path.join(outDir, `${post.id}.jpg`);
 
     await sharp(Buffer.from(svg))
-      .jpeg({ quality: 92 })
+      .jpeg({ quality: 95 })
       .toFile(targetFile);
 
     count++;
   }
 
-  console.log(`✅ Successfully generated ${count} bespoke content-aware thumbnails in ${outDir}`);
+  console.log(`✅ Successfully generated ${count} ultra-sharp varied thumbnails in ${outDir}`);
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  generateAllContentAwareThumbnails().catch(console.error);
+  generateAllHookThumbnails().catch(console.error);
 }
