@@ -42,6 +42,7 @@ const TOPIC_POOL = {
       titleSuffix: "실무 워크플로우 대전환: AI 에이전트 자동화 실전 가이드",
       category: "AI 에이전트",
       tags: ["AI에이전트", "업무자동화", "생산성", "LLM실무", "프롬프트"],
+      thumbnail: "/images/blogs/ai-agent-workflow.jpg",
       summary: "단순 질의응답을 넘어 브라우저 제어와 복합 업무를 스스로 완수하는 차세대 AI 에이전트의 실전 도입 전략과 유용한 팁을 심층 분석합니다.",
       mainPoints: [
         "자율형 컴퓨터 제어(Computer Use) 모델의 실제 작동 구조와 주의점",
@@ -53,6 +54,7 @@ const TOPIC_POOL = {
       titleSuffix: "1인 창업가를 위한 바이브 코딩(Vibe Coding) 최적 스택",
       category: "Vibe 코딩",
       tags: ["바이브코딩", "VibeCoding", "1인개발", "Bolt.new", "ClaudeCode", "웹개발"],
+      thumbnail: "/images/blogs/vibe-coding-2026.jpg",
       summary: "자연어 프롬프트만으로 풀스택 웹 애플리케이션을 기획부터 배포까지 원스톱으로 완성하는 2026 바이브 코딩 도구 조합을 정리합니다.",
       mainPoints: [
         "아이디어 구체화: Claude Artifacts와 v0를 통한 UI 프로토타이핑",
@@ -64,6 +66,7 @@ const TOPIC_POOL = {
       titleSuffix: "100만 토큰 컨텍스트 시대를 200% 활용하는 대형 문서 분석법",
       category: "문서 분석",
       tags: ["대형컨텍스트", "NotebookLM", "ClaudeOpus", "논문요약", "PDF분석"],
+      thumbnail: "/images/blogs/gpt-6-astra-agent.jpg",
       summary: "수백 페이지의 논문, 사내 규정집, 수만 줄의 코드베이스를 누락 없이 교차 검증하고 인사이트를 도출하는 고급 프롬프트 기법입니다.",
       mainPoints: [
         "단일 프롬프트에 통째로 임베딩하여 문맥 손실 최소화하기",
@@ -75,6 +78,7 @@ const TOPIC_POOL = {
       titleSuffix: "초실사 이미지 & 비디오 AI 생성: 상업용 퀄리티 제작 공식",
       category: "AI 미디어",
       tags: ["Flux", "Kling", "AI영상", "이미지생성", "유튜브쇼츠"],
+      thumbnail: "/images/blogs/ai-big-4-comparison.jpg",
       summary: "완벽한 한글 텍스트 렌더링과 물리 엔진 시뮬레이션 기반의 최신 생성 AI를 활용해 상업용 수준의 비주얼 에셋을 제작하는 방법입니다.",
       mainPoints: [
         "Flux 1.1 Pro Ultra를 활용한 광고 배너 및 타이포그래피 생성",
@@ -86,6 +90,7 @@ const TOPIC_POOL = {
       titleSuffix: "로컬 온디바이스(On-Device) LLM 완벽 세팅: 보안과 무료 무제한 활용",
       category: "로컬 AI",
       tags: ["로컬LLM", "Ollama", "Jan.ai", "보안", "프라이버시"],
+      thumbnail: "/images/blogs/vibe-coding-2026.jpg",
       summary: "민감한 기업 내부 데이터나 개인정보 유출 걱정 없이, 내 컴퓨터에서 완전 무료로 최고 성능 오픈소스 모델을 구동하는 가이드입니다.",
       mainPoints: [
         "Ollama 및 Jan.ai GUI를 통한 원클릭 경량 모델 설치",
@@ -100,7 +105,7 @@ const TOPIC_POOL = {
       category: "업무 자동화",
       description: "복잡한 수식 없이 자연어로 대용량 CSV/Excel 데이터를 정제하고 피벗 테이블 및 시각화 차트를 즉시 생성하는 방법을 알아봅니다.",
       tags: ["데이터분석", "엑셀자동화", "ChatGPT", "Claude", "실무생산성"],
-      video_url: "https://www.youtube.com/watch?v=qNQ6fGB-cWA"
+      video_url: "https://www.youtube.com/watch?v=3JZ_D3ELwOQ"
     },
     {
       title: "프롬프트 작성 시 흔히 하는 3가지 실수와 즉각적인 개선책",
@@ -114,7 +119,7 @@ const TOPIC_POOL = {
       category: "AI 영상 제작",
       description: "대본 작성부터 음성 합성, B-roll 영상 클립 생성 및 자막 자동 싱크까지 완전 자동화 파이프라인을 구축하는 노하우입니다.",
       tags: ["쇼츠제작", "릴스", "Kling", "ElevenLabs", "크리에이터"],
-      video_url: "https://www.youtube.com/watch?v=3JZ_D3ELwOQ"
+      video_url: "https://www.youtube.com/watch?v=kYV3FwT0tB4"
     }
   ],
   prompt: [
@@ -235,7 +240,7 @@ async function updateDailyContent() {
         file_name: "",
         date: kst.dotDate,
         tags: [...blogTemplate.tags, `AI_${kst.yyyy}`, "최신트렌드"],
-        thumbnail: "/images/blogs/ai-big-4-comparison.jpg",
+        thumbnail: blogTemplate.thumbnail || "/images/blogs/ai-agent-workflow.jpg",
         author: "rab8bit 자동 큐레이터",
         sort_order: 100 + (dayOfYear % 100),
         created_at: kst.timestamp,
@@ -298,6 +303,10 @@ async function updateDailyContent() {
     const insightId = `daily-insight-${kst.dashDate}`;
 
     if (!insightContent.includes(insightId)) {
+      const ytMatch = insightTemplate.video_url.match(/(?:v=|\/)([0-9A-Za-z_-]{11})/);
+      const ytId = ytMatch ? ytMatch[1] : 'dQw4w9WgXcQ';
+      const ytThumbnail = `https://i.ytimg.com/vi/${ytId}/hqdefault.jpg`;
+
       const newInsight = {
         id: insightId,
         category: insightTemplate.category,
@@ -306,7 +315,7 @@ async function updateDailyContent() {
         video_url: insightTemplate.video_url,
         description: insightTemplate.description,
         download_url: null,
-        thumbnail: "https://i.ytimg.com/vi/qNQ6fGB-cWA/hqdefault.jpg",
+        thumbnail: ytThumbnail,
         tags: [...insightTemplate.tags, "데일리인사이트", "2026AI"],
         date: kst.dashDate,
         sort_order: 100 + (dayOfYear % 100),
