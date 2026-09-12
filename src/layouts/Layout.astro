@@ -144,7 +144,7 @@ const navItems = [
       </div>
 
       {/* Sub-Header Mobile Horizontal Scroll Navigation bar (Only on Mobile < 1024px) */}
-      <div class="lg:hidden flex items-center gap-1 py-2 px-3 border-t border-[var(--header-border)] bg-[var(--bg-header)] text-xs overflow-x-auto scrollbar-none">
+      <div id="mobile-nav-bar" class="lg:hidden flex items-center gap-1 py-2 px-3 border-t border-[var(--header-border)] bg-[var(--bg-header)] text-xs overflow-x-auto scrollbar-none scroll-smooth">
         {navItems.map((item) => {
           const isActive = item.href === '/' 
             ? currentPath === '/' 
@@ -152,9 +152,10 @@ const navItems = [
           return (
             <a
               href={item.href}
+              id={isActive ? 'active-mobile-nav' : undefined}
               class={`flex items-center gap-1 py-1 px-2.5 rounded-lg whitespace-nowrap transition-colors text-xs shrink-0 ${
                 isActive 
-                  ? 'text-indigo-600 dark:text-indigo-400 font-bold bg-indigo-50 dark:bg-indigo-500/15 border border-indigo-200 dark:border-indigo-500/30' 
+                  ? 'text-indigo-600 dark:text-indigo-400 font-bold bg-indigo-50 dark:bg-indigo-500/15 border border-indigo-200 dark:border-indigo-500/30 shadow-sm' 
                   : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-900/60'
               }`}
             >
@@ -451,7 +452,7 @@ const navItems = [
       </div>
     </footer>
 
-    {/* Theme Toggle Client Script */}
+    {/* Theme Toggle & Mobile Swipe Navigation Client Scripts */}
     <script is:inline>
       function initThemeToggle() {
         const toggleBtn = document.getElementById('theme-toggle-btn');
@@ -486,12 +487,122 @@ const navItems = [
         }
       }
 
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initThemeToggle);
-      } else {
-        initThemeToggle();
+      function initMobileSwipeNavigation() {
+        // Auto center active category in sub-header on load
+        const activeNav = document.getElementById('active-mobile-nav');
+        if (activeNav) {
+          activeNav.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+
+        const categories = [
+          { href: '/insights', label: '인사이트' },
+          { href: '/ai-tools', label: 'AI 도구' },
+          { href: '/blog', label: '블로그' },
+          { href: '/tools', label: '웹 도구' },
+          { href: '/prompts', label: '프롬프트' },
+          { href: '/gpts', label: '챗봇지침' },
+          { href: '/gallery', label: '바나나 갤러리' },
+          { href: '/ebooks', label: '전자책' },
+          { href: '/faq', label: 'FAQ' },
+        ];
+
+        const path = window.location.pathname;
+        let currentIndex = categories.findIndex(function(c) {
+          return c.href === path || (c.href !== '/' && path.startsWith(c.href));
+        });
+
+        if (currentIndex === -1) {
+          if (path === '/') currentIndex = 0;
+          else return; // If on detailed standalone tool / article, don't hijack swipe
+        }
+
+        let startX = 0;
+        let startY = 0;
+        let startTime = 0;
+        let isTouching = false;
+
+        function onTouchStart(e) {
+          if (e.touches.length !== 1) return;
+          const target = e.target;
+          // Ignore inputs, game canvases, code blocks, or horizontally scrollable containers
+          if (target && target.closest && target.closest('input, textarea, select, pre, code, canvas, button, [data-no-swipe], .no-swipe, .overflow-x-auto, #mobile-nav-bar')) {
+            return;
+          }
+          startX = e.touches[0].clientX;
+          startY = e.touches[0].clientY;
+          startTime = Date.now();
+          isTouching = true;
+        }
+
+        function onTouchEnd(e) {
+          if (!isTouching) return;
+          isTouching = false;
+          if (e.changedTouches.length !== 1) return;
+
+          const endX = e.changedTouches[0].clientX;
+          const endY = e.changedTouches[0].clientY;
+          const deltaX = endX - startX;
+          const deltaY = endY - startY;
+          const duration = Date.now() - startTime;
+
+          // Swipe criteria: fast (<500ms), long (>60px), and horizontal dominance (|deltaX| > |deltaY| * 1.5)
+          if (duration < 500 && Math.abs(deltaX) > 60 && Math.abs(deltaX) > Math.abs(deltaY) * 1.5) {
+            if (deltaX < 0) {
+              // Swiped Left -> Move to Next Category
+              if (currentIndex < categories.length - 1) {
+                const nextCat = categories[currentIndex + 1];
+                showSwipeFeedback('다음: ' + nextCat.label + ' →');
+                setTimeout(function() {
+                  window.location.href = nextCat.href;
+                }, 120);
+              }
+            } else {
+              // Swiped Right -> Move to Previous Category
+              if (currentIndex > 0) {
+                const prevCat = categories[currentIndex - 1];
+                showSwipeFeedback('← 이전: ' + prevCat.label);
+                setTimeout(function() {
+                  window.location.href = prevCat.href;
+                }, 120);
+              }
+            }
+          }
+        }
+
+        function showSwipeFeedback(text) {
+          let toast = document.getElementById('swipe-nav-toast');
+          if (!toast) {
+            toast = document.createElement('div');
+            toast.id = 'swipe-nav-toast';
+            toast.className = 'fixed bottom-10 left-1/2 -translate-x-1/2 z-50 px-4 py-2 rounded-full bg-slate-900/95 text-white font-black text-xs shadow-2xl border border-indigo-500/50 backdrop-blur-md transition-all duration-200 pointer-events-none opacity-0 flex items-center gap-1.5';
+            document.body.appendChild(toast);
+          }
+          toast.textContent = text;
+          toast.style.opacity = '1';
+          toast.style.transform = 'translate(-50%, -8px)';
+          setTimeout(function() {
+            toast.style.opacity = '0';
+            toast.style.transform = 'translate(-50%, 0)';
+          }, 350);
+        }
+
+        window.removeEventListener('touchstart', onTouchStart);
+        window.removeEventListener('touchend', onTouchEnd);
+        window.addEventListener('touchstart', onTouchStart, { passive: true });
+        window.addEventListener('touchend', onTouchEnd, { passive: true });
       }
-      document.addEventListener('astro:after-swap', initThemeToggle);
+
+      function initAll() {
+        initThemeToggle();
+        initMobileSwipeNavigation();
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initAll);
+      } else {
+        initAll();
+      }
+      document.addEventListener('astro:after-swap', initAll);
     </script>
   </body>
 </html>
