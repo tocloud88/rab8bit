@@ -36,18 +36,23 @@ function getKSTDate() {
   };
 }
 
-// SVG Hooking Thumbnail Generator (High Impact & Super Legible)
+function calcFontSize(text, baseSize, maxChars) {
+  if (!text) return baseSize;
+  const len = text.length;
+  if (len <= maxChars) return baseSize;
+  return Math.round(baseSize * (maxChars / len));
+}
+
+// SVG Hooking Thumbnail Generator (High Impact & Super Legible Paperlogy Font)
 function generateHookSvg(width, height, badge, title1, title2) {
   const w = width || 1280;
   const h = height || 720;
+  const badgeWidth = Math.max(480, (badge || '').length * 36 + 120);
+  const title1Size = calcFontSize(title1, 116, 10);
+  const title2Size = calcFontSize(title2, 98, 11);
+
   return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="bgScrim" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#000000" stop-opacity="0.35"/>
-      <stop offset="35%" stop-color="#000000" stop-opacity="0.5"/>
-      <stop offset="70%" stop-color="#000000" stop-opacity="0.65"/>
-      <stop offset="100%" stop-color="#000000" stop-opacity="0.8"/>
-    </linearGradient>
     <linearGradient id="badgeGrad" x1="0" y1="0" x2="1" y2="0">
       <stop offset="0%" stop-color="#e11d48"/>
       <stop offset="50%" stop-color="#ec4899"/>
@@ -55,36 +60,38 @@ function generateHookSvg(width, height, badge, title1, title2) {
     </linearGradient>
     <linearGradient id="yellowText" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#ffffff"/>
-      <stop offset="25%" stop-color="#fef08a"/>
+      <stop offset="20%" stop-color="#fef08a"/>
       <stop offset="100%" stop-color="#fbbf24"/>
     </linearGradient>
-    <filter id="megaShadow" x="-20%" y="-20%" width="140%" height="140%">
+    <filter id="megaShadow" x="-30%" y="-30%" width="160%" height="160%">
       <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000000" flood-opacity="1"/>
-      <feDropShadow dx="0" dy="16" stdDeviation="16" flood-color="#000000" flood-opacity="0.9"/>
+      <feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#000000" flood-opacity="1"/>
+      <feDropShadow dx="0" dy="24" stdDeviation="30" flood-color="#000000" flood-opacity="0.9"/>
     </filter>
-    <filter id="badgeShadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000000" flood-opacity="0.8"/>
+    <filter id="badgeShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.9"/>
+      <feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#000000" flood-opacity="0.8"/>
     </filter>
   </defs>
 
-  <rect width="${w}" height="${h}" fill="url(#bgScrim)"/>
-  <rect x="70" y="80" width="${w - 140}" height="${h - 160}" rx="32" fill="#030712" fill-opacity="0.55" stroke="#ffffff" stroke-opacity="0.25" stroke-width="2.5" filter="url(#badgeShadow)"/>
-
-  <g transform="translate(${w / 2}, 165)" filter="url(#badgeShadow)">
-    <rect x="-240" y="-32" width="480" height="64" rx="32" fill="url(#badgeGrad)" stroke="#ffffff" stroke-width="2.5" stroke-opacity="0.6"/>
-    <text x="0" y="11" text-anchor="middle" font-family="'Pretendard', 'Noto Sans KR', sans-serif" font-size="32" font-weight="900" fill="#ffffff" letter-spacing="1">
+  <!-- Top Title Bar / Badge -->
+  <g transform="translate(${w / 2}, 145)" filter="url(#badgeShadow)">
+    <rect x="-${badgeWidth / 2}" y="-42" width="${badgeWidth}" height="84" rx="42" fill="url(#badgeGrad)" stroke="#ffffff" stroke-width="3.5" stroke-opacity="0.9"/>
+    <text x="0" y="15" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="42" font-weight="900" fill="#ffffff" letter-spacing="0.5">
       ${badge}
     </text>
   </g>
 
-  <g transform="translate(${w / 2}, 360)" filter="url(#megaShadow)">
-    <text x="0" y="0" text-anchor="middle" font-family="'Pretendard', 'Noto Sans KR', sans-serif" font-size="94" font-weight="900" fill="#ffffff" stroke="#000000" stroke-width="14" paint-order="stroke fill" letter-spacing="-1.5">
+  <!-- Main Headline 1 -->
+  <g transform="translate(${w / 2}, 365)" filter="url(#megaShadow)">
+    <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="${title1Size}" font-weight="900" fill="#ffffff" stroke="#000000" stroke-width="18" paint-order="stroke fill" letter-spacing="-2">
       ${title1}
     </text>
   </g>
 
-  <g transform="translate(${w / 2}, 520)" filter="url(#megaShadow)">
-    <text x="0" y="0" text-anchor="middle" font-family="'Pretendard', 'Noto Sans KR', sans-serif" font-size="82" font-weight="900" fill="url(#yellowText)" stroke="#000000" stroke-width="12" paint-order="stroke fill" letter-spacing="-1">
+  <!-- Main Headline 2 -->
+  <g transform="translate(${w / 2}, 545)" filter="url(#megaShadow)">
+    <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="${title2Size}" font-weight="900" fill="url(#yellowText)" stroke="#000000" stroke-width="16" paint-order="stroke fill" letter-spacing="-1.5">
       ${title2}
     </text>
   </g>
