@@ -89,7 +89,7 @@ export default function BlogDirectory() {
             <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-950">
               {post.thumbnail ? (
                 <img
-                  src={post.thumbnail}
+                  src={`${post.thumbnail}?v=mega2026`}
                   alt={post.title}
                   loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
