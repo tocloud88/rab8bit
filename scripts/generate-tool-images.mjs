@@ -46,7 +46,8 @@ const PALETTES = [
     glowColor: '#eab308',
     title2Color: '#fde047',
     badgeBg: '#ca8a04',
-    badgeText: '#ffffff'
+    badgeText: '#ffffff',
+    iconFill: '#fef08a'
   },
   // 1: Emerald & Mint (Tax / Salary / Savings)
   {
@@ -57,7 +58,8 @@ const PALETTES = [
     glowColor: '#10b981',
     title2Color: '#6ee7b7',
     badgeBg: '#059669',
-    badgeText: '#ffffff'
+    badgeText: '#ffffff',
+    iconFill: '#a7f3d0'
   },
   // 2: Royal Blue & Sky Cyan (Stock / Tech / Converter)
   {
@@ -68,7 +70,8 @@ const PALETTES = [
     glowColor: '#0284c7',
     title2Color: '#7dd3fc',
     badgeBg: '#2563eb',
-    badgeText: '#ffffff'
+    badgeText: '#ffffff',
+    iconFill: '#bae6fd'
   },
   // 3: Cyber Acid Volt (Trading / Crypto / Speed)
   {
@@ -79,7 +82,8 @@ const PALETTES = [
     glowColor: '#84cc16',
     title2Color: '#ccff00',
     badgeBg: '#65a30d',
-    badgeText: '#000000'
+    badgeText: '#000000',
+    iconFill: '#ccff00'
   },
   // 4: Vivid Crimson & Coral (Health / Risk / Emergency)
   {
@@ -90,7 +94,8 @@ const PALETTES = [
     glowColor: '#f43f5e',
     title2Color: '#fca5a5',
     badgeBg: '#e11d48',
-    badgeText: '#ffffff'
+    badgeText: '#ffffff',
+    iconFill: '#fecdd3'
   },
   // 5: Electric Purple & Amethyst (Game / Tarot / Fortune)
   {
@@ -101,7 +106,8 @@ const PALETTES = [
     glowColor: '#9333ea',
     title2Color: '#d8b4fe',
     badgeBg: '#7c3aed',
-    badgeText: '#ffffff'
+    badgeText: '#ffffff',
+    iconFill: '#f3e8ff'
   },
   // 6: Sunset Orange & Coral (Food / Leisure / Energy)
   {
@@ -112,7 +118,8 @@ const PALETTES = [
     glowColor: '#ea580c',
     title2Color: '#fdba74',
     badgeBg: '#ea580c',
-    badgeText: '#ffffff'
+    badgeText: '#ffffff',
+    iconFill: '#ffedd5'
   },
   // 7: Neon Hot Pink & Magenta (MBTI / Dating / Party)
   {
@@ -123,7 +130,8 @@ const PALETTES = [
     glowColor: '#db2777',
     title2Color: '#f9a8d4',
     badgeBg: '#db2777',
-    badgeText: '#ffffff'
+    badgeText: '#ffffff',
+    iconFill: '#fce7f3'
   },
   // 8: Deep Indigo & Slate (Dev / Developer / Security)
   {
@@ -134,7 +142,8 @@ const PALETTES = [
     glowColor: '#6366f1',
     title2Color: '#a5b4fc',
     badgeBg: '#4f46e5',
-    badgeText: '#ffffff'
+    badgeText: '#ffffff',
+    iconFill: '#e0e7ff'
   },
   // 9: Matrix Teal & Aquamarine (Calculator / Unit / Web)
   {
@@ -145,7 +154,8 @@ const PALETTES = [
     glowColor: '#0d9488',
     title2Color: '#5eead4',
     badgeBg: '#0f766e',
-    badgeText: '#ffffff'
+    badgeText: '#ffffff',
+    iconFill: '#ccfbf1'
   },
   // 10: Radiant Violet & Cyan (AI / Smart / Modern)
   {
@@ -156,7 +166,8 @@ const PALETTES = [
     glowColor: '#6366f1',
     title2Color: '#a5b4fc',
     badgeBg: '#6366f1',
-    badgeText: '#ffffff'
+    badgeText: '#ffffff',
+    iconFill: '#c7d2fe'
   },
   // 11: Ruby & Gold Arc (Premium / Investment / VIP)
   {
@@ -167,9 +178,142 @@ const PALETTES = [
     glowColor: '#dc2626',
     title2Color: '#fde047',
     badgeBg: '#b91c1c',
-    badgeText: '#ffffff'
+    badgeText: '#ffffff',
+    iconFill: '#fef08a'
   }
 ];
+
+// -----------------------------------------------------------------------------
+// High-Resolution Crisp Vector Icons (100% SVG, Zero Missing Emoji Risk)
+// -----------------------------------------------------------------------------
+function getVectorIconSVG(slug, color = '#ffffff') {
+  // Sized within 64x64 viewport
+  if (slug.includes('salary') || slug.includes('bonus') || slug.includes('money') || slug.includes('severance') || slug.includes('weekly') || slug.includes('annual') || slug.includes('tax') || slug.includes('freelancer') || slug.includes('comprehensive') || slug.includes('youth-leap')) {
+    // Banknote & Coins / Money Bag
+    return `<g fill="none" stroke="${color}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="6" y="14" width="52" height="36" rx="6" fill="${color}" fill-opacity="0.15"/>
+      <circle cx="32" cy="32" r="9" fill="${color}" fill-opacity="0.3"/>
+      <line x1="14" y1="24" x2="14" y2="24.01" stroke-width="6"/>
+      <line x1="50" y1="40" x2="50" y2="40.01" stroke-width="6"/>
+      <path d="M28 26h8M32 26v12M28 38h8"/>
+    </g>`;
+  }
+
+  if (slug.includes('stock') || slug.includes('crypto') || slug.includes('savings') || slug.includes('windmill') || slug.includes('gpa')) {
+    // Trending Growth Chart
+    return `<g fill="none" stroke="${color}" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M8 50h48" stroke-width="3.5" opacity="0.6"/>
+      <path d="M12 42l14-16 12 10 18-20"/>
+      <path d="M46 16h10v10"/>
+      <circle cx="26" cy="26" r="4" fill="${color}"/>
+      <circle cx="38" cy="36" r="4" fill="${color}"/>
+      <circle cx="56" cy="16" r="4" fill="${color}"/>
+    </g>`;
+  }
+
+  if (slug.includes('realtor') || slug.includes('pyeong') || slug.includes('house') || slug.includes('restaurant')) {
+    // Modern House / Real Estate Building
+    return `<g fill="none" stroke="${color}" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M32 8L8 28h8v24h32V28h8z" fill="${color}" fill-opacity="0.2"/>
+      <rect x="26" y="34" width="12" height="18" fill="${color}" fill-opacity="0.5"/>
+      <circle cx="32" cy="20" r="4" fill="${color}"/>
+    </g>`;
+  }
+
+  if (slug.includes('loan') || slug.includes('credit') || slug.includes('duty') || slug.includes('unit-price')) {
+    // Credit Card / Safe Bank Vault
+    return `<g fill="none" stroke="${color}" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="6" y="14" width="52" height="36" rx="8" fill="${color}" fill-opacity="0.15"/>
+      <line x1="6" y1="24" x2="58" y2="24" stroke-width="6"/>
+      <rect x="14" y="34" width="12" height="8" rx="2" fill="${color}"/>
+      <circle cx="44" cy="38" r="4" fill="${color}" fill-opacity="0.7"/>
+    </g>`;
+  }
+
+  if (slug.includes('lotto') || slug.includes('dice') || slug.includes('ladder') || slug.includes('roulette') || slug.includes('game') || slug.includes('party') || slug.includes('charades') || slug.includes('speed') || slug.includes('chosung')) {
+    // Dice / Luck Star
+    return `<g fill="none" stroke="${color}" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="10" y="10" width="44" height="44" rx="10" fill="${color}" fill-opacity="0.2"/>
+      <circle cx="22" cy="22" r="4" fill="${color}"/>
+      <circle cx="42" cy="22" r="4" fill="${color}"/>
+      <circle cx="32" cy="32" r="4.5" fill="${color}"/>
+      <circle cx="22" cy="42" r="4" fill="${color}"/>
+      <circle cx="42" cy="42" r="4" fill="${color}"/>
+    </g>`;
+  }
+
+  if (slug.includes('qr') || slug.includes('barcode')) {
+    // High-Tech QR Scanner
+    return `<g fill="none" stroke="${color}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="8" y="8" width="20" height="20" rx="4" fill="${color}" fill-opacity="0.25"/>
+      <rect x="14" y="14" width="8" height="8" fill="${color}"/>
+      <rect x="36" y="8" width="20" height="20" rx="4" fill="${color}" fill-opacity="0.25"/>
+      <rect x="42" y="14" width="8" height="8" fill="${color}"/>
+      <rect x="8" y="36" width="20" height="20" rx="4" fill="${color}" fill-opacity="0.25"/>
+      <rect x="14" y="42" width="8" height="8" fill="${color}"/>
+      <path d="M36 36h8v8h-8zM48 36h8v8h-8zM36 48h8v8h-8zM48 48h8v8h-8z" fill="${color}"/>
+    </g>`;
+  }
+
+  if (slug.includes('password') || slug.includes('jwt') || slug.includes('hash') || slug.includes('base64') || slug.includes('security') || slug.includes('uuid')) {
+    // Security Shield & Key
+    return `<g fill="none" stroke="${color}" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M32 6l20 8v16c0 14-9 22-20 28C21 52 12 44 12 30V14z" fill="${color}" fill-opacity="0.2"/>
+      <circle cx="32" cy="26" r="6" stroke-width="4"/>
+      <path d="M32 32v10" stroke-width="4.5"/>
+    </g>`;
+  }
+
+  if (slug.includes('json') || slug.includes('sql') || slug.includes('regex') || slug.includes('html') || slug.includes('markdown') || slug.includes('cron') || slug.includes('dev') || slug.includes('subnet') || slug.includes('user-agent') || slug.includes('my-ip') || slug.includes('url')) {
+    // Developer Code Brackets < / >
+    return `<g fill="none" stroke="${color}" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20 18L8 32l12 14"/>
+      <path d="M44 18l12 14-12 14"/>
+      <line x1="36" y1="12" x2="28" y2="52" stroke-width="4.5" opacity="0.8"/>
+    </g>`;
+  }
+
+  if (slug.includes('pomodoro') || slug.includes('dday') || slug.includes('holiday') || slug.includes('military') || slug.includes('timestamp') || slug.includes('sleep') || slug.includes('baby') || slug.includes('lunar') || slug.includes('age') || slug.includes('reaction')) {
+    // Precision Stopwatch / Timer
+    return `<g fill="none" stroke="${color}" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="32" cy="34" r="22" fill="${color}" fill-opacity="0.2"/>
+      <path d="M32 6v6M26 6h12M48 18l4-4"/>
+      <polyline points="32,22 32,34 42,34" stroke-width="4.5"/>
+    </g>`;
+  }
+
+  if (slug.includes('bmi') || slug.includes('caffeine') || slug.includes('alcohol') || slug.includes('water') || slug.includes('onerm') || slug.includes('quit') || slug.includes('pregnancy') || slug.includes('cheer')) {
+    // Heart Vital & Health Activity
+    return `<g fill="none" stroke="${color}" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M32 54S10 40 10 24a12 12 0 0 1 22-7 12 12 0 0 1 22 7c0 16-22 30-22 30z" fill="${color}" fill-opacity="0.25"/>
+      <polyline points="18,26 26,26 30,18 34,34 38,26 46,26" stroke="${color}" stroke-width="4"/>
+    </g>`;
+  }
+
+  if (slug.includes('mbti') || slug.includes('tarot') || slug.includes('birthday') || slug.includes('qna') || slug.includes('new-word')) {
+    // Magic Star / Crystal Sparkle
+    return `<g fill="none" stroke="${color}" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M32 6l6 18 18 6-18 6-6 18-6-18-18-6 18-6z" fill="${color}" fill-opacity="0.3"/>
+      <circle cx="16" cy="14" r="3" fill="${color}"/>
+      <circle cx="48" cy="48" r="3" fill="${color}"/>
+    </g>`;
+  }
+
+  if (slug.includes('color') || slug.includes('gradient') || slug.includes('svg') || slug.includes('aspect') || slug.includes('transparent') || slug.includes('flexbox') || slug.includes('knitting')) {
+    // Design Art Palette
+    return `<g fill="none" stroke="${color}" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M32 8C18.7 8 8 18.7 8 32c0 10.3 6.8 19 16.2 21.6 2.3.6 4.3-.7 4.3-2.6v-3.5c0-4.4 3.6-8 8-8h5.5c7.7 0 14-6.3 14-14 0-13.3-10.7-23.5-24-23.5z" fill="${color}" fill-opacity="0.2"/>
+      <circle cx="20" cy="22" r="4" fill="${color}"/>
+      <circle cx="32" cy="18" r="4" fill="${color}"/>
+      <circle cx="44" cy="24" r="4" fill="${color}"/>
+    </g>`;
+  }
+
+  // Default: Precision Lightning Spark
+  return `<g fill="none" stroke="${color}" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+    <polygon points="36 6 14 34 32 34 28 58 50 30 32 30" fill="${color}" fill-opacity="0.3"/>
+  </g>`;
+}
 
 // -----------------------------------------------------------------------------
 // Curated 2-Line High-Impact Titles and Sub-features for all 100 Tools
@@ -186,8 +330,8 @@ function parseToolVisualData(tool, index) {
     title2 = title1.slice(5) + ' ' + title2;
     title1 = title1.slice(0, 5);
   }
-  if (title2.length > 9) {
-    title2 = title2.slice(0, 9);
+  if (title2.length > 10) {
+    title2 = title2.slice(0, 10);
   }
 
   // Pick palette by hash + index to ensure adjacent tools have contrasting colors
@@ -197,12 +341,12 @@ function parseToolVisualData(tool, index) {
 
   // Pick sub-feature text
   const desc = tool.description || '';
-  let subFeature = '✦ 2026 최신 알고리즘 실시간 계산';
-  if (desc.includes('4대보험')) subFeature = '✔ 2026 4대보험 & 근로소득세 반영';
+  let subFeature = '✦ 2026 최신 알고리즘 실시간 분석';
+  if (desc.includes('4대보험')) subFeature = '✔ 2026 4대보험 & 세후 실수령액 계산';
   else if (desc.includes('평단가')) subFeature = '✔ 목표 탈출 단가 & 물타기 시뮬레이션';
-  else if (desc.includes('중개')) subFeature = '✔ 매매/전월세 법정 상한 요율 적용';
+  else if (desc.includes('중개')) subFeature = '✔ 법정 상한 요율 복비 & 부가세 계산';
   else if (desc.includes('이자')) subFeature = '✔ 원리금/원금 균등 상환액 비교';
-  else if (desc.includes('3.3%')) subFeature = '✔ 소득세 3% + 지방세 0.3% 원천징수';
+  else if (desc.includes('3.3%')) subFeature = '✔ 3.3% 사업소득세 원천징수 계산';
   else if (desc.includes('수익률')) subFeature = '✔ 매수/매도 수수료 & 순수익 계산';
   else if (desc.includes('로또')) subFeature = '✔ 6/45 행운 난수 100% 랜덤 추출';
   else if (desc.includes('사다리')) subFeature = '✔ 최대 12명 벌칙 내기 원클릭 추첨';
@@ -218,8 +362,8 @@ function parseToolVisualData(tool, index) {
   else if (desc.includes('알코올')) subFeature = '✔ 위드마크 공식 분해 시간 산출';
   else if (desc.includes('타로')) subFeature = '✔ 22장 메이저 아르카나 오늘의 운세';
   else if (desc.includes('룰렛')) subFeature = '✔ 점심/야식 메뉴 랜덤 원클릭 추첨';
-  else if (desc.includes('퇴직금')) subFeature = '✔ 근로기준법 기준 3개월 평균임금';
-  else if (desc.includes('연차')) subFeature = '✔ 통상임금 기준 미사용 연차 보상';
+  else if (desc.includes('퇴직금')) subFeature = '✔ 근로기준법 3개월 평균임금 계산';
+  else if (desc.includes('연차')) subFeature = '✔ 통상임금 기준 미사용 연차 수당';
   else if (desc.includes('주휴')) subFeature = '✔ 주 15시간 이상 근무 주휴수당';
   else if (desc.includes('종합소득세')) subFeature = '✔ 6%~45% 8단계 누진세율 적용';
   else if (desc.includes('상여금')) subFeature = '✔ 성과급 & 보너스 세후 수령액';
@@ -233,111 +377,113 @@ function parseToolVisualData(tool, index) {
 }
 
 // -----------------------------------------------------------------------------
-// SVG Card Generator for 640x360 Tool Thumbnail
+// SVG Card Generator for 640x360 Tool Thumbnail (Ultra High Readability & Icon Visibility)
 // -----------------------------------------------------------------------------
 function generateToolSVG(tool, index) {
   const w = 640;
   const h = 360;
   const { title1, title2, subFeature, palette: p } = parseToolVisualData(tool, index);
-  const icon = tool.icon || '⚡';
   const category = escapeXml(tool.category || '스마트 도구');
   const badge = escapeXml(tool.badge || 'PRO');
+  const iconSVG = getVectorIconSVG(tool.slug, p.iconFill);
 
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}">
   <defs>
     <!-- Background Gradient -->
     <linearGradient id="bgGrad_${index}" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="${p.bgGrad[0]}"/>
-      <stop offset="60%" stop-color="${p.bgGrad[1]}"/>
+      <stop offset="50%" stop-color="${p.bgGrad[1]}"/>
       <stop offset="100%" stop-color="${p.bgGrad[2]}"/>
     </linearGradient>
 
-    <!-- Icon Pedestal Glow Gradient -->
-    <radialGradient id="iconGlow_${index}" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="${p.glowColor}" stop-opacity="0.35"/>
-      <stop offset="70%" stop-color="${p.glowColor}" stop-opacity="0.1"/>
+    <!-- Icon Container Gradient (Vibrant, never black) -->
+    <linearGradient id="iconContainerGrad_${index}" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="${p.accentDark}"/>
+      <stop offset="50%" stop-color="${p.bgGrad[1]}"/>
+      <stop offset="100%" stop-color="${p.bgGrad[0]}"/>
+    </linearGradient>
+
+    <!-- Radial Glow for Icon -->
+    <radialGradient id="iconRadialGlow_${index}" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="${p.glowColor}" stop-opacity="0.6"/>
+      <stop offset="60%" stop-color="${p.glowColor}" stop-opacity="0.15"/>
       <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
     </radialGradient>
 
-    <!-- Drop Shadow Filter -->
-    <filter id="toolShadow_${index}" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.8"/>
+    <!-- Drop Shadow Filter for Elements -->
+    <filter id="crispShadow_${index}" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#000000" flood-opacity="0.9"/>
     </filter>
   </defs>
 
   <!-- 1. Rich Background Canvas -->
   <rect width="${w}" height="${h}" fill="url(#bgGrad_${index})"/>
 
-  <!-- 2. Subtle High-Tech Geometric Grid & Radial Lighting -->
-  <g opacity="0.12">
-    <circle cx="${w - 100}" cy="80" r="160" fill="none" stroke="${p.accent}" stroke-width="2" stroke-dasharray="8,8"/>
-    <circle cx="${w - 100}" cy="80" r="100" fill="none" stroke="${p.accent}" stroke-width="1.5"/>
-    <line x1="0" y1="80" x2="${w}" y2="80" stroke="${p.accent}" stroke-width="1" stroke-dasharray="4,4"/>
-    <line x1="0" y1="280" x2="${w}" y2="280" stroke="${p.accent}" stroke-width="1" stroke-dasharray="4,4"/>
+  <!-- 2. High-Tech Background Decorative Curves & Glow Orbs -->
+  <circle cx="120" cy="180" r="140" fill="url(#iconRadialGlow_${index})"/>
+  <g opacity="0.18">
+    <circle cx="${w - 60}" cy="60" r="180" fill="none" stroke="${p.accent}" stroke-width="2.5" stroke-dasharray="10,8"/>
+    <circle cx="${w - 60}" cy="60" r="120" fill="none" stroke="${p.accent}" stroke-width="1.5"/>
+    <line x1="0" y1="70" x2="${w}" y2="70" stroke="${p.accent}" stroke-width="1.5" stroke-dasharray="6,6"/>
+    <line x1="0" y1="285" x2="${w}" y2="285" stroke="${p.accent}" stroke-width="1.5" stroke-dasharray="6,6"/>
   </g>
 
-  <!-- Ambient Glowing Orb behind Icon -->
-  <circle cx="115" cy="180" r="110" fill="url(#iconGlow_${index})"/>
-
-  <!-- 3. Left Zone: Giant 3D Icon & Embellished Glass Badge -->
-  <g transform="translate(115, 175)" filter="url(#toolShadow_${index})">
-    <!-- Outer Octagon/Rounded Base -->
-    <rect x="-68" y="-68" width="136" height="136" rx="34" fill="#090d16" fill-opacity="0.85" stroke="${p.accent}" stroke-width="3"/>
-    <rect x="-62" y="-62" width="124" height="124" rx="28" fill="#000000" fill-opacity="0.45"/>
+  <!-- 3. Left Zone: High-Visibility Glowing Vector Icon Emblem (156x156px) -->
+  <g transform="translate(118, 180)" filter="url(#crispShadow_${index})">
+    <!-- Outer Glowing Rounded Squircle Frame -->
+    <rect x="-78" y="-78" width="156" height="156" rx="40" fill="url(#iconContainerGrad_${index})" stroke="${p.accent}" stroke-width="4"/>
+    <!-- Inner Glass Border -->
+    <rect x="-70" y="-70" width="140" height="140" rx="34" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-opacity="0.35"/>
     
-    <!-- Giant Representative 3D Emoji -->
-    <text x="0" y="24" text-anchor="middle" font-size="64">${icon}</text>
+    <!-- Giant Crisp Vector Icon (Scaled up to fill squircle) -->
+    <g transform="translate(-43, -43) scale(1.35)">
+      ${iconSVG}
+    </g>
   </g>
 
-  <!-- 4. Right Zone: Distinctive Tool Typography & Badges -->
-  
-  <!-- Category Tag Pill -->
-  <g transform="translate(230, 68)">
-    <rect x="0" y="-18" width="115" height="30" rx="15" fill="#000000" fill-opacity="0.65" stroke="${p.accent}" stroke-width="1.5"/>
-    <text x="57" y="2" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="12" font-weight="900" fill="${p.accentLight}" letter-spacing="0.5">
+  <!-- 4. Right Zone: Large, High-Contrast Typography & Badges -->
+
+  <!-- Top Category Pill -->
+  <g transform="translate(225, 58)" filter="url(#crispShadow_${index})">
+    <rect x="0" y="-18" width="135" height="36" rx="18" fill="#000000" fill-opacity="0.85" stroke="${p.accent}" stroke-width="2.2"/>
+    <text x="67" y="6" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="16" font-weight="900" fill="${p.accentLight}" letter-spacing="0.5">
       ${category}
     </text>
   </g>
 
-  <!-- Top-Right Highlight Badge -->
-  <g transform="translate(${w - 90}, 68)">
-    <rect x="-45" y="-18" width="90" height="30" rx="15" fill="${p.badgeBg}" stroke="#ffffff" stroke-width="1.5" filter="url(#toolShadow_${index})"/>
-    <text x="0" y="2" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="12" font-weight="900" fill="${p.badgeText}">
+  <!-- Top-Right Badge -->
+  <g transform="translate(${w - 95}, 58)" filter="url(#crispShadow_${index})">
+    <rect x="-55" y="-18" width="110" height="36" rx="18" fill="${p.badgeBg}" stroke="#ffffff" stroke-width="2.2"/>
+    <text x="0" y="6" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="16" font-weight="900" fill="${p.badgeText}">
       ${badge}
     </text>
   </g>
 
-  <!-- Main 2-Line Bold Tool Title in Paperlogy -->
-  <g transform="translate(230, 145)" filter="url(#toolShadow_${index})">
-    <!-- Line 1 (White Bold Title) -->
-    <text x="0" y="6" font-family="${FONT_FAMILY}" font-size="34" font-weight="900" fill="#000000" stroke="#000000" stroke-width="10" paint-order="stroke fill" letter-spacing="-1">
-      ${title1}
-    </text>
-    <text x="0" y="0" font-family="${FONT_FAMILY}" font-size="34" font-weight="900" fill="#ffffff" letter-spacing="-1">
+  <!-- Main Huge Tool Title (46px & 40px) -->
+  <g transform="translate(225, 142)" filter="url(#crispShadow_${index})">
+    <!-- Line 1 (Crisp Pure White) -->
+    <text x="0" y="0" font-family="${FONT_FAMILY}" font-size="46" font-weight="900" fill="#ffffff" letter-spacing="-1">
       ${title1}
     </text>
 
-    <!-- Line 2 (Vibrant Neon Accent Title) -->
-    <text x="0" y="54" font-family="${FONT_FAMILY}" font-size="30" font-weight="900" fill="#000000" stroke="#000000" stroke-width="10" paint-order="stroke fill" letter-spacing="-1">
-      ${title2}
-    </text>
-    <text x="0" y="48" font-family="${FONT_FAMILY}" font-size="30" font-weight="900" fill="${p.title2Color}" letter-spacing="-1">
+    <!-- Line 2 (Vibrant Neon Accent) -->
+    <text x="0" y="54" font-family="${FONT_FAMILY}" font-size="40" font-weight="900" fill="${p.title2Color}" letter-spacing="-1">
       ${title2}
     </text>
   </g>
 
-  <!-- Bottom Highlight Sub-Feature Bar -->
-  <g transform="translate(230, 275)" filter="url(#toolShadow_${index})">
-    <rect x="-6" y="-16" width="380" height="32" rx="16" fill="#000000" fill-opacity="0.75" stroke="${p.accent}" stroke-width="1.5"/>
-    <text x="14" y="5" font-family="${FONT_FAMILY}" font-size="12.5" font-weight="800" fill="#e2e8f0" letter-spacing="0.2">
+  <!-- Bottom Highlight Sub-Feature Pill (High Contrast & Clear) -->
+  <g transform="translate(225, 282)" filter="url(#crispShadow_${index})">
+    <rect x="-8" y="-19" width="405" height="38" rx="19" fill="#030712" fill-opacity="0.95" stroke="${p.accent}" stroke-width="2.2"/>
+    <text x="14" y="6" font-family="${FONT_FAMILY}" font-size="16" font-weight="900" fill="#ffffff" letter-spacing="0.2">
       ${subFeature}
     </text>
   </g>
 
-  <!-- Bottom Right Mini Decorative Emblem -->
-  <g transform="translate(${w - 35}, ${h - 25})" opacity="0.65">
-    <circle cx="0" cy="0" r="6" fill="${p.accent}"/>
-    <circle cx="-16" cy="0" r="3" fill="${p.accent}"/>
+  <!-- Bottom Right Decorative Neon Dots -->
+  <g transform="translate(${w - 30}, ${h - 22})" opacity="0.8">
+    <circle cx="0" cy="0" r="7" fill="${p.accent}"/>
+    <circle cx="-18" cy="0" r="3.5" fill="${p.accent}"/>
   </g>
 </svg>`;
 }
@@ -346,7 +492,7 @@ function generateToolSVG(tool, index) {
 // Generate All 100 Unique Tool Thumbnails
 // -----------------------------------------------------------------------------
 async function generateAllToolImages() {
-  console.log(`🚀 Generating 100 100% Distinct, High-Impact Tool Thumbnails with Paperlogy Font...`);
+  console.log(`🚀 Generating 100 100% Distinct, High-Impact Tool Thumbnails with Vector Icons & Huge Typography...`);
   let count = 0;
 
   for (let i = 0; i < tools.length; i++) {
@@ -359,9 +505,12 @@ async function generateAllToolImages() {
       .toFile(targetFile);
 
     count++;
+    if (count % 20 === 0 || count === tools.length) {
+      console.log(`  ✓ Generated ${count}/${tools.length} tool thumbnails (${tool.slug}.jpg)`);
+    }
   }
 
-  console.log(`✅ Successfully generated ${count} distinct tool thumbnails in ${OUT_DIR}`);
+  console.log(`✨ All ${count} tool thumbnails generated successfully into ${OUT_DIR}!`);
 }
 
 generateAllToolImages().catch(console.error);
