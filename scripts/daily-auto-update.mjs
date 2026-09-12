@@ -40,54 +40,44 @@ function getKSTDate() {
 function generateHookSvg(width, height, badge, title1, title2) {
   return `<svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="darkGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#020617" stop-opacity="0.25"/>
-      <stop offset="50%" stop-color="#020617" stop-opacity="0.55"/>
-      <stop offset="100%" stop-color="#020617" stop-opacity="0.85"/>
-    </linearGradient>
+    <radialGradient id="vignette" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#000000" stop-opacity="0.1"/>
+      <stop offset="60%" stop-color="#000000" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.65"/>
+    </radialGradient>
     <linearGradient id="badgeGrad" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#f43f5e"/>
+      <stop offset="0%" stop-color="#e11d48"/>
       <stop offset="50%" stop-color="#ec4899"/>
-      <stop offset="100%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#9333ea"/>
     </linearGradient>
-    <linearGradient id="yellowGrad" x1="0" y1="0" x2="0" y2="1">
+    <linearGradient id="yellowText" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#ffffff"/>
-      <stop offset="25%" stop-color="#fef08a"/>
-      <stop offset="100%" stop-color="#eab308"/>
+      <stop offset="30%" stop-color="#fef08a"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
     </linearGradient>
-    <filter id="textGlow" x="-30%" y="-30%" width="160%" height="160%">
-      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="1"/>
-      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.9"/>
-    </filter>
-    <filter id="cardShadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000000" flood-opacity="0.75"/>
+    <filter id="heavyTextShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#000000" flood-opacity="1"/>
+      <feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#000000" flood-opacity="0.95"/>
     </filter>
   </defs>
 
-  <!-- Dark Backdrop -->
-  <rect width="${width}" height="${height}" fill="url(#darkGrad)"/>
+  <rect width="${width}" height="${height}" fill="url(#vignette)"/>
 
-  <!-- Glassmorphic Backdrop Card -->
-  <rect x="${width * 0.05}" y="${height * 0.12}" width="${width * 0.9}" height="${height * 0.76}" rx="32" fill="#020617" fill-opacity="0.48" stroke="#818cf8" stroke-opacity="0.5" stroke-width="2.5" filter="url(#cardShadow)"/>
-
-  <!-- Top Badge -->
-  <g transform="translate(${width / 2}, ${height * 0.27})" filter="url(#textGlow)">
-    <rect x="-170" y="-25" width="340" height="50" rx="25" fill="url(#badgeGrad)"/>
-    <text x="0" y="9" text-anchor="middle" font-family="sans-serif" font-size="23" font-weight="bold" fill="#ffffff" letter-spacing="1">
+  <g transform="translate(${width / 2}, ${height * 0.22})" filter="url(#heavyTextShadow)">
+    <rect x="-160" y="-22" width="320" height="44" rx="22" fill="url(#badgeGrad)" stroke="#ffffff" stroke-opacity="0.4" stroke-width="1.5"/>
+    <text x="0" y="8" text-anchor="middle" font-family="sans-serif" font-size="21" font-weight="900" fill="#ffffff" letter-spacing="1">
       ${badge}
     </text>
   </g>
 
-  <!-- Main Title 1 (White Ultra Bold) -->
-  <g transform="translate(${width / 2}, ${height * 0.52})" filter="url(#textGlow)">
-    <text x="0" y="0" text-anchor="middle" font-family="sans-serif" font-size="64" font-weight="900" fill="#ffffff" stroke="#000000" stroke-width="4" paint-order="stroke fill" letter-spacing="-0.5">
+  <g transform="translate(${width / 2}, ${height * 0.52})" filter="url(#heavyTextShadow)">
+    <text x="0" y="0" text-anchor="middle" font-family="sans-serif" font-size="70" font-weight="900" fill="#ffffff" stroke="#000000" stroke-width="10" paint-order="stroke fill" letter-spacing="-1">
       ${title1}
     </text>
   </g>
 
-  <!-- Main Title 2 (Yellow Glowing Bold) -->
-  <g transform="translate(${width / 2}, ${height * 0.73})" filter="url(#textGlow)">
-    <text x="0" y="0" text-anchor="middle" font-family="sans-serif" font-size="54" font-weight="900" fill="url(#yellowGrad)" stroke="#000000" stroke-width="4" paint-order="stroke fill" letter-spacing="-0.5">
+  <g transform="translate(${width / 2}, ${height * 0.76})" filter="url(#heavyTextShadow)">
+    <text x="0" y="0" text-anchor="middle" font-family="sans-serif" font-size="60" font-weight="900" fill="url(#yellowText)" stroke="#000000" stroke-width="9" paint-order="stroke fill" letter-spacing="-0.5">
       ${title2}
     </text>
   </g>
