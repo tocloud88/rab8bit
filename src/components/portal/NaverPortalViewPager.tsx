@@ -433,7 +433,7 @@ export default function NaverPortalViewPager({ initialCategoryId = 'home' }: Pro
   return (
     <div className="w-full flex flex-col">
       {/* 1. Naver-Style Stationary Sub-Header Tab Bar (Mobile only < 1024px, hidden on desktop to avoid duplicate menu) */}
-      <div className="lg:hidden relative w-full bg-[var(--bg-header)] border-b border-[var(--header-border)] mb-1">
+      <div className="lg:hidden relative w-full bg-[var(--bg-header)] border-b border-[var(--header-border)]">
         <div className="relative max-w-7xl mx-auto">
           {/* Edge Fade Gradients */}
           <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-4 bg-gradient-to-r from-[var(--bg-header)] to-transparent z-10"></div>
