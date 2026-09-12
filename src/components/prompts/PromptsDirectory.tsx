@@ -30,11 +30,15 @@ export default function PromptsDirectory({ initialTab = 'prompts' }: Props) {
     };
   }, [activeModalItem]);
 
+  const [visibleCount, setVisibleCount] = useState<number>(24);
+  const observerTarget = React.useRef<HTMLDivElement>(null);
+
   // Switch tabs reset category
   const handleTabSwitch = (tab: 'prompts' | 'gpts') => {
     setActiveTab(tab);
     setSelectedCategory('전체');
     setSearchQuery('');
+    setVisibleCount(24);
   };
 
   // Categories based on active tab
@@ -61,6 +65,33 @@ export default function PromptsDirectory({ initialTab = 'prompts' }: Props) {
       return matchCategory && matchSearch;
     });
   }, [currentItems, selectedCategory, searchQuery]);
+
+  // Reset pagination on filter changes
+  useEffect(() => {
+    setVisibleCount(24);
+  }, [selectedCategory, searchQuery]);
+
+  // Infinite Scroll IntersectionObserver
+  useEffect(() => {
+    const target = observerTarget.current;
+    if (!target) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && visibleCount < filteredItems.length) {
+          setVisibleCount((prev) => Math.min(filteredItems.length, prev + 24));
+        }
+      },
+      { rootMargin: '400px' }
+    );
+
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, [visibleCount, filteredItems.length]);
+
+  const visibleItems = useMemo(() => {
+    return filteredItems.slice(0, visibleCount);
+  }, [filteredItems, visibleCount]);
 
   const copyToClipboard = (text: string, id: string | number) => {
     navigator.clipboard.writeText(text);
@@ -142,7 +173,7 @@ export default function PromptsDirectory({ initialTab = 'prompts' }: Props) {
 
       {/* Grid: 4 cols on Web, 2 cols on Mobile */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-5">
-        {filteredItems.map(item => {
+        {visibleItems.map(item => {
           const isCopied = copiedId === item.id;
           return (
             <div
@@ -197,6 +228,19 @@ export default function PromptsDirectory({ initialTab = 'prompts' }: Props) {
           );
         })}
       </div>
+
+      {/* Infinite Scroll Sentinel */}
+      {visibleCount < filteredItems.length && (
+        <div ref={observerTarget} className="py-8 flex justify-center items-center">
+          <button
+            onClick={() => setVisibleCount(prev => Math.min(filteredItems.length, prev + 24))}
+            className="px-6 py-2.5 rounded-xl bg-slate-800/80 hover:bg-purple-600/80 text-slate-300 hover:text-white text-xs font-bold border border-slate-700/80 transition-all flex items-center gap-2 shadow-lg"
+          >
+            <span>더 많은 프롬프트 불러오기</span>
+            <span className="text-slate-400 text-[10px]">({visibleCount} / {filteredItems.length})</span>
+          </button>
+        </div>
+      )}
 
       {filteredItems.length === 0 && (
         <div className="text-center py-16 bg-slate-900/30 rounded-2xl border border-slate-800">

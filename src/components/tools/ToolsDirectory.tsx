@@ -8,6 +8,9 @@ export default function ToolsDirectory() {
   const [selectedCategory, setSelectedCategory] = useState<string>('전체');
   const [searchQuery, setSearchQuery] = useState<string>('');
 
+  const [visibleCount, setVisibleCount] = useState<number>(24);
+  const observerTarget = React.useRef<HTMLDivElement>(null);
+
   // Extract all categories
   const categories = useMemo(() => {
     const cats = new Set<string>();
@@ -27,6 +30,33 @@ export default function ToolsDirectory() {
       return matchCategory && matchSearch;
     });
   }, [selectedCategory, searchQuery]);
+
+  // Reset visible count on filter change
+  React.useEffect(() => {
+    setVisibleCount(24);
+  }, [selectedCategory, searchQuery]);
+
+  // IntersectionObserver for progressive chunk loading
+  React.useEffect(() => {
+    const target = observerTarget.current;
+    if (!target) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && visibleCount < filteredTools.length) {
+          setVisibleCount((prev) => Math.min(filteredTools.length, prev + 24));
+        }
+      },
+      { rootMargin: '400px' }
+    );
+
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, [visibleCount, filteredTools.length]);
+
+  const visibleTools = useMemo(() => {
+    return filteredTools.slice(0, visibleCount);
+  }, [filteredTools, visibleCount]);
 
   return (
     <div className="space-y-6">
@@ -77,7 +107,7 @@ export default function ToolsDirectory() {
 
       {/* Grid: 4 Cols on Desktop / 2 Cols on Mobile */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-5">
-        {filteredTools.map(item => (
+        {visibleTools.map(item => (
           <a
             key={item.slug}
             href={`/tools/${item.slug}`}
@@ -105,6 +135,19 @@ export default function ToolsDirectory() {
           </a>
         ))}
       </div>
+
+      {/* Infinite Scroll Sentinel */}
+      {visibleCount < filteredTools.length && (
+        <div ref={observerTarget} className="py-8 flex justify-center items-center">
+          <button
+            onClick={() => setVisibleCount(prev => Math.min(filteredTools.length, prev + 24))}
+            className="px-6 py-2.5 rounded-xl bg-slate-800/80 hover:bg-indigo-600/80 text-slate-300 hover:text-white text-xs font-bold border border-slate-700/80 transition-all flex items-center gap-2 shadow-lg"
+          >
+            <span>더 많은 도구 불러오기</span>
+            <span className="text-slate-400 text-[10px]">({visibleCount} / {filteredTools.length})</span>
+          </button>
+        </div>
+      )}
 
       {filteredTools.length === 0 && (
         <div className="text-center py-16 bg-slate-900/30 rounded-2xl border border-slate-800">

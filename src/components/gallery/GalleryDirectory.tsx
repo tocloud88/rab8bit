@@ -24,6 +24,9 @@ export default function GalleryDirectory() {
     };
   }, [activeModalItem]);
 
+  const [visibleCount, setVisibleCount] = useState<number>(24);
+  const observerTarget = React.useRef<HTMLDivElement>(null);
+
   // Extract categories
   const categories = useMemo(() => {
     const cats = new Set<string>();
@@ -45,6 +48,33 @@ export default function GalleryDirectory() {
       return matchCategory && matchSearch;
     });
   }, [selectedCategory, searchQuery]);
+
+  // Reset pagination on filter changes
+  useEffect(() => {
+    setVisibleCount(24);
+  }, [selectedCategory, searchQuery]);
+
+  // Infinite Scroll IntersectionObserver
+  useEffect(() => {
+    const target = observerTarget.current;
+    if (!target) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && visibleCount < filteredItems.length) {
+          setVisibleCount((prev) => Math.min(filteredItems.length, prev + 24));
+        }
+      },
+      { rootMargin: '400px' }
+    );
+
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, [visibleCount, filteredItems.length]);
+
+  const visibleItems = useMemo(() => {
+    return filteredItems.slice(0, visibleCount);
+  }, [filteredItems, visibleCount]);
 
   const copyPrompt = (prompt: string, id: string | number) => {
     navigator.clipboard.writeText(prompt);
@@ -98,7 +128,7 @@ export default function GalleryDirectory() {
 
       {/* Grid: 4 cols on Web, 2 cols on Mobile */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-5">
-        {filteredItems.map(item => {
+        {visibleItems.map(item => {
           const isCopied = copiedId === item.id;
           return (
             <div
@@ -114,6 +144,7 @@ export default function GalleryDirectory() {
                   src={item.image_url}
                   alt={item.title}
                   loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
@@ -163,6 +194,19 @@ export default function GalleryDirectory() {
           );
         })}
       </div>
+
+      {/* Infinite Scroll Sentinel */}
+      {visibleCount < filteredItems.length && (
+        <div ref={observerTarget} className="py-8 flex justify-center items-center">
+          <button
+            onClick={() => setVisibleCount(prev => Math.min(filteredItems.length, prev + 24))}
+            className="px-6 py-2.5 rounded-xl bg-slate-800/80 hover:bg-yellow-500 text-slate-300 hover:text-slate-950 text-xs font-bold border border-slate-700/80 transition-all flex items-center gap-2 shadow-lg"
+          >
+            <span>더 많은 작품 불러오기</span>
+            <span className="text-slate-400 text-[10px]">({visibleCount} / {filteredItems.length})</span>
+          </button>
+        </div>
+      )}
 
       {filteredItems.length === 0 && (
         <div className="text-center py-16 bg-slate-900/30 rounded-2xl border border-slate-800">

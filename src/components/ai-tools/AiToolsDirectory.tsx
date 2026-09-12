@@ -90,6 +90,33 @@ export default function AiToolsDirectory() {
     });
   }, [searchTerm, selectedCategory, selectedKeyword, showOnlyFavs, favorites]);
 
+  // Progressive Chunk Loading (Load initial 24 items, auto-expand on scroll)
+  const [visibleCount, setVisibleCount] = useState<number>(24);
+  const observerTarget = React.useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setVisibleCount(24);
+  }, [searchTerm, selectedCategory, selectedKeyword, showOnlyFavs]);
+
+  useEffect(() => {
+    const target = observerTarget.current;
+    if (!target) return;
+    const observer = new IntersectionObserver(
+      entries => {
+        if (entries[0].isIntersecting && visibleCount < filteredTools.length) {
+          setVisibleCount(prev => Math.min(filteredTools.length, prev + 24));
+        }
+      },
+      { rootMargin: '400px' }
+    );
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, [visibleCount, filteredTools.length]);
+
+  const visibleTools = useMemo(() => {
+    return filteredTools.slice(0, visibleCount);
+  }, [filteredTools, visibleCount]);
+
   return (
     <div className="space-y-8 max-w-6xl mx-auto">
       {/* Search & Filter Header */}
@@ -201,7 +228,7 @@ export default function AiToolsDirectory() {
 
       {/* AI Tools Cards Grid (Mobile 2 cols, Desktop 3 cols with aside) */}
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-3.5 sm:gap-4.5">
-        {filteredTools.map((tool) => {
+        {visibleTools.map((tool) => {
           const isFav = favorites.includes(tool.name);
           const styling = CATEGORY_COLORS[tool.category] || {
             badge: 'bg-indigo-500/20 text-indigo-300 border-indigo-500/30',
@@ -254,13 +281,18 @@ export default function AiToolsDirectory() {
 
                 {/* Keywords */}
                 {tool.keywords && tool.keywords.length > 0 && (
-                  <div className="hidden sm:flex flex-wrap gap-1 pt-0.5">
-                    {tool.keywords.slice(0, 3).map((k) => (
+                  <div className="flex flex-wrap gap-1 pt-1">
+                    {tool.keywords.slice(0, 3).map((kw) => (
                       <span
-                        key={k}
-                        className="text-[9px] sm:text-[10px] px-1.5 py-0.2 rounded bg-slate-900/80 text-slate-400 border border-slate-800"
+                        key={kw}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          setSelectedKeyword(kw);
+                        }}
+                        className="text-[10px] px-1.5 py-0.5 rounded bg-slate-800/80 text-slate-400 hover:text-white hover:bg-indigo-600 transition-colors cursor-pointer"
                       >
-                        #{k}
+                        #{kw}
                       </span>
                     ))}
                   </div>
@@ -287,6 +319,19 @@ export default function AiToolsDirectory() {
           );
         })}
       </div>
+
+      {/* Infinite Scroll Sentinel / Load More Button */}
+      {visibleCount < filteredTools.length && (
+        <div ref={observerTarget} className="py-4 flex justify-center">
+          <button
+            onClick={() => setVisibleCount(prev => Math.min(filteredTools.length, prev + 24))}
+            className="px-5 py-2.5 rounded-xl bg-slate-900/90 hover:bg-indigo-600 text-slate-300 hover:text-white text-xs font-bold border border-indigo-500/30 transition-all shadow-md flex items-center gap-1.5"
+          >
+            <span>더 많은 AI 도구 불러오기 ({visibleCount} / {filteredTools.length})</span>
+            <span>↓</span>
+          </button>
+        </div>
+      )}
 
       {filteredTools.length === 0 && (
         <div className="text-center py-20 stitch-card rounded-3xl border border-slate-800 space-y-4">

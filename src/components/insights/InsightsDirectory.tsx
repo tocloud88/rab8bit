@@ -47,6 +47,33 @@ export default function InsightsDirectory() {
     });
   }, [selectedCategory, searchQuery]);
 
+  // Progressive Chunk Loading (Load initial 20 items, auto-expand on scroll)
+  const [visibleCount, setVisibleCount] = useState<number>(24);
+  const observerTarget = React.useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setVisibleCount(24);
+  }, [selectedCategory, searchQuery]);
+
+  useEffect(() => {
+    const target = observerTarget.current;
+    if (!target) return;
+    const observer = new IntersectionObserver(
+      entries => {
+        if (entries[0].isIntersecting && visibleCount < filteredItems.length) {
+          setVisibleCount(prev => Math.min(filteredItems.length, prev + 24));
+        }
+      },
+      { rootMargin: '400px' }
+    );
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, [visibleCount, filteredItems.length]);
+
+  const visibleItems = useMemo(() => {
+    return filteredItems.slice(0, visibleCount);
+  }, [filteredItems, visibleCount]);
+
   // YouTube embed helper
   const getEmbedUrl = (url?: string) => {
     if (!url) return null;
@@ -139,7 +166,7 @@ export default function InsightsDirectory() {
 
       {/* Grid: 4 cols on Web, 2 cols on Mobile */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-5">
-        {filteredItems.map(item => (
+        {visibleItems.map(item => (
           <div
             key={item.id}
             onClick={() => handleOpenSummary(item)}
@@ -152,6 +179,7 @@ export default function InsightsDirectory() {
                   src={item.thumbnail}
                   alt={item.title}
                   loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               ) : (
@@ -216,6 +244,19 @@ export default function InsightsDirectory() {
           </div>
         ))}
       </div>
+
+      {/* Infinite Scroll Sentinel / Load More Button */}
+      {visibleCount < filteredItems.length && (
+        <div ref={observerTarget} className="py-4 flex justify-center">
+          <button
+            onClick={() => setVisibleCount(prev => Math.min(filteredItems.length, prev + 24))}
+            className="px-5 py-2.5 rounded-xl bg-slate-900/90 hover:bg-indigo-600 text-slate-300 hover:text-white text-xs font-bold border border-indigo-500/30 transition-all shadow-md flex items-center gap-1.5"
+          >
+            <span>더 많은 인사이트 불러오기 ({visibleCount} / {filteredItems.length})</span>
+            <span>↓</span>
+          </button>
+        </div>
+      )}
 
       {filteredItems.length === 0 && (
         <div className="text-center py-16 bg-slate-900/30 rounded-2xl border border-slate-800">

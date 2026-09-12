@@ -5,6 +5,9 @@ export default function BlogDirectory() {
   const [selectedTag, setSelectedTag] = useState<string>('전체');
   const [searchQuery, setSearchQuery] = useState<string>('');
 
+  const [visibleCount, setVisibleCount] = useState<number>(16);
+  const observerTarget = React.useRef<HTMLDivElement>(null);
+
   // Extract popular tags
   const popularTags = useMemo(() => {
     const tagCount: { [k: string]: number } = {};
@@ -33,6 +36,33 @@ export default function BlogDirectory() {
       return matchTag && matchSearch;
     });
   }, [selectedTag, searchQuery]);
+
+  // Reset pagination on filter changes
+  React.useEffect(() => {
+    setVisibleCount(16);
+  }, [selectedTag, searchQuery]);
+
+  // IntersectionObserver for progressive chunk loading
+  React.useEffect(() => {
+    const target = observerTarget.current;
+    if (!target) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && visibleCount < filteredPosts.length) {
+          setVisibleCount((prev) => Math.min(filteredPosts.length, prev + 16));
+        }
+      },
+      { rootMargin: '400px' }
+    );
+
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, [visibleCount, filteredPosts.length]);
+
+  const visiblePosts = useMemo(() => {
+    return filteredPosts.slice(0, visibleCount);
+  }, [filteredPosts, visibleCount]);
 
   return (
     <div className="space-y-6">
@@ -79,7 +109,7 @@ export default function BlogDirectory() {
 
       {/* Grid: 4 cols on Web, 2 cols on Mobile */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-5">
-        {filteredPosts.map(post => (
+        {visiblePosts.map(post => (
           <a
             key={post.id}
             href={`/blog/${post.id}`}
@@ -92,6 +122,7 @@ export default function BlogDirectory() {
                   src={`${post.thumbnail}?v=v30ultra`}
                   alt={post.title}
                   loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               ) : (
@@ -135,6 +166,19 @@ export default function BlogDirectory() {
           </a>
         ))}
       </div>
+
+      {/* Infinite Scroll Sentinel */}
+      {visibleCount < filteredPosts.length && (
+        <div ref={observerTarget} className="py-8 flex justify-center items-center">
+          <button
+            onClick={() => setVisibleCount(prev => Math.min(filteredPosts.length, prev + 16))}
+            className="px-6 py-2.5 rounded-xl bg-slate-800/80 hover:bg-indigo-600/80 text-slate-300 hover:text-white text-xs font-bold border border-slate-700/80 transition-all flex items-center gap-2 shadow-lg"
+          >
+            <span>더 많은 블로그 글 불러오기</span>
+            <span className="text-slate-400 text-[10px]">({visibleCount} / {filteredPosts.length})</span>
+          </button>
+        </div>
+      )}
 
       {filteredPosts.length === 0 && (
         <div className="text-center py-16 bg-slate-900/30 rounded-2xl border border-slate-800">
