@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { INTERACTIVE_TOOLS, type InteractiveToolItem } from '../../data/interactiveToolsData';
+import ToolCardVisual from './ToolCardVisual';
 
 export { INTERACTIVE_TOOLS, type InteractiveToolItem };
 
@@ -80,35 +81,26 @@ export default function ToolsDirectory() {
           <a
             key={item.slug}
             href={`/tools/${item.slug}`}
-            className="stitch-card p-3.5 sm:p-5 rounded-2xl flex flex-col justify-between group hover:border-indigo-500/50 transition-all duration-300 hover:-translate-y-1"
+            className="stitch-card rounded-2xl flex flex-col justify-between group hover:border-indigo-500/50 transition-all duration-300 hover:-translate-y-1.5 shadow-lg overflow-hidden border border-slate-800/80 bg-slate-900/60"
           >
-            <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <span className="text-2xl sm:text-3xl p-2 rounded-xl bg-indigo-950/50 border border-indigo-800/30 group-hover:scale-110 transition-transform">
-                  {item.icon}
-                </span>
-                {item.badge && (
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 font-bold border border-indigo-500/30">
-                    {item.badge}
-                  </span>
-                )}
-              </div>
+            {/* 16:9 Intuitive Visual Thumbnail */}
+            <ToolCardVisual tool={item} />
 
+            {/* Card Content Body */}
+            <div className="p-3.5 sm:p-4 flex flex-col justify-between flex-1 space-y-2">
               <div>
-                <span className="text-[10px] text-indigo-400 font-semibold">{item.category}</span>
                 <h3 className="font-bold text-xs sm:text-sm text-white group-hover:text-indigo-400 transition-colors line-clamp-1 leading-snug">
                   {item.title}
                 </h3>
+                <p className="mt-1 text-[11px] sm:text-xs text-slate-400 line-clamp-2 leading-relaxed">
+                  {item.description}
+                </p>
               </div>
 
-              <p className="text-[11px] sm:text-xs text-slate-400 line-clamp-2 leading-relaxed">
-                {item.description}
-              </p>
-            </div>
-
-            <div className="mt-3 pt-2.5 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-indigo-400 font-bold">
-              <span className="text-slate-500 text-[10px]">웹 앱 바로 실행</span>
-              <span className="group-hover:translate-x-1 transition-transform">도구 열기 →</span>
+              <div className="pt-2.5 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-indigo-400 font-bold">
+                <span className="text-slate-500 text-[10px]">웹 앱 바로 실행</span>
+                <span className="group-hover:translate-x-1 transition-transform">도구 열기 →</span>
+              </div>
             </div>
           </a>
         ))}

@@ -8,6 +8,7 @@ import { GPTS_DATA } from '../data/gptsData';
 import { GALLERY_DATA } from '../data/galleryData';
 import { EBOOKS_DATA } from '../data/ebooksData';
 import { INTERACTIVE_TOOLS } from '../components/tools/ToolsDirectory';
+import ToolCardVisual from '../components/tools/ToolCardVisual';
 
 const latestBlogs = BLOGS_DATA.slice(0, 4);
 const featuredInsights = INSIGHTS_DATA.slice(0, 4);
@@ -214,29 +215,22 @@ const featuredEbooks = EBOOKS_DATA.slice(0, 4);
         {featuredTools.map((tool) => (
           <a
             href={`/tools/${tool.slug}`}
-            class="stitch-card p-3.5 sm:p-5 rounded-2xl flex flex-col justify-between group hover:border-indigo-500/50 transition-all hover:-translate-y-1"
+            class="stitch-card rounded-2xl flex flex-col justify-between group hover:border-indigo-500/50 transition-all duration-300 hover:-translate-y-1.5 shadow-lg overflow-hidden border border-slate-800/80 bg-slate-900/60"
           >
-            <div class="space-y-2">
-              <div class="flex items-center justify-between">
-                <span class="text-2xl p-2 rounded-xl bg-indigo-950/50 border border-indigo-800/30">
-                  {tool.icon}
-                </span>
-                {tool.badge && (
-                  <span class="text-[10px] px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 font-bold">
-                    {tool.badge}
-                  </span>
-                )}
+            <ToolCardVisual tool={tool} client:visible />
+            <div class="p-3.5 sm:p-4 flex flex-col justify-between flex-1 space-y-2">
+              <div>
+                <h3 class="font-bold text-xs sm:text-sm text-white group-hover:text-indigo-400 transition-colors line-clamp-1 leading-snug">
+                  {tool.title}
+                </h3>
+                <p class="mt-1 text-[11px] sm:text-xs text-slate-400 line-clamp-2 leading-relaxed">
+                  {tool.description}
+                </p>
               </div>
-              <h3 class="font-bold text-xs sm:text-sm text-white group-hover:text-indigo-400 transition-colors line-clamp-1">
-                {tool.title}
-              </h3>
-              <p class="text-[11px] text-slate-400 line-clamp-2">
-                {tool.description}
-              </p>
-            </div>
-            <div class="mt-3 pt-2 border-t border-slate-800 flex items-center justify-between text-[11px] text-indigo-400 font-bold">
-              <span>웹 앱 실행</span>
-              <span class="group-hover:translate-x-1 transition-transform">실행 &rarr;</span>
+              <div class="pt-2.5 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-indigo-400 font-bold">
+                <span class="text-slate-500 text-[10px]">웹 앱 바로 실행</span>
+                <span class="group-hover:translate-x-1 transition-transform">도구 열기 &rarr;</span>
+              </div>
             </div>
           </a>
         ))}
