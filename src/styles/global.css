@@ -23,19 +23,19 @@
 :root {
   --bg-main: #f8fafc;
   --bg-subtle: #f1f5f9;
-  --bg-header: rgba(255, 255, 255, 0.9);
+  --bg-header: rgba(255, 255, 255, 0.95);
   --header-border: #e2e8f0;
   
-  --card-bg: rgba(255, 255, 255, 0.95);
+  --card-bg: #ffffff;
   --card-border: #e2e8f0;
-  --card-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+  --card-shadow: 0 2px 8px -1px rgba(0, 0, 0, 0.04), 0 1px 3px -1px rgba(0, 0, 0, 0.02);
   
-  --text-main: #0f172a;
+  --text-main: #1e293b;
   --text-title: #0f172a;
   --text-muted: #64748b;
   --text-subtle: #94a3b8;
   
-  --input-bg: rgba(241, 245, 249, 0.95);
+  --input-bg: #ffffff;
   --input-border: #cbd5e1;
   
   --footer-bg: #f8fafc;
@@ -101,8 +101,8 @@ html.dark h1, html.dark h2, html.dark h3 {
 
 /* Light / Dark Background */
 .stitch-bg {
-  background: radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.06) 0%, transparent 40%),
-              radial-gradient(circle at 90% 80%, rgba(168, 85, 247, 0.06) 0%, transparent 40%),
+  background: radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.03) 0%, transparent 40%),
+              radial-gradient(circle at 90% 80%, rgba(168, 85, 247, 0.03) 0%, transparent 40%),
               var(--bg-main);
 }
 html.dark .stitch-bg {
@@ -121,6 +121,11 @@ html.dark .stitch-bg {
   box-shadow: var(--card-shadow);
   color: var(--text-main);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html:not(.dark) .stitch-card {
+  background: #ffffff !important;
+  border-color: #e2e8f0 !important;
 }
 
 .stitch-card:hover {
@@ -158,7 +163,7 @@ footer {
   background-color: var(--footer-bg) !important;
 }
 
-/* Universal Light Mode Contrast Overrides */
+/* Universal Light Mode Typography & Color Enhancements */
 html:not(.dark) .text-white {
   color: #0f172a !important;
 }
@@ -177,30 +182,80 @@ html:not(.dark) .text-slate-400 {
 
 /* Background overrides in light mode */
 html:not(.dark) .bg-slate-950 {
-  background-color: #f1f5f9 !important;
+  background-color: #ffffff !important;
 }
 html:not(.dark) .bg-slate-900 {
   background-color: #ffffff !important;
 }
+html:not(.dark) .bg-slate-900\/90,
+html:not(.dark) .bg-slate-900\/80,
+html:not(.dark) .bg-slate-900\/70,
 html:not(.dark) .bg-slate-900\/60,
 html:not(.dark) .bg-slate-900\/50,
 html:not(.dark) .bg-slate-900\/40,
-html:not(.dark) .bg-slate-900\/90 {
-  background-color: rgba(255, 255, 255, 0.95) !important;
+html:not(.dark) .bg-slate-900\/30,
+html:not(.dark) .bg-slate-900\/20,
+html:not(.dark) .bg-slate-900\/10 {
+  background-color: #ffffff !important;
 }
 html:not(.dark) .bg-slate-800 {
-  background-color: #f1f5f9 !important;
+  background-color: #f8fafc !important;
 }
-html:not(.dark) .bg-slate-800\/80 {
-  background-color: #e2e8f0 !important;
+html:not(.dark) .bg-slate-800\/80,
+html:not(.dark) .bg-slate-800\/60,
+html:not(.dark) .bg-slate-800\/50,
+html:not(.dark) .bg-slate-800\/40 {
+  background-color: #f8fafc !important;
 }
 
 /* Border overrides in light mode */
+html:not(.dark) .border-slate-900,
 html:not(.dark) .border-slate-800,
 html:not(.dark) .border-slate-800\/80,
 html:not(.dark) .border-slate-700,
 html:not(.dark) .border-slate-700\/80,
 html:not(.dark) .border-slate-700\/50 {
+  border-color: #e2e8f0 !important;
+}
+
+/* Blog Article Body & Reader Optimizations (Light Mode) */
+html:not(.dark) .blog-content {
+  background-color: #ffffff !important;
+  color: #1e293b !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.04) !important;
+}
+
+html:not(.dark) .blog-content p,
+html:not(.dark) .blog-content li {
+  color: #334155 !important;
+}
+
+html:not(.dark) .blog-content h1,
+html:not(.dark) .blog-content h2,
+html:not(.dark) .blog-content h3,
+html:not(.dark) .blog-content h4 {
+  color: #0f172a !important;
+}
+
+html:not(.dark) .blog-content strong {
+  color: #0f172a !important;
+}
+
+html:not(.dark) .blog-content table {
+  background-color: #ffffff !important;
+  border-color: #e2e8f0 !important;
+}
+
+html:not(.dark) .blog-content th {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+  border-color: #e2e8f0 !important;
+}
+
+html:not(.dark) .blog-content td {
+  background-color: #ffffff !important;
+  color: #334155 !important;
   border-color: #e2e8f0 !important;
 }
 
@@ -218,6 +273,7 @@ html:not(.dark) .bg-emerald-600 {
 html:not(.dark) .bg-gradient-to-r.from-yellow-500 {
   color: #0f172a !important;
 }
+
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {

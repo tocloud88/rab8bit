@@ -24,33 +24,33 @@ const relatedPosts = BLOGS_DATA.filter((p) => p.id !== post.id).slice(0, 4);
   title={`${post.title} | rab8bit AI 블로그`}
   description={post.excerpt}
 >
-  <div class="container mx-auto px-4 py-8 max-w-4xl space-y-8">
+  <div class="max-w-4xl mx-auto space-y-8">
     {/* Navigation Breadcrumb */}
-    <div class="flex items-center gap-2 text-xs text-slate-400">
-      <a href="/" class="hover:text-white">홈</a>
+    <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+      <a href="/" class="hover:text-indigo-600 dark:hover:text-white">홈</a>
       <span>/</span>
-      <a href="/blog" class="hover:text-white">블로그</a>
+      <a href="/blog" class="hover:text-indigo-600 dark:hover:text-white">블로그</a>
       <span>/</span>
-      <span class="text-indigo-400 truncate max-w-xs">{post.title}</span>
+      <span class="text-indigo-600 dark:text-indigo-400 truncate max-w-xs">{post.title}</span>
     </div>
 
     {/* Post Header */}
     <div class="space-y-4 border-b border-indigo-500/20 pb-6">
       <div class="flex flex-wrap items-center gap-2">
-        <span class="px-3 py-1 rounded-full bg-indigo-950/80 text-indigo-300 text-xs font-bold border border-indigo-800/50">
+        <span class="px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 text-xs font-bold border border-indigo-200 dark:border-indigo-800/50">
           AI 아티클
         </span>
-        <span class="text-xs text-slate-500">•</span>
-        <span class="text-xs text-slate-400">{post.date}</span>
-        <span class="text-xs text-slate-500">•</span>
-        <span class="text-xs text-slate-400 font-medium">작성자: {post.author}</span>
+        <span class="text-xs text-slate-400 dark:text-slate-500">•</span>
+        <span class="text-xs text-slate-600 dark:text-slate-400">{post.date}</span>
+        <span class="text-xs text-slate-400 dark:text-slate-500">•</span>
+        <span class="text-xs text-slate-600 dark:text-slate-400 font-medium">작성자: {post.author}</span>
       </div>
 
-      <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white leading-tight tracking-tight">
+      <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white leading-tight tracking-tight">
         {post.title}
       </h1>
 
-      <p class="text-sm sm:text-base text-slate-300 leading-relaxed bg-slate-900/50 p-4 rounded-2xl border border-indigo-500/20">
+      <p class="text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed bg-indigo-50/70 dark:bg-slate-900/50 p-4 sm:p-5 rounded-2xl border border-indigo-200/80 dark:border-indigo-500/20">
         💡 {post.excerpt}
       </p>
 
@@ -60,7 +60,7 @@ const relatedPosts = BLOGS_DATA.filter((p) => p.id !== post.id).slice(0, 4);
           {post.tags.map((tag) => (
             <a
               href={`/blog`}
-              class="text-xs px-2.5 py-1 rounded-lg bg-slate-800/80 text-slate-400 hover:text-indigo-300 hover:bg-slate-700/80 transition-colors border border-slate-700/50"
+              class="text-xs px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800/80 text-slate-600 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-300 hover:bg-slate-200 dark:hover:bg-slate-700/80 transition-colors border border-slate-200 dark:border-slate-700/50"
             >
               #{tag}
             </a>
@@ -72,7 +72,7 @@ const relatedPosts = BLOGS_DATA.filter((p) => p.id !== post.id).slice(0, 4);
     {/* Featured Thumbnail if present */}
     {post.thumbnail && (
       <div class="flex justify-center w-full my-2">
-        <div class="w-full max-w-[800px] rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-950 flex items-center justify-center">
+        <div class="w-full max-w-[800px] rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-lg dark:shadow-2xl bg-white dark:bg-slate-950 flex items-center justify-center">
           <img
             src={post.thumbnail}
             alt={post.title}
@@ -84,24 +84,24 @@ const relatedPosts = BLOGS_DATA.filter((p) => p.id !== post.id).slice(0, 4);
     )}
 
     {/* Rich HTML Content Body with Tailwind Typography */}
-    <article class="prose prose-invert prose-indigo max-w-none prose-headings:font-bold prose-headings:text-white prose-p:text-slate-300 prose-p:leading-relaxed prose-a:text-indigo-400 prose-a:no-underline hover:prose-a:underline prose-code:text-indigo-300 prose-code:bg-slate-900 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-img:rounded-2xl prose-img:border prose-img:border-slate-800 space-y-4">
-      <div class="blog-content bg-slate-900/30 p-4 sm:p-8 rounded-3xl border border-slate-800/80 leading-relaxed" set:html={post.content} />
+    <article class="prose prose-slate dark:prose-invert prose-indigo max-w-none prose-headings:font-bold prose-headings:text-slate-900 dark:prose-headings:text-white prose-p:text-slate-700 dark:prose-p:text-slate-300 prose-p:leading-relaxed prose-a:text-indigo-600 dark:prose-a:text-indigo-400 prose-a:no-underline hover:prose-a:underline prose-code:text-indigo-600 dark:prose-code:text-indigo-300 prose-code:bg-slate-100 dark:prose-code:bg-slate-900 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-img:rounded-2xl prose-img:border prose-img:border-slate-200 dark:prose-img:border-slate-800 space-y-4">
+      <div class="blog-content bg-white dark:bg-slate-900/40 p-5 sm:p-10 rounded-3xl border border-slate-200 dark:border-slate-800/80 shadow-sm dark:shadow-none leading-relaxed text-slate-800 dark:text-slate-200" set:html={post.content} />
     </article>
 
     {/* In-Article Bottom Ad Slot */}
     <AdBanner type="in-article" label="추천 AI 도구 & 실무 솔루션" />
 
     {/* Back to Blog List CTA */}
-    <div class="pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
       <a
         href="/blog"
-        class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white text-xs sm:text-sm font-bold transition-all flex items-center gap-2 border border-slate-700"
+        class="px-5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white text-xs sm:text-sm font-bold transition-all flex items-center gap-2 border border-slate-300 dark:border-slate-700"
       >
         <span>&larr;</span> 목록으로 돌아가기
       </a>
-      <div class="flex items-center gap-2 text-xs text-slate-400">
+      <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
         <span>더 많은 실무 팁 확인:</span>
-        <a href="/insights" class="text-indigo-400 font-bold hover:underline">인사이트 보기 &rarr;</a>
+        <a href="/insights" class="text-indigo-600 dark:text-indigo-400 font-bold hover:underline">인사이트 보기 &rarr;</a>
       </div>
     </div>
 
