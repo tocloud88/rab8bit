@@ -415,9 +415,9 @@ export default function NaverPortalViewPager({ initialCategoryId = 'insights' }:
   };
 
   return (
-    <div className="w-full flex flex-col -mt-2">
-      {/* 1. Naver-Style Sticky Sub-Header Tab Bar */}
-      <div className="sticky top-16 z-40 bg-[var(--bg-header)] backdrop-blur-2xl border-b border-[var(--header-border)] shadow-sm">
+    <div className="w-full flex flex-col">
+      {/* 1. Naver-Style Sticky Sub-Header Tab Bar (Mobile only < 1024px, hidden on desktop to avoid duplicate menu) */}
+      <div className="lg:hidden sticky top-16 z-40 bg-[var(--bg-header)] backdrop-blur-2xl border-b border-[var(--header-border)] shadow-sm">
         <div className="relative max-w-7xl mx-auto">
           {/* Edge Fade Gradients */}
           <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-4 bg-gradient-to-r from-[var(--bg-header)] to-transparent z-10"></div>
