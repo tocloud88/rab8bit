@@ -1,5 +1,4 @@
 import React, { useState, useMemo } from 'react';
-import { GPTPARK_TOOLS_DATA, type GptparkToolItem } from '../../data/gptparkToolsData';
 
 export interface InteractiveToolItem {
   slug: string;
@@ -363,23 +362,20 @@ export const INTERACTIVE_TOOLS: InteractiveToolItem[] = [
 ];
 
 export default function ToolsDirectory() {
-  const [activeTab, setActiveTab] = useState<'all' | 'interactive' | 'directory'>('all');
-  const [selectedCategory, setSelectedCategory] = useState<string>('전체');
-  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [selectedCategory, setSelectedCategory] = useState<string>("전체");
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
-  // Extract all categories from both sets
+  // Extract all categories
   const categories = useMemo(() => {
     const cats = new Set<string>();
     INTERACTIVE_TOOLS.forEach(t => cats.add(t.category));
-    GPTPARK_TOOLS_DATA.forEach(t => { if (t.category) cats.add(t.category); });
-    return ['전체', ...Array.from(cats)];
+    return ["전체", ...Array.from(cats)];
   }, []);
 
   // Filter interactive tools
-  const filteredInteractive = useMemo(() => {
-    if (activeTab === 'directory') return [];
+  const filteredTools = useMemo(() => {
     return INTERACTIVE_TOOLS.filter(item => {
-      const matchCategory = selectedCategory === '전체' || item.category === selectedCategory;
+      const matchCategory = selectedCategory === "전체" || item.category === selectedCategory;
       const q = searchQuery.toLowerCase().trim();
       const matchSearch = !q ||
         item.title.toLowerCase().includes(q) ||
@@ -387,85 +383,39 @@ export default function ToolsDirectory() {
         item.tags.some(t => t.toLowerCase().includes(q));
       return matchCategory && matchSearch;
     });
-  }, [activeTab, selectedCategory, searchQuery]);
-
-  // Filter gptpark tools
-  const filteredGptpark = useMemo(() => {
-    if (activeTab === 'interactive') return [];
-    return GPTPARK_TOOLS_DATA.filter(item => {
-      const matchCategory = selectedCategory === '전체' || item.category === selectedCategory;
-      const q = searchQuery.toLowerCase().trim();
-      const matchSearch = !q ||
-        item.title.toLowerCase().includes(q) ||
-        item.description.toLowerCase().includes(q);
-      return matchCategory && matchSearch;
-    });
-  }, [activeTab, selectedCategory, searchQuery]);
-
-  const totalCount = filteredInteractive.length + filteredGptpark.length;
+  }, [selectedCategory, searchQuery]);
 
   return (
     <div className="space-y-6">
-      {/* Top Switcher */}
-      <div className="flex justify-center">
-        <div className="inline-flex p-1.5 rounded-2xl bg-slate-900/90 border border-indigo-500/25 backdrop-blur-xl shadow-lg shadow-indigo-950/40">
-          <button
-            onClick={() => setActiveTab('all')}
-            className={`px-4 sm:px-5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${
-              activeTab === 'all'
-                ? 'bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-md'
-                : 'text-slate-400 hover:text-white'
-            }`}
-          >
-            전체 도구 ({INTERACTIVE_TOOLS.length + GPTPARK_TOOLS_DATA.length})
-          </button>
-          <button
-            onClick={() => setActiveTab('interactive')}
-            className={`px-4 sm:px-5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${
-              activeTab === 'interactive'
-                ? 'bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-md'
-                : 'text-slate-400 hover:text-white'
-            }`}
-          >
-            ⚡ 웹 앱 도구 ({INTERACTIVE_TOOLS.length})
-          </button>
-          <button
-            onClick={() => setActiveTab('directory')}
-            className={`px-4 sm:px-5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${
-              activeTab === 'directory'
-                ? 'bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-md'
-                : 'text-slate-400 hover:text-white'
-            }`}
-          >
-            🛠️ 프로그램 디렉토리 ({GPTPARK_TOOLS_DATA.length})
-          </button>
-        </div>
-      </div>
-
-      {/* Filter & Search Bar */}
+      {/* Category Filter & Search Bar */}
       <div className="flex flex-col md:flex-row gap-4 items-center justify-between bg-slate-900/60 p-4 rounded-2xl border border-indigo-500/20 backdrop-blur-xl">
         {/* Category Pills */}
         <div className="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 scrollbar-none">
-          {categories.map(cat => (
-            <button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
-              className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
-                selectedCategory === cat
-                  ? 'bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-md shadow-indigo-500/25 scale-105'
-                  : 'bg-slate-800/80 text-slate-300 hover:text-white hover:bg-slate-700/80 border border-slate-700/50'
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
+          {categories.map(cat => {
+            const count = cat === "전체" 
+              ? INTERACTIVE_TOOLS.length 
+              : INTERACTIVE_TOOLS.filter(t => t.category === cat).length;
+            return (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
+                  selectedCategory === cat
+                    ? "bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-md shadow-indigo-500/25 scale-105"
+                    : "bg-slate-800/80 text-slate-300 hover:text-white hover:bg-slate-700/80 border border-slate-700/50"
+                }`}
+              >
+                {cat} ({count})
+              </button>
+            );
+          })}
         </div>
 
         {/* Search Input */}
         <div className="relative w-full md:w-72">
           <input
             type="text"
-            placeholder="도구 이름, 기능, 키워드 검색..."
+            placeholder="도구 이름, 키워드 검색..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full bg-slate-950/80 border border-slate-700/80 rounded-xl px-4 py-2 pl-9 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all"
@@ -473,7 +423,7 @@ export default function ToolsDirectory() {
           <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-xs">🔍</span>
           {searchQuery && (
             <button
-              onClick={() => setSearchQuery('')}
+              onClick={() => setSearchQuery("")}
               className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-white text-xs"
             >
               ✕
@@ -482,10 +432,9 @@ export default function ToolsDirectory() {
         </div>
       </div>
 
-      {/* Unified 4 Cols Web / 2 Cols Mobile Grid */}
+      {/* Grid: 4 Cols on Desktop / 2 Cols on Mobile */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-5">
-        {/* 1. Interactive Built-in Tools */}
-        {filteredInteractive.map(item => (
+        {filteredTools.map(item => (
           <a
             key={item.slug}
             href={`/tools/${item.slug}`}
@@ -516,72 +465,17 @@ export default function ToolsDirectory() {
             </div>
 
             <div className="mt-3 pt-2.5 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-indigo-400 font-bold">
-              <span className="text-slate-500 text-[10px]">웹 앱 실행</span>
-              <span className="group-hover:translate-x-1 transition-transform">실행 &rarr;</span>
+              <span className="text-slate-500 text-[10px]">웹 앱 바로 실행</span>
+              <span className="group-hover:translate-x-1 transition-transform">도구 열기 &rarr;</span>
             </div>
           </a>
         ))}
-
-        {/* 2. GPT PARK Programs & Tools */}
-        {filteredGptpark.map(tool => (
-          <div
-            key={tool.id}
-            className="stitch-card p-3.5 sm:p-5 rounded-2xl flex flex-col justify-between group hover:border-purple-500/50 transition-all duration-300 hover:-translate-y-1"
-          >
-            <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <span className="text-2xl sm:text-3xl p-2 rounded-xl bg-purple-950/50 border border-purple-800/30 group-hover:scale-110 transition-transform">
-                  🛠️
-                </span>
-                {tool.is_new ? (
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-pink-500/20 text-pink-400 font-bold border border-pink-500/30">
-                    NEW
-                  </span>
-                ) : null}
-              </div>
-
-              <div>
-                <span className="text-[10px] text-purple-400 font-semibold">{tool.category || '프로그램'}</span>
-                <h3 className="font-bold text-xs sm:text-sm text-white group-hover:text-purple-400 transition-colors line-clamp-1 leading-snug">
-                  {tool.title}
-                </h3>
-              </div>
-
-              <p className="text-[11px] sm:text-xs text-slate-400 line-clamp-2 leading-relaxed">
-                {tool.description}
-              </p>
-            </div>
-
-            <div className="mt-3 pt-2.5 border-t border-slate-800/80 flex items-center gap-2">
-              <a
-                href={tool.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 py-1.5 px-2 rounded-xl bg-purple-600/20 hover:bg-purple-600 text-purple-300 hover:text-white text-[11px] font-bold transition-all flex items-center justify-center gap-1 border border-purple-500/30"
-              >
-                <span>🚀</span>
-                <span>{tool.button_text || '프로그램 열기'}</span>
-              </a>
-              {tool.related_video_url && (
-                <a
-                  href={tool.related_video_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="py-1.5 px-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-[11px] font-bold border border-slate-700"
-                  title="관련 영상 보기"
-                >
-                  ▶
-                </a>
-              )}
-            </div>
-          </div>
-        ))}
       </div>
 
-      {totalCount === 0 && (
+      {filteredTools.length === 0 && (
         <div className="text-center py-16 bg-slate-900/30 rounded-2xl border border-slate-800">
           <p className="text-4xl mb-3">🛠️</p>
-          <p className="text-slate-400 text-sm font-medium">검색된 도구가 없습니다.</p>
+          <p className="text-slate-400 text-sm font-medium">검색된 웹 도구가 없습니다.</p>
         </div>
       )}
     </div>

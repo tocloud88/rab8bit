@@ -4,7 +4,6 @@ import { INSIGHTS_DATA } from '../../data/insightsData';
 import { PROMPTS_DATA } from '../../data/promptsData';
 import { GPTS_DATA } from '../../data/gptsData';
 import { AI_TOOLS } from '../../data/aiTools';
-import { GPTPARK_TOOLS_DATA } from '../../data/gptparkToolsData';
 import { INTERACTIVE_TOOLS } from '../tools/ToolsDirectory';
 
 export default function GlobalSearch() {
@@ -29,13 +28,9 @@ export default function GlobalSearch() {
       i => i.title.toLowerCase().includes(q) || i.description.toLowerCase().includes(q) || (i.tags && i.tags.some(t => t.toLowerCase().includes(q)))
     ).slice(0, 8);
 
-    const builtIn = INTERACTIVE_TOOLS.filter(
+    const tools = INTERACTIVE_TOOLS.filter(
       t => t.title.toLowerCase().includes(q) || t.description.toLowerCase().includes(q) || t.tags.some(tag => tag.toLowerCase().includes(q))
-    );
-    const gptTools = GPTPARK_TOOLS_DATA.filter(
-      t => t.title.toLowerCase().includes(q) || t.description.toLowerCase().includes(q)
-    );
-    const tools = [...builtIn.map(t => ({ ...t, isLocal: true, link: `/tools/${t.slug}` })), ...gptTools.map(t => ({ ...t, isLocal: false }))].slice(0, 8);
+    ).map(t => ({ ...t, isLocal: true, link: "/tools/" + t.slug })).slice(0, 8);
 
     const prompts = PROMPTS_DATA.filter(
       p => p.title.toLowerCase().includes(q) || p.description.toLowerCase().includes(q) || p.content.toLowerCase().includes(q)
