@@ -488,7 +488,7 @@ export default function NaverPortalViewPager({ initialCategoryId = 'home' }: Pro
             return (
               <div
                 key={cat.id}
-                className="w-full shrink-0 min-w-full box-border px-1"
+                className="w-full shrink-0 min-w-full box-border"
                 style={{ width: '100%' }}
               >
                 {renderPanelContent(cat.id, idx)}
