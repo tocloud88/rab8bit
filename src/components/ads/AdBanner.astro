@@ -12,10 +12,10 @@ const {
   slotId = '1234567890',
   client = 'ca-pub-XXXXXXXXXXXXXXXX',
   className = '',
-  label = '추천 스폰서 · AD'
+  label = '광고'
 } = Astro.props;
 
-// Ad Mockup Images according to ad format
+// Standard IAB Ad Mockup Images
 const mockImages = {
   leaderboard: '/images/ads/mock-leaderboard-cloud.png',
   horizontal: '/images/ads/mock-leaderboard-cloud.png',
@@ -33,44 +33,55 @@ const mockLinks = {
   compact: '/ai-tools',
 };
 
+// Container sizing styles per IAB standard
+const containerStyles = {
+  leaderboard: 'max-w-[970px] aspect-[970/250]',
+  horizontal: 'max-w-[970px] aspect-[970/250]',
+  'in-article': 'max-w-[540px] aspect-[600/500]',
+  'in-feed': 'max-w-[600px] aspect-[600/500]',
+  compact: 'max-w-[728px] aspect-[970/250]',
+};
+
 const mockImg = mockImages[type] || '/images/ads/mock-leaderboard-cloud.png';
 const mockLink = mockLinks[type] || '/ai-tools';
+const sizeClass = containerStyles[type] || 'max-w-[970px] aspect-[970/250]';
 ---
 
-<div class={`adsense-wrapper relative overflow-hidden transition-all duration-300 rounded-2xl border border-indigo-500/25 shadow-lg shadow-indigo-950/20 max-w-6xl mx-auto my-3 sm:my-4 ${className}`}>
-  <!-- Ad Header Label (Google Policy Compliant) -->
-  <div class="flex items-center justify-between px-3 py-1 bg-slate-950/90 border-b border-slate-800/80 text-[10px] text-slate-500 select-none">
-    <div class="flex items-center gap-1.5">
-      <span class="px-1.5 py-0.2 rounded bg-indigo-500/20 text-indigo-400 font-bold border border-indigo-500/30 text-[9px]">AD</span>
-      <span class="text-slate-400 font-medium">{label}</span>
+<div class={`adsense-wrapper w-full mx-auto my-4 sm:my-6 ${sizeClass} ${className}`}>
+  <!-- Google Policy Compliant Ad Container -->
+  <div class="relative w-full h-full rounded-2xl overflow-hidden border border-indigo-500/20 bg-slate-950/90 shadow-lg shadow-indigo-950/20 flex flex-col justify-between group">
+    <!-- Standard Header Label -->
+    <div class="flex items-center justify-between px-3 py-1 bg-slate-950 border-b border-slate-800/80 text-[10px] text-slate-500 select-none">
+      <div class="flex items-center gap-1.5">
+        <span class="px-1.5 py-0.2 rounded bg-indigo-500/20 text-indigo-400 font-bold border border-indigo-500/30 text-[9px]">AD</span>
+        <span class="text-slate-400 font-medium">{label}</span>
+      </div>
+      <span class="text-[9px] text-slate-500">Google AdSense · 스폰서 추천</span>
     </div>
-    <span class="text-[9px] text-slate-500">Google AdSense · 스폰서 미리보기</span>
-  </div>
 
-  <!-- AdSense Container & Live Preview Mock Graphic -->
-  <div class="p-1 sm:p-1.5 bg-slate-950/80 backdrop-blur-md flex flex-col items-center justify-center text-center group">
-    <!-- Google AdSense Official Tag (Activated when live ad unit ID is provided) -->
-    <ins
-      class="adsbygoogle w-full block text-center"
-      style="display:none"
-      data-ad-client={client}
-      data-ad-slot={slotId}
-      data-ad-format={type === 'in-article' ? 'fluid' : 'auto'}
-      data-full-width-responsive="true"
-    ></ins>
+    <!-- Live Ad Unit & Preview -->
+    <div class="flex-1 w-full h-full overflow-hidden flex items-center justify-center p-1 sm:p-1.5">
+      <ins
+        class="adsbygoogle w-full h-full block text-center"
+        style="display:none"
+        data-ad-client={client}
+        data-ad-slot={slotId}
+        data-ad-format={type === 'in-article' ? 'fluid' : 'auto'}
+        data-full-width-responsive="true"
+      ></ins>
 
-    <!-- Visual Example Ad Banner (Seamlessly Blends with rab8bit Dark Design) -->
-    <a 
-      href={mockLink}
-      class="block w-full overflow-hidden rounded-xl transition-all duration-300 transform group-hover:scale-[1.008] border border-slate-800 hover:border-indigo-500/50 relative shadow-sm"
-      title="스폰서 추천 광고 미리보기"
-    >
-      <img 
-        src={mockImg} 
-        alt="스폰서 추천 광고 배너" 
-        loading="lazy" 
-        class="w-full h-auto object-cover rounded-xl"
-      />
-    </a>
+      <a 
+        href={mockLink}
+        class="w-full h-full block overflow-hidden rounded-xl transition-all duration-300 transform group-hover:scale-[1.005] border border-slate-800/80 hover:border-indigo-500/50 relative"
+        title="스폰서 추천 광고"
+      >
+        <img 
+          src={mockImg} 
+          alt="스폰서 추천 광고 배너" 
+          loading="lazy" 
+          class="w-full h-full object-cover rounded-xl"
+        />
+      </a>
+    </div>
   </div>
 </div>
