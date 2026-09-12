@@ -1,0 +1,38 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AdBanner from '../../components/ads/AdBanner.astro';
+import BmiCalculator from '../../components/tools/BmiCalculator';
+---
+
+<Layout 
+  title="BMI 체질량지수 &amp; 비만도 판정기 | rab8bit 스마트 툴스" 
+  description="신장과 체중을 기반으로 BMI 지수를 산출하고 저체중, 정상, 과체중, 비만 단계와 적정 체중 범위를 안내합니다."
+>
+  <div class="space-y-8 max-w-4xl mx-auto py-4">
+    <div class="flex items-center gap-2 text-xs text-slate-400">
+      <a href="/" class="hover:text-white transition-colors">홈</a>
+      <span>&gt;</span>
+      <a href="/tools" class="hover:text-white transition-colors">스마트 도구</a>
+      <span>&gt;</span>
+      <span class="text-indigo-400 font-semibold">BMI 체질량지수 &amp; 비만도 판정기</span>
+    </div>
+
+    <div class="text-center space-y-3">
+      <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full stitch-pill text-xs font-bold">
+        <span>⚖️</span> <span>건강</span>
+      </div>
+      <h1 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+        BMI 체질량지수 &amp; 비만도 판정기
+      </h1>
+      <p class="text-slate-400 max-w-xl mx-auto text-xs sm:text-sm leading-relaxed">
+        신장과 체중을 기반으로 BMI 지수를 산출하고 저체중, 정상, 과체중, 비만 단계와 적정 체중 범위를 안내합니다.
+      </p>
+    </div>
+
+    <AdBanner type="leaderboard" label="스마트 비즈니스 &amp; 생산성 스폰서" />
+
+    <BmiCalculator client:load />
+
+    <AdBanner type="horizontal" className="my-8" />
+  </div>
+</Layout>

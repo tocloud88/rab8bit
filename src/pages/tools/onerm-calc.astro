@@ -1,0 +1,38 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AdBanner from '../../components/ads/AdBanner.astro';
+import OneRmCalculator from '../../components/tools/OneRmCalculator';
+---
+
+<Layout 
+  title="1RM 헬스 3대 중량 계산기 | rab8bit 스마트 툴스" 
+  description="반복 횟수와 중량을 바탕으로 벤치프레스, 스쿼트, 데드리프트의 최대 1회 중량(1RM)과 %별 훈련 무게표를 산출합니다."
+>
+  <div class="space-y-8 max-w-4xl mx-auto py-4">
+    <div class="flex items-center gap-2 text-xs text-slate-400">
+      <a href="/" class="hover:text-white transition-colors">홈</a>
+      <span>&gt;</span>
+      <a href="/tools" class="hover:text-white transition-colors">스마트 도구</a>
+      <span>&gt;</span>
+      <span class="text-indigo-400 font-semibold">1RM 헬스 3대 중량 계산기</span>
+    </div>
+
+    <div class="text-center space-y-3">
+      <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full stitch-pill text-xs font-bold">
+        <span>🏋️</span> <span>피트니스</span>
+      </div>
+      <h1 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+        1RM 헬스 3대 중량 계산기
+      </h1>
+      <p class="text-slate-400 max-w-xl mx-auto text-xs sm:text-sm leading-relaxed">
+        반복 횟수와 중량을 바탕으로 벤치프레스, 스쿼트, 데드리프트의 최대 1회 중량(1RM)과 %별 훈련 무게표를 산출합니다.
+      </p>
+    </div>
+
+    <AdBanner type="leaderboard" label="스마트 비즈니스 &amp; 생산성 스폰서" />
+
+    <OneRmCalculator client:load />
+
+    <AdBanner type="horizontal" className="my-8" />
+  </div>
+</Layout>

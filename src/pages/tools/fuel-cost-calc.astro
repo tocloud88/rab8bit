@@ -1,0 +1,38 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AdBanner from '../../components/ads/AdBanner.astro';
+import FuelCostCalculator from '../../components/tools/FuelCostCalculator';
+---
+
+<Layout 
+  title="자동차 유류비 &amp; 충전비 비교기 | rab8bit 스마트 툴스" 
+  description="주행거리와 연비, 유가를 입력하여 가솔린, 디젤, LPG, 전기차 간의 예상 주행 비용을 비교 계산합니다."
+>
+  <div class="space-y-8 max-w-4xl mx-auto py-4">
+    <div class="flex items-center gap-2 text-xs text-slate-400">
+      <a href="/" class="hover:text-white transition-colors">홈</a>
+      <span>&gt;</span>
+      <a href="/tools" class="hover:text-white transition-colors">스마트 도구</a>
+      <span>&gt;</span>
+      <span class="text-indigo-400 font-semibold">자동차 유류비 &amp; 충전비 비교기</span>
+    </div>
+
+    <div class="text-center space-y-3">
+      <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full stitch-pill text-xs font-bold">
+        <span>🚗</span> <span>차량유지</span>
+      </div>
+      <h1 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+        자동차 유류비 &amp; 충전비 비교기
+      </h1>
+      <p class="text-slate-400 max-w-xl mx-auto text-xs sm:text-sm leading-relaxed">
+        주행거리와 연비, 유가를 입력하여 가솔린, 디젤, LPG, 전기차 간의 예상 주행 비용을 비교 계산합니다.
+      </p>
+    </div>
+
+    <AdBanner type="leaderboard" label="스마트 비즈니스 &amp; 생산성 스폰서" />
+
+    <FuelCostCalculator client:load />
+
+    <AdBanner type="horizontal" className="my-8" />
+  </div>
+</Layout>

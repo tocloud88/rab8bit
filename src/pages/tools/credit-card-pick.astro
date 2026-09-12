@@ -1,0 +1,38 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AdBanner from '../../components/ads/AdBanner.astro';
+import CreditCardPickCalculator from '../../components/tools/CreditCardPickCalculator';
+---
+
+<Layout 
+  title="신용카드 피킹률(혜택율) 계산기 | rab8bit 스마트 툴스" 
+  description="월 총 결제금액 대비 할인·적립 혜택 금액을 계산하여 카드의 혜택 체감률(피킹률) 등급을 진단합니다."
+>
+  <div class="space-y-8 max-w-4xl mx-auto py-4">
+    <div class="flex items-center gap-2 text-xs text-slate-400">
+      <a href="/" class="hover:text-white transition-colors">홈</a>
+      <span>&gt;</span>
+      <a href="/tools" class="hover:text-white transition-colors">스마트 도구</a>
+      <span>&gt;</span>
+      <span class="text-indigo-400 font-semibold">신용카드 피킹률(혜택율) 계산기</span>
+    </div>
+
+    <div class="text-center space-y-3">
+      <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full stitch-pill text-xs font-bold">
+        <span>💳</span> <span>소비생활</span>
+      </div>
+      <h1 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+        신용카드 피킹률(혜택율) 계산기
+      </h1>
+      <p class="text-slate-400 max-w-xl mx-auto text-xs sm:text-sm leading-relaxed">
+        월 총 결제금액 대비 할인·적립 혜택 금액을 계산하여 카드의 혜택 체감률(피킹률) 등급을 진단합니다.
+      </p>
+    </div>
+
+    <AdBanner type="leaderboard" label="스마트 비즈니스 &amp; 생산성 스폰서" />
+
+    <CreditCardPickCalculator client:load />
+
+    <AdBanner type="horizontal" className="my-8" />
+  </div>
+</Layout>

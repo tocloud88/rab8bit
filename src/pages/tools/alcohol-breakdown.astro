@@ -1,0 +1,38 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AdBanner from '../../components/ads/AdBanner.astro';
+import AlcoholBreakdownCalculator from '../../components/tools/AlcoholBreakdownCalculator';
+---
+
+<Layout 
+  title="음주 후 알코올 분해 시간 계산기 | rab8bit 스마트 툴스" 
+  description="위드마크(Widmark) 공식을 기반으로 주종, 음주량, 체중에 따른 혈중 알코올 농도와 완전 분해 소요 시간을 모의 계산합니다."
+>
+  <div class="space-y-8 max-w-4xl mx-auto py-4">
+    <div class="flex items-center gap-2 text-xs text-slate-400">
+      <a href="/" class="hover:text-white transition-colors">홈</a>
+      <span>&gt;</span>
+      <a href="/tools" class="hover:text-white transition-colors">스마트 도구</a>
+      <span>&gt;</span>
+      <span class="text-indigo-400 font-semibold">음주 후 알코올 분해 시간 계산기</span>
+    </div>
+
+    <div class="text-center space-y-3">
+      <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full stitch-pill text-xs font-bold">
+        <span>🍺</span> <span>음주안전</span>
+      </div>
+      <h1 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+        음주 후 알코올 분해 시간 계산기
+      </h1>
+      <p class="text-slate-400 max-w-xl mx-auto text-xs sm:text-sm leading-relaxed">
+        위드마크(Widmark) 공식을 기반으로 주종, 음주량, 체중에 따른 혈중 알코올 농도와 완전 분해 소요 시간을 모의 계산합니다.
+      </p>
+    </div>
+
+    <AdBanner type="leaderboard" label="스마트 비즈니스 &amp; 생산성 스폰서" />
+
+    <AlcoholBreakdownCalculator client:load />
+
+    <AdBanner type="horizontal" className="my-8" />
+  </div>
+</Layout>

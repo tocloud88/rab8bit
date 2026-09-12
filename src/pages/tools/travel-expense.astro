@@ -1,0 +1,38 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AdBanner from '../../components/ads/AdBanner.astro';
+import TravelExpenseCalculator from '../../components/tools/TravelExpenseCalculator';
+---
+
+<Layout 
+  title="출장비 &amp; 유류비 실비 정산기 | rab8bit 스마트 툴스" 
+  description="국내외 출장 시 이동 거리당 유류비, 일비, 숙박비, 식비를 항목별로 취합하여 정산 보고서를 생성합니다."
+>
+  <div class="space-y-8 max-w-4xl mx-auto py-4">
+    <div class="flex items-center gap-2 text-xs text-slate-400">
+      <a href="/" class="hover:text-white transition-colors">홈</a>
+      <span>&gt;</span>
+      <a href="/tools" class="hover:text-white transition-colors">스마트 도구</a>
+      <span>&gt;</span>
+      <span class="text-indigo-400 font-semibold">출장비 &amp; 유류비 실비 정산기</span>
+    </div>
+
+    <div class="text-center space-y-3">
+      <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full stitch-pill text-xs font-bold">
+        <span>🚅</span> <span>업무</span>
+      </div>
+      <h1 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
+        출장비 &amp; 유류비 실비 정산기
+      </h1>
+      <p class="text-slate-400 max-w-xl mx-auto text-xs sm:text-sm leading-relaxed">
+        국내외 출장 시 이동 거리당 유류비, 일비, 숙박비, 식비를 항목별로 취합하여 정산 보고서를 생성합니다.
+      </p>
+    </div>
+
+    <AdBanner type="leaderboard" label="스마트 비즈니스 &amp; 생산성 스폰서" />
+
+    <TravelExpenseCalculator client:load />
+
+    <AdBanner type="horizontal" className="my-8" />
+  </div>
+</Layout>
