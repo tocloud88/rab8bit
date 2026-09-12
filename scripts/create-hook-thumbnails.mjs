@@ -1018,11 +1018,375 @@ export function renderStyle4_EditorialKinetic(w, h, post, colorIdx = 0) {
 }
 
 // -----------------------------------------------------------------------------
-// Master Dispatcher: 4 Signature Layouts x 5 Color Palettes (20 Total)
+// STYLE 5: Perspective Manga Squeeze / 3D Speed Slash (Reference: "LOL 峡谷成功学")
+// -----------------------------------------------------------------------------
+const S5_COLOR_THEMES = [
+  // 0: Anime Electric Blue (Original Reference)
+  {
+    bgGrad: ['#f0f9ff', '#e0f2fe', '#bae6fd'],
+    speedLines: '#2563eb',
+    title1Grad: ['#1d4ed8', '#2563eb'],
+    title1Stroke: '#ffffff',
+    title2Grad: ['#0284c7', '#0369a1'],
+    title2Stroke: '#ffffff',
+    bannerBg: '#1e293b',
+    bannerText: '#ffffff',
+    highlight: '#38bdf8',
+    sparkColor: '#facc15'
+  },
+  // 1: Mecha Crimson Fire
+  {
+    bgGrad: ['#fff1f2', '#ffe4e6', '#fecdd3'],
+    speedLines: '#dc2626',
+    title1Grad: ['#b91c1c', '#dc2626'],
+    title1Stroke: '#ffffff',
+    title2Grad: ['#991b1b', '#b91c1c'],
+    title2Stroke: '#ffffff',
+    bannerBg: '#450a0a',
+    bannerText: '#ffffff',
+    highlight: '#fb7185',
+    sparkColor: '#facc15'
+  },
+  // 2: Cyber Acid Volt (Dark Mode High Contrast)
+  {
+    bgGrad: ['#090d16', '#0f172a', '#1e293b'],
+    speedLines: '#65a30d',
+    title1Grad: ['#ccff00', '#a3e635'],
+    title1Stroke: '#000000',
+    title2Grad: ['#38bdf8', '#0284c7'],
+    title2Stroke: '#000000',
+    bannerBg: '#000000',
+    bannerText: '#ccff00',
+    highlight: '#ccff00',
+    sparkColor: '#38bdf8'
+  },
+  // 3: Hyper Violet Arcade
+  {
+    bgGrad: ['#faf5ff', '#f3e8ff', '#e9d5ff'],
+    speedLines: '#7c3aed',
+    title1Grad: ['#6d28d9', '#7c3aed'],
+    title1Stroke: '#ffffff',
+    title2Grad: ['#4c1d95', '#6d28d9'],
+    title2Stroke: '#ffffff',
+    bannerBg: '#2e1065',
+    bannerText: '#ffffff',
+    highlight: '#c084fc',
+    sparkColor: '#facc15'
+  },
+  // 4: Solar Gold Dynamo
+  {
+    bgGrad: ['#fffbeb', '#fef3c7', '#fde68a'],
+    speedLines: '#d97706',
+    title1Grad: ['#b45309', '#d97706'],
+    title1Stroke: '#ffffff',
+    title2Grad: ['#92400e', '#b45309'],
+    title2Stroke: '#ffffff',
+    bannerBg: '#451a03',
+    bannerText: '#ffffff',
+    highlight: '#facc15',
+    sparkColor: '#ea580c'
+  }
+];
+
+export function renderStyle5_PerspectiveSlash(w, h, post, colorIdx = 0) {
+  const { badge, title1, title2, subTag } = parseHookingCopy(post);
+  const theme = detectSceneTheme(post);
+  const c = S5_COLOR_THEMES[colorIdx % S5_COLOR_THEMES.length];
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}">
+  <defs>
+    <linearGradient id="s5BgGrad_${colorIdx}" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="${c.bgGrad[0]}"/>
+      <stop offset="50%" stop-color="${c.bgGrad[1]}"/>
+      <stop offset="100%" stop-color="${c.bgGrad[2]}"/>
+    </linearGradient>
+
+    <linearGradient id="s5T1Grad_${colorIdx}" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="${c.title1Grad[0]}"/>
+      <stop offset="100%" stop-color="${c.title1Grad[1]}"/>
+    </linearGradient>
+
+    <linearGradient id="s5T2Grad_${colorIdx}" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="${c.title2Grad[0]}"/>
+      <stop offset="100%" stop-color="${c.title2Grad[1]}"/>
+    </linearGradient>
+
+    ${DROP_SHADOW_FILTER}
+  </defs>
+
+  <!-- 1. Content-Aware Thematic Background -->
+  ${renderThematicBackgroundScene(theme, w, h)}
+
+  <!-- 2. Dynamic Perspective Base Gradient Overlay -->
+  <rect width="${w}" height="${h}" fill="url(#s5BgGrad_${colorIdx})" opacity="0.82"/>
+
+  <!-- 3. High-Energy Fisheye 3D Perspective Speed Rays Converging to Center Horizon -->
+  <g opacity="0.35">
+    <polygon points="0,0 350,0 ${w/2 - 100},${h/2}" fill="${c.speedLines}"/>
+    <polygon points="${w},0 ${w - 350},0 ${w/2 + 100},${h/2}" fill="${c.speedLines}"/>
+    <polygon points="0,${h} 380,${h} ${w/2 - 120},${h/2}" fill="${c.speedLines}"/>
+    <polygon points="${w},${h} ${w - 380},${h} ${w/2 + 120},${h/2}" fill="${c.speedLines}"/>
+    <polygon points="0,${h/2 - 90} 0,${h/2 + 90} ${w/2 - 150},${h/2}" fill="${c.speedLines}"/>
+    <polygon points="${w},${h/2 - 90} ${w},${h/2 + 90} ${w/2 + 150},${h/2}" fill="${c.speedLines}"/>
+  </g>
+
+  <!-- 4. Corner Perspective Angled Banners & Doodles -->
+  <!-- Top-Left Angled Strip -->
+  <g transform="translate(40, 70) rotate(-16)" filter="url(#megaShadow)">
+    <rect x="-10" y="-18" width="360" height="42" rx="6" fill="${c.bannerBg}"/>
+    <text x="170" y="9" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="16" font-weight="900" fill="${c.bannerText}" letter-spacing="1">
+      ⚡ 실전 AI 공략집 // ${escapeXml(badge)}
+    </text>
+  </g>
+
+  <!-- Top-Right Angled Strip -->
+  <g transform="translate(${w - 280}, 90) rotate(16)" filter="url(#megaShadow)">
+    <rect x="-10" y="-18" width="310" height="42" rx="6" fill="${c.bannerBg}"/>
+    <text x="145" y="9" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="15" font-weight="900" fill="${c.bannerText}" letter-spacing="1">
+      ★ 2026 최신 트렌드 // 100% 검증
+    </text>
+  </g>
+
+  <!-- Bottom-Left Angled Strip -->
+  <g transform="translate(60, ${h - 85}) rotate(14)" filter="url(#megaShadow)">
+    <rect x="-10" y="-18" width="340" height="38" rx="6" fill="${c.bannerBg}"/>
+    <text x="160" y="8" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="15" font-weight="900" fill="${c.bannerText}">
+      ✔ 단 3분 만에 마스터하는 핵심 비법
+    </text>
+  </g>
+
+  <!-- Bottom-Right Angled Strip -->
+  <g transform="translate(${w - 300}, ${h - 75}) rotate(-14)" filter="url(#megaShadow)">
+    <rect x="-10" y="-18" width="330" height="38" rx="6" fill="${c.bannerBg}"/>
+    <text x="155" y="8" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="15" font-weight="900" fill="${c.bannerText}">
+      ✦ GO! TAKE RISKS // NO.1 AI PORTAL
+    </text>
+  </g>
+
+  <!-- Top Center Game Emblem Badge -->
+  <g transform="translate(${w/2}, 70)" filter="url(#megaShadow)">
+    <rect x="-140" y="-22" width="280" height="44" rx="22" fill="#000000" stroke="${c.highlight}" stroke-width="3"/>
+    <text x="0" y="7" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="18" font-weight="900" fill="#ffffff" letter-spacing="2">
+      ⚡ RAB8BIT AI LAB
+    </text>
+  </g>
+
+  <!-- 5. Split Perspective Giant Typography (Left & Right Inward Fisheye Tilt) -->
+  
+  <!-- Left Giant Typography (Title 1) - Tilted Inwards -->
+  <g transform="translate(${w/2 - 270}, ${h/2 + 35}) rotate(-7) skewY(12)" filter="url(#megaShadow)">
+    <!-- 3D Shadow Extrusion -->
+    <text x="0" y="24" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="142" font-weight="900" fill="#000000" stroke="#000000" stroke-width="26" paint-order="stroke fill" letter-spacing="-5">
+      ${escapeXml(title1)}
+    </text>
+    <!-- Main Gradient Slash Glyph -->
+    <text x="0" y="0" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="142" font-weight="900" fill="url(#s5T1Grad_${colorIdx})" stroke="${c.title1Stroke}" stroke-width="14" paint-order="stroke fill" letter-spacing="-5">
+      ${escapeXml(title1)}
+    </text>
+    <!-- Spiky Comic Speed Cut Accents -->
+    <polygon points="-160,-70 -130,-45 -180,-30" fill="${c.highlight}"/>
+    <polygon points="140,50 180,65 150,25" fill="${c.highlight}"/>
+  </g>
+
+  <!-- Center Energy Sparks & Lightning Arcs -->
+  <g transform="translate(${w/2}, ${h/2 + 20})" filter="url(#megaShadow)">
+    <circle cx="0" cy="0" r="38" fill="${c.sparkColor}" stroke="#000000" stroke-width="4"/>
+    <text x="0" y="11" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="32" font-weight="900" fill="#000000">VS</text>
+    <path d="M -60 -40 L -25 -10 L -45 -5 L -10 35 L -35 40" fill="none" stroke="${c.highlight}" stroke-width="6" stroke-linecap="round"/>
+    <path d="M 60 -40 L 25 -10 L 45 -5 L 10 35 L 35 40" fill="none" stroke="${c.highlight}" stroke-width="6" stroke-linecap="round"/>
+  </g>
+
+  <!-- Right Giant Typography (Title 2) - Tilted Inwards -->
+  <g transform="translate(${w/2 + 270}, ${h/2 + 35}) rotate(7) skewY(-12)" filter="url(#megaShadow)">
+    <!-- 3D Shadow Extrusion -->
+    <text x="0" y="24" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="142" font-weight="900" fill="#000000" stroke="#000000" stroke-width="26" paint-order="stroke fill" letter-spacing="-5">
+      ${escapeXml(title2)}
+    </text>
+    <!-- Main Gradient Slash Glyph -->
+    <text x="0" y="0" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="142" font-weight="900" fill="url(#s5T2Grad_${colorIdx})" stroke="${c.title2Stroke}" stroke-width="14" paint-order="stroke fill" letter-spacing="-5">
+      ${escapeXml(title2)}
+    </text>
+    <!-- Spiky Comic Speed Cut Accents -->
+    <polygon points="160,-70 130,-45 180,-30" fill="${c.highlight}"/>
+    <polygon points="-140,50 -180,65 -150,25" fill="${c.highlight}"/>
+  </g>
+
+  <!-- Bottom Anchor Subtitle Pill -->
+  <g transform="translate(${w/2}, ${h - 45})" filter="url(#megaShadow)">
+    <rect x="-280" y="-18" width="560" height="36" rx="18" fill="#000000" stroke="${c.highlight}" stroke-width="2"/>
+    <text x="0" y="6" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="16" font-weight="900" fill="#ffffff">
+      ✦ ${escapeXml(subTag)}
+    </text>
+  </g>
+</svg>`;
+}
+
+// -----------------------------------------------------------------------------
+// STYLE 6: Editorial Monolithic Stack / Fashion Headline (Reference: "I AM POWERFUL")
+// -----------------------------------------------------------------------------
+const S6_COLOR_THEMES = [
+  // 0: Vogue Carmine Red & Studio Charcoal (Original Reference)
+  {
+    bgWash: '#09090b',
+    monoText: '#ef4444',
+    monoTextStroke: '#000000',
+    monoShadow: '#7f1d1d',
+    accentLine: '#f87171',
+    quoteColor: '#fca5a5',
+    tagBg: '#ef4444',
+    tagText: '#ffffff'
+  },
+  // 1: Acid Volt & Deep Obsidian
+  {
+    bgWash: '#020617',
+    monoText: '#ccff00',
+    monoTextStroke: '#000000',
+    monoShadow: '#365314',
+    accentLine: '#a3e635',
+    quoteColor: '#bef264',
+    tagBg: '#ccff00',
+    tagText: '#000000'
+  },
+  // 2: Cyber Sky Cyan & Midnight Cobalt
+  {
+    bgWash: '#030712',
+    monoText: '#38bdf8',
+    monoTextStroke: '#000000',
+    monoShadow: '#0c4a6e',
+    accentLine: '#7dd3fc',
+    quoteColor: '#bae6fd',
+    tagBg: '#0284c7',
+    tagText: '#ffffff'
+  },
+  // 3: Radiant Gold & Espresso Noir
+  {
+    bgWash: '#1c1917',
+    monoText: '#facc15',
+    monoTextStroke: '#000000',
+    monoShadow: '#78350f',
+    accentLine: '#fde047',
+    quoteColor: '#fef08a',
+    tagBg: '#eab308',
+    tagText: '#000000'
+  },
+  // 4: Hyper Neon Pink & Velvet Smoke
+  {
+    bgWash: '#0f172a',
+    monoText: '#f43f5e',
+    monoTextStroke: '#000000',
+    monoShadow: '#881337',
+    accentLine: '#fb7185',
+    quoteColor: '#fbcfe8',
+    tagBg: '#e11d48',
+    tagText: '#ffffff'
+  }
+];
+
+export function renderStyle6_EditorialMonolith(w, h, post, colorIdx = 0) {
+  const { badge, title1, title2, subTag } = parseHookingCopy(post);
+  const theme = detectSceneTheme(post);
+  const c = S6_COLOR_THEMES[colorIdx % S6_COLOR_THEMES.length];
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}">
+  <defs>
+    <!-- Woodblock / Brush Distressed Texture Filter -->
+    <filter id="woodblockTexture_${colorIdx}" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    ${DROP_SHADOW_FILTER}
+  </defs>
+
+  <!-- 1. Thematic Background Scene -->
+  ${renderThematicBackgroundScene(theme, w, h)}
+
+  <!-- 2. Dark Cinematic Vignette & Studio Lighting Overlay -->
+  <rect width="${w}" height="${h}" fill="${c.bgWash}" opacity="0.65"/>
+  <radialGradient id="s6Spotlight_${colorIdx}" cx="75%" cy="45%" r="65%">
+    <stop offset="0%" stop-color="${c.accentLine}" stop-opacity="0.25"/>
+    <stop offset="60%" stop-color="#000000" stop-opacity="0.8"/>
+    <stop offset="100%" stop-color="#000000" stop-opacity="0.95"/>
+  </radialGradient>
+  <rect width="${w}" height="${h}" fill="url(#s6Spotlight_${colorIdx})"/>
+
+  <!-- 3. Right Cinematic Framing Graphic (Futuristic AI Portal Aesthetic) -->
+  <g transform="translate(${w - 320}, ${h/2})" opacity="0.4" filter="url(#megaShadow)">
+    <circle cx="0" cy="0" r="220" fill="none" stroke="${c.monoText}" stroke-width="4" stroke-dasharray="12,6"/>
+    <circle cx="0" cy="0" r="170" fill="none" stroke="${c.accentLine}" stroke-width="2"/>
+    <circle cx="0" cy="0" r="90" fill="${c.monoShadow}" opacity="0.6"/>
+  </g>
+
+  <!-- 4. Top Editorial Metadata Headers -->
+  <g transform="translate(80, 65)">
+    <rect x="0" y="-16" width="120" height="28" rx="4" fill="${c.tagBg}"/>
+    <text x="60" y="3" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="13" font-weight="900" fill="${c.tagText}">
+      ${escapeXml(badge)}
+    </text>
+    <text x="140" y="3" font-family="monospace" font-size="14" font-weight="900" fill="#94a3b8" letter-spacing="2">
+      ISSUE NO.2026 // VOL.08 — RAB8BIT EDITORIAL ARCHIVE
+    </text>
+  </g>
+
+  <!-- 5. Giant Left-Aligned 3-Tier Monolithic Stacked Typography -->
+  <g transform="translate(80, 110)" filter="url(#woodblockTexture_${colorIdx})">
+    
+    <!-- Tier 1: Bold Top Hook Label -->
+    <g transform="translate(0, 100)" filter="url(#megaShadow)">
+      <text x="0" y="10" font-family="${FONT_FAMILY}" font-size="118" font-weight="900" fill="${c.monoShadow}" stroke="#000000" stroke-width="12" letter-spacing="-4">
+        AI TREND
+      </text>
+      <text x="0" y="0" font-family="${FONT_FAMILY}" font-size="118" font-weight="900" fill="${c.monoText}" letter-spacing="-4">
+        AI TREND
+      </text>
+    </g>
+
+    <!-- Tier 2: Title Line 1 (Giant Monolithic Condensed) -->
+    <g transform="translate(0, 240)" filter="url(#megaShadow)">
+      <text x="0" y="14" font-family="${FONT_FAMILY}" font-size="138" font-weight="900" fill="${c.monoShadow}" stroke="#000000" stroke-width="14" letter-spacing="-5">
+        ${escapeXml(title1)}
+      </text>
+      <text x="0" y="0" font-family="${FONT_FAMILY}" font-size="138" font-weight="900" fill="${c.monoText}" letter-spacing="-5">
+        ${escapeXml(title1)}
+      </text>
+    </g>
+
+    <!-- Tier 3: Title Line 2 (Giant Monolithic Condensed) -->
+    <g transform="translate(0, 385)" filter="url(#megaShadow)">
+      <text x="0" y="14" font-family="${FONT_FAMILY}" font-size="138" font-weight="900" fill="${c.monoShadow}" stroke="#000000" stroke-width="14" letter-spacing="-5">
+        ${escapeXml(title2)}
+      </text>
+      <text x="0" y="0" font-family="${FONT_FAMILY}" font-size="138" font-weight="900" fill="${c.monoText}" letter-spacing="-5">
+        ${escapeXml(title2)}
+      </text>
+    </g>
+  </g>
+
+  <!-- 6. Editorial Quote Paragraph Beside/Below (Reference 2 Styling) -->
+  <g transform="translate(80, ${h - 110})" filter="url(#megaShadow)">
+    <line x1="0" y1="0" x2="360" y2="0" stroke="${c.accentLine}" stroke-width="3"/>
+    <text x="0" y="24" font-family="${FONT_FAMILY}" font-size="15" font-weight="900" fill="${c.quoteColor}" letter-spacing="1">
+      THE MOST POWERFUL AI WORKFLOW FOR MODERN BUILDERS.
+    </text>
+    <text x="0" y="44" font-family="${FONT_FAMILY}" font-size="14" font-weight="800" fill="#cbd5e1" letter-spacing="0.5">
+      ✦ ${escapeXml(subTag)}
+    </text>
+  </g>
+
+  <!-- Right Side Minimalist Tech Seal -->
+  <g transform="translate(${w - 120}, ${h - 80}) rotate(90)" opacity="0.75">
+    <text x="0" y="0" text-anchor="middle" font-family="monospace" font-size="12" font-weight="900" fill="${c.quoteColor}" letter-spacing="4">
+      RAB8BIT.COM // 2026
+    </text>
+  </g>
+</svg>`;
+}
+
+// -----------------------------------------------------------------------------
+// Master Dispatcher: 6 Signature Layouts x 5 Color Palettes (30 Total Variations)
 // -----------------------------------------------------------------------------
 export function renderMasterHookThumbnail(post, index, w = 1280, h = 720) {
-  const layoutIdx = index % 4;
-  const colorIdx = Math.floor(index / 4) % 5;
+  const layoutIdx = index % 6;
+  const colorIdx = Math.floor(index / 6) % 5;
 
   switch (layoutIdx) {
     case 0:
@@ -1032,8 +1396,12 @@ export function renderMasterHookThumbnail(post, index, w = 1280, h = 720) {
     case 2:
       return renderStyle3_StreetCaution(w, h, post, colorIdx);
     case 3:
-    default:
       return renderStyle4_EditorialKinetic(w, h, post, colorIdx);
+    case 4:
+      return renderStyle5_PerspectiveSlash(w, h, post, colorIdx);
+    case 5:
+    default:
+      return renderStyle6_EditorialMonolith(w, h, post, colorIdx);
   }
 }
 
@@ -1046,7 +1414,7 @@ export function renderContentAwareBlogSVG(post, w = 1280, h = 720) {
 // Generate All 59 Thumbnails
 // -----------------------------------------------------------------------------
 export async function generateAllHookThumbnails() {
-  console.log('🚀 Generating Thumbnails with 4 Locked Signature Layouts x 5 Color Patterns (20 Total Variations) + Paperlogy Font...');
+  console.log('🚀 Generating Thumbnails with 6 Signature Layouts x 5 Color Patterns (30 Total Variations) + Paperlogy Font...');
   const outDir = path.join(ROOT_DIR, 'public/images/blogs');
   if (!fs.existsSync(outDir)) {
     fs.mkdirSync(outDir, { recursive: true });
@@ -1079,7 +1447,7 @@ export async function generateAllHookThumbnails() {
     count++;
   }
 
-  console.log(`✅ Successfully generated ${count} thumbnails matching exact 4 layouts x 5 color themes with Paperlogy font in ${outDir}`);
+  console.log(`✅ Successfully generated ${count} thumbnails matching 6 layouts x 5 color themes with Paperlogy font in ${outDir}`);
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
