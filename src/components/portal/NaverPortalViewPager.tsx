@@ -96,9 +96,11 @@ export default function NaverPortalViewPager({ initialCategoryId = 'home' }: Pro
   const [activeIndex, setActiveIndex] = useState<number>(initialIndex);
   const [loadedTabs, setLoadedTabs] = useState<Set<number>>(() => new Set([initialIndex, Math.max(0, initialIndex - 1), Math.min(PORTAL_CATEGORIES.length - 1, initialIndex + 1)]));
   
-  // Drag state
+  // Drag and animation transition state
   const [dragDeltaX, setDragDeltaX] = useState<number>(0);
   const [isDragging, setIsDragging] = useState<boolean>(false);
+  const [isTransitioning, setIsTransitioning] = useState<boolean>(false);
+  const transitionTimer = useRef<any>(null);
 
   // Refs
   const containerRef = useRef<HTMLDivElement>(null);
@@ -127,6 +129,11 @@ export default function NaverPortalViewPager({ initialCategoryId = 'home' }: Pro
     setActiveIndex(newIdx);
     setDragDeltaX(0);
     setIsDragging(false);
+    setIsTransitioning(true);
+    if (transitionTimer.current) clearTimeout(transitionTimer.current);
+    transitionTimer.current = setTimeout(() => {
+      setIsTransitioning(false);
+    }, 320);
     ensureTabLoaded(newIdx);
 
     const targetCat = PORTAL_CATEGORIES[newIdx];
@@ -484,12 +491,20 @@ export default function NaverPortalViewPager({ initialCategoryId = 'home' }: Pro
           }}
         >
           {PORTAL_CATEGORIES.map((cat, idx) => {
-            // Render panel
+            const isCurrent = idx === activeIndex;
+            const isAdjacent = Math.abs(idx - activeIndex) <= 1;
+            const shouldHaveHeight = isCurrent || (isDragging && isAdjacent) || isTransitioning;
+
             return (
               <div
                 key={cat.id}
-                className="w-full shrink-0 min-w-full box-border"
+                className={`w-full shrink-0 min-w-full box-border ${
+                  shouldHaveHeight 
+                    ? 'block' 
+                    : 'h-0 max-h-0 overflow-hidden invisible pointer-events-none select-none'
+                }`}
                 style={{ width: '100%' }}
+                aria-hidden={!isCurrent}
               >
                 {renderPanelContent(cat.id, idx)}
               </div>
