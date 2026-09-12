@@ -27,17 +27,17 @@ export default function AdBanner({
   }, []);
 
   const dimensionClasses: Record<string, string> = {
-    horizontal: 'w-full min-h-[90px] sm:min-h-[105px] max-w-5xl mx-auto my-6',
-    leaderboard: 'w-full min-h-[95px] sm:min-h-[120px] max-w-6xl mx-auto my-6 sm:my-8',
-    'in-article': 'w-full min-h-[160px] sm:min-h-[220px] max-w-3xl mx-auto my-8',
-    'in-feed': 'w-full min-h-[180px] sm:min-h-[220px] h-full flex flex-col justify-between',
-    compact: 'w-full min-h-[60px] sm:min-h-[85px] max-w-sm mx-auto my-4',
+    horizontal: 'w-full min-h-[64px] sm:min-h-[76px] max-w-5xl mx-auto my-3 sm:my-4',
+    leaderboard: 'w-full min-h-[68px] sm:min-h-[84px] max-w-6xl mx-auto my-3 sm:my-4',
+    'in-article': 'w-full min-h-[120px] sm:min-h-[150px] max-w-3xl mx-auto my-4 sm:my-5',
+    'in-feed': 'w-full min-h-[140px] sm:min-h-[160px] h-full flex flex-col justify-between',
+    compact: 'w-full min-h-[44px] sm:min-h-[60px] max-w-sm mx-auto my-2',
   };
 
   return (
-    <div className={`adsense-wrapper relative overflow-hidden transition-all duration-300 rounded-2xl border border-indigo-500/20 shadow-md ${dimensionClasses[type] || ''} ${className}`}>
+    <div className={`adsense-wrapper relative overflow-hidden transition-all duration-300 rounded-2xl border border-indigo-500/20 shadow-sm ${dimensionClasses[type] || ''} ${className}`}>
       {/* Policy Compliant Ad Header */}
-      <div className="flex items-center justify-between px-3 py-1 bg-slate-950/70 border-b border-slate-800/80 text-[10px] text-slate-500 select-none">
+      <div className="flex items-center justify-between px-3 py-0.5 bg-slate-950/70 border-b border-slate-800/80 text-[10px] text-slate-500 select-none">
         <div className="flex items-center gap-1.5">
           <span className="px-1.5 py-0.2 rounded bg-indigo-500/20 text-indigo-400 font-bold border border-indigo-500/30 text-[9px]">AD</span>
           <span className="text-slate-400 font-medium">{label}</span>
@@ -46,7 +46,7 @@ export default function AdBanner({
       </div>
 
       {/* AdSense Container */}
-      <div className="p-3 sm:p-4 bg-gradient-to-br from-slate-900/80 via-slate-950/90 to-indigo-950/30 flex flex-col items-center justify-center text-center backdrop-blur-md">
+      <div className="p-2 sm:p-2.5 bg-gradient-to-br from-slate-900/80 via-slate-950/90 to-indigo-950/30 flex flex-col items-center justify-center text-center backdrop-blur-md">
         {/* Google AdSense Official Tag Placeholder */}
         <ins
           className="adsbygoogle w-full block text-center"
@@ -58,9 +58,9 @@ export default function AdBanner({
         />
 
         {/* Fallback / Preview UI */}
-        <div className="adsense-fallback flex flex-col sm:flex-row items-center justify-between gap-3 w-full py-2.5 px-3.5 rounded-xl bg-indigo-950/30 border border-indigo-500/15 hover:border-indigo-500/30 transition-all">
-          <div className="flex items-center gap-3 text-left">
-            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-indigo-600/30 to-purple-600/30 border border-indigo-500/30 flex items-center justify-center text-lg sm:text-xl shrink-0 shadow-sm">
+        <div className="adsense-fallback flex flex-col sm:flex-row items-center justify-between gap-2.5 w-full py-2 px-3 rounded-xl bg-indigo-950/30 border border-indigo-500/15 hover:border-indigo-500/30 transition-all">
+          <div className="flex items-center gap-2.5 text-left">
+            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-indigo-600/30 to-purple-600/30 border border-indigo-500/30 flex items-center justify-center text-base shrink-0 shadow-sm">
               {type === 'in-article' ? '💡' : '🚀'}
             </div>
             <div>
@@ -78,7 +78,7 @@ export default function AdBanner({
           </div>
           <a
             href={type === 'in-article' ? '/prompts' : '/tools'}
-            className="shrink-0 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white text-xs font-bold transition-all shadow-md shadow-indigo-600/20 flex items-center gap-1"
+            className="shrink-0 px-3 py-1 rounded-lg bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white text-[11px] font-bold transition-all shadow-md shadow-indigo-600/20 flex items-center gap-1"
           >
             <span>자세히 보기</span>
             <span>&rarr;</span>
@@ -88,3 +88,4 @@ export default function AdBanner({
     </div>
   );
 }
+

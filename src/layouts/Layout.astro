@@ -1,5 +1,6 @@
 ---
 import SEO from '../components/SEO.astro';
+import SideRailAds from '../components/ads/SideRailAds.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -12,13 +13,13 @@ const currentPath = Astro.url.pathname;
 
 const navItems = [
   { href: '/', label: '홈', icon: '🏠' },
-  { href: '/blog', label: '블로그', badge: '56+' },
-  { href: '/insights', label: '인사이트', badge: '94' },
-  { href: '/tools', label: '프로그램', badge: '130+' },
-  { href: '/prompts', label: '프롬프트', badge: '274' },
-  { href: '/gpts', label: '챗봇지침', badge: '100' },
+  { href: '/blog', label: '블로그' },
+  { href: '/insights', label: '인사이트' },
+  { href: '/tools', label: '프로그램' },
+  { href: '/prompts', label: '프롬프트' },
+  { href: '/gpts', label: '챗봇지침' },
   { href: '/gallery', label: '바나나 갤러리', icon: '🍌' },
-  { href: '/ai-tools', label: 'AI 도구', badge: '152+' },
+  { href: '/ai-tools', label: 'AI 도구' },
   { href: '/ebooks', label: '전자책' },
   { href: '/faq', label: 'FAQ' },
 ];
@@ -39,10 +40,13 @@ const navItems = [
       })();
     </script>
   </head>
-  <body class="min-h-screen flex flex-col font-sans antialiased stitch-bg selection:bg-indigo-500 selection:text-white transition-colors duration-300">
+  <body class="min-h-screen flex flex-col font-sans antialiased stitch-bg selection:bg-indigo-500 selection:text-white transition-colors duration-300 relative">
+    {/* Widescreen Fixed Left/Right Skyscraper Side Rail Ads */}
+    <SideRailAds />
+
     {/* Header with Category Menus */}
     <header class="sticky top-0 z-50 backdrop-blur-2xl border-b border-[var(--header-border)] transition-all duration-300 shadow-sm dark:shadow-indigo-950/20">
-      <div class="container mx-auto px-4 h-16 flex items-center justify-between gap-3">
+      <div class="container mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
         {/* Brand Logo */}
         <a href="/" class="flex items-center gap-2.5 group shrink-0">
           <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-indigo-500/15 via-purple-500/15 to-pink-500/15 border border-indigo-500/30 flex items-center justify-center shadow-md shadow-indigo-500/10 group-hover:scale-105 group-hover:border-purple-500/50 transition-all p-1">
@@ -56,7 +60,7 @@ const navItems = [
         </a>
 
         {/* Category Navigation Links (Visible on Tablet/Desktop) */}
-        <nav class="hidden lg:flex items-center gap-0.5 xl:gap-1">
+        <nav class="hidden lg:flex items-center gap-1 xl:gap-1.5">
           {navItems.map((item) => {
             const isActive = item.href === '/' 
               ? currentPath === '/' 
@@ -65,7 +69,7 @@ const navItems = [
             return (
               <a
                 href={item.href}
-                class={`px-2 xl:px-2.5 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 flex items-center gap-1 relative group ${
+                class={`px-2.5 xl:px-3 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 flex items-center gap-1 relative group ${
                   isActive
                     ? 'text-indigo-600 dark:text-indigo-400 font-bold bg-indigo-50 dark:bg-indigo-500/15 border border-indigo-200 dark:border-indigo-500/35 shadow-sm'
                     : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/70'
@@ -73,15 +77,6 @@ const navItems = [
               >
                 {item.icon && <span class="text-xs">{item.icon}</span>}
                 <span>{item.label}</span>
-                {item.badge && (
-                  <span class={`text-[9px] px-1.5 py-0.2 rounded-full font-bold uppercase tracking-wider ${
-                    item.badge === 'Hot' 
-                      ? 'bg-pink-100 dark:bg-pink-500/20 text-pink-600 dark:text-pink-400 border border-pink-200 dark:border-pink-500/30' 
-                      : 'bg-indigo-100 dark:bg-indigo-500/20 text-indigo-600 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-500/30'
-                  }`}>
-                    {item.badge}
-                  </span>
-                )}
               </a>
             );
           })}
@@ -147,11 +142,6 @@ const navItems = [
             >
               {item.icon && <span class="text-xs">{item.icon}</span>}
               <span>{item.label}</span>
-              {item.badge && (
-                <span class="text-[9px] px-1 py-0.2 rounded bg-slate-200 dark:bg-slate-800 text-indigo-700 dark:text-indigo-300 font-semibold">
-                  {item.badge}
-                </span>
-              )}
             </a>
           );
         })}
