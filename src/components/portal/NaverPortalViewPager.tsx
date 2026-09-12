@@ -441,35 +441,33 @@ export default function NaverPortalViewPager({ initialCategoryId = 'home' }: Pro
     <div className="w-full flex flex-col">
       {/* 1. Naver-Style Stationary Sub-Header Tab Bar (Mobile only < 1024px, hidden on desktop to avoid duplicate menu) */}
       <div className="lg:hidden relative w-full bg-[var(--bg-header)] border-b border-[var(--header-border)]">
-        <div className="relative max-w-7xl mx-auto">
-          {/* Edge Fade Gradients */}
-          <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-4 bg-gradient-to-r from-[var(--bg-header)] to-transparent z-10"></div>
-          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-4 bg-gradient-to-l from-[var(--bg-header)] to-transparent z-10"></div>
+        {/* Edge Fade Gradients */}
+        <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-3 bg-gradient-to-r from-[var(--bg-header)] to-transparent z-10"></div>
+        <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-3 bg-gradient-to-l from-[var(--bg-header)] to-transparent z-10"></div>
 
-          {/* Scrollable Tab Row */}
-          <div
-            ref={tabContainerRef}
-            className="flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 overflow-x-auto scrollbar-none scroll-smooth select-none"
-          >
-            {PORTAL_CATEGORIES.map((cat, idx) => {
-              const isActive = idx === activeIndex;
-              return (
-                <button
-                  key={cat.id}
-                  ref={el => { tabRefs.current[idx] = el; }}
-                  onClick={() => changeTab(idx, true)}
-                  className={`relative flex items-center gap-1.5 py-1.5 px-3.5 rounded-full text-xs font-bold whitespace-nowrap transition-all duration-200 shrink-0 cursor-pointer ${
-                    isActive
-                      ? 'text-white bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 shadow-md shadow-indigo-500/30 scale-[1.03]'
-                      : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white bg-slate-100 dark:bg-slate-800/80 hover:bg-slate-200 dark:hover:bg-slate-700/80 active:scale-95'
-                  }`}
-                >
-                  {cat.icon && <span className="text-xs">{cat.icon}</span>}
-                  <span>{cat.label}</span>
-                </button>
-              );
-            })}
-          </div>
+        {/* Scrollable Tab Row */}
+        <div
+          ref={tabContainerRef}
+          className="flex items-center gap-1.5 px-3 py-2 overflow-x-auto scrollbar-none scroll-smooth select-none w-full"
+        >
+          {PORTAL_CATEGORIES.map((cat, idx) => {
+            const isActive = idx === activeIndex;
+            return (
+              <button
+                key={cat.id}
+                ref={el => { tabRefs.current[idx] = el; }}
+                onClick={() => changeTab(idx, true)}
+                className={`relative flex items-center gap-1.5 py-1.5 px-3.5 rounded-full text-xs font-bold whitespace-nowrap transition-all duration-200 shrink-0 cursor-pointer ${
+                  isActive
+                    ? 'text-white bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 shadow-md shadow-indigo-500/30 scale-[1.03]'
+                    : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white bg-slate-100 dark:bg-slate-800/80 hover:bg-slate-200 dark:hover:bg-slate-700/80 active:scale-95'
+                }`}
+              >
+                {cat.icon && <span className="text-xs">{cat.icon}</span>}
+                <span>{cat.label}</span>
+              </button>
+            );
+          })}
         </div>
       </div>
 
@@ -480,7 +478,7 @@ export default function NaverPortalViewPager({ initialCategoryId = 'home' }: Pro
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
         onTouchCancel={handleTouchEnd}
-        className="w-full overflow-hidden relative touch-pan-y min-h-[70vh] pt-4"
+        className="w-full overflow-hidden relative touch-pan-y min-h-[70vh] pt-3 sm:pt-4"
       >
         {/* Continuous Horizontal Flex Track */}
         <div
@@ -498,7 +496,7 @@ export default function NaverPortalViewPager({ initialCategoryId = 'home' }: Pro
             return (
               <div
                 key={cat.id}
-                className={`w-full shrink-0 min-w-full box-border ${
+                className={`w-full shrink-0 min-w-full box-border px-3 sm:px-0 ${
                   shouldHaveHeight 
                     ? 'block' 
                     : 'h-0 max-h-0 overflow-hidden invisible pointer-events-none select-none'
