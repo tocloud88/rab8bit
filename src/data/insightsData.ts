@@ -15,6 +15,27 @@ export interface InsightItem {
 
 export const INSIGHTS_DATA: InsightItem[] = [
   {
+    "id": "minimax-h3-comfyui-autumn-youth-animation",
+    "category": "AI 영상 제작",
+    "access": "공개",
+    "title": "MiniMax H3로 만든 가을 청춘 애니메이션 | ComfyUI 워크플로",
+    "video_url": "https://www.youtube.com/watch?v=G-MUEl-PfrI",
+    "description": "최신 고화질 비디오 생성 모델 MiniMax H3와 ComfyUI를 활용하여 감성적인 가을 분위기의 청춘 애니메이션 영상을 제작하는 워크플로와 프롬프트 연출 노하우를 소개합니다.",
+    "download_url": null,
+    "thumbnail": "https://i.ytimg.com/vi/G-MUEl-PfrI/hqdefault.jpg",
+    "tags": [
+      "MiniMax",
+      "MiniMax H3",
+      "ComfyUI",
+      "AI애니메이션",
+      "AI영상제작",
+      "컴피UI"
+    ],
+    "date": "2026-09-12",
+    "sort_order": 93,
+    "is_new": 1
+  },
+  {
     "id": "ai-pet-duck-reinforcement-learning",
     "category": "AI 트렌드",
     "access": "공개",
