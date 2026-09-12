@@ -40,6 +40,18 @@ const navItems = [
   { href: '/ebooks', label: '전자책' },
   { href: '/faq', label: 'FAQ' },
 ];
+
+const isPortalCategoryPage = [
+  '/insights',
+  '/ai-tools',
+  '/blog',
+  '/tools',
+  '/prompts',
+  '/gpts',
+  '/gallery',
+  '/ebooks',
+  '/faq'
+].some(p => currentPath === p || currentPath === p + '/' || currentPath === p + '/index.html');
 ---
 
 <!doctype html>
@@ -143,34 +155,36 @@ const navItems = [
         </div>
       </div>
 
-      {/* Sub-Header Mobile Horizontal Scroll Navigation bar (Only on Mobile < 1024px) */}
-      <div class="lg:hidden relative border-t border-[var(--header-border)] bg-[var(--bg-header)]">
-        {/* Left / Right Scroll Gradient Fades (Naver Style) */}
-        <div class="pointer-events-none absolute left-0 top-0 bottom-0 w-3 bg-gradient-to-r from-[var(--bg-header)] to-transparent z-10"></div>
-        <div class="pointer-events-none absolute right-0 top-0 bottom-0 w-3 bg-gradient-to-l from-[var(--bg-header)] to-transparent z-10"></div>
+      {/* Sub-Header Mobile Horizontal Scroll Navigation bar (Only on Standalone Pages < 1024px) */}
+      {!isPortalCategoryPage && (
+        <div class="lg:hidden relative border-t border-[var(--header-border)] bg-[var(--bg-header)]">
+          {/* Left / Right Scroll Gradient Fades (Naver Style) */}
+          <div class="pointer-events-none absolute left-0 top-0 bottom-0 w-3 bg-gradient-to-r from-[var(--bg-header)] to-transparent z-10"></div>
+          <div class="pointer-events-none absolute right-0 top-0 bottom-0 w-3 bg-gradient-to-l from-[var(--bg-header)] to-transparent z-10"></div>
 
-        <div id="mobile-nav-bar" class="flex items-center gap-1.5 py-2 px-3 text-xs overflow-x-auto scrollbar-none scroll-smooth select-none">
-          {navItems.map((item) => {
-            const isActive = item.href === '/' 
-              ? currentPath === '/' 
-              : currentPath.startsWith(item.href);
-            return (
-              <a
-                href={item.href}
-                id={isActive ? 'active-mobile-nav' : undefined}
-                class={`flex items-center gap-1 py-1.5 px-3 rounded-full whitespace-nowrap transition-all duration-200 text-xs shrink-0 font-medium ${
-                  isActive 
-                    ? 'text-white font-bold bg-gradient-to-r from-indigo-600 to-purple-600 shadow-sm shadow-indigo-500/25 scale-[1.02]' 
-                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-900/60 active:scale-95'
-                }`}
-              >
-                {item.icon && <span class="text-xs">{item.icon}</span>}
-                <span>{item.label}</span>
-              </a>
-            );
-          })}
+          <div id="mobile-nav-bar" class="flex items-center gap-1.5 py-2 px-3 text-xs overflow-x-auto scrollbar-none scroll-smooth select-none">
+            {navItems.map((item) => {
+              const isActive = item.href === '/' 
+                ? currentPath === '/' 
+                : currentPath.startsWith(item.href);
+              return (
+                <a
+                  href={item.href}
+                  id={isActive ? 'active-mobile-nav' : undefined}
+                  class={`flex items-center gap-1 py-1.5 px-3 rounded-full whitespace-nowrap transition-all duration-200 text-xs shrink-0 font-medium ${
+                    isActive 
+                      ? 'text-white font-bold bg-gradient-to-r from-indigo-600 to-purple-600 shadow-sm shadow-indigo-500/25 scale-[1.02]' 
+                      : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-900/60 active:scale-95'
+                  }`}
+                >
+                  {item.icon && <span class="text-xs">{item.icon}</span>}
+                  <span>{item.label}</span>
+                </a>
+              );
+            })}
+          </div>
         </div>
-      </div>
+      )}
     </header>
 
     {/* Main Container */}
