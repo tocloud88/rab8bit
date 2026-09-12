@@ -129,20 +129,24 @@ const relatedPosts = BLOGS_DATA.filter((p) => p.id !== post.id).slice(0, 4);
 </Layout>
 
 <style is:global>
-  /* Blog Content High-Contrast & Readability Engine */
-  
-  /* Dark Mode Content Overrides */
+  /* ==========================================================================
+     Blog Content High-Contrast & Premium Readability Engine
+     ========================================================================== */
+
+  /* 1. DARK MODE BASE TYPOGRAPHY */
   html.dark .blog-content {
     color: #e2e8f0 !important;
   }
   html.dark .blog-content p,
   html.dark .blog-content li,
-  html.dark .blog-content span {
+  html.dark .blog-content span,
+  html.dark .blog-content td {
     color: #e2e8f0 !important;
-    line-height: 1.8 !important;
+    line-height: 1.85 !important;
   }
   html.dark .blog-content strong,
-  html.dark .blog-content b {
+  html.dark .blog-content b,
+  html.dark .blog-content th {
     color: #ffffff !important;
     font-weight: 700 !important;
   }
@@ -152,34 +156,131 @@ const relatedPosts = BLOGS_DATA.filter((p) => p.id !== post.id).slice(0, 4);
   html.dark .blog-content h4 {
     color: #ffffff !important;
   }
+  html.dark .blog-content a {
+    color: #818cf8 !important;
+  }
+  html.dark .blog-content a:hover {
+    color: #a5b4fc !important;
+    text-decoration: underline !important;
+  }
+  html.dark .blog-content code {
+    color: #93c5fd !important;
+    background: rgba(15, 23, 42, 0.9) !important;
+    border: 1px solid rgba(99, 102, 241, 0.3) !important;
+  }
+
+  /* 2. DARK MODE GENERIC DIV CARDS & CONTAINERS */
   html.dark .blog-content div {
     color: #e2e8f0 !important;
   }
   
-  /* Callout & Card Backgrounds in Dark Mode */
-  html.dark .blog-content div[style*="background-color: #f0fdf4"],
-  html.dark .blog-content div[style*="background-color: #eff6ff"],
-  html.dark .blog-content div[style*="background-color: #fbe9e7"],
-  html.dark .blog-content div[style*="background-color: #f8fafc"],
+  /* Catch all light-background card divs and convert them to dark glass cards */
+  html.dark .blog-content div[style*="background-color: #f"],
+  html.dark .blog-content div[style*="background-color: #e"],
+  html.dark .blog-content div[style*="background-color: #d"],
+  html.dark .blog-content div[style*="background-color: #c"],
+  html.dark .blog-content div[style*="background-color: white"],
+  html.dark .blog-content div[style*="background-color: #ffffff"],
   html.dark .blog-content div[style*="background: #fff"],
-  html.dark .blog-content div[style*="background-color: #fafafa"] {
-    background: rgba(15, 23, 42, 0.85) !important;
-    border-color: rgba(99, 102, 241, 0.3) !important;
+  html.dark .blog-content div[style*="background:#fff"],
+  html.dark .blog-content div[style*="background: #e"],
+  html.dark .blog-content div[style*="background: #f"],
+  html.dark .blog-content div[style*="background:#f"],
+  html.dark .blog-content div[style*="background: linear-gradient(135deg, #f"],
+  html.dark .blog-content div[style*="background: linear-gradient(to right, #f"] {
+    background: rgba(15, 23, 42, 0.88) !important;
+    border: 1px solid rgba(99, 102, 241, 0.25) !important;
     color: #e2e8f0 !important;
   }
-  html.dark .blog-content div[style*="background-color: #fef2f2"] {
-    background: rgba(69, 10, 10, 0.4) !important;
-    border-color: rgba(239, 68, 68, 0.5) !important;
-    color: #fca5a5 !important;
+
+  /* 3. DARK MODE SEMANTIC CALLOUT BOXES */
+  /* Green / Tip / Success Callouts */
+  html.dark .blog-content div[style*="#f0fdf4"],
+  html.dark .blog-content div[style*="#e6f4ea"],
+  html.dark .blog-content div[style*="#f1f8e9"],
+  html.dark .blog-content div[style*="#e0f2f1"],
+  html.dark .blog-content div[style*="border-left: 4px solid #16a34a"],
+  html.dark .blog-content div[style*="border-left: 4px solid #34a853"] {
+    background: rgba(6, 78, 59, 0.35) !important;
+    border: 1px solid rgba(16, 185, 129, 0.35) !important;
+    border-left: 4px solid #10b981 !important;
+    color: #d1fae5 !important;
   }
-  html.dark .blog-content div[style*="linear-gradient"] {
+  html.dark .blog-content div[style*="#f0fdf4"] *,
+  html.dark .blog-content div[style*="#e6f4ea"] * {
+    color: #d1fae5 !important;
+  }
+  html.dark .blog-content div[style*="#f0fdf4"] strong,
+  html.dark .blog-content div[style*="#e6f4ea"] strong {
     color: #ffffff !important;
   }
-  
-  /* Tables in Dark Mode */
+
+  /* Blue / Info Callouts */
+  html.dark .blog-content div[style*="#eff6ff"],
+  html.dark .blog-content div[style*="#e3f2fd"],
+  html.dark .blog-content div[style*="#e8f4fd"],
+  html.dark .blog-content div[style*="#e8f0fe"],
+  html.dark .blog-content div[style*="border-left: 4px solid #3b82f6"],
+  html.dark .blog-content div[style*="border-left: 4px solid #1a73e8"] {
+    background: rgba(30, 58, 138, 0.35) !important;
+    border: 1px solid rgba(59, 130, 246, 0.35) !important;
+    border-left: 4px solid #3b82f6 !important;
+    color: #dbeafe !important;
+  }
+  html.dark .blog-content div[style*="#eff6ff"] *,
+  html.dark .blog-content div[style*="#e3f2fd"] * {
+    color: #dbeafe !important;
+  }
+  html.dark .blog-content div[style*="#eff6ff"] strong,
+  html.dark .blog-content div[style*="#e3f2fd"] strong {
+    color: #ffffff !important;
+  }
+
+  /* Red / Warning / Alert Callouts */
+  html.dark .blog-content div[style*="#fef2f2"],
+  html.dark .blog-content div[style*="#ffebee"],
+  html.dark .blog-content div[style*="#fce8e6"],
+  html.dark .blog-content div[style*="#fbe9e7"],
+  html.dark .blog-content div[style*="border-left: 4px solid #ef4444"],
+  html.dark .blog-content div[style*="border-left: 4px solid #c62828"] {
+    background: rgba(69, 10, 10, 0.4) !important;
+    border: 1px solid rgba(239, 68, 68, 0.35) !important;
+    border-left: 4px solid #ef4444 !important;
+    color: #fecaca !important;
+  }
+  html.dark .blog-content div[style*="#fef2f2"] *,
+  html.dark .blog-content div[style*="#ffebee"] * {
+    color: #fecaca !important;
+  }
+  html.dark .blog-content div[style*="#fef2f2"] strong,
+  html.dark .blog-content div[style*="#ffebee"] strong {
+    color: #ffffff !important;
+  }
+
+  /* Amber / Orange / Note Callouts */
+  html.dark .blog-content div[style*="#fff3e0"],
+  html.dark .blog-content div[style*="#fef6e0"],
+  html.dark .blog-content div[style*="#fde293"] {
+    background: rgba(120, 53, 15, 0.35) !important;
+    border: 1px solid rgba(245, 158, 11, 0.35) !important;
+    border-left: 4px solid #f59e0b !important;
+    color: #fef3c7 !important;
+  }
+
+  /* Inner Card Divider Lines (e.g. 💡 실무자를 위한 핵심 3줄 요약) */
+  html.dark .blog-content div[style*="border-bottom"] {
+    border-color: rgba(99, 102, 241, 0.4) !important;
+    color: #ffffff !important;
+  }
+
+  /* 4. DARK MODE TABLES */
   html.dark .blog-content table {
-    background-color: rgba(15, 23, 42, 0.8) !important;
+    background-color: rgba(15, 23, 42, 0.85) !important;
     border-color: rgba(99, 102, 241, 0.3) !important;
+  }
+  html.dark .blog-content thead tr,
+  html.dark .blog-content tr[style*="background"] {
+    background: rgba(30, 41, 59, 0.95) !important;
   }
   html.dark .blog-content th {
     background: rgba(30, 41, 59, 0.95) !important;
@@ -190,25 +291,27 @@ const relatedPosts = BLOGS_DATA.filter((p) => p.id !== post.id).slice(0, 4);
     background-color: transparent !important;
   }
   html.dark .blog-content tr:nth-child(even) {
-    background-color: rgba(30, 41, 59, 0.4) !important;
+    background-color: rgba(30, 41, 59, 0.45) !important;
   }
   html.dark .blog-content td {
     color: #e2e8f0 !important;
     border-color: rgba(99, 102, 241, 0.2) !important;
   }
-  
-  /* Light Mode Readability */
+
+  /* 5. LIGHT MODE READABILITY */
   html:not(.dark) .blog-content {
     color: #1e293b !important;
   }
   html:not(.dark) .blog-content p,
   html:not(.dark) .blog-content li,
-  html:not(.dark) .blog-content span {
+  html:not(.dark) .blog-content span,
+  html:not(.dark) .blog-content td {
     color: #334155 !important;
-    line-height: 1.8 !important;
+    line-height: 1.85 !important;
   }
   html:not(.dark) .blog-content strong,
-  html:not(.dark) .blog-content b {
+  html:not(.dark) .blog-content b,
+  html:not(.dark) .blog-content th {
     color: #0f172a !important;
     font-weight: 700 !important;
   }
