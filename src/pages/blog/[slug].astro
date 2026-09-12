@@ -70,12 +70,15 @@ const relatedPosts = BLOGS_DATA.filter((p) => p.id !== post.id).slice(0, 4);
 
     {/* Featured Thumbnail if present */}
     {post.thumbnail && (
-      <div class="rounded-2xl overflow-hidden border border-slate-800 shadow-2xl aspect-[16/9] bg-slate-950 max-h-[420px]">
-        <img
-          src={post.thumbnail}
-          alt={post.title}
-          class="w-full h-full object-cover"
-        />
+      <div class="flex justify-center w-full my-2">
+        <div class="w-full max-w-[800px] rounded-2xl overflow-hidden border border-slate-800 shadow-2xl bg-slate-950 flex items-center justify-center">
+          <img
+            src={post.thumbnail}
+            alt={post.title}
+            class="w-full h-auto max-h-[460px] object-cover object-center"
+            loading="eager"
+          />
+        </div>
       </div>
     )}
 
