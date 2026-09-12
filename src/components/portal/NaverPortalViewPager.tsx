@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
+import HomePortalPanel from './HomePortalPanel';
 import InsightsDirectory from '../insights/InsightsDirectory';
 import AiToolsDirectory from '../ai-tools/AiToolsDirectory';
 import BlogDirectory from '../blog/BlogDirectory';
@@ -16,6 +17,7 @@ export interface CategoryTab {
 }
 
 export const PORTAL_CATEGORIES: CategoryTab[] = [
+  { id: 'home', label: '홈', href: '/', icon: '🏠', title: 'rab8bit | AI 인사이트, 프롬프트, 도구 & 갤러리 올인원 플랫폼' },
   { id: 'insights', label: '인사이트', href: '/insights', icon: '🎬', title: 'AI 인사이트 & 실무 팁 - rab8bit' },
   { id: 'ai-tools', label: 'AI 도구', href: '/ai-tools', icon: '🤖', title: '추천 AI 웹사이트 & 도구 모음 (172종) | rab8bit' },
   { id: 'blog', label: '블로그', href: '/blog', icon: '📝', title: 'AI 심층 블로그 & 최신 테크 아티클 | rab8bit' },
@@ -85,7 +87,7 @@ interface Props {
   initialCategoryId?: string;
 }
 
-export default function NaverPortalViewPager({ initialCategoryId = 'insights' }: Props) {
+export default function NaverPortalViewPager({ initialCategoryId = 'home' }: Props) {
   const initialIndex = useMemo(() => {
     const idx = PORTAL_CATEGORIES.findIndex(c => c.id === initialCategoryId);
     return idx >= 0 ? idx : 0;
@@ -150,7 +152,12 @@ export default function NaverPortalViewPager({ initialCategoryId = 'insights' }:
   useEffect(() => {
     const onPopState = () => {
       const path = window.location.pathname;
-      const idx = PORTAL_CATEGORIES.findIndex(c => c.href === path || (c.href !== '/' && path.startsWith(c.href)));
+      let idx = -1;
+      if (path === '/' || path === '/index.html') {
+        idx = PORTAL_CATEGORIES.findIndex(c => c.id === 'home');
+      } else {
+        idx = PORTAL_CATEGORIES.findIndex(c => c.id !== 'home' && (c.href === path || path.startsWith(c.href)));
+      }
       if (idx >= 0 && idx !== activeIndex) {
         changeTab(idx, false);
       }
@@ -271,6 +278,15 @@ export default function NaverPortalViewPager({ initialCategoryId = 'insights' }:
     }
 
     switch (tabId) {
+      case 'home':
+        return (
+          <HomePortalPanel
+            onNavigateTab={(targetTabId) => {
+              const targetIdx = PORTAL_CATEGORIES.findIndex(c => c.id === targetTabId);
+              if (targetIdx >= 0) changeTab(targetIdx, true);
+            }}
+          />
+        );
       case 'insights':
         return (
           <div className="space-y-6">
