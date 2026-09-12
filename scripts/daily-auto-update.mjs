@@ -43,57 +43,99 @@ function calcFontSize(text, baseSize, maxChars) {
   return Math.round(baseSize * (maxChars / len));
 }
 
-// SVG Hooking Thumbnail Generator (High Impact & Super Legible Paperlogy Font)
-function generateHookSvg(width, height, badge, title1, title2) {
+// SVG Dynamic Pop-Art Thumbnail Generator (Paperlogy Font + Slanted 3D Pop Layout)
+function generateHookSvg(width, height, badge, title1, title2, subTag) {
   const w = width || 1280;
   const h = height || 720;
-  const badgeWidth = Math.max(480, (badge || '').length * 36 + 120);
-  const title1Size = calcFontSize(title1, 116, 10);
-  const title2Size = calcFontSize(title2, 98, 11);
+  const title1Size = calcFontSize(title1, 122, 9);
+  const title2Size = calcFontSize(title2, 106, 11);
+  const badgeWidth = Math.max(460, (badge || '').length * 36 + 100);
+  const slogan = subTag || '🔥 2026 최신 AI 트렌드 & 실무 가이드';
 
   return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="badgeGrad" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#e11d48"/>
-      <stop offset="50%" stop-color="#ec4899"/>
-      <stop offset="100%" stop-color="#9333ea"/>
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
     </linearGradient>
-    <linearGradient id="yellowText" x1="0" y1="0" x2="0" y2="1">
+    <linearGradient id="neonYellowGrad" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#ffffff"/>
-      <stop offset="20%" stop-color="#fef08a"/>
-      <stop offset="100%" stop-color="#fbbf24"/>
+      <stop offset="15%" stop-color="#fef08a"/>
+      <stop offset="70%" stop-color="#facc15"/>
+      <stop offset="100%" stop-color="#eab308"/>
     </linearGradient>
-    <filter id="megaShadow" x="-30%" y="-30%" width="160%" height="160%">
-      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000000" flood-opacity="1"/>
-      <feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#000000" flood-opacity="1"/>
-      <feDropShadow dx="0" dy="24" stdDeviation="30" flood-color="#000000" flood-opacity="0.9"/>
+    <filter id="comicShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="10" stdDeviation="4" flood-color="#000000" flood-opacity="1"/>
+      <feDropShadow dx="6" dy="18" stdDeviation="12" flood-color="#000000" flood-opacity="0.95"/>
+      <feDropShadow dx="0" dy="28" stdDeviation="24" flood-color="#000000" flood-opacity="0.85"/>
     </filter>
     <filter id="badgeShadow" x="-30%" y="-30%" width="160%" height="160%">
-      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="0.9"/>
-      <feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#000000" flood-opacity="0.8"/>
+      <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000000" flood-opacity="0.9"/>
+      <feDropShadow dx="0" dy="16" stdDeviation="14" flood-color="#000000" flood-opacity="0.75"/>
     </filter>
+    <polygon id="comicStar" points="0,-35 10,-12 35,-15 18,5 25,30 3,18 -18,28 -12,5 -32,-12 -8,-15" fill="#facc15" stroke="#000000" stroke-width="4"/>
   </defs>
 
-  <!-- Top Title Bar / Badge -->
-  <g transform="translate(${w / 2}, 145)" filter="url(#badgeShadow)">
-    <rect x="-${badgeWidth / 2}" y="-42" width="${badgeWidth}" height="84" rx="42" fill="url(#badgeGrad)" stroke="#ffffff" stroke-width="3.5" stroke-opacity="0.9"/>
-    <text x="0" y="15" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="42" font-weight="900" fill="#ffffff" letter-spacing="0.5">
-      ${badge}
-    </text>
-  </g>
+  <g transform="translate(${w / 2}, ${h / 2}) rotate(-3.5) skewX(-3)">
+    <g transform="translate(-480, -220) rotate(-15) scale(1.3)" filter="url(#badgeShadow)">
+      <use href="#comicStar" fill="#f43f5e" stroke="#000000" stroke-width="4"/>
+    </g>
+    <g transform="translate(480, -180) rotate(20) scale(1.4)" filter="url(#badgeShadow)">
+      <use href="#comicStar" fill="#38bdf8" stroke="#000000" stroke-width="4"/>
+    </g>
+    <g transform="translate(-460, 160) rotate(10) scale(1.1)" filter="url(#badgeShadow)">
+      <use href="#comicStar" fill="#facc15" stroke="#000000" stroke-width="4"/>
+    </g>
+    <g transform="translate(490, 140) rotate(-25) scale(1.3)" filter="url(#badgeShadow)">
+      <use href="#comicStar" fill="#a3e635" stroke="#000000" stroke-width="4"/>
+    </g>
 
-  <!-- Main Headline 1 -->
-  <g transform="translate(${w / 2}, 365)" filter="url(#megaShadow)">
-    <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="${title1Size}" font-weight="900" fill="#ffffff" stroke="#000000" stroke-width="18" paint-order="stroke fill" letter-spacing="-2">
-      ${title1}
-    </text>
-  </g>
+    <g transform="translate(-360, -230) rotate(-8)" filter="url(#badgeShadow)">
+      <rect x="-110" y="-24" width="220" height="48" rx="24" fill="#000000" stroke="#facc15" stroke-width="4"/>
+      <text x="0" y="8" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="22" font-weight="900" fill="#facc15" letter-spacing="1">
+        ✦ HOT ISSUE
+      </text>
+    </g>
 
-  <!-- Main Headline 2 -->
-  <g transform="translate(${w / 2}, 545)" filter="url(#megaShadow)">
-    <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="${title2Size}" font-weight="900" fill="url(#yellowText)" stroke="#000000" stroke-width="16" paint-order="stroke fill" letter-spacing="-1.5">
-      ${title2}
-    </text>
+    <g transform="translate(360, -230) rotate(6)" filter="url(#badgeShadow)">
+      <rect x="-100" y="-24" width="200" height="48" rx="24" fill="#f43f5e" stroke="#ffffff" stroke-width="3.5"/>
+      <text x="0" y="8" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="22" font-weight="900" fill="#ffffff" letter-spacing="1">
+        🔥 2026 NEW
+      </text>
+    </g>
+
+    <g transform="translate(0, -150)" filter="url(#badgeShadow)">
+      <polygon points="-${badgeWidth / 2 + 30},-46 ${badgeWidth / 2 + 30},-46 ${badgeWidth / 2 + 10},46 -${badgeWidth / 2 + 10},46" fill="#000000"/>
+      <polygon points="-${badgeWidth / 2 + 20},-42 ${badgeWidth / 2 + 20},-42 ${badgeWidth / 2 + 2},42 -${badgeWidth / 2 + 2},42" fill="url(#badgeGrad)" stroke="#ffffff" stroke-width="4"/>
+      <text x="0" y="14" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="38" font-weight="900" fill="#ffffff" stroke="#000000" stroke-width="6" paint-order="stroke fill" letter-spacing="1">
+        ${badge}
+      </text>
+    </g>
+
+    <g transform="translate(0, 40)" filter="url(#comicShadow)">
+      <text x="0" y="10" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="${title1Size}" font-weight="900" fill="#000000" stroke="#000000" stroke-width="26" paint-order="stroke fill" letter-spacing="-2">
+        ${title1}
+      </text>
+      <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="${title1Size}" font-weight="900" fill="#ffffff" stroke="#000000" stroke-width="16" paint-order="stroke fill" letter-spacing="-2">
+        ${title1}
+      </text>
+    </g>
+
+    <g transform="translate(0, 185)" filter="url(#comicShadow)">
+      <text x="0" y="10" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="${title2Size}" font-weight="900" fill="#000000" stroke="#000000" stroke-width="24" paint-order="stroke fill" letter-spacing="-1.5">
+        ${title2}
+      </text>
+      <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="${title2Size}" font-weight="900" fill="url(#neonYellowGrad)" stroke="#000000" stroke-width="14" paint-order="stroke fill" letter-spacing="-1.5">
+        ${title2}
+      </text>
+    </g>
+
+    <g transform="translate(0, 275)" filter="url(#badgeShadow)">
+      <polygon points="-460,-22 460,-22 445,22 -445,22" fill="#030712" stroke="#ffffff" stroke-width="2"/>
+      <text x="0" y="7" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-8ExtraBold', sans-serif" font-size="20" font-weight="900" fill="#ffffff" letter-spacing="0.5">
+        ${slogan}
+      </text>
+    </g>
   </g>
 </svg>`;
 }
