@@ -68,10 +68,50 @@ import { GEMINI_MANUAL_PARTS } from '../../data/geminiManualData';
       <AdBanner type="leaderboard" label="AI 클라우드 스폰서" />
     </div>
 
+    {/* Mobile Collapsible Table of Contents (< 1024px) */}
+    <div class="lg:hidden print:hidden">
+      <details class="stitch-card p-4 rounded-2xl border border-indigo-500/30 group bg-slate-900/90">
+        <summary class="font-bold text-sm text-white flex items-center justify-between cursor-pointer list-none select-none">
+          <span class="flex items-center gap-2">
+            <span>📑</span>
+            <span>전체 목차 펼쳐보기 (총 6부 19장)</span>
+          </span>
+          <span class="text-xs text-indigo-400 group-open:rotate-180 transition-transform">▼</span>
+        </summary>
+        <div class="pt-4 border-t border-slate-800/80 mt-3 max-h-[60vh] overflow-y-auto">
+          <nav class="space-y-4 text-xs">
+            {GEMINI_MANUAL_PARTS.map((part, pIdx) => (
+              <div class="space-y-1.5">
+                <a
+                  href={`#${part.id}`}
+                  class="font-bold text-indigo-300 hover:text-indigo-200 transition-colors block py-1"
+                >
+                  {part.title}
+                </a>
+                <ul class="pl-2.5 border-l border-slate-800 space-y-1 text-slate-400">
+                  {part.chapters.map((ch) => (
+                    <li>
+                      <a
+                        href={`#${ch.id}`}
+                        class="hover:text-white transition-colors block py-0.5 truncate"
+                        title={ch.title}
+                      >
+                        {ch.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </nav>
+        </div>
+      </details>
+    </div>
+
     {/* Main Reading Container: Sidebar + Content */}
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-      {/* Sticky Table of Contents Sidebar */}
-      <aside class="lg:col-span-4 sticky top-20 space-y-4 print:hidden">
+      {/* Desktop Sticky Table of Contents Sidebar (>= 1024px only) */}
+      <aside class="hidden lg:block lg:col-span-4 lg:sticky lg:top-20 space-y-4 print:hidden">
         <div class="bg-slate-900/80 backdrop-blur-xl p-5 rounded-2xl border border-slate-800 max-h-[calc(100vh-120px)] overflow-y-auto scrollbar-thin scrollbar-thumb-slate-700">
           <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-800">
             <h2 class="font-bold text-sm text-white flex items-center gap-2">
