@@ -6,63 +6,48 @@ import path from 'path';
 export const THUMBNAIL_CONFIGS = [
   {
     id: 'large-context-docs-2026',
-    raw: '/Users/tocloud/.gemini/antigravity-ide/brain/138b71e5-9592-4a62-bdb4-e9006ff453ba/large_context_docs_1789200895293.jpg',
     target: 'public/images/blogs/large-context-docs-2026.jpg',
-    style: 'style1_hightech',
+    style: 'style1_ecoclean', // Ref 1: 화사한 화이트/스카이블루 + 회전화살표 + 사각블루박스
     badge: '100만 토큰 시대',
-    tagIcon: '⚡',
     title1: '수백 장 문서·코드',
     title2: '단 1초 완벽 분석!',
-    subTag: '2026 최신 대형 컨텍스트 프롬프트 완전 정복',
-    hudLabel: '01 // DEEP DOCS ANALYSIS'
-  },
-  {
-    id: 'vibe-coding-2026',
-    raw: '/Users/tocloud/.gemini/antigravity-ide/brain/138b71e5-9592-4a62-bdb4-e9006ff453ba/vibe_coding_2026_1789200220893.jpg',
-    target: 'public/images/blogs/vibe-coding-2026.jpg',
-    style: 'style3_streetgraffiti',
-    badge: '1인 개발 혁명',
-    tagIcon: '🚀',
-    title1: '바이브 코딩 정복',
-    title2: '말만 하면 앱 완성!',
-    subTag: '비개발자도 하루 만에 풀스택 서비스 배포',
-    cautionText: 'CAUTION: VIBE CODING ZONE'
+    subTag: '2026 최신 대형 컨텍스트 프롬프트 완전 정복'
   },
   {
     id: 'ai-agent-workflow',
-    raw: '/Users/tocloud/.gemini/antigravity-ide/brain/138b71e5-9592-4a62-bdb4-e9006ff453ba/ai_agent_workflow_1789200238978.jpg',
     target: 'public/images/blogs/ai-agent-workflow.jpg',
-    style: 'style2_comicburst',
+    style: 'style2_comicpop', // Ref 2: 딥바이올렛/블루 + 16각 붉은스타버스트 + 민트볼록폰트 + 전선플러그/번개
     badge: '실무 워크플로우',
-    tagIcon: '🤖',
-    title1: 'AI 에이전트 대전환',
+    title1: 'AI 에이전트',
     title2: '반복 업무 100% 자동화!',
-    subTag: '컴퓨터 제어부터 실무 자동화 파이프라인 구축',
-    burstText: '100% 자율화'
+    subTag: '컴퓨터 제어부터 실무 자동화 파이프라인 구축'
+  },
+  {
+    id: 'vibe-coding-2026',
+    target: 'public/images/blogs/vibe-coding-2026.jpg',
+    style: 'style3_streetgraffiti', // Ref 3: 코발트블루 + 거대블랙별 + 네온라임그래피티 + 스마일리/스티커폭탄
+    badge: '1인 개발 혁명',
+    title1: '바이브 코딩 정복',
+    title2: '말만 하면 앱 완성!',
+    subTag: '비개발자도 하루 만에 풀스택 서비스 배포'
   },
   {
     id: 'ai-big-4-comparison',
-    raw: '/Users/tocloud/.gemini/antigravity-ide/brain/138b71e5-9592-4a62-bdb4-e9006ff453ba/ai_big_four_comparison_1789196554143.jpg',
     target: 'public/images/blogs/ai-big-4-comparison.jpg',
-    style: 'style4_editorialkinetic',
+    style: 'style4_editorialkinetic', // Ref 4: 젯블랙 + 와이어프레임 잔상 + 사선초거대 타이포 + 원색스티커칩
     badge: '2026 플래그십 맞대결',
-    tagIcon: '⚔️',
     title1: 'AI 4대 천왕 격돌',
     title2: 'GPT-6 vs Claude vs Gemini',
-    subTag: '벤치마크 점수와 실무 코딩·작문 성능 전격 비교',
-    vsBadge: 'VS MATCH'
+    subTag: '벤치마크 점수와 실무 성능 전격 비교'
   },
   {
     id: 'gpt-6-astra-agent',
-    raw: '/Users/tocloud/.gemini/antigravity-ide/brain/138b71e5-9592-4a62-bdb4-e9006ff453ba/gpt_six_astra_agent_1789196576343.jpg',
     target: 'public/images/blogs/gpt-6-astra-agent.jpg',
     style: 'style4_editorialkinetic',
     badge: 'OpenAI 전격 공개',
-    tagIcon: '🔥',
-    title1: 'GPT-6 Astra 해부',
+    title1: 'GPT-6 ASTRA 해부',
     title2: '화면 보고 PC 직접 조작!',
-    subTag: '눈으로 보고 손으로 클릭하는 차세대 AI 비서',
-    vsBadge: 'ASTRA'
+    subTag: '눈으로 보고 손으로 클릭하는 차세대 AI 에이전트'
   }
 ];
 
@@ -73,517 +58,555 @@ function calcFontSize(text, baseSize, maxChars) {
   return Math.round(baseSize * (maxChars / len));
 }
 
-// -------------------------------------------------------------
-// STYLE 1: Clean High-Tech Dynamic Slant (Ref 1: 한국형 무공해차)
-// Electric Cyan & Royal Blue, Tech Slanted Ribbons, HUD Brackets, Loop Arrow
-// -------------------------------------------------------------
-export function generateStyle1_HighTech(w, h, item) {
-  const title1Size = calcFontSize(item.title1, 120, 9);
-  const title2Size = calcFontSize(item.title2, 106, 11);
-  const badgeWidth = Math.max(480, item.badge.length * 36 + 120);
+// ----------------------------------------------------------------------
+// STYLE 1 (Ref 1: 한국형 무공해차 전환100 스타일)
+// 화이트 & 스카이블루 클린 배경 + 노랑 원형 회전 화살표 + 블루 슬랜트 박스 + 일렉트릭 블루 와이드 폰트
+// ----------------------------------------------------------------------
+export function renderStyle1_EcoClean(w, h, item) {
+  const title1Size = calcFontSize(item.title1, 108, 9);
+  const title2Size = calcFontSize(item.title2, 114, 10);
+  const boxWidth = Math.max(760, item.title1.length * 75 + 100);
 
   return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="techCyanGrad" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#0284c7"/>
-      <stop offset="50%" stop-color="#06b6d4"/>
-      <stop offset="100%" stop-color="#38bdf8"/>
+    <!-- Background Gradient -->
+    <linearGradient id="bgSkyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="50%" stop-color="#f0f9ff"/>
+      <stop offset="100%" stop-color="#e0f2fe"/>
     </linearGradient>
 
-    <linearGradient id="textCyanGlow" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#ffffff"/>
-      <stop offset="25%" stop-color="#e0f2fe"/>
-      <stop offset="75%" stop-color="#38bdf8"/>
+    <!-- Deep Blue Box Gradient -->
+    <linearGradient id="blueBoxGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#1d4ed8"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+
+    <!-- Electric Royal Blue Text Gradient -->
+    <linearGradient id="blueTextGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1d4ed8"/>
       <stop offset="100%" stop-color="#0284c7"/>
     </linearGradient>
 
-    <linearGradient id="yellowHighlight" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#ffffff"/>
-      <stop offset="30%" stop-color="#fef08a"/>
-      <stop offset="80%" stop-color="#facc15"/>
-      <stop offset="100%" stop-color="#eab308"/>
-    </linearGradient>
-
-    <filter id="techGlow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="8" result="blur"/>
-      <feMerge>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-
-    <filter id="tech3DShadow" x="-30%" y="-30%" width="160%" height="160%">
-      <feDropShadow dx="0" dy="12" stdDeviation="6" flood-color="#030712" flood-opacity="1"/>
-      <feDropShadow dx="6" dy="24" stdDeviation="16" flood-color="#0284c7" flood-opacity="0.4"/>
-    </filter>
-  </defs>
-
-  <!-- Futuristic Corner HUD UI -->
-  <g opacity="0.85">
-    <!-- Top-Left HUD Corner -->
-    <path d="M 40 100 L 40 40 L 100 40" fill="none" stroke="#38bdf8" stroke-width="4"/>
-    <circle cx="40" cy="40" r="4" fill="#38bdf8"/>
-    <text x="60" y="65" font-family="'Paperlogy', 'Paperlogy-8ExtraBold', sans-serif" font-size="16" font-weight="800" fill="#38bdf8" letter-spacing="2">
-      ${item.hudLabel || 'SYS // VERIFIED AI GUIDE'}
-    </text>
-
-    <!-- Top-Right HUD Pill -->
-    <g transform="translate(${w - 180}, 50)">
-      <rect x="-80" y="-18" width="160" height="36" rx="6" fill="#082f49" stroke="#38bdf8" stroke-width="2"/>
-      <circle cx="-55" cy="0" r="4" fill="#22c55e"/>
-      <text x="5" y="6" text-anchor="middle" font-family="'Paperlogy', sans-serif" font-size="14" font-weight="900" fill="#e0f2fe" letter-spacing="1">
-        LIVE REPORT
-      </text>
-    </g>
-
-    <!-- Bottom-Right HUD Corner -->
-    <path d="M ${w - 40} ${h - 100} L ${w - 40} ${h - 40} L ${w - 100} ${h - 40}" fill="none" stroke="#38bdf8" stroke-width="4"/>
-  </g>
-
-  <!-- Main Angled Slanted Content Group (-4 deg slant like Ref 1) -->
-  <g transform="translate(${w / 2}, ${h / 2}) rotate(-3.5) skewX(-4)">
-    
-    <!-- Decorative Tech Loop Arrow (Right side) -->
-    <g transform="translate(480, -30) rotate(15) scale(1.1)" opacity="0.9" filter="url(#techGlow)">
-      <path d="M -40 -30 C 20 -60, 80 0, 40 50 C 10 90, -50 60, -40 20" fill="none" stroke="#38bdf8" stroke-width="8" stroke-linecap="round"/>
-      <polygon points="50,40 30,65 65,65" fill="#38bdf8"/>
-      <circle cx="-40" cy="-30" r="7" fill="#facc15"/>
-    </g>
-
-    <!-- Left Tech Diamond Star -->
-    <g transform="translate(-480, -100) scale(1.2)" filter="url(#techGlow)">
-      <polygon points="0,-30 10,-8 32,0 10,8 0,30 -10,8 -32,0 -10,-8" fill="#38bdf8"/>
-      <circle cx="0" cy="0" r="6" fill="#ffffff"/>
-    </g>
-
-    <!-- Slanted Tech Parallelogram Ribbon Badge (Top) -->
-    <g transform="translate(0, -150)" filter="url(#tech3DShadow)">
-      <!-- Black Base Shadow Polygon -->
-      <polygon points="-${badgeWidth / 2 + 25},-44 ${badgeWidth / 2 + 25},-44 ${badgeWidth / 2 + 5},44 -${badgeWidth / 2 + 5},44" fill="#000000"/>
-      <!-- Glowing Cyan Ribbon -->
-      <polygon points="-${badgeWidth / 2 + 16},-40 ${badgeWidth / 2 + 16},-40 ${badgeWidth / 2 - 4},40 -${badgeWidth / 2 - 4},40" fill="url(#techCyanGrad)" stroke="#ffffff" stroke-width="4"/>
-      <!-- Decorative Side Diamonds -->
-      <polygon points="-${badgeWidth / 2 - 20},0 -${badgeWidth / 2 - 10},-12 -${badgeWidth / 2},0 -${badgeWidth / 2 - 10},12" fill="#ffffff"/>
-      <polygon points="${badgeWidth / 2 - 40},0 ${badgeWidth / 2 - 30},-12 ${badgeWidth / 2 - 20},0 ${badgeWidth / 2 - 30},12" fill="#ffffff"/>
-      <text x="0" y="14" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="36" font-weight="900" fill="#ffffff" stroke="#000000" stroke-width="6" paint-order="stroke fill" letter-spacing="1">
-        ${item.badge}
-      </text>
-    </g>
-
-    <!-- Line 1: Ultra High-Tech Solid White Headline -->
-    <g transform="translate(0, 35)" filter="url(#tech3DShadow)">
-      <text x="0" y="10" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="${title1Size}" font-weight="900" fill="#000000" stroke="#000000" stroke-width="26" paint-order="stroke fill" letter-spacing="-2">
-        ${item.title1}
-      </text>
-      <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="${title1Size}" font-weight="900" fill="#ffffff" stroke="#0369a1" stroke-width="12" paint-order="stroke fill" letter-spacing="-2">
-        ${item.title1}
-      </text>
-    </g>
-
-    <!-- Line 2: Glowing Tech Yellow Headline -->
-    <g transform="translate(0, 180)" filter="url(#tech3DShadow)">
-      <text x="0" y="10" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="${title2Size}" font-weight="900" fill="#000000" stroke="#000000" stroke-width="24" paint-order="stroke fill" letter-spacing="-1.5">
-        ${item.title2}
-      </text>
-      <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="${title2Size}" font-weight="900" fill="url(#yellowHighlight)" stroke="#000000" stroke-width="12" paint-order="stroke fill" letter-spacing="-1.5">
-        ${item.title2}
-      </text>
-    </g>
-
-    <!-- Bottom Slanted Navy Pill Slogan -->
-    <g transform="translate(0, 275)" filter="url(#tech3DShadow)">
-      <polygon points="-470,-22 470,-22 450,22 -450,22" fill="#082f49" stroke="#38bdf8" stroke-width="3"/>
-      <text x="0" y="7" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-8ExtraBold', sans-serif" font-size="21" font-weight="900" fill="#e0f2fe" letter-spacing="1">
-        ✦ ${item.subTag} ✦
-      </text>
-    </g>
-  </g>
-</svg>`;
-}
-
-// -------------------------------------------------------------
-// STYLE 2: Comic Pop Burst & Lightning (Ref 2: 슬기로운 전기차생활)
-// Multi-pointed Comic Starburst Plate, Neon Mint & Yellow, Chunky 3D & Lightning Bolts
-// -------------------------------------------------------------
-export function generateStyle2_ComicBurst(w, h, item) {
-  const title1Size = calcFontSize(item.title1, 118, 9);
-  const title2Size = calcFontSize(item.title2, 104, 11);
-
-  return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="mintGreenGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#ffffff"/>
-      <stop offset="20%" stop-color="#a7f3d0"/>
-      <stop offset="70%" stop-color="#34d399"/>
-      <stop offset="100%" stop-color="#059669"/>
-    </linearGradient>
-
-    <linearGradient id="burstYellowGrad" x1="0" y1="0" x2="1" y2="1">
+    <!-- Yellow Arrow Gradient -->
+    <linearGradient id="arrowYellowGrad" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#fef08a"/>
       <stop offset="50%" stop-color="#facc15"/>
       <stop offset="100%" stop-color="#f59e0b"/>
     </linearGradient>
 
-    <linearGradient id="comicBubbleGrad" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#10b981"/>
-      <stop offset="100%" stop-color="#06b6d4"/>
-    </linearGradient>
-
-    <filter id="comicPopShadow" x="-30%" y="-30%" width="160%" height="160%">
-      <feDropShadow dx="6" dy="12" stdDeviation="0" flood-color="#000000" flood-opacity="1"/>
-      <feDropShadow dx="12" dy="24" stdDeviation="16" flood-color="#000000" flood-opacity="0.85"/>
+    <filter id="cleanShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="12" flood-color="#0284c7" flood-opacity="0.18"/>
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000000" flood-opacity="0.08"/>
     </filter>
 
-    <!-- Lightning Bolt Polygon -->
-    <polygon id="lightningBolt" points="0,-45 18,-10 4,-5 22,35 -6,0 6,-8" fill="#facc15" stroke="#000000" stroke-width="4"/>
+    <filter id="boldTextShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="0" flood-color="#ffffff" flood-opacity="1"/>
+      <feDropShadow dx="4" dy="14" stdDeviation="8" flood-color="#0369a1" flood-opacity="0.25"/>
+    </filter>
   </defs>
 
-  <g transform="translate(${w / 2}, ${h / 2}) rotate(-2.5)">
+  <!-- Clean Bright Canvas Background -->
+  <rect width="${w}" height="${h}" fill="url(#bgSkyGrad)"/>
+
+  <!-- Top-Left Sun & Cloud Graphic -->
+  <g transform="translate(140, 100)">
+    <circle cx="-30" cy="-20" r="45" fill="#fbbf24" opacity="0.85"/>
+    <path d="M -70 10 Q -50 -15 -20 0 Q 10 -25 40 0 Q 70 -10 80 15 L -70 15 Z" fill="#93c5fd" opacity="0.6"/>
+  </g>
+
+  <!-- Bottom Perspective Clean Road / Mountain Landscape -->
+  <g transform="translate(${w / 2}, ${h})">
+    <!-- Mountain Outlines -->
+    <polygon points="-640,-130 -300,-170 0,-130 300,-180 640,-130 640,0 -640,0" fill="#bae6fd" opacity="0.6"/>
+    <polygon points="-640,-80 -200,-110 100,-70 400,-100 640,-80 640,0 -640,0" fill="#7dd3fc" opacity="0.7"/>
+    <!-- Central Road -->
+    <polygon points="-240,0 240,0 35,-60 -35,-60" fill="#f8fafc"/>
+    <polygon points="-180,0 180,0 25,-60 -25,-60" fill="#e2e8f0"/>
+    <polygon points="-20,0 20,0 4,-60 -4,-60" fill="#ffffff"/>
+  </g>
+
+  <!-- Central Dynamic Graphic Group (-4 deg tilt like Ref 1) -->
+  <g transform="translate(${w / 2}, ${h / 2 - 15}) rotate(-3.5) skewX(-3)">
     
-    <!-- Giant Multi-Point Comic Explosion Starburst Backdrop -->
-    <g transform="scale(1.4, 0.95)" filter="url(#comicPopShadow)" opacity="0.95">
-      <polygon points="
-        0,-260 45,-210 110,-240 130,-180 200,-190 190,-130 250,-115 220,-60 270,-20 225,30 260,85 195,115 210,180 145,185 135,250 80,225 35,270
-        -20,240 -70,270 -100,220 -160,235 -170,175 -230,165 -215,110 -265,75 -230,25 -260,-30 -210,-65 -235,-130 -170,-140 -170,-205 -110,-190 -70,-250
-      " fill="url(#burstYellowGrad)" stroke="#000000" stroke-width="10"/>
+    <!-- Yellow Circular Dual Loop Arrow (Ref 1 Signature) -->
+    <g transform="scale(1.25, 0.95)" filter="url(#cleanShadow)">
+      <!-- Top Arc Arrow -->
+      <path d="M -260 -50 A 300 220 0 0 1 260 -50" fill="none" stroke="url(#arrowYellowGrad)" stroke-width="26" stroke-linecap="round"/>
+      <polygon points="260,-80 295,-45 255,-20" fill="#f59e0b"/>
+      <!-- Bottom Arc Arrow -->
+      <path d="M 260 50 A 300 220 0 0 1 -260 50" fill="none" stroke="url(#arrowYellowGrad)" stroke-width="26" stroke-linecap="round"/>
+      <polygon points="-260,80 -295,45 -255,20" fill="#f59e0b"/>
     </g>
 
-    <!-- Floating Comic Lightning Bolts -->
-    <g transform="translate(-460, -180) rotate(-25) scale(1.6)" filter="url(#comicPopShadow)">
-      <use href="#lightningBolt" fill="#facc15"/>
-    </g>
-    <g transform="translate(470, -160) rotate(30) scale(1.5)" filter="url(#comicPopShadow)">
-      <use href="#lightningBolt" fill="#38bdf8"/>
-    </g>
-    <g transform="translate(480, 150) rotate(-15) scale(1.3)" filter="url(#comicPopShadow)">
-      <use href="#lightningBolt" fill="#facc15"/>
-    </g>
-    <g transform="translate(-480, 140) rotate(15) scale(1.4)" filter="url(#comicPopShadow)">
-      <use href="#lightningBolt" fill="#34d399"/>
-    </g>
-
-    <!-- Confetti Dots -->
-    <circle cx="-380" cy="-90" r="14" fill="#f43f5e" stroke="#000000" stroke-width="3"/>
-    <circle cx="390" cy="-80" r="16" fill="#10b981" stroke="#000000" stroke-width="3"/>
-    <circle cx="-360" cy="80" r="12" fill="#3b82f6" stroke="#000000" stroke-width="3"/>
-    <circle cx="410" cy="90" r="15" fill="#facc15" stroke="#000000" stroke-width="3"/>
-
-    <!-- Rounded Comic Bubble Badge (Top) -->
-    <g transform="translate(0, -155)" filter="url(#comicPopShadow)">
-      <rect x="-250" y="-38" width="500" height="76" rx="38" fill="url(#comicBubbleGrad)" stroke="#000000" stroke-width="6"/>
-      <circle cx="-200" cy="0" r="14" fill="#facc15" stroke="#000000" stroke-width="3"/>
-      <circle cx="200" cy="0" r="14" fill="#facc15" stroke="#000000" stroke-width="3"/>
-      <text x="0" y="14" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="34" font-weight="900" fill="#ffffff" stroke="#000000" stroke-width="4" paint-order="stroke fill" letter-spacing="1">
-        ${item.badge}
+    <!-- Top Badge (Clean Curved Pill) -->
+    <g transform="translate(0, -170)" filter="url(#cleanShadow)">
+      <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="36" font-weight="900" fill="#0284c7" stroke="#ffffff" stroke-width="8" paint-order="stroke fill" letter-spacing="2">
+        ✦ ${item.badge} ✦
       </text>
     </g>
 
-    <!-- Line 1: Ultra Chunky Comic Title with Crisp White & Hard Black Base -->
-    <g transform="translate(0, 35)" filter="url(#comicPopShadow)">
-      <text x="6" y="16" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="${title1Size}" font-weight="900" fill="#000000" stroke="#000000" stroke-width="26" paint-order="stroke fill" letter-spacing="-2">
-        ${item.title1}
-      </text>
-      <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="${title1Size}" font-weight="900" fill="#ffffff" stroke="#000000" stroke-width="16" paint-order="stroke fill" letter-spacing="-2">
+    <!-- Line 1: Slanted Solid Royal Blue Parallelogram Box (Ref 1: '무공해차') -->
+    <g transform="translate(0, -45)" filter="url(#cleanShadow)">
+      <polygon points="-${boxWidth / 2 + 25},-54 ${boxWidth / 2 + 25},-54 ${boxWidth / 2 - 10},54 -${boxWidth / 2 - 10},54" fill="url(#blueBoxGrad)" stroke="#ffffff" stroke-width="8"/>
+      <text x="0" y="18" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="${title1Size}" font-weight="900" fill="#ffffff" letter-spacing="-1">
         ${item.title1}
       </text>
     </g>
 
-    <!-- Line 2: Neon Mint Pop Accent Headline -->
-    <g transform="translate(0, 180)" filter="url(#comicPopShadow)">
-      <text x="6" y="16" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="${title2Size}" font-weight="900" fill="#000000" stroke="#000000" stroke-width="24" paint-order="stroke fill" letter-spacing="-1.5">
+    <!-- Line 2: Giant Royal Blue Bold Typography with White Contour (Ref 1: '전환 100') -->
+    <g transform="translate(0, 115)" filter="url(#boldTextShadow)">
+      <!-- Outer White Rim -->
+      <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="${title2Size}" font-weight="900" fill="#0284c7" stroke="#ffffff" stroke-width="22" paint-order="stroke fill" letter-spacing="-2">
         ${item.title2}
       </text>
-      <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="${title2Size}" font-weight="900" fill="url(#mintGreenGrad)" stroke="#000000" stroke-width="14" paint-order="stroke fill" letter-spacing="-1.5">
+      <!-- Foreground Blue -->
+      <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="${title2Size}" font-weight="900" fill="url(#blueTextGrad)" letter-spacing="-2">
         ${item.title2}
       </text>
     </g>
 
-    <!-- Bottom Yellow Comic Ribbon -->
-    <g transform="translate(0, 275)" filter="url(#comicPopShadow)">
-      <rect x="-440" y="-24" width="880" height="48" rx="14" fill="#facc15" stroke="#000000" stroke-width="4"/>
-      <text x="0" y="8" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-8ExtraBold', sans-serif" font-size="21" font-weight="900" fill="#000000" letter-spacing="0.5">
-        ✦ ${item.subTag} ✦
+    <!-- Bottom English Subtitle (Ref 1: '(K-EV100)') -->
+    <g transform="translate(0, 185)">
+      <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-8ExtraBold', sans-serif" font-size="24" font-weight="900" fill="#0284c7" letter-spacing="3">
+        (AI PROMPT &amp; DEEP DOCS ANALYSIS)
       </text>
     </g>
+  </g>
+
+  <!-- Bottom Slogan Ribbon (Ref 1: '탄소중립 실현을 위해 동참해주세요!') -->
+  <g transform="translate(${w / 2}, ${h - 45})" filter="url(#cleanShadow)">
+    <rect x="-420" y="-22" width="840" height="44" rx="22" fill="#0284c7"/>
+    <text x="0" y="7" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-8ExtraBold', sans-serif" font-size="20" font-weight="900" fill="#ffffff" letter-spacing="1">
+      ${item.subTag}
+    </text>
   </g>
 </svg>`;
 }
 
-// -------------------------------------------------------------
-// STYLE 3: Cyberpunk / Y2K Street Graffiti (Ref 3: VERIFICAÇÃO VENDAS)
-// Acid Neon Lime + Hot Magenta Pink, Yellow/Black Caution Stripes, Smiley Face & Street Vibe
-// -------------------------------------------------------------
-export function generateStyle3_StreetGraffiti(w, h, item) {
-  const title1Size = calcFontSize(item.title1, 122, 9);
-  const title2Size = calcFontSize(item.title2, 108, 11);
+// ----------------------------------------------------------------------
+// STYLE 2 (Ref 2: 슬기로운 전기차생활 스타일)
+// 비비드 딥바이올렛/블루 + 16각 붉은 스타버스트 + 민트/화이트 3D 볼록 타이포 + 전선 플러그/번개
+// ----------------------------------------------------------------------
+export function renderStyle2_ComicPop(w, h, item) {
+  const title1Size = calcFontSize(item.title1, 115, 8);
+  const title2Size = calcFontSize(item.title2, 98, 12);
 
   return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <!-- Diagonal Yellow/Black Caution Hazard Stripes Pattern -->
-    <pattern id="cautionPattern" width="40" height="40" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-      <rect width="20" height="40" fill="#facc15"/>
-      <rect x="20" width="20" height="40" fill="#000000"/>
+    <!-- Vivid Comic Blue Gradient -->
+    <linearGradient id="comicBgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="40%" stop-color="#1e40af"/>
+      <stop offset="100%" stop-color="#312e81"/>
+    </linearGradient>
+
+    <!-- Starburst Red Gradient -->
+    <linearGradient id="starburstGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ef4444"/>
+      <stop offset="100%" stop-color="#b91c1c"/>
+    </linearGradient>
+
+    <!-- Mint Green Text Gradient -->
+    <linearGradient id="mintPopGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#a7f3d0"/>
+      <stop offset="40%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+
+    <!-- Comic Hard Drop Shadow -->
+    <filter id="comicHard3D" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="10" dy="16" stdDeviation="0" flood-color="#000000" flood-opacity="1"/>
+      <feDropShadow dx="14" dy="24" stdDeviation="8" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+
+    <!-- Comic Starburst Polygon -->
+    <polygon id="burst16" points="
+      0,-250 40,-170 120,-220 120,-140 210,-160 170,-90 250,-70 190,-10 240,50 170,80 200,160 120,150 110,230 40,180 0,250
+      -40,180 -110,230 -120,150 -200,160 -170,80 -240,50 -190,-10 -250,-70 -170,-90 -210,-160 -120,-140 -120,-220 -40,-170
+    " fill="url(#starburstGrad)" stroke="#facc15" stroke-width="8"/>
+  </defs>
+
+  <!-- Background -->
+  <rect width="${w}" height="${h}" fill="url(#comicBgGrad)"/>
+
+  <!-- Comic Speed Lines & Purple Lightning Background Shards -->
+  <g opacity="0.6">
+    <polygon points="0,0 250,0 120,300 0,200" fill="#a855f7" opacity="0.4"/>
+    <polygon points="${w},0 ${w - 300},0 ${w - 180},280 ${w},150" fill="#ec4899" opacity="0.4"/>
+    <polygon points="0,${h} 280,${h} 150,${h - 260} 0,${h - 180}" fill="#3b82f6" opacity="0.4"/>
+    <polygon points="${w},${h} ${w - 260},${h} ${w - 140},${h - 240} ${w},${h - 160}" fill="#a855f7" opacity="0.4"/>
+  </g>
+
+  <!-- Confetti Triangles & Circles -->
+  <polygon points="120,140 160,110 170,160" fill="#ec4899"/>
+  <polygon points="${w - 160},120 ${w - 110},100 ${w - 130},150" fill="#facc15"/>
+  <polygon points="180,${h - 120} 220,${h - 150} 240,${h - 90}" fill="#34d399"/>
+  <polygon points="${w - 200},${h - 140} ${w - 150},${h - 170} ${w - 170},${h - 110}" fill="#ec4899"/>
+  <circle cx="280" cy="120" r="14" fill="#38bdf8"/>
+  <circle cx="${w - 280}" cy="140" r="16" fill="#f43f5e"/>
+  <circle cx="240" cy="${h - 180}" r="12" fill="#facc15"/>
+  <circle cx="${w - 250}" cy="${h - 180}" r="14" fill="#34d399"/>
+
+  <!-- Center Comic Starburst -->
+  <g transform="translate(${w / 2}, ${h / 2 - 10}) scale(1.6, 1.05)" filter="url(#comicHard3D)">
+    <use href="#burst16"/>
+  </g>
+
+  <!-- Comic Swirling Power Cord / Plug Tail Graphic (Ref 2 Signature) -->
+  <g transform="translate(${w / 2}, ${h / 2})" filter="url(#comicHard3D)">
+    <!-- Swirling Black Cable Loop -->
+    <path d="M -380 -80 C -480 -30, -420 180, -220 160 C 0 140, 360 220, 480 80" fill="none" stroke="#000000" stroke-width="36" stroke-linecap="round"/>
+    <path d="M -380 -80 C -480 -30, -420 180, -220 160 C 0 140, 360 220, 480 80" fill="none" stroke="#facc15" stroke-width="14" stroke-linecap="round"/>
+    
+    <!-- 2-Prong Electric Plug on Right Side -->
+    <g transform="translate(480, 80) rotate(25)">
+      <rect x="-10" y="-30" width="45" height="60" rx="8" fill="#000000" stroke="#facc15" stroke-width="4"/>
+      <rect x="35" y="-20" width="28" height="12" rx="4" fill="#facc15"/>
+      <rect x="35" y="8" width="28" height="12" rx="4" fill="#facc15"/>
+    </g>
+  </g>
+
+  <!-- Dynamic Tilted Comic Content (-3 deg tilt) -->
+  <g transform="translate(${w / 2}, ${h / 2 - 20}) rotate(-3)">
+    
+    <!-- Top Boxed Word: '슬기로운' / 'AI 에이전트' -->
+    <g transform="translate(0, -65)" filter="url(#comicHard3D)">
+      <!-- Black Outer Box Base -->
+      <rect x="-260" y="-55" width="520" height="105" rx="16" fill="#000000" stroke="#000000" stroke-width="12"/>
+      <rect x="-250" y="-48" width="500" height="90" rx="10" fill="#000000"/>
+      <!-- Crisp White Comic Block Headline -->
+      <text x="0" y="20" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="${title1Size}" font-weight="900" fill="#ffffff" letter-spacing="-1">
+        ${item.title1}
+      </text>
+    </g>
+
+    <!-- Bottom Giant Word: '전기차생활' / '반복 업무 100% 자동화!' with Neon Mint Fill -->
+    <g transform="translate(0, 95)" filter="url(#comicHard3D)">
+      <!-- Black Heavy Shadow Contour -->
+      <text x="8" y="16" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="${title2Size}" font-weight="900" fill="#000000" stroke="#000000" stroke-width="32" paint-order="stroke fill" letter-spacing="-2">
+        ${item.title2}
+      </text>
+      <!-- Foreground Neon Mint Text -->
+      <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="${title2Size}" font-weight="900" fill="url(#mintPopGrad)" stroke="#000000" stroke-width="16" paint-order="stroke fill" letter-spacing="-2">
+        ${item.title2}
+      </text>
+    </g>
+
+    <!-- Electric Lightning Bolt Accents in Text (Ref 2 Signature) -->
+    <g transform="translate(180, 50) scale(1.4)" filter="url(#comicHard3D)">
+      <polygon points="0,-35 15,-5 2,-2 18,30 -6,-2 4,-8" fill="#facc15" stroke="#000000" stroke-width="4"/>
+    </g>
+    <g transform="translate(-360, 40) rotate(-20) scale(1.2)" filter="url(#comicHard3D)">
+      <polygon points="0,-35 15,-5 2,-2 18,30 -6,-2 4,-8" fill="#facc15" stroke="#000000" stroke-width="4"/>
+    </g>
+  </g>
+
+  <!-- Bottom Pop Subtag Banner -->
+  <g transform="translate(${w / 2}, ${h - 45})" filter="url(#comicHard3D)">
+    <polygon points="-440,-20 440,-20 420,20 -420,20" fill="#facc15" stroke="#000000" stroke-width="4"/>
+    <text x="0" y="7" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-8ExtraBold', sans-serif" font-size="20" font-weight="900" fill="#000000" letter-spacing="1">
+      ⚡ ${item.subTag} ⚡
+    </text>
+  </g>
+</svg>`;
+}
+
+// ----------------------------------------------------------------------
+// STYLE 3 (Ref 3: VERIFICAÇÃO VENDAS 스타일)
+// 비비드 로열 블루 + 하프톤 도트 + 거대 블랙 별 + 초강렬 형광 라임 그래피티 + Y2K 스티커 폭탄
+// ----------------------------------------------------------------------
+export function renderStyle3_StreetGraffiti(w, h, item) {
+  const title1Size = calcFontSize(item.title1, 118, 9);
+  const title2Size = calcFontSize(item.title2, 108, 10);
+
+  return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Caution Hazard Pattern -->
+    <pattern id="hazardStripe" width="36" height="36" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="18" height="36" fill="#facc15"/>
+      <rect x="18" width="18" height="36" fill="#000000"/>
     </pattern>
 
-    <linearGradient id="acidLimeGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#ffffff"/>
-      <stop offset="20%" stop-color="#d9f99d"/>
-      <stop offset="65%" stop-color="#a3e635"/>
+    <!-- Halftone Dot Pattern -->
+    <pattern id="halftoneDots" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="10" cy="10" r="4" fill="#ffffff" opacity="0.15"/>
+    </pattern>
+
+    <!-- Acid Neon Lime Gradient -->
+    <linearGradient id="acidLimePop" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="25%" stop-color="#d9f99d"/>
+      <stop offset="70%" stop-color="#a3e635"/>
       <stop offset="100%" stop-color="#65a30d"/>
     </linearGradient>
 
-    <linearGradient id="hotPinkGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#ffffff"/>
-      <stop offset="25%" stop-color="#fbcfe8"/>
-      <stop offset="70%" stop-color="#ec4899"/>
-      <stop offset="100%" stop-color="#be185d"/>
-    </linearGradient>
+    <!-- Giant 5-Point Star -->
+    <polygon id="blackStar" points="
+      0,-260 75,-80 260,-80 110,35 165,220 0,110 -165,220 -110,35 -260,-80 -75,-80
+    " fill="#09090b" stroke="#000000" stroke-width="12"/>
 
-    <filter id="streetShadow" x="-30%" y="-30%" width="160%" height="160%">
-      <feDropShadow dx="8" dy="10" stdDeviation="0" flood-color="#000000" flood-opacity="1"/>
-      <feDropShadow dx="0" dy="20" stdDeviation="14" flood-color="#ec4899" flood-opacity="0.35"/>
+    <filter id="street3D" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="10" dy="14" stdDeviation="0" flood-color="#000000" flood-opacity="1"/>
+      <feDropShadow dx="16" dy="24" stdDeviation="16" flood-color="#a3e635" flood-opacity="0.35"/>
     </filter>
-
-    <!-- Smiley Face Vector Component -->
-    <g id="acidSmiley">
-      <circle cx="0" cy="0" r="45" fill="#facc15" stroke="#000000" stroke-width="6"/>
-      <ellipse cx="-16" cy="-10" rx="6" ry="12" fill="#000000"/>
-      <ellipse cx="16" cy="-10" rx="6" ry="12" fill="#000000"/>
-      <path d="M -22 10 Q 0 34 22 10" fill="none" stroke="#000000" stroke-width="6" stroke-linecap="round"/>
-    </g>
-
-    <!-- Street Crosshair Marker -->
-    <g id="crosshair">
-      <line x1="-20" y1="-20" x2="20" y2="20" stroke="#a3e635" stroke-width="8" stroke-linecap="round"/>
-      <line x1="-20" y1="20" x2="20" y2="-20" stroke="#a3e635" stroke-width="8" stroke-linecap="round"/>
-    </g>
-
-    <!-- Vector Warning Triangle -->
-    <g id="warningTriangle">
-      <polygon points="0,-18 16,14 -16,14" fill="#facc15" stroke="#000000" stroke-width="2"/>
-      <polygon points="0,-12 10,10 -10,10" fill="#facc15"/>
-      <rect x="-2" y="-4" width="4" height="8" fill="#000000"/>
-      <circle cx="0" cy="7" r="2" fill="#000000"/>
-    </g>
   </defs>
 
-  <!-- Top Caution Stripe Bar across full width -->
+  <!-- Vivid Royal Blue Background (Ref 3 Signature) -->
+  <rect width="${w}" height="${h}" fill="#1d4ed8"/>
+  <rect width="${w}" height="${h}" fill="url(#halftoneDots)"/>
+
+  <!-- Top Caution Hazard Tape -->
   <g transform="translate(0, 0)">
-    <rect x="0" y="0" width="${w}" height="28" fill="url(#cautionPattern)"/>
-    <rect x="0" y="24" width="${w}" height="4" fill="#000000"/>
+    <rect x="0" y="0" width="${w}" height="32" fill="url(#hazardStripe)"/>
+    <rect x="0" y="28" width="${w}" height="4" fill="#000000"/>
   </g>
 
-  <g transform="translate(${w / 2}, ${h / 2}) rotate(-4) skewX(-2)">
+  <!-- Bottom Caution Hazard Tape -->
+  <g transform="translate(0, ${h - 32})">
+    <rect x="0" y="0" width="${w}" height="32" fill="url(#hazardStripe)"/>
+    <rect x="0" y="0" width="${w}" height="4" fill="#000000"/>
+  </g>
+
+  <!-- Center Giant Black Star Graphic (Ref 3 Signature) -->
+  <g transform="translate(${w / 2}, ${h / 2 - 10}) scale(1.6, 1.15)" filter="url(#street3D)">
+    <use href="#blackStar"/>
+  </g>
+
+  <!-- Y2K Sticker Bomb Accents -->
+  <!-- 1. Yellow Smiley Face (Top-Right) -->
+  <g transform="translate(${w - 140}, 110) rotate(15)" filter="url(#street3D)">
+    <circle cx="0" cy="0" r="50" fill="#facc15" stroke="#000000" stroke-width="6"/>
+    <ellipse cx="-18" cy="-12" rx="7" ry="14" fill="#000000"/>
+    <ellipse cx="18" cy="-12" rx="7" ry="14" fill="#000000"/>
+    <path d="M -25 12 Q 0 40 25 12" fill="none" stroke="#000000" stroke-width="7" stroke-linecap="round"/>
+  </g>
+
+  <!-- 2. Peace V-Sign Hand (Bottom-Right) -->
+  <g transform="translate(${w - 170}, ${h - 130}) rotate(-12)" filter="url(#street3D)">
+    <rect x="-35" y="-45" width="70" height="90" rx="35" fill="#ffffff" stroke="#000000" stroke-width="7"/>
+    <path d="M -15 -45 L -15 -85 M 15 -45 L 15 -90" stroke="#000000" stroke-width="16" stroke-linecap="round"/>
+    <path d="M -15 -45 L -15 -85 M 15 -45 L 15 -90" stroke="#ffffff" stroke-width="8" stroke-linecap="round"/>
+  </g>
+
+  <!-- 3. Spray Can Graffiti Graphic (Bottom-Left) -->
+  <g transform="translate(130, ${h - 130}) rotate(25)" filter="url(#street3D)">
+    <rect x="-25" y="-50" width="50" height="100" rx="10" fill="#a3e635" stroke="#000000" stroke-width="6"/>
+    <rect x="-12" y="-68" width="24" height="18" fill="#000000"/>
+    <circle cx="0" cy="-75" r="6" fill="#facc15"/>
+  </g>
+
+  <!-- 4. Top-Left Street Pill ($420 / SPECIAL) -->
+  <g transform="translate(160, 95) rotate(-10)" filter="url(#street3D)">
+    <rect x="-70" y="-22" width="140" height="44" rx="8" fill="#a3e635" stroke="#000000" stroke-width="5"/>
+    <text x="0" y="8" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="22" font-weight="900" fill="#000000">
+      ⚡ SPECIAL
+    </text>
+  </g>
+
+  <!-- Central Street Graffiti Typography Group -->
+  <g transform="translate(${w / 2}, ${h / 2 - 15}) rotate(-4) skewX(-2)">
     
-    <!-- Floating Y2K Acid Smiley Face Badge (Top-Left) -->
-    <g transform="translate(-460, -180) rotate(-15) scale(1.1)" filter="url(#streetShadow)">
-      <use href="#acidSmiley"/>
-    </g>
-
-    <!-- Floating Crosshair Badges -->
-    <g transform="translate(480, -160) rotate(15) scale(1.2)" filter="url(#streetShadow)">
-      <use href="#crosshair"/>
-    </g>
-    <g transform="translate(-470, 150) rotate(20) scale(1)" filter="url(#streetShadow)">
-      <use href="#crosshair"/>
-    </g>
-
-    <!-- Top Hazard Caution Strip Label: "VIBE CODING ZONE" -->
-    <g transform="translate(0, -160)" filter="url(#streetShadow)">
-      <rect x="-270" y="-34" width="540" height="68" fill="#facc15" stroke="#000000" stroke-width="6"/>
-      <rect x="-260" y="-24" width="520" height="48" fill="#000000"/>
-      <!-- Warning Triangles -->
-      <g transform="translate(-210, 0) scale(1.3)"><use href="#warningTriangle"/></g>
-      <g transform="translate(210, 0) scale(1.3)"><use href="#warningTriangle"/></g>
-      <text x="0" y="10" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="28" font-weight="900" fill="#a3e635" letter-spacing="2">
-        ${item.badge}
+    <!-- Top Stencil Badge (Ref 3: 'VERIFICAÇÃO') -->
+    <g transform="translate(0, -115)" filter="url(#street3D)">
+      <rect x="-240" y="-24" width="480" height="48" rx="6" fill="#000000" stroke="#a3e635" stroke-width="4"/>
+      <text x="0" y="9" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="28" font-weight="900" fill="#ffffff" letter-spacing="3">
+        ✦ ${item.badge} ✦
       </text>
     </g>
 
-    <!-- Line 1: Acid Neon Lime Street Headline with Heavy Solid Black Block Contour -->
-    <g transform="translate(0, 35)" filter="url(#streetShadow)">
-      <text x="8" y="14" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="${title1Size}" font-weight="900" fill="#000000" stroke="#000000" stroke-width="26" paint-order="stroke fill" letter-spacing="-2">
+    <!-- Line 1: Ultra Giant Acid Neon Lime Street Headline (Ref 3: 'VENDAS') -->
+    <g transform="translate(0, 0)" filter="url(#street3D)">
+      <!-- Black Heavy Contour -->
+      <text x="8" y="16" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="${title1Size}" font-weight="900" fill="#000000" stroke="#000000" stroke-width="32" paint-order="stroke fill" letter-spacing="-2">
         ${item.title1}
       </text>
-      <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="${title1Size}" font-weight="900" fill="url(#acidLimeGrad)" stroke="#000000" stroke-width="14" paint-order="stroke fill" letter-spacing="-2">
+      <!-- Foreground Acid Lime Fill -->
+      <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="${title1Size}" font-weight="900" fill="url(#acidLimePop)" stroke="#000000" stroke-width="14" paint-order="stroke fill" letter-spacing="-2">
         ${item.title1}
       </text>
     </g>
 
-    <!-- Line 2: Hot Magenta Pink Headline -->
-    <g transform="translate(0, 180)" filter="url(#streetShadow)">
-      <text x="8" y="14" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="${title2Size}" font-weight="900" fill="#000000" stroke="#000000" stroke-width="24" paint-order="stroke fill" letter-spacing="-1.5">
+    <!-- Line 2: Hot White & Yellow Headline -->
+    <g transform="translate(0, 105)" filter="url(#street3D)">
+      <text x="6" y="12" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="${title2Size}" font-weight="900" fill="#000000" stroke="#000000" stroke-width="26" paint-order="stroke fill" letter-spacing="-1.5">
         ${item.title2}
       </text>
-      <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="${title2Size}" font-weight="900" fill="url(#hotPinkGrad)" stroke="#000000" stroke-width="14" paint-order="stroke fill" letter-spacing="-1.5">
+      <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="${title2Size}" font-weight="900" fill="#ffffff" stroke="#000000" stroke-width="12" paint-order="stroke fill" letter-spacing="-1.5">
         ${item.title2}
       </text>
     </g>
+  </g>
 
-    <!-- Bottom Street Graffiti Tape Ribbon -->
-    <g transform="translate(0, 275)" filter="url(#streetShadow)">
-      <polygon points="-460,-24 460,-24 450,24 -450,24" fill="#ec4899" stroke="#000000" stroke-width="5"/>
-      <text x="0" y="8" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="22" font-weight="900" fill="#ffffff" letter-spacing="0.5">
-        ✦ ${item.subTag} ✦
-      </text>
-    </g>
+  <!-- Bottom Slogan Badge -->
+  <g transform="translate(${w / 2}, ${h - 55})" filter="url(#street3D)">
+    <rect x="-400" y="-18" width="800" height="36" rx="8" fill="#000000" stroke="#facc15" stroke-width="3"/>
+    <text x="0" y="6" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-8ExtraBold', sans-serif" font-size="18" font-weight="900" fill="#a3e635" letter-spacing="1">
+      ✦ ${item.subTag} ✦
+    </text>
   </g>
 </svg>`;
 }
 
-// -------------------------------------------------------------
-// STYLE 4: Editorial Kinetic Sticker & Flame Duel (Ref 4: 갓생살다 / VS Match)
-// Red & Orange Flame Gradient, Offset Kinetic Outline Trails, "VS MATCH" Pill & Sports Duel Vibe
-// -------------------------------------------------------------
-export function generateStyle4_EditorialKinetic(w, h, item) {
-  const title1Size = calcFontSize(item.title1, 120, 9);
-  const title2Size = calcFontSize(item.title2, 102, 11);
+// ----------------------------------------------------------------------
+// STYLE 4 (Ref 4: 갓생살다 스타일)
+// 매트 젯블랙 배경 + 와이어프레임 아웃라인 잔상(Kinetic Wireframe Echo) + 사선 와이드 한글 + 알록달록 스티커 칩
+// ----------------------------------------------------------------------
+export function renderStyle4_EditorialKinetic(w, h, item) {
+  const title1Size = calcFontSize(item.title1, 130, 8);
+  const title2Size = calcFontSize(item.title2, 96, 12);
 
   return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="flameRedGrad" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#ef4444"/>
-      <stop offset="50%" stop-color="#f97316"/>
-      <stop offset="100%" stop-color="#facc15"/>
-    </linearGradient>
-
-    <linearGradient id="duelTextGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#ffffff"/>
-      <stop offset="25%" stop-color="#ffedd5"/>
-      <stop offset="70%" stop-color="#f97316"/>
-      <stop offset="100%" stop-color="#dc2626"/>
-    </linearGradient>
-
-    <filter id="kineticShadow" x="-30%" y="-30%" width="160%" height="160%">
-      <feDropShadow dx="0" dy="12" stdDeviation="6" flood-color="#000000" flood-opacity="1"/>
-      <feDropShadow dx="0" dy="24" stdDeviation="20" flood-color="#ef4444" flood-opacity="0.45"/>
+    <filter id="editorialGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.9"/>
     </filter>
-
-    <!-- Flame Icon Vector -->
-    <g id="flameIcon">
-      <path d="M 0 -35 C 10 -20 25 -10 25 10 C 25 25 15 35 0 35 C -15 35 -25 25 -25 10 C -25 -5 -10 -15 0 -35 Z" fill="#ef4444" stroke="#ffffff" stroke-width="3"/>
-      <path d="M 0 -15 C 6 -5 14 0 14 12 C 14 20 8 26 0 26 C -8 26 -14 20 -14 12 C -14 3 -5 -3 0 -15 Z" fill="#facc15"/>
-    </g>
   </defs>
 
-  <!-- Speed Slash Background Accents -->
-  <g opacity="0.4">
-    <line x1="80" y1="0" x2="0" y2="${h}" stroke="#ef4444" stroke-width="12" stroke-linecap="round"/>
-    <line x1="120" y1="0" x2="40" y2="${h}" stroke="#f97316" stroke-width="4" stroke-linecap="round"/>
-    <line x1="${w - 80}" y1="0" x2="${w - 160}" y2="${h}" stroke="#ef4444" stroke-width="12" stroke-linecap="round"/>
-    <line x1="${w - 40}" y1="0" x2="${w - 120}" y2="${h}" stroke="#facc15" stroke-width="4" stroke-linecap="round"/>
+  <!-- Matte Jet Black Background (Ref 4 Signature) -->
+  <rect width="${w}" height="${h}" fill="#09090b"/>
+
+  <!-- Top & Bottom Kinetic Wireframe Echo Ghost Typography (Ref 4 Signature) -->
+  <g transform="translate(${w / 2}, ${h / 2 - 10}) rotate(-4.5) skewX(-4)">
+    <!-- Top Echo 2 (Far) -->
+    <text x="0" y="-230" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="${title1Size * 0.95}" font-weight="900" fill="none" stroke="#ffffff" stroke-width="2.5" opacity="0.25" letter-spacing="-3">
+      ${item.title1}
+    </text>
+    <!-- Top Echo 1 (Near) -->
+    <text x="0" y="-120" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="${title1Size}" font-weight="900" fill="none" stroke="#ffffff" stroke-width="3" opacity="0.5" letter-spacing="-3">
+      ${item.title1}
+    </text>
+
+    <!-- Bottom Echo 1 (Near) -->
+    <text x="0" y="240" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="${title1Size}" font-weight="900" fill="none" stroke="#ffffff" stroke-width="3" opacity="0.45" letter-spacing="-3">
+      ${item.title1}
+    </text>
+    <!-- Bottom Echo 2 (Far) -->
+    <text x="0" y="340" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="${title1Size * 0.95}" font-weight="900" fill="none" stroke="#ffffff" stroke-width="2.5" opacity="0.2" letter-spacing="-3">
+      ${item.title1}
+    </text>
   </g>
 
-  <g transform="translate(${w / 2}, ${h / 2}) rotate(-3) skewX(-3)">
+  <!-- Scattered Colorful Primary Sticker Pills (Ref 4 Signature) -->
+  <!-- 1. Blue 'START NOW' Pill (Top-Right) -->
+  <g transform="translate(${w - 180}, 90) rotate(10)" filter="url(#editorialGlow)">
+    <rect x="-90" y="-22" width="180" height="44" rx="22" fill="#2563eb"/>
+    <text x="0" y="7" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="18" font-weight="900" fill="#ffffff" letter-spacing="1">
+      ✦ START NOW
+    </text>
+  </g>
+
+  <!-- 2. Green 'START NOW' Pill (Top-Left) -->
+  <g transform="translate(180, 110) rotate(-12)" filter="url(#editorialGlow)">
+    <rect x="-85" y="-20" width="170" height="40" rx="20" fill="#16a34a"/>
+    <text x="0" y="6" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="17" font-weight="900" fill="#ffffff" letter-spacing="1">
+      ✦ HOT ISSUE
+    </text>
+  </g>
+
+  <!-- 3. Circular Red Check Sticker (Left) -->
+  <g transform="translate(120, 260) rotate(-15)" filter="url(#editorialGlow)">
+    <circle cx="0" cy="0" r="42" fill="#ea580c"/>
+    <text x="0" y="-6" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-8ExtraBold', sans-serif" font-size="12" font-weight="800" fill="#ffffff">
+      2026 플래그십
+    </text>
+    <text x="0" y="14" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="16" font-weight="900" fill="#ffffff">
+      실무 검증
+    </text>
+  </g>
+
+  <!-- 4. Round Blue & Yellow Check Badges -->
+  <g transform="translate(${w - 240}, 180) rotate(5)">
+    <circle cx="-35" cy="0" r="24" fill="#2563eb"/>
+    <text x="-35" y="8" text-anchor="middle" font-family="'Paperlogy', sans-serif" font-size="20" font-weight="900" fill="#ffffff">✔</text>
+    <circle cx="20" cy="0" r="24" fill="#facc15"/>
+    <text x="20" y="8" text-anchor="middle" font-family="'Paperlogy', sans-serif" font-size="20" font-weight="900" fill="#000000">✔</text>
+  </g>
+
+  <!-- 5. Blue Starburst Emblem (Bottom-Right) -->
+  <g transform="translate(${w - 180}, ${h - 220}) rotate(-10)" filter="url(#editorialGlow)">
+    <polygon points="0,-45 15,-15 45,0 15,15 0,45 -15,15 -45,0 -15,-15" fill="#2563eb"/>
+    <text x="0" y="6" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="15" font-weight="900" fill="#ffffff">
+      AI 맞대결
+    </text>
+  </g>
+
+  <!-- 6. Red 'START NOW' Pill (Bottom-Right) -->
+  <g transform="translate(${w - 200}, ${h - 110}) rotate(8)" filter="url(#editorialGlow)">
+    <rect x="-85" y="-20" width="170" height="40" rx="20" fill="#dc2626"/>
+    <text x="0" y="6" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="17" font-weight="900" fill="#ffffff" letter-spacing="1">
+      ✦ VS MATCH
+    </text>
+  </g>
+
+  <!-- Central Solid Giant White Headline (-4.5 deg dynamic tilt) -->
+  <g transform="translate(${w / 2}, ${h / 2 - 10}) rotate(-4.5) skewX(-4)" filter="url(#editorialGlow)">
     
-    <!-- Top-Left Flame Sticker -->
-    <g transform="translate(-460, -180) rotate(-15) scale(1.3)" filter="url(#kineticShadow)">
-      <use href="#flameIcon"/>
-    </g>
-
-    <!-- Top-Right Circular "VS MATCH" Emblem -->
-    <g transform="translate(470, -160) rotate(15)" filter="url(#kineticShadow)">
-      <circle cx="0" cy="0" r="46" fill="#dc2626" stroke="#ffffff" stroke-width="5"/>
-      <text x="0" y="10" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="22" font-weight="900" fill="#facc15" letter-spacing="1">
-        ${item.vsBadge || 'VS'}
-      </text>
-    </g>
-
-    <!-- Top Angled Flame Ribbon Badge with Vector Flames on sides -->
-    <g transform="translate(0, -150)" filter="url(#kineticShadow)">
-      <polygon points="-270,-40 270,-40 250,40 -250,40" fill="#000000"/>
-      <polygon points="-260,-34 260,-34 242,34 -242,34" fill="url(#flameRedGrad)" stroke="#ffffff" stroke-width="4"/>
-      <!-- Small side flames -->
-      <g transform="translate(-215, 0) scale(0.6)"><use href="#flameIcon"/></g>
-      <g transform="translate(215, 0) scale(0.6)"><use href="#flameIcon"/></g>
-      <text x="0" y="14" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="34" font-weight="900" fill="#ffffff" stroke="#000000" stroke-width="5" paint-order="stroke fill" letter-spacing="1">
+    <!-- Top Red Arch Badge (Ref 4 Signature) -->
+    <g transform="translate(0, -95)">
+      <path d="M -90 15 L -90 -10 Q 0 -50 90 -10 L 90 15 Z" fill="#ea580c"/>
+      <text x="0" y="4" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="20" font-weight="900" fill="#ffffff">
         ${item.badge}
       </text>
     </g>
 
-    <!-- Kinetic Outline Echo Trail for Line 1 (Visual Echo Effect from Ref 4) -->
-    <g transform="translate(0, 35)">
-      <!-- Kinetic Echo 2 (Far) -->
-      <text x="0" y="-12" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="${title1Size}" font-weight="900" fill="none" stroke="#ef4444" stroke-width="3" opacity="0.35" letter-spacing="-2">
+    <!-- Main Solid Bold White Headline (Ref 4: '갓생살다') -->
+    <g transform="translate(0, 15)">
+      <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="${title1Size}" font-weight="900" fill="#ffffff" stroke="#000000" stroke-width="16" paint-order="stroke fill" letter-spacing="-3">
         ${item.title1}
       </text>
-      <!-- Kinetic Echo 1 (Near) -->
-      <text x="0" y="-6" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="${title1Size}" font-weight="900" fill="none" stroke="#f97316" stroke-width="4" opacity="0.6" letter-spacing="-2">
-        ${item.title1}
-      </text>
-
-      <!-- Solid Foreground Line 1 -->
-      <g filter="url(#kineticShadow)">
-        <text x="0" y="10" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="${title1Size}" font-weight="900" fill="#000000" stroke="#000000" stroke-width="26" paint-order="stroke fill" letter-spacing="-2">
-          ${item.title1}
-        </text>
-        <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="${title1Size}" font-weight="900" fill="#ffffff" stroke="#991b1b" stroke-width="12" paint-order="stroke fill" letter-spacing="-2">
-          ${item.title1}
-        </text>
-      </g>
     </g>
 
-    <!-- Line 2: Hot Fiery Red/Amber Duel Headline -->
-    <g transform="translate(0, 180)" filter="url(#kineticShadow)">
-      <text x="0" y="10" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="${title2Size}" font-weight="900" fill="#000000" stroke="#000000" stroke-width="24" paint-order="stroke fill" letter-spacing="-1.5">
-        ${item.title2}
-      </text>
-      <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="${title2Size}" font-weight="900" fill="url(#duelTextGrad)" stroke="#000000" stroke-width="14" paint-order="stroke fill" letter-spacing="-1.5">
+    <!-- Second Line: Dynamic Fiery Red/Yellow Block -->
+    <g transform="translate(0, 105)">
+      <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif" font-size="${title2Size}" font-weight="900" fill="#facc15" stroke="#000000" stroke-width="12" paint-order="stroke fill" letter-spacing="-1.5">
         ${item.title2}
       </text>
     </g>
+  </g>
 
-    <!-- Bottom Slanted Flame Duel Ribbon -->
-    <g transform="translate(0, 275)" filter="url(#kineticShadow)">
-      <polygon points="-460,-22 460,-22 445,22 -445,22" fill="#030712" stroke="#ef4444" stroke-width="3"/>
-      <text x="0" y="7" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-8ExtraBold', sans-serif" font-size="21" font-weight="900" fill="#ffffff" letter-spacing="0.5">
-        ✦ ${item.subTag} ✦
-      </text>
-    </g>
+  <!-- Yellow Arch Ribbon (Ref 4: '오늘부터 갓생살기 시작합니다 ✔') -->
+  <g transform="translate(${w / 2 - 120}, ${h - 110}) rotate(-5)" filter="url(#editorialGlow)">
+    <rect x="-240" y="-22" width="480" height="44" rx="22" fill="#facc15"/>
+    <text x="-15" y="7" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-8ExtraBold', sans-serif" font-size="18" font-weight="900" fill="#000000">
+      ${item.subTag}
+    </text>
+    <circle cx="205" cy="0" r="16" fill="#ea580c"/>
+    <text x="205" y="5" text-anchor="middle" font-family="'Paperlogy', sans-serif" font-size="14" font-weight="900" fill="#ffffff">✔</text>
   </g>
 </svg>`;
 }
 
-// Master Dispatcher by Style
-export function generateThumbnailSvgByStyle(w, h, item) {
+// Master Dispatcher
+export function renderThumbnailByStyle(w, h, item) {
   switch (item.style) {
-    case 'style1_hightech':
-      return generateStyle1_HighTech(w, h, item);
-    case 'style2_comicburst':
-      return generateStyle2_ComicBurst(w, h, item);
+    case 'style1_ecoclean':
+      return renderStyle1_EcoClean(w, h, item);
+    case 'style2_comicpop':
+      return renderStyle2_ComicPop(w, h, item);
     case 'style3_streetgraffiti':
-      return generateStyle3_StreetGraffiti(w, h, item);
+      return renderStyle3_StreetGraffiti(w, h, item);
     case 'style4_editorialkinetic':
     default:
-      return generateStyle4_EditorialKinetic(w, h, item);
+      return renderStyle4_EditorialKinetic(w, h, item);
   }
 }
 
-async function renderThumbnails() {
+async function runRender() {
   const TARGET_W = 1280;
   const TARGET_H = 720;
 
   for (const item of THUMBNAIL_CONFIGS) {
-    if (!fs.existsSync(item.raw)) {
-      console.warn('Raw file missing:', item.raw);
-      continue;
-    }
-
-    const resizedBg = await sharp(item.raw)
-      .resize(TARGET_W, TARGET_H, { fit: 'cover', position: 'center' })
-      .toBuffer();
-
-    const svgStr = generateThumbnailSvgByStyle(TARGET_W, TARGET_H, item);
+    const svgStr = renderThumbnailByStyle(TARGET_W, TARGET_H, item);
     const svgBuf = Buffer.from(svgStr);
 
-    const outBuffer = await sharp(resizedBg)
-      .composite([{ input: svgBuf, top: 0, left: 0 }])
+    const outBuffer = await sharp(svgBuf)
       .jpeg({ quality: 96 })
       .toBuffer();
 
     fs.writeFileSync(item.target, outBuffer);
-    console.log(`✅ [${item.style}] Rendered: ${item.target}`);
+    console.log(`✅ [${item.style}] Created Distinct Thumbnail: ${item.target}`);
   }
 }
 
-renderThumbnails().catch(console.error);
+runRender().catch(console.error);
