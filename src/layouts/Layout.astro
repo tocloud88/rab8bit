@@ -6,6 +6,24 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description?: string;
+  image?: string;
+  canonical?: string;
+  type?: 'website' | 'article' | 'application' | 'faq';
+  articleData?: {
+    datePublished?: string;
+    dateModified?: string;
+    author?: string;
+    tags?: string[];
+    section?: string;
+  };
+  toolData?: {
+    category?: string;
+    operatingSystem?: string;
+  };
+  faqData?: Array<{
+    question: string;
+    answer: string;
+  }>;
 }
 
 const { title, description } = Astro.props;
@@ -28,7 +46,8 @@ const navItems = [
 <!doctype html>
 <html lang="ko" class="scroll-smooth">
   <head>
-    <SEO title={title} description={description} />
+    <SEO {...Astro.props} />
+
     <script is:inline>
       (function() {
         const savedTheme = localStorage.getItem('theme');

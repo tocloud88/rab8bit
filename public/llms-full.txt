@@ -1,0 +1,1255 @@
+# rab8bit.com - Full Knowledge Manifest & Directory
+
+> Base URL: https://rab8bit.com
+> Purpose: Machine-readable comprehensive knowledge index for Large Language Models and Generative Search Engines.
+
+---
+
+## 1. 100 Interactive Web Tools Directory (100% Free Client-Side)
+
+### [2026 연봉 실수령액 계산기](https://rab8bit.com/tools/salary-calculator)
+- **URL**: https://rab8bit.com/tools/salary-calculator
+- **Category**: 변환/계산
+- **Badge**: 2026 최신
+- **Description**: 2026년 4대보험 요율과 근로소득세 간이세액표를 반영하여 세후 실수령액과 공제 항목을 실시간 계산합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [주식 물타기 & 평단가 계산기](https://rab8bit.com/tools/stock-water)
+- **URL**: https://rab8bit.com/tools/stock-water
+- **Category**: 변환/계산
+- **Badge**: 투자 필수
+- **Description**: 보유 주식의 현재 평단가와 추가 매수 금액을 입력하여 최종 평단가와 목표 탈출 단가를 시뮬레이션합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [부동산 중개보수(복비) 계산기](https://rab8bit.com/tools/realtor-fee)
+- **URL**: https://rab8bit.com/tools/realtor-fee
+- **Category**: 변환/계산
+- **Badge**: 부동산
+- **Description**: 매매, 전세, 월세 거래금액에 따른 법정 상한 중개보수 요율과 부가세를 자동 계산합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [대출 이자 & 상환 계산기](https://rab8bit.com/tools/loan-calculator)
+- **URL**: https://rab8bit.com/tools/loan-calculator
+- **Category**: 변환/계산
+- **Badge**: 대출
+- **Description**: 원리금 균등, 원금 균등, 만기 일시 상환 방식별 월 납입금과 총 이자 부담액을 비교 분석합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [프리랜서 3.3% 원천징수 계산기](https://rab8bit.com/tools/freelancer-tax)
+- **URL**: https://rab8bit.com/tools/freelancer-tax
+- **Category**: 변환/계산
+- **Badge**: 세금
+- **Description**: 프리랜서 사업소득 원천징수세율 3.3%(소득세 3% + 지방소득세 0.3%) 차감 후 실수령액을 계산합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [코인/가상자산 수익률 계산기](https://rab8bit.com/tools/crypto-calc)
+- **URL**: https://rab8bit.com/tools/crypto-calc
+- **Category**: 변환/계산
+- **Badge**: 가상자산
+- **Description**: 매수/매도 단가와 거래소 수수료(업비트, 빗썸, 바이낸스 등)를 반영하여 순수익과 손익분기점을 계산합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [적금 풍차돌리기 플래너](https://rab8bit.com/tools/windmill-savings)
+- **URL**: https://rab8bit.com/tools/windmill-savings
+- **Category**: 변환/계산
+- **Badge**: 재테크
+- **Description**: 매월 1년 만기 적금을 새로 개설하여 1년 후부터 매월 원금과 이자를 수령하는 적금 계획을 시뮬레이션합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [청년도약계좌 만기 수령액 계산기](https://rab8bit.com/tools/youth-leap)
+- **URL**: https://rab8bit.com/tools/youth-leap
+- **Category**: 변환/계산
+- **Badge**: 청년지원
+- **Description**: 매월 납입액과 정부 기여금 매칭, 비과세 혜택을 합산하여 5년 만기 시 최종 수령액을 계산합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [종합소득세 간편 모의계산기](https://rab8bit.com/tools/comprehensive-tax)
+- **URL**: https://rab8bit.com/tools/comprehensive-tax
+- **Category**: 변환/계산
+- **Badge**: 절세
+- **Description**: 과세표준 구간별 세율(6%~45%)과 누진공제액을 적용하여 예상 종합소득세를 계산합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [상여금 & 보너스 세후 계산기](https://rab8bit.com/tools/bonus-tax)
+- **URL**: https://rab8bit.com/tools/bonus-tax
+- **Category**: 변환/계산
+- **Badge**: 급여
+- **Description**: 성과급, 명절 상여금, 인센티브 지급 시 소득세와 4대보험 공제 후 통장 수령액을 계산합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [2026 주휴수당 & 알바비 계산기](https://rab8bit.com/tools/weekly-holiday-pay)
+- **URL**: https://rab8bit.com/tools/weekly-holiday-pay
+- **Category**: 변환/계산
+- **Badge**: 노무
+- **Description**: 주 15시간 이상 근무 시 지급되는 법정 주휴수당과 2026년 최저시급 기준 월 총지급액을 계산합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [미사용 연차수당 보상금 계산기](https://rab8bit.com/tools/annual-leave-pay)
+- **URL**: https://rab8bit.com/tools/annual-leave-pay
+- **Category**: 변환/계산
+- **Badge**: 직장인
+- **Description**: 통상임금 기준 1일 통상시급을 산출하여 남은 미사용 연차에 대한 보상 수당을 계산합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [연장·야간·휴일 가산수당 계산기](https://rab8bit.com/tools/overtime-pay)
+- **URL**: https://rab8bit.com/tools/overtime-pay
+- **Category**: 변환/계산
+- **Badge**: 수당
+- **Description**: 근로기준법상 법정 가산율(연장 1.5배, 야간 1.5배, 휴일 1.5~2배)을 적용한 추가 근로 수당을 산출합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [경력 개월수 & 근속기간 합산기](https://rab8bit.com/tools/career-calculator)
+- **URL**: https://rab8bit.com/tools/career-calculator
+- **Category**: 지식/정보
+- **Badge**: 이력서
+- **Description**: 이직 및 이력서 작성 시 여러 회사의 입사일/퇴사일을 입력하여 총 경력 연수와 개월수를 합산합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [출장비 & 유류비 실비 정산기](https://rab8bit.com/tools/travel-expense)
+- **URL**: https://rab8bit.com/tools/travel-expense
+- **Category**: 변환/계산
+- **Badge**: 업무
+- **Description**: 국내외 출장 시 이동 거리당 유류비, 일비, 숙박비, 식비를 항목별로 취합하여 정산 보고서를 생성합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [BMI 체질량지수 & 비만도 판정기](https://rab8bit.com/tools/bmi-calculator)
+- **URL**: https://rab8bit.com/tools/bmi-calculator
+- **Category**: 변환/계산
+- **Badge**: 건강
+- **Description**: 신장과 체중을 기반으로 BMI 지수를 산출하고 저체중, 정상, 과체중, 비만 단계와 적정 체중 범위를 안내합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [1RM 헬스 3대 중량 계산기](https://rab8bit.com/tools/onerm-calc)
+- **URL**: https://rab8bit.com/tools/onerm-calc
+- **Category**: 변환/계산
+- **Badge**: 피트니스
+- **Description**: 반복 횟수와 중량을 바탕으로 벤치프레스, 스쿼트, 데드리프트의 최대 1회 중량(1RM)과 %별 훈련 무게표를 산출합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [하루 권장 물 섭취량 계산기](https://rab8bit.com/tools/water-intake)
+- **URL**: https://rab8bit.com/tools/water-intake
+- **Category**: 지식/정보
+- **Badge**: 건강습관
+- **Description**: 체중과 일일 활동량, 날씨를 고려하여 하루에 마셔야 할 최적의 음수량(mL)과 시간대별 가이드를 제공합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [음주 후 알코올 분해 시간 계산기](https://rab8bit.com/tools/alcohol-breakdown)
+- **URL**: https://rab8bit.com/tools/alcohol-breakdown
+- **Category**: 지식/정보
+- **Badge**: 음주안전
+- **Description**: 위드마크(Widmark) 공식을 기반으로 주종, 음주량, 체중에 따른 혈중 알코올 농도와 완전 분해 소요 시간을 모의 계산합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [임신 주수 & 출산 예정일 계산기](https://rab8bit.com/tools/pregnancy-calc)
+- **URL**: https://rab8bit.com/tools/pregnancy-calc
+- **Category**: 지식/정보
+- **Badge**: 육아/출산
+- **Description**: 마지막 생리 시작일 또는 배란일 기준으로 현재 임신 주수, D-Day, 출산 예정일과 주요 검진 일정을 계산합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [아기 개월수 & 예방접종 계산기](https://rab8bit.com/tools/baby-months)
+- **URL**: https://rab8bit.com/tools/baby-months
+- **Category**: 지식/정보
+- **Badge**: 육아
+- **Description**: 아기 생년월일을 입력하면 오늘 기준 만 나이, 개월수, 일수와 국가 필수 예방접종 추천 시기를 안내합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [카페인 섭취량 & 반감기 계산기](https://rab8bit.com/tools/caffeine-calc)
+- **URL**: https://rab8bit.com/tools/caffeine-calc
+- **Category**: 지식/정보
+- **Badge**: 피로회복
+- **Description**: 커피, 에너지음료 섭취량에 따른 체내 잔류 카페인과 수면 방해 없는 취침 가능 시각을 계산합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [금연 일수 & 절약액 계산기](https://rab8bit.com/tools/quit-smoking)
+- **URL**: https://rab8bit.com/tools/quit-smoking
+- **Category**: 지식/정보
+- **Badge**: 동기부여
+- **Description**: 금연 시작일과 하루 흡연량을 입력하면 아낀 담뱃값, 연장된 예상 수명, 신체 회복 마일스톤을 실시간 집계합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [해외 신발 & 의류 사이즈 환산표](https://rab8bit.com/tools/shoe-size)
+- **URL**: https://rab8bit.com/tools/shoe-size
+- **Category**: 변환/계산
+- **Badge**: 직구필수
+- **Description**: 한국(mm), 미국(US), 영국(UK), 유럽(EU), 일본(JP)의 남녀 및 아동 신발/의류 사이즈를 상호 변환합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [100g/개당 최저가 가성비 비교기](https://rab8bit.com/tools/unit-price-compare)
+- **URL**: https://rab8bit.com/tools/unit-price-compare
+- **Category**: 변환/계산
+- **Badge**: 알뜰소비
+- **Description**: 용량과 가격이 제각각인 마트 상품들의 100g(100ml)당 단가를 비교하여 가장 저렴한 가성비 상품을 찾아냅니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [신용카드 피킹률(혜택율) 계산기](https://rab8bit.com/tools/credit-card-pick)
+- **URL**: https://rab8bit.com/tools/credit-card-pick
+- **Category**: 변환/계산
+- **Badge**: 소비생활
+- **Description**: 월 총 결제금액 대비 할인·적립 혜택 금액을 계산하여 카드의 혜택 체감률(피킹률) 등급을 진단합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [자동차 유류비 & 충전비 비교기](https://rab8bit.com/tools/fuel-cost-calc)
+- **URL**: https://rab8bit.com/tools/fuel-cost-calc
+- **Category**: 변환/계산
+- **Badge**: 차량유지
+- **Description**: 주행거리와 연비, 유가를 입력하여 가솔린, 디젤, LPG, 전기차 간의 예상 주행 비용을 비교 계산합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [택시 심야할증 & 예상 요금 계산기](https://rab8bit.com/tools/taxi-fare)
+- **URL**: https://rab8bit.com/tools/taxi-fare
+- **Category**: 변환/계산
+- **Badge**: 교통
+- **Description**: 이동 거리와 시간대(주간/심야할증 20%~40%)를 고려하여 전국 주요 도시의 택시 요금을 추산합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [아파트 평수 & 전용면적 환산기](https://rab8bit.com/tools/pyeong-converter)
+- **URL**: https://rab8bit.com/tools/pyeong-converter
+- **Category**: 변환/계산
+- **Badge**: 부동산
+- **Description**: 평(坪)과 제곱미터(㎡)를 상호 변환하고 59㎡(24평형), 84㎡(34평형) 등 아파트 표준 전용면적 정보를 제공합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [대학교 학점 변환기 (4.5/4.3/100점)](https://rab8bit.com/tools/gpa-converter)
+- **URL**: https://rab8bit.com/tools/gpa-converter
+- **Category**: 변환/계산
+- **Badge**: 학업/취업
+- **Description**: 4.5 만점, 4.3 만점, 4.0 만점 학점을 백분율(100점) 점수로 상호 환산하여 취업 및 대학원 제출용 점수를 산출합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [어학 시험 점수 환산기 (토익/오픽/토스)](https://rab8bit.com/tools/lang-exam-calc)
+- **URL**: https://rab8bit.com/tools/lang-exam-calc
+- **Category**: 지식/정보
+- **Badge**: 스펙/어학
+- **Description**: TOEIC, OPIc, 토익스피킹, TOEFL, TEPS 점수 간의 상관 환산 등급표를 확인합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [군 복무일수 & 전역일 D-Day 계산기](https://rab8bit.com/tools/military-dday)
+- **URL**: https://rab8bit.com/tools/military-dday
+- **Category**: 지식/정보
+- **Badge**: 군대/곰신
+- **Description**: 입대일과 군별(육군, 해군, 공군, 해병대, 사회복무요원)을 선택하면 전역일과 복무 달성률(%)을 계산합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [랜덤 팀/조 나누기 추첨기](https://rab8bit.com/tools/team-divider)
+- **URL**: https://rab8bit.com/tools/team-divider
+- **Category**: 게임/추첨
+- **Badge**: 모임/파티
+- **Description**: 참가자 명단을 입력하고 원하는 팀 수나 인원수를 설정하면 공평하게 무작위 팀을 편성합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [오늘 뭐 먹지? 점심 메뉴 룰렛](https://rab8bit.com/tools/lunch-roulette)
+- **URL**: https://rab8bit.com/tools/lunch-roulette
+- **Category**: 게임/추첨
+- **Badge**: 직장인인기
+- **Description**: 한식, 중식, 일식, 양식, 분식 등 결정 장애를 해결해 주는 회전판 점심 메뉴 추천 룰렛입니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [술자리 벌칙 & 미션 뽑기 룰렛](https://rab8bit.com/tools/party-penalty)
+- **URL**: https://rab8bit.com/tools/party-penalty
+- **Category**: 게임/추첨
+- **Badge**: 술자리/MT
+- **Description**: 회식, MT, 파티에서 분위기를 띄우는 재미있는 벌칙과 미션을 무작위로 추첨합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [밸런스 게임 질문 생성기](https://rab8bit.com/tools/balance-game)
+- **URL**: https://rab8bit.com/tools/balance-game
+- **Category**: 게임/추첨
+- **Badge**: 아이스브레이킹
+- **Description**: 연애, 직장, 황당, 극단적 선택 등 모임에서 즐길 수 있는 재미있는 밸런스 게임 문항을 랜덤 제시합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [3D 주사위 굴리기 시뮬레이터](https://rab8bit.com/tools/dice-roller)
+- **URL**: https://rab8bit.com/tools/dice-roller
+- **Category**: 게임/추첨
+- **Badge**: 보드게임
+- **Description**: 1개부터 6개까지 원하는 수의 주사위를 물리 엔진 사운드와 함께 실시간으로 굴립니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [순발력 반응속도 테스트 (ms 측정)](https://rab8bit.com/tools/reaction-time)
+- **URL**: https://rab8bit.com/tools/reaction-time
+- **Category**: 게임/추첨
+- **Badge**: 두뇌테스트
+- **Description**: 화면 색상이 바뀌는 순간을 터치하여 나의 밀리초(ms) 단위 반응속도와 상위 % 등급을 측정합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [초성 퀴즈 단어 생성기](https://rab8bit.com/tools/chosung-quiz)
+- **URL**: https://rab8bit.com/tools/chosung-quiz
+- **Category**: 게임/추첨
+- **Badge**: 퀴즈게임
+- **Description**: 사자성어, 영화 제목, 음식, 수도 등 카테고리별 초성을 제시하고 정답을 맞히는 퀴즈 도구입니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [MBTI 16가지 성격 유형 궁합표](https://rab8bit.com/tools/mbti-match)
+- **URL**: https://rab8bit.com/tools/mbti-match
+- **Category**: 지식/정보
+- **Badge**: 성격테스트
+- **Description**: 나의 MBTI와 상대방의 MBTI를 선택하여 환상의 궁합, 반반 궁합, 주의할 점을 확인합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [오늘의 타로 카드 1장 운세](https://rab8bit.com/tools/tarot-today)
+- **URL**: https://rab8bit.com/tools/tarot-today
+- **Category**: 지식/정보
+- **Badge**: 오늘의운세
+- **Description**: 78장의 타로 카드 중 1장을 직접 뽑아 오늘 하루의 흐름, 마음가짐, 조언을 확인합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [안전한 강력 비밀번호 생성기](https://rab8bit.com/tools/password-generator)
+- **URL**: https://rab8bit.com/tools/password-generator
+- **Category**: 개발자
+- **Badge**: 보안필수
+- **Description**: 길이, 대소문자, 숫자, 특수문자 조합을 커스텀하여 해킹에 안전한 무작위 비밀번호를 원클릭 복사합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [영문 대소문자 & 케이스 변환기](https://rab8bit.com/tools/case-converter)
+- **URL**: https://rab8bit.com/tools/case-converter
+- **Category**: 텍스트
+- **Badge**: 개발/문서
+- **Description**: UPPERCASE, lowercase, camelCase, snake_case, PascalCase, kebab-case로 텍스트를 즉시 변환합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [텍스트 중복 줄 제거 & 가나다 정렬기](https://rab8bit.com/tools/text-dedup)
+- **URL**: https://rab8bit.com/tools/text-dedup
+- **Category**: 텍스트
+- **Badge**: 문서정리
+- **Description**: 대량의 텍스트 줄바꿈 목록에서 중복된 줄을 제거하고 가나다/알파벳 순서로 오름차순/내림차순 정렬합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [모스 부호(Morse Code) 양방향 번역기](https://rab8bit.com/tools/morse-converter)
+- **URL**: https://rab8bit.com/tools/morse-converter
+- **Category**: 텍스트
+- **Badge**: 암호/번역
+- **Description**: 한글, 영문, 숫자를 국제 표준 모스 부호로 변환하고 모스 부호 소리(Audio Beep) 재생을 지원합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [해시(Hash) 생성기 (MD5 / SHA-256)](https://rab8bit.com/tools/hash-generator)
+- **URL**: https://rab8bit.com/tools/hash-generator
+- **Category**: 개발자
+- **Badge**: 개발보안
+- **Description**: 입력 텍스트에 대한 MD5, SHA-1, SHA-256, SHA-512 해시 체크섬을 실시간으로 산출합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [웹 컬러 코드(HEX/RGB/HSL) 추출 & 팔레트](https://rab8bit.com/tools/color-palette)
+- **URL**: https://rab8bit.com/tools/color-palette
+- **Category**: 개발자
+- **Badge**: 디자인
+- **Description**: 컬러 피커에서 색상을 선택하여 HEX, RGB, HSL 코드를 확인하고 조화로운 5색 테마 팔레트를 생성합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [Unix 타임스탬프(Epoch Time) 변환기](https://rab8bit.com/tools/unix-timestamp)
+- **URL**: https://rab8bit.com/tools/unix-timestamp
+- **Category**: 개발자
+- **Badge**: 시간변환
+- **Description**: 초/밀리초 단위 타임스탬프를 한국 표준시(KST) 및 UTC 날짜로 상호 변환하고 현재 타임스탬프를 복사합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [정규표현식(Regex) 실시간 테스터](https://rab8bit.com/tools/regex-tester)
+- **URL**: https://rab8bit.com/tools/regex-tester
+- **Category**: 개발자
+- **Badge**: 코딩필수
+- **Description**: 정규식 패턴과 플래그(g, i, m)를 입력하여 대상 텍스트의 일치 항목을 하이라이팅하고 그룹을 추출합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [HTML 엔티티 인코더 & 디코더](https://rab8bit.com/tools/html-entities)
+- **URL**: https://rab8bit.com/tools/html-entities
+- **Category**: 개발자
+- **Badge**: 웹개발
+- **Description**: <, >, &, ", ' 등 특수문자를 &lt;, &gt;, &quot; 등의 HTML 엔티티 코드로 상호 변환합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [CSS 그라데이션 & 그림자 생성기](https://rab8bit.com/tools/css-gradient)
+- **URL**: https://rab8bit.com/tools/css-gradient
+- **Category**: 개발자
+- **Badge**: CSS스타일
+- **Description**: 선형/원형 그라데이션과 다중 박스 섀도우를 시각적으로 조작하고 완성된 CSS 코드를 원클릭 복사합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [SVG 코드 실시간 뷰어 & 최적화](https://rab8bit.com/tools/svg-viewer)
+- **URL**: https://rab8bit.com/tools/svg-viewer
+- **Category**: 개발자
+- **Badge**: 벡터그래픽
+- **Description**: SVG XML 코드를 붙여넣으면 실시간으로 렌더링을 미리보고 Data-URI 및 클린 코드로 추출합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [CSS Flexbox & Grid 인터랙티브 시각화](https://rab8bit.com/tools/flexbox-grid)
+- **URL**: https://rab8bit.com/tools/flexbox-grid
+- **Category**: 개발자
+- **Badge**: 인터랙티브
+- **Description**: justify-content, align-items, flex-direction 등 Flex/Grid 속성을 슬라이더로 조작하며 동작 원리를 배웁니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [SQL 쿼리 포매터 & 정렬기](https://rab8bit.com/tools/sql-formatter)
+- **URL**: https://rab8bit.com/tools/sql-formatter
+- **Category**: 개발자
+- **Badge**: DB쿼리
+- **Description**: 줄바꿈 없는 길고 복잡한 SQL 쿼리문을 예약어 대문자화 및 들여쓰기로 깔끔하게 서식화합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [IP 서브넷 마스크(CIDR) 계산기](https://rab8bit.com/tools/subnet-calculator)
+- **URL**: https://rab8bit.com/tools/subnet-calculator
+- **Category**: 개발자
+- **Badge**: 네트워크
+- **Description**: IP 주소와 서브넷 비트(/24 등)를 입력하면 네트워크 주소, 브로드캐스트 주소, 가용 호스트 범위를 산출합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [User-Agent 브라우저 & 기기 파서](https://rab8bit.com/tools/user-agent-parser)
+- **URL**: https://rab8bit.com/tools/user-agent-parser
+- **Category**: 개발자
+- **Badge**: 기기진단
+- **Description**: 내 브라우저 또는 임의의 User-Agent 문자열을 분석하여 OS, 브라우저 엔진, 기기 종류를 파싱합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [마크다운(Markdown) 실시간 에디터](https://rab8bit.com/tools/markdown-preview)
+- **URL**: https://rab8bit.com/tools/markdown-preview
+- **Category**: 텍스트
+- **Badge**: 문서작성
+- **Description**: 마크다운 문법으로 작성된 텍스트를 실시간으로 서식화된 HTML 뷰로 미리보고 HTML 코드를 복사합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [UUID / GUID v4 대량 생성기](https://rab8bit.com/tools/uuid-generator)
+- **URL**: https://rab8bit.com/tools/uuid-generator
+- **Category**: 개발자
+- **Badge**: 고유ID
+- **Description**: 버전 4 암호학적 난수 기반 UUID를 원하는 개수(1~100개)만큼 생성하고 하이픈/대소문자 옵션을 제공합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [로마 숫자 ↔ 아라비아 숫자 변환기](https://rab8bit.com/tools/roman-converter)
+- **URL**: https://rab8bit.com/tools/roman-converter
+- **Category**: 변환/계산
+- **Badge**: 수학/기호
+- **Description**: 로마 숫자(I, V, X, L, C, D, M)와 아라비아 숫자(1~3999)를 상호 변환하고 표기 규칙을 설명합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [한국어 로마자 표기법 변환기](https://rab8bit.com/tools/hangul-romanizer)
+- **URL**: https://rab8bit.com/tools/hangul-romanizer
+- **Category**: 텍스트
+- **Badge**: 표준표기
+- **Description**: 국어의 로마자 표기법(문화체육관광부 고시) 표준에 맞춰 한글 이름, 도로명, 지명을 영문 표기로 변환합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [화면 비율(16:9 / 4:3) & 해상도 계산기](https://rab8bit.com/tools/aspect-ratio-calc)
+- **URL**: https://rab8bit.com/tools/aspect-ratio-calc
+- **Category**: 변환/계산
+- **Badge**: 영상/화면
+- **Description**: 가로/세로 픽셀을 입력하여 최대공약수 기반 화면 비율을 구하거나, 원하는 비율에 맞는 픽셀 크기를 계산합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [해외직구 관·부가세 계산기](https://rab8bit.com/tools/duty-calculator)
+- **URL**: https://rab8bit.com/tools/duty-calculator
+- **Category**: 변환/계산
+- **Badge**: 2026 신규
+- **Description**: 미국($200), 일본·유럽·중국($150) 면세 한도와 품목별 예상 관세 및 부가세를 실시간 계산합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [스마트 더치페이 & 1/N 정산기](https://rab8bit.com/tools/dutch-pay)
+- **URL**: https://rab8bit.com/tools/dutch-pay
+- **Category**: 변환/계산
+- **Badge**: 2026 신규
+- **Description**: 개인별 메뉴 금액에 배달팁과 할인쿠폰을 공평하게 분배하고 카카오톡 정산 문구를 생성합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [황금연차 & 연휴 플래너](https://rab8bit.com/tools/holiday-planner)
+- **URL**: https://rab8bit.com/tools/holiday-planner
+- **Category**: 지식/정보
+- **Badge**: 2026 신규
+- **Description**: 내 입사일 기준 연차 발생 일수 계산과 2026/2027년 최장 9일 황금연휴 추천 일정을 확인합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [퇴직금 & 실업급여 계산기](https://rab8bit.com/tools/severance-pay)
+- **URL**: https://rab8bit.com/tools/severance-pay
+- **Category**: 변환/계산
+- **Badge**: 2026 신규
+- **Description**: 근속기간과 최근 3개월 급여 기반 예상 퇴직금 및 고용보험 실업급여 수급액을 모의 계산합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [예금·적금 이자 계산기](https://rab8bit.com/tools/savings-calc)
+- **URL**: https://rab8bit.com/tools/savings-calc
+- **Category**: 변환/계산
+- **Badge**: 2026 신규
+- **Description**: 정기예금 및 적금 만기 시 원금, 세전 이자, 이자소득세(15.4%/비과세) 차감 후 만기 수령액을 계산합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [뽀모도로 타이머 & 백색소음](https://rab8bit.com/tools/pomodoro-timer)
+- **URL**: https://rab8bit.com/tools/pomodoro-timer
+- **Category**: 텍스트
+- **Badge**: 2026 신규
+- **Description**: 25분 몰입과 5분 휴식 인터벌로 생산성을 극대화하며 오프라인 집중 백색소음을 재생합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [요리 레시피 인분 변환기](https://rab8bit.com/tools/recipe-portion)
+- **URL**: https://rab8bit.com/tools/recipe-portion
+- **Category**: 변환/계산
+- **Badge**: 2026 신규
+- **Description**: 1인분 레시피를 원하는 인분 수에 맞춰 자동 증량 계산하고 밥숟가락, 종이컵 계량으로 변환합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [수면 사이클 계산기](https://rab8bit.com/tools/sleep-cycle)
+- **URL**: https://rab8bit.com/tools/sleep-cycle
+- **Category**: 지식/정보
+- **Badge**: 2026 신규
+- **Description**: 90분 렘수면 주기를 바탕으로 아침에 가장 개운하게 눈뜰 수 있는 최적의 기상/취침 시각을 계산합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [디데이(D-Day) & 기념일 계산기](https://rab8bit.com/tools/dday-calculator)
+- **URL**: https://rab8bit.com/tools/dday-calculator
+- **Category**: 변환/계산
+- **Badge**: 2026 신규
+- **Description**: 기념일, 시험, 목표일까지 남은 D-Day와 100일, 1주년, 1000일 기념일 날짜를 자동 계산합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [기초대사량(BMR) & TDEE 계산기](https://rab8bit.com/tools/bmr-tdee-calc)
+- **URL**: https://rab8bit.com/tools/bmr-tdee-calc
+- **Category**: 변환/계산
+- **Badge**: 2026 신규
+- **Description**: 나의 기초대사량과 하루 유지 칼로리를 계산하고 다이어트 맞춤 탄·단·지(g) 비율을 산출합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [글자·단어 카운터](https://rab8bit.com/tools/character-counter)
+- **URL**: https://rab8bit.com/tools/character-counter
+- **Category**: 텍스트
+- **Badge**: 필수 유틸
+- **Description**: 공백 포함/제외 글자수, 단어수, 바이트수, 원고지 분량 및 예상 읽기 시간을 실시간으로 계산합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [문장 바꾸기](https://rab8bit.com/tools/find-replace)
+- **URL**: https://rab8bit.com/tools/find-replace
+- **Category**: 텍스트
+- **Badge**: N/A
+- **Description**: 여러 단어를 한 번에 찾아 원하는 텍스트로 일괄 치환합니다. 정규표현식(RegEx) 지원.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [모두의 전광판](https://rab8bit.com/tools/cheer)
+- **URL**: https://rab8bit.com/tools/cheer
+- **Category**: 텍스트
+- **Badge**: 인기
+- **Description**: 스마트폰 화면을 화려한 네온 LED 전광판으로 변신시킵니다. 콘서트, 응원, 피켓용 풀스크린 모드.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [실시간 단위 변환기](https://rab8bit.com/tools/unit-converter)
+- **URL**: https://rab8bit.com/tools/unit-converter
+- **Category**: 변환/계산
+- **Badge**: 추천
+- **Description**: 길이, 무게, 넓이(평수), 부피, 온도, 데이터 등 일상의 모든 단위를 실시간으로 즉시 변환합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [나이 계산기](https://rab8bit.com/tools/age-calculator)
+- **URL**: https://rab8bit.com/tools/age-calculator
+- **Category**: 변환/계산
+- **Badge**: 생활 필수
+- **Description**: 생년월일을 입력하면 법적 만 나이, 연 나이, 세는 나이와 총 살아온 일수, 띠, 별자리를 확인합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [음력·양력 변환기](https://rab8bit.com/tools/lunar-converter)
+- **URL**: https://rab8bit.com/tools/lunar-converter
+- **Category**: 변환/계산
+- **Badge**: N/A
+- **Description**: 음력과 양력 사이의 날짜를 쉽게 상호 변환하고, 해당 연도의 60갑자 간지와 띠를 확인합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [나의 탄생 비밀](https://rab8bit.com/tools/birthday-secret)
+- **URL**: https://rab8bit.com/tools/birthday-secret
+- **Category**: 지식/정보
+- **Badge**: 흥미
+- **Description**: 생일만 입력하면 나의 탄생화(꽃말), 탄생석(보석말), 탄생목, 고유 탄생색을 한눈에 확인합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [뜨개 게이지 계산기](https://rab8bit.com/tools/knitting-gauge)
+- **URL**: https://rab8bit.com/tools/knitting-gauge
+- **Category**: 변환/계산
+- **Badge**: N/A
+- **Description**: 스와치(10cm)의 코/단 수와 완성 치수를 기반으로 필요한 총 코 수와 단 수를 자동 환산합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [사다리 타기](https://rab8bit.com/tools/ladder-game)
+- **URL**: https://rab8bit.com/tools/ladder-game
+- **Category**: 게임/추첨
+- **Badge**: 팀 게임
+- **Description**: 2인부터 12인까지 참여 가능한 실시간 사다리 게임. 점심 메뉴 고르기, 커피 내기, 벌칙 추첨.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [결정의 룰렛](https://rab8bit.com/tools/roulette)
+- **URL**: https://rab8bit.com/tools/roulette
+- **Category**: 게임/추첨
+- **Badge**: N/A
+- **Description**: 선택지들을 입력하고 룰렛을 힘차게 돌려보세요. 점심 메뉴와 순번을 공정하게 결정합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [로또 번호 생성기](https://rab8bit.com/tools/lotto-generator)
+- **URL**: https://rab8bit.com/tools/lotto-generator
+- **Category**: 게임/추첨
+- **Badge**: 대박기원
+- **Description**: 제외 번호 지정 및 번호 합 통계 시뮬레이션 기반의 스마트 행운 로또 번호 6개 추천.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [몸으로 말해요](https://rab8bit.com/tools/charades)
+- **URL**: https://rab8bit.com/tools/charades
+- **Category**: 게임/추첨
+- **Badge**: 파티 필수
+- **Description**: 영화, 속담, 동물, 인물 등 500+개 제시어로 즐기는 모임 파티 필수 스피드 제스처 게임.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [스피드 퀴즈](https://rab8bit.com/tools/speed-quiz)
+- **URL**: https://rab8bit.com/tools/speed-quiz
+- **Category**: 게임/추첨
+- **Badge**: N/A
+- **Description**: 타이머와 점수판이 탑재된 실시간 단어 맞히기 스피드 퀴즈. 레크리에이션 진행용.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [JSON 포맷터 & 뷰어](https://rab8bit.com/tools/json-formatter)
+- **URL**: https://rab8bit.com/tools/json-formatter
+- **Category**: 개발/코딩
+- **Badge**: 개발자 추천
+- **Description**: 복잡한 JSON 데이터를 검증, 정렬, 압축(Minify)하고 트리 구조로 직관적으로 시각화합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [JWT 토큰 디코더](https://rab8bit.com/tools/jwt-decoder)
+- **URL**: https://rab8bit.com/tools/jwt-decoder
+- **Category**: 개발/코딩
+- **Badge**: 안전 보장
+- **Description**: 서버 전송 없이 브라우저에서 안전하게 JWT Header와 Payload를 디코딩하고 만료시간을 확인합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [Base64 인코더/디코더](https://rab8bit.com/tools/base64-encoder)
+- **URL**: https://rab8bit.com/tools/base64-encoder
+- **Category**: 개발/코딩
+- **Badge**: N/A
+- **Description**: 텍스트와 이미지 파일을 브라우저 내에서 즉시 Base64 문자열로 상호 변환하고 복사합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [URL 인코더/디코더](https://rab8bit.com/tools/url-encoder)
+- **URL**: https://rab8bit.com/tools/url-encoder
+- **Category**: 개발/코딩
+- **Badge**: N/A
+- **Description**: URL 특수문자 및 한글 쿼리스트링을 encodeURI / decodeURI 표준 규격으로 상호 변환합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [Cron 표현식 번역기](https://rab8bit.com/tools/cron-parser)
+- **URL**: https://rab8bit.com/tools/cron-parser
+- **Category**: 개발/코딩
+- **Badge**: N/A
+- **Description**: 난해한 Cron 정기작업 표현식을 사람이 읽기 쉬운 한국어 설명 및 다음 실행 예정 시각으로 해석합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [내 IP & 환경 확인](https://rab8bit.com/tools/my-ip)
+- **URL**: https://rab8bit.com/tools/my-ip
+- **Category**: 개발/코딩
+- **Badge**: N/A
+- **Description**: 현재 접속 중인 공인 IP 주소, 국가/도시 위치, ISP, 브라우저 User-Agent 정보를 실시간 확인합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [QR 코드 생성기](https://rab8bit.com/tools/qr-code)
+- **URL**: https://rab8bit.com/tools/qr-code
+- **Category**: 이미지/미디어
+- **Badge**: 무료 다운로드
+- **Description**: URL, 와이파이 접속, 텍스트를 고화질 커스텀 색상 QR 코드로 즉시 생성하고 PNG로 저장합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [바코드 생성기](https://rab8bit.com/tools/barcode-generator)
+- **URL**: https://rab8bit.com/tools/barcode-generator
+- **Category**: 이미지/미디어
+- **Badge**: N/A
+- **Description**: CODE128, EAN-13, UPC 등 표준 규격 바코드를 실시간 렌더링하고 이미지로 다운로드합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [누끼 이미지 배경 투명화](https://rab8bit.com/tools/transparent-background)
+- **URL**: https://rab8bit.com/tools/transparent-background
+- **Category**: 이미지/미디어
+- **Badge**: 로컬 처리
+- **Description**: 클릭 한 번으로 특정 배경색을 감지하여 투명한 PNG 이미지로 즉시 변환합니다 (Canvas 처리).
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [최신 신조어·밈 사전](https://rab8bit.com/tools/new-word)
+- **URL**: https://rab8bit.com/tools/new-word
+- **Category**: 지식/정보
+- **Badge**: 매월 업데이트
+- **Description**: 2026년 최신 유행어와 MZ 밈 신조어의 유래, 정확한 뜻, 실전 대화 예시를 한눈에 검색합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [생활의 꿀팁 백과](https://rab8bit.com/tools/howto)
+- **URL**: https://rab8bit.com/tools/howto
+- **Category**: 지식/정보
+- **Badge**: N/A
+- **Description**: 청소, 요리, 옷 관리, 자취생 꿀팁 등 일상 속 번거로운 문제들의 1분 명쾌한 해결법 모음.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [하루 한 줄 질문](https://rab8bit.com/tools/qna-a-day)
+- **URL**: https://rab8bit.com/tools/qna-a-day
+- **Category**: 지식/정보
+- **Badge**: N/A
+- **Description**: 매일 새로운 질문에 답하며 나 자신을 돌아보는 디지털 다이어리 & 생각 기록장.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [주변 맛집 & 편의시설 탐색](https://rab8bit.com/tools/restaurant-map)
+- **URL**: https://rab8bit.com/tools/restaurant-map
+- **Category**: 지식/정보
+- **Badge**: N/A
+- **Description**: 현재 내 위치를 기반으로 주변의 맛집, 카페, 편의점, 주유소 위치를 지도에서 즉시 탐색합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [자주 찾는 포털 바로가기](https://rab8bit.com/tools/bookmarks)
+- **URL**: https://rab8bit.com/tools/bookmarks
+- **Category**: 지식/정보
+- **Badge**: N/A
+- **Description**: 국내 주요 포털, 쇼핑몰, 금융, 공공기관의 공식 바로가기 링크를 깔끔하게 모아두었습니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [실시간 트렌드 랭킹](https://rab8bit.com/tools/rankings)
+- **URL**: https://rab8bit.com/tools/rankings
+- **Category**: 지식/정보
+- **Badge**: N/A
+- **Description**: 영화 순위, 음원 차트, 도서 베스트셀러 등 실시간 인기 트렌드를 한눈에 브리핑합니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+### [IT 개발자 성향 테스트](https://rab8bit.com/tools/dev-people)
+- **URL**: https://rab8bit.com/tools/dev-people
+- **Category**: 지식/정보
+- **Badge**: N/A
+- **Description**: 몇 가지 질문으로 나의 개발자 페르소나와 최적의 기술 스택 궁합을 재미있게 분석해드립니다.
+- **Usage**: 웹 브라우저에서 서버 통신 없이 즉각 계산/변환/추첨 수행.
+
+
+---
+
+## 2. In-Depth AI Blog & Technical Articles
+
+### [2026.09.14 최신 AI 트렌드 리포트: 100만 토큰 컨텍스트 시대를 200% 활용하는 대형 문서 분석법](https://rab8bit.com/blog/daily-tech-insight-2026-09-14)
+- **URL**: https://rab8bit.com/blog/daily-tech-insight-2026-09-14
+- **Author**: rab8bit 자동 큐레이터
+- **Date**: 2026.09.14
+- **Tags**: 대형컨텍스트, NotebookLM, ClaudeOpus, 논문요약, PDF분석, AI_2026, 최신트렌드
+- **Summary**: 수백 페이지의 논문, 사내 규정집, 수만 줄의 코드베이스를 누락 없이 교차 검증하고 인사이트를 도출하는 고급 프롬프트 기법입니다.
+
+### [2026.09.13 최신 AI 트렌드 리포트: 1인 창업가를 위한 바이브 코딩(Vibe Coding) 최적 스택](https://rab8bit.com/blog/daily-tech-insight-2026-09-13)
+- **URL**: https://rab8bit.com/blog/daily-tech-insight-2026-09-13
+- **Author**: rab8bit 자동 큐레이터
+- **Date**: 2026.09.13
+- **Tags**: 바이브코딩, VibeCoding, 1인개발, Bolt.new, ClaudeCode, 웹개발, AI_2026, 최신트렌드
+- **Summary**: 자연어 프롬프트만으로 풀스택 웹 애플리케이션을 기획부터 배포까지 원스톱으로 완성하는 2026 바이브 코딩 도구 조합을 정리합니다.
+
+### [2026.09.12 최신 AI 트렌드 리포트: 실무 워크플로우 대전환: AI 에이전트 자동화 실전 가이드](https://rab8bit.com/blog/daily-tech-insight-2026-09-12)
+- **URL**: https://rab8bit.com/blog/daily-tech-insight-2026-09-12
+- **Author**: rab8bit 자동 큐레이터
+- **Date**: 2026.09.12
+- **Tags**: AI에이전트, 업무자동화, 생산성, LLM실무, 프롬프트, AI_2026, 최신트렌드
+- **Summary**: 단순 질의응답을 넘어 브라우저 제어와 복합 업무를 스스로 완수하는 차세대 AI 에이전트의 실전 도입 전략과 유용한 팁을 심층 분석합니다.
+
+### [2026 최신 AI 빅4 플래그십 맞대결: GPT-6 Astra vs Gemini 3.1/3.8 vs Claude Opus 5/Mythos 5.1 vs Grok 4.6 완벽 비교](https://rab8bit.com/blog/ai-big-4-comparison-chatgpt-gemini-claude-grok)
+- **URL**: https://rab8bit.com/blog/ai-big-4-comparison-chatgpt-gemini-claude-grok
+- **Author**: rab8bit 에디터
+- **Date**: 2026.09.12
+- **Tags**: AI 비교, ChatGPT, Gemini, Claude, Grok, GPT-6 Astra, Gemini 3.8 Flash, Gemini 3.1 Pro, Claude Opus 5, Mythos 5.1, Grok 4.6, 플래그십 모델, AI 에이전트
+- **Summary**: OpenAI GPT-6 Astra, 구글 Gemini 3.8 Flash & 3.1 Pro, 앤트로픽 Claude Opus 5 & Mythos 5.1, xAI Grok 4.6까지! 2026년 하반기 최신 플래그십 인공지능의 컴퓨터 제어, 100만 토큰 문맥, 에이전트 성능 및 실무 추천을 완벽 분석합니다.
+
+### [“챗봇의 시대는 끝났다” — OpenAI GPT-6 Astra 공개: 화면을 보고 컴퓨터를 직접 다루는 자율 에이전트의 충격과 핵심 5가지](https://rab8bit.com/blog/openai-gpt-6-astra-release-analysis)
+- **URL**: https://rab8bit.com/blog/openai-gpt-6-astra-release-analysis
+- **Author**: rab8bit 에디터
+- **Date**: 2026.09.10
+- **Tags**: GPT-6, GPT-6 Astra, OpenAI, 컴퓨터 유즈, AI 에이전트, 사이버보안, 105만 토큰, 프론티어 모델, ChatGPT Plus, 자동화
+- **Summary**: 단순히 텍스트로 대화하던 챗봇의 시대가 막을 내렸습니다. OpenAI가 105만 토큰 컨텍스트와 함께 화면을 직접 보고 소프트웨어를 능동적으로 제어하는 'GPT-6 Astra'를 전격 발표했습니다. 사상 초유의 사이버 보안 Critical 등급부터 실무 워크플로 대전환까지 완벽 분석합니다.
+
+### [AI가 답한 '이유'를 믿으면 안 되는 까닭: 모델의 자기 설명 검증법](https://rab8bit.com/blog/ai-self-explanation-verification-guide)
+- **URL**: https://rab8bit.com/blog/ai-self-explanation-verification-guide
+- **Author**: GPT PARK
+- **Date**: 2026.09.08
+- **Tags**: AI 자기 설명, An Alien Mind, 야쿠프 파호츠키, OpenAI 수석과학자, AI 정렬, 사고사슬 모니터링, AI 안전 검증, 인공지능 에이전트, AI 도구 활용법, LLM 한계
+- **Summary**: OpenAI 수석과학자가 어떤 연구소도 정렬을 못 풀었다고 공개적으로 썼습니다. 에세이 핵심 정리와, AI 도구 쓰는 개인이 오늘 당장 바꿔야 할 작업 방식을 짚어봅니다.
+
+### [AI 재테크 강의 고를 때 거르는 강사 특징과 무료 검증법](https://rab8bit.com/blog/ai-side-hustle-course-verification-guide)
+- **URL**: https://rab8bit.com/blog/ai-side-hustle-course-verification-guide
+- **Author**: GPT PARK
+- **Date**: 2026.08.31
+- **Tags**: AI 재테크 강의, 유료 강의 사기, 강의 검증법, 수익 인증 조작, 유튜브 수익화 정책, 온라인 강의 환불, 생존자 편향, 양산형 콘텐츠 규정, 소비자분쟁해결기준, 부업 사기 구제
+- **Summary**: 월 5천만 원을 번다는 사람이 왜 그 비법을 30만 원에 팔고 있을까요? 후배가 39만 원을 날리는 과정을 옆에서 직접 지켜보며 정리한 수익 인증의 실체와 7단계 무료 검증법, 환불 관련 법적 근거를 소개합니다.
+
+### [오픈AI는 훈련을 멈췄고, 구글은 크롬을 열었다](https://rab8bit.com/blog/openai-pauses-training-google-opens-chrome)
+- **URL**: https://rab8bit.com/blog/openai-pauses-training-google-opens-chrome
+- **Author**: GPT PARK
+- **Date**: 2026.08.20
+- **Tags**: 오픈AI 훈련중단, 구글 제미나이 크롬, 오픈AI 아스트라, 챗GPT 포 틴즈, AI 청년 고용, 생성형 AI 안전, 브라우저 AI 에이전트, 한국은행 AI 보고서, AI 거버넌스, GEO 최적화
+- **Summary**: 오픈AI가 보안 사고로 프런티어 모델 훈련을 전격 중단한 사이, 구글은 크롬에 자율 에이전트를 탑재했습니다. 성능 경쟁에서 '통제와 신뢰'로 패러다임이 이동하는 산업의 거대한 변곡점을 짚어봅니다.
+
+### [AI가 만든 웹사이트는 왜 다 똑같이 생겼을까? 클로드 스킬로 해결한 방법](https://rab8bit.com/blog/why-ai-websites-look-same-claude-skills-solution)
+- **URL**: https://rab8bit.com/blog/why-ai-websites-look-same-claude-skills-solution
+- **Author**: GPT PARK
+- **Date**: 2026.08.13
+- **Tags**: 클로드스킬, ReferoStyles, DESIGN.md, AI웹사이트제작, 클로드사용법, 디자인토큰, 포트폴리오만들기, ClaudeSkills, 웹디자인자동화, 클로드코워크
+- **Summary**: AI로 웹사이트를 만들 때마다 매번 똑같은 보라색 카드와 흔한 디자인만 나와서 답답하셨나요? 클로드 스킬과 Refero DESIGN.md를 활용해 디자인 규칙을 고정하고, 나만의 맞춤형 웹사이트를 순식간에 제작하는 7단계 솔루션을 공개합니다.
+
+### [제미나이로 복잡한 논문 및 보고서 3줄 요약하는 법](https://rab8bit.com/blog/gemini-paper-report-three-line-summary-guide)
+- **URL**: https://rab8bit.com/blog/gemini-paper-report-three-line-summary-guide
+- **Author**: GPT PARK
+- **Date**: 2026.08.08
+- **Tags**: 제미나이, 논문요약, 보고서작성, 독해지원, 시간단축, Gemini활용법, AI요약프롬프트, PDF요약, 생산성도구, AI업무혁신
+- **Summary**: 수십 페이지에 달하는 두꺼운 전문 논문이나 복잡한 비즈니스 보고서를 읽다가 지친 적이 있으신가요? 구글 제미나이(Gemini)를 스마트하게 활용하면 아무리 난해한 문서라도 핵심 파악에 딱 3줄이면 충분합니다. 
+
+### [회의 끝나고 한숨?" 이제는 AI가 해결! 주간 업무 시간 3.8% 단축의 비밀](https://rab8bit.com/blog/ai-meeting-minutes-action-plan-chatgpt-prompt)
+- **URL**: https://rab8bit.com/blog/ai-meeting-minutes-action-plan-chatgpt-prompt
+- **Author**: GPT PARK
+- **Date**: 2026.07.31
+- **Tags**: ChatGPT 회의록 정리, AI 회의록 요약, 회의 액션 아이템, 실행계획 작성, 업무 자동화, 회의록 프롬프트, 담당자 마감일 정리, 회의 생산성, AI 업무 활용, 개인정보 처리
+- **Summary**: 회의 끝나고 "누가 뭘 언제까지" 정리하다 지치신 적 있으신가요? 긴 회의록을 담당자·마감일·할 일 표로 바꾸는 ChatGPT 프롬프트와 검수법을, 제가 매번 쓰는 그대로 풀어보았습니다.
+
+### [질문에서 '이것'만 빼면 AI가 예스맨에서 조언자로 변합니다](https://rab8bit.com/blog/ai-advisor-not-yesman-remove-intention-from-prompts)
+- **URL**: https://rab8bit.com/blog/ai-advisor-not-yesman-remove-intention-from-prompts
+- **Author**: GPT PARK
+- **Date**: 2026.07.21
+- **Tags**: AI 활용법, 프롬프트 엔지니어링, AI 환각, 대규모 언어 모델, AI 질문 전략, AI 검증 루틴, 생성형 AI 오용, AI 생산성 향상, 비판적 사고 AI, 챗GPT 활용팁
+- **Summary**:  AI를 '예스맨'에서 '냉철한 조언자'로 바꾸는 질문의 비밀과 함께, AI 시대에 반드시 알아야 할 단단한 기초를 다지는 방법을 이야기해보고자 합니다.
+
+### [AI로 프로그램 90개를 직접 만들며 배운 것 — 많이 쓰이는 도구와 그렇지 않은 도구의 차이](https://rab8bit.com/blog/lessons-from-building-90-ai-tools)
+- **URL**: https://rab8bit.com/blog/lessons-from-building-90-ai-tools
+- **Author**: GPT PARK
+- **Date**: 2026.07.13
+- **Tags**: AI 도구 개발, AI 프로덕트, AI 도구 제작 경험, GPT PARK, AI 서비스 성공 전략, AI 도구 수익화, 프롬프트 엔지니어링, AI 개발자 경험, 생성형 AI 활용, 노코드 AI 도구
+- **Summary**: AI로 최근 90개가 넘는 도구를 직접 만들고 운영하며 겪은 생생한 경험을 공유합니다. 어떤 도구는 성공하고, 어떤 도구는 잊혔을까요? 그 차이를 파악하고 AI 시대에 필요한 '진짜 인사이트'를 얻어 가세요.
+
+### [애드센스 거절 3번? AI 클로드가 찾아낸 '가치 없는 콘텐츠' 숨은 원인](https://rab8bit.com/blog/adsense-rejected-ai-cooload-robots-txt-fix)
+- **URL**: https://rab8bit.com/blog/adsense-rejected-ai-cooload-robots-txt-fix
+- **Author**: GPT PARK
+- **Date**: 2026.07.08
+- **Tags**: 애드센스 거절, 가치 없는 콘텐츠, robots.txt 오류, 구글 서치콘솔 진단, 애드센스 승인 방법, AI 블로그 분석, meta noindex 태그, 구글 크롤러 차단, 블로그 SEO 최적화, 애드센스 해결 방안
+- **Summary**: 애드센스 승인은 블로거들에게 늘 풀기 어려운 숙제 같은데요.  AI 클로드가 찾아낸 '가치 없는 콘텐츠' 숨은 원인을 알아봅니다.
+
+### [잃어버린 수익률 되찾기 위해 AI로 주가분석 프롬프트를 만들었습니다](https://rab8bit.com/blog/recover-lost-returns-stock-analysis-prompt)
+- **URL**: https://rab8bit.com/blog/recover-lost-returns-stock-analysis-prompt
+- **Author**: GPT PARK
+- **Date**: 2026.07.02
+- **Tags**: 삼성전자 주가 분석, SK하이닉스 주가 분석, 고점 매수 전략, 주식 기술적 분석, 인포그래픽 주가 분석, 4축 기술적 분석, 주식 투자 전략, MACD RSI 분석, 볼린저밴드 주식, 반도체 주식 투자
+- **Summary**: 주가 분석을 AI로 인포그래픽 형태로 시각화하여, 여러분의 투자 의사결정에 실질적인 도움을 드릴 수 있도록 만들었어요.
+
+### [레트로 게임 사이트를 만드는 앱을 만들어 보았습니다.](https://rab8bit.com/blog/retro-game-site-deployer)
+- **URL**: https://rab8bit.com/blog/retro-game-site-deployer
+- **Author**: GPT PARK
+- **Date**: 2026.06.27
+- **Tags**: 레트로 게임 사이트, 코딩 없이 웹사이트 만들기, 레트로 게임 앱, 인터넷 아카이브 게임, 무료 호스팅 웹사이트, Vercel 배포, Netlify 배포, 고전 게임 갤러리, 웹사이트 트래픽 증가, SEO 친화적 웹사이트
+- **Summary**: 코딩 없이 단 몇 분 만에 나만의 레트로 게임 사이트를 만들고 싶으셨나요? 방대한 고전 게임 라이브러리를 손쉽게 관리하고, 취향에 맞춰 디자인한 후, 무료 호스팅으로 즉시 배포하는 놀라운 방법을 소개합니다.
+
+### [쌓이기만 하는 프롬프트, 이렇게 관리하세요 — 270개를 직접 운영하며 찾은 '나만의 프롬프트 라이브러리' 구축법](https://rab8bit.com/blog/peurompeuteu-raibeureori)
+- **URL**: https://rab8bit.com/blog/peurompeuteu-raibeureori
+- **Author**: GPT PARK
+- **Date**: 2026.06.19
+- **Tags**: 프롬프트 라이브러리, 프롬프트 관리, 프롬프트 정리, 프롬프트 저장, 나만의 프롬프트, 프롬프트 엔지니어링, ChatGPT 프롬프트, 클로드 프롬프트, 제미나이 프롬프트, 업무 생산성 향상
+- **Summary**: 카톡, 메모장, 노션에 여기저기 흩어져 사라지는 프롬프트들. 직접 운영하며 검증한 분류 체계와 핵심 원칙을 통해 쓸모 있는 자산으로 바꾸는 구체적인 방법론을 전해드립니다.
+
+### [Gemini API 모델이 갑자기 종료됐어요: 모델 업데이트 충격 안 받는 실전 대응법](https://rab8bit.com/blog/preventing-gemini-api-disruptions)
+- **URL**: https://rab8bit.com/blog/preventing-gemini-api-disruptions
+- **Author**: GPT PARK
+- **Date**: 2026.06.17
+- **Tags**: gemini api, 모델 업데이트, 구글 제미나이, api 에러 방지, 나노 바나나, imagen 종료, 제미나이 플래시, 안정적인 api 운영, 모델 마이그레이션, ai 백엔드
+- **Summary**: Gemini API에서 쓰던 모델이 종료(deprecated)되면서 코드가 멈추는 문제, 직접 겪고 정리했습니다. -latest 별칭의 진짜 의미부터 2026년 6월 최신 모델 라인업, 이미지 모델(나노 바나나) 대응, 환경변수 기반 안전한 운영법까지 한 번에 정리합니다.
+
+### [2026월드컵 예측 프롬프트를 만들어 보았습니다](https://rab8bit.com/blog/2026-world-cup-ai-prediction-prompt)
+- **URL**: https://rab8bit.com/blog/2026-world-cup-ai-prediction-prompt
+- **Author**: GPT PARK
+- **Date**: 2026.06.12
+- **Tags**: 2026월드컵, 북중미월드컵, 월드컵조별리그, 대한민국월드컵, 손흥민, 32강예측, AI프롬프트, 챗GPT프롬프트, 월드컵예측, 축구분석, 손흥민김민재이강인, 월드컵32강, 프롬프트엔지니어링, 월드컵우승후보, AI축구예측
+- **Summary**: 정교하게 설계된 AI 데이터 프롬프트를 통해 분석한 대한민국의 생생한 조별리그 시나리오와 최종 예측 결과를 지금 바로 확인해 보세요.
+
+### [직접 써보니 놀라웠던 클로드의 강점 5가지](https://rab8bit.com/blog/claude-unexpected-strengths)
+- **URL**: https://rab8bit.com/blog/claude-unexpected-strengths
+- **Author**: GPT PARK
+- **Date**: 2026.06.10
+- **Tags**: 클로드 강점, Claude 3.5, AI 글쓰기 추천, 인공지능 에이전트, 문서 분석 AI, Claude Artifacts, AI 챗봇 비교, 업무 자동화 도구, 컴퓨터 사용 기능, 자연스러운 AI 문체
+- **Summary**: 단순한 대화를 넘어 실제 업무와 창작의 영역에서 제가 직접 경험하며 감탄했던 클로드만의 숨겨진 강점 5가지를 아주 상세하게 공유해 드릴게요.
+
+### [엑셀 노가다를 끝내줄 마법의 Claude 프롬프트 6가지](https://rab8bit.com/blog/claude-excel-prompts-6)
+- **URL**: https://rab8bit.com/blog/claude-excel-prompts-6
+- **Author**: GPT PARK
+- **Date**: 2026.06.09
+- **Tags**: Claude for Excel, 엑셀 프롬프트, 데이터 분석, 엑셀 자동화, 업무 효율, 피벗 테이블, 조건부 서식, 직장인 꿀팁, AI 엑셀, 보고서 작성
+- **Summary**: 엑셀 함수를 검색하느라 시간을 낭비하던 시대는 이제 끝났습니다. Claude for Excel을 활용해 복잡한 데이터 정리부터 보고서 작성까지 단 30초 만에 해결하는 6가지 마법의 프롬프트를 공개합니다.
+
+### [챗GPT에서 갈아탈때 제미나이와 클로드로 메모리 넘기는 방법](https://rab8bit.com/blog/migrate-chatgpt-to-gemini-claude)
+- **URL**: https://rab8bit.com/blog/migrate-chatgpt-to-gemini-claude
+- **Author**: GPT PARK
+- **Date**: 2026.06.08
+- **Tags**: Gemini, Claude, ChatGPT, AI마이그레이션, 데이터이전, 메모리가져오기, 제미나이, 클로드
+- **Summary**: ChatGPT에 쌓아온 방대한 대화 기록과 나만의 설정을 잃어버릴까 봐 다른 AI로의 이전을 망설이셨나요? 이제 Gemini와 Claude가 제공하는 공식 기능을 통해 클릭 몇 번으로 소중한 데이터를 완벽하게 옮길 수 있습니다. 직접 체험하며 정리한 단계별 가이드를 통해 스마트한 AI 이사를 시작해 보세요.
+
+### [초고는 편하게, 편집은 똑똑하게! 블로그 트래픽 3배 높이는 4단계 AI 협업 워크플로우](https://rab8bit.com/blog/blog-post-aeo-optimization-prompt)
+- **URL**: https://rab8bit.com/blog/blog-post-aeo-optimization-prompt
+- **Author**: GPT PARK
+- **Date**: 2026.06.04
+- **Tags**: AI 검색 최적화, 블로그 트래픽 늘리기, SEO 프롬프트, ChatGPT 블로그, AEO 최적화, GEO 노출 전략, 블로그 포스팅 팁, 검색엔진 최적화 방법, AI 검색 엔진 노출, 디지털 마케팅 워크플로우
+- **Summary**: 제가 직접 쓰고 있는 'AI 검색 최적화 변환 프롬프트'와 4단계 워크플로우를 통해 잠자던 여러분의 초고에 생명력을 불어넣는 방법을 상세히 공유합니다.
+
+### [코딩 한 줄 없이 부동산 실거래가 조회 앱 만들기: k-skill과 AI Studio의 조합](https://rab8bit.com/blog/google-ai-studio-android-app-build)
+- **URL**: https://rab8bit.com/blog/google-ai-studio-android-app-build
+- **Author**: GPT PARK
+- **Date**: 2026.05.31
+- **Tags**: 안드로이드 앱 만들기, 구글 AI 스튜디오, 바이브 코딩, k-skill, 노코드 앱 개발, 부동산 실거래가 앱, APK 설치 방법, AI Studio Build, 공공데이터 API 활용, 지피티팍
+- **Summary**: 글 AI 스튜디오의 혁신적인 업데이트와 한국형 API 도구인 k-skill을 활용해 코딩 한 줄 없이 나만의 네이티브 앱을 빌드하고 내 폰에 설치하는 전체 과정을 상세히 공개합니다.
+
+### [쇼핑 효율 200% 높이는 'AI 쇼핑 비서' 고급 프롬프트 템플릿 공유](https://rab8bit.com/blog/ai-fake-discount-checker-prompt)
+- **URL**: https://rab8bit.com/blog/ai-fake-discount-checker-prompt
+- **Author**: GPT PARK
+- **Date**: 2026.05.29
+- **Tags**: AI 쇼핑 프롬프트, 가짜 할인 검증, 가격 이력 분석, 최저가 확인, Keepa 키파 사용법, CamelCamelCamel 캐멜캐멜캐멜, 아마존 할인 진위, 쿠팡 최저가, 가격 추적 무료 도구, 똑똑한 온라인 쇼핑
+- **Summary**: '역대급 할인' 문구 뒤에 숨겨진 가격 거품을 단 30초 만에 걷어내는 AI 프롬프트 활용법을 소개합니다. 
+
+### [단순 작업은 ChatGPT, 중요한 결정은 Claude](https://rab8bit.com/blog/chatgpt-vs-claude-comparison)
+- **URL**: https://rab8bit.com/blog/chatgpt-vs-claude-comparison
+- **Author**: GPT PARK
+- **Date**: 2026.05.27
+- **Tags**: ChatGPT vs Claude, AI 도구 비교, 클로드 사용법, 챗GPT 업무 활용, 인공지능 비서, 생성형 AI 추천, Anthropic Claude, OpenAI ChatGPT, 업무 생산성 향상, 비즈니스 AI 가이드
+- **Summary**: 단순 작업은 ChatGPT에게, 고도의 의사결정과 논리 점검은 Claude에게 맡기는 최적의 활용 전략을 공개합니다.
+
+### [기억력이 나쁜 게 아니라 '갈고리'가 없는 것: NotebookLM으로 장기 기억 만드는 법](https://rab8bit.com/blog/notebooklm-prompts-for-complex-topics)
+- **URL**: https://rab8bit.com/blog/notebooklm-prompts-for-complex-topics
+- **Author**: GPT PARK
+- **Date**: 2026.05.26
+- **Tags**: NotebookLM, 학습 프롬프트, 장기기억법, 양자역학 공부, AI 공부법, 파레토 법칙 8020, 구조화 학습, 기억의 갈고리, 노트북LM 활용, 지식 내면화
+- **Summary**: NotebookLM을 활용해 복잡한 개념을 '나만의 지식'으로 완전히 소화하는 5단계 프롬프트 전략과 실제 활용 팁을 상세히 공유합니다.
+
+### [ChatGPT에 내 통장을 맡겨도 안전할까?](https://rab8bit.com/blog/chatgpt-bank-account-risk)
+- **URL**: https://rab8bit.com/blog/chatgpt-bank-account-risk
+- **Author**: GPT PARK
+- **Date**: 2026.05.22
+- **Tags**: ChatGPT 개인금융관리, GPT 계좌 연동, OpenAI 개인 금융 경험, Plaid 보안, 마이데이터 AI, GPT-5.5 파이낸스, 인공지능 자산관리, AI 금융 리스크, 챗GPT 보안, 데이터 프라이버시
+- **Summary**: AI에게 내 전 재산의 흐름을 보여주는 것이 편리함일지, 아니면 위험한 도박일지 GPT PARK의 솔직한 시선으로 풀어냈습니다.
+
+### [감정 태그 가계부 제작기: 마크다운보다 HTML이 더 나은 이유](https://rab8bit.com/blog/html-is-the-new-markdown)
+- **URL**: https://rab8bit.com/blog/html-is-the-new-markdown
+- **Author**: GPT PARK
+- **Date**: 2026.05.21
+- **Tags**: Claude Code, AI 에이전트, HTML 워크플로우, 가계부 앱 개발, Anthropic, 프롬프트 엔지니어링, 코드 자동화, 마이크로 소프트웨어, 디자인 시스템, Compute Allocator
+- **Summary**: Claude Code와 함께한 일주일, 그 치열했던 '감정 태그 가계부' 개발기 속에서 발견한 HTML 워크플로우의 정수를 여러분께 아낌없이 공개합니다.
+
+### [챗GPT, 클로드, 제미나이 장애 확인법 3가지 (2026 최신)](https://rab8bit.com/blog/how-to-check-ai-outage-chatgpt-claude-gemini)
+- **URL**: https://rab8bit.com/blog/how-to-check-ai-outage-chatgpt-claude-gemini
+- **Author**: GPT PARK
+- **Date**: 2026.05.19
+- **Tags**: 챗GPT 장애, 클로드 먹통, 제미나이 오류, OpenAI 서버 상태, Anthropic Status, AI 서버 확인법, 챗GPT 안될때, 클로드 오류 해결, StatusGator 설정, 인공지능 서비스 중단
+- **Summary**: AI 서비스 장애가 발생했을 때 사용자의 문제인지 서버의 결함인지 30초 안에 판단할 수 있는 실무적인 확인 방법과 대응 전략을 상세히 담고 있습니다.
+
+### [구글 AI STUDIO로 HTML5 낚시게임 만드는 방법](https://rab8bit.com/blog/how-to-make-html5-fishing-game-with-google-ai-studio)
+- **URL**: https://rab8bit.com/blog/how-to-make-html5-fishing-game-with-google-ai-studio
+- **Author**: GPT PARK
+- **Date**: 2026.05.18
+- **Tags**: 구글 AI 스튜디오, HTML5 게임 제작, 낚시 게임 만들기, Next.js 15 게임, 캔버스 API, 웹 게임 프로그래밍, 게임 AI 로직, 클린 미니멀리즘 디자인, 심해 낚시 시뮬레이터, Web Audio API 활용
+- **Summary**: 최고의 그래픽과 물리 엔진을 구현하기 위해 Gemini 3 Flash Preview와 치열하게 고민했던 기록을 지금 바로 확인해 보세요.
+
+### [데이터는 NotebookLM, 글쓰기는 Claude: 연구 효율 200% 워크플로우](https://rab8bit.com/blog/best-ai-tools-for-research-claude-notebooklm)
+- **URL**: https://rab8bit.com/blog/best-ai-tools-for-research-claude-notebooklm
+- **Author**: GPT PARK
+- **Date**: 2026.05.15
+- **Tags**: NotebookLM 사용법, Claude 연구 활용, AI 연구 워크플로우, 논문 작성 AI, 팩트체크 도구, 생산성 AI 조합, 할루시네이션 방지, 디지털 연구 도구, AI 글쓰기 팁, 연구 효율화
+- **Summary**: 연구의 질을 결정짓는 것은 풍부한 자료만큼이나 그 자료를 어떻게 정제하고 글로 풀어내느냐에 달려 있습니다. 사고의 확장을 돕는 Claude와 출처에 충실한 NotebookLM, 이 두 도구의 시너지를 통해 연구의 효율성을 극대화하는 구체적인 워크플로우를 공유합니다.
+
+### [강의 슬라이드부터 유튜브까지, NotebookLM으로 흩어진 학습 자료 통합 관리하기](https://rab8bit.com/blog/manage-learning-materials-with-notebooklm)
+- **URL**: https://rab8bit.com/blog/manage-learning-materials-with-notebooklm
+- **Author**: GPT PARK
+- **Date**: 2026.05.14
+- **Tags**: NotebookLM, 공부법, AI학습도구, 프롬프트, 파인만기법, 시험벼락치기, 구글AI, 생산성도구, 대학생꿀팁, 노트정리
+- **Summary**: 쏟아지는 강의록과 논문 사이에서 길을 잃으셨나요? 2026년 현재, 단순한 챗봇을 넘어 '나만의 지식 저장소'로 진화한 NotebookLM을 제대로 활용하는 법을 담았습니다. 표면적인 요약을 넘어, 지식을 완전히 내 것으로 만드는 실전 프롬프트 3가지를 지금 바로 확인해보세요.
+
+### [업무와 관련된 상황별 프롬프트 10개 예시 포함](https://rab8bit.com/blog/work-prompt-examples-10-for-business)
+- **URL**: https://rab8bit.com/blog/work-prompt-examples-10-for-business
+- **Author**: GPT PARK
+- **Date**: 2026.05.13
+- **Tags**: 업무 효율 프롬프트, 직장인 AI 활용법, 생산성 향상 도구, 챗GPT 업무 활용, 비즈니스 이메일 작성, 회의록 요약 프롬프트, 엑셀 수식 생성 AI, 업무 자동화 팁, 성과 기술서 작성법, 칼퇴 비결
+- **Summary**: 업무 효율을 200% 이상 끌어올리고 싶은 직장인들을 위해 준비했습니다. 상황별로 바로 복사해서 사용할 수 있는 최적의 AI 프롬프트 10가지를 통해 업무력 만렙으로 거듭나는 비결을 확인해보세요.
+
+### [클로드 코드로 파일 정리 끝! 초보자를 위한 AI 비서 활용법](https://rab8bit.com/blog/how-to-organize-files-with-claude-code-for-beginners)
+- **URL**: https://rab8bit.com/blog/how-to-organize-files-with-claude-code-for-beginners
+- **Author**: GPT PARK
+- **Date**: 2026.05.11
+- **Tags**: 클로드 코드, Claude Code, FFmpeg 사용법, 파일 이름 일괄 변경, AI 에이전트, 이미지 자동 편집, 옵시디언 정리, 디지털 생산성, 앤스로픽, 초보자 AI 활용
+- **Summary**: 코딩을 전혀 모르는 초보자도 인공지능 에이전트인 클로드 코드(Claude Code)를 활용해 복잡한 파일 정리와 이미지 편집을 순식간에 끝낼 수 있는 실전 노하우를 소개합니다.
+
+### [AI 초보자도 OK! 프롬프트 작성, 이 3단계만 따라해 보세요](https://rab8bit.com/blog/3-step-ai-prompt-guide)
+- **URL**: https://rab8bit.com/blog/3-step-ai-prompt-guide
+- **Author**: GPT PARK
+- **Date**: 2026.05.10
+- **Tags**: AI 프롬프트 작성법, 챗GPT 활용법, AI 초보 가이드, 프롬프트 엔지니어링, 업무 효율화, 생성형 AI, 질문 잘하는 법, 인공지능 대화 기술, 프롬프트 팁, AI 비서 활용
+- **Summary**: AI 활용의 핵심인 프롬프트 작성을 어렵게 느끼는 초보자분들을 위해, 제가 직접 경험하며 깨달은 명확성, 구체성, 맥락의 3가지 원리와 실전 3단계 가이드를 5가지 핵심 예시와 함께 상세히 공유합니다.
+
+### [블로거와 마케터를 위한 제미나이 실전 활용법 2](https://rab8bit.com/blog/gemini-advanced-marketing-tactics-part-2)
+- **URL**: https://rab8bit.com/blog/gemini-advanced-marketing-tactics-part-2
+- **Author**: GPT PARK
+- **Date**: 2026.05.07
+- **Tags**: 제미나이 활용법, 블로그 마케팅, AI 콘텐츠 제작, SEO 최적화, 구글 워크스페이스 제미나이, 나노바나나 이미지 생성, Deep Research, 프롬프트 엔지니어링, 디지털 마케팅 자동화, 콘텐츠 파이프라인
+- **Summary**: 블로그 운영과 마케팅의 생산성을 혁신하는 AI 도구, 제미나이의 두 번째 실전 활용법을 소개합니다. 최신 트렌드 분석부터 비주얼 콘텐츠 생성, 심층 리서치, 그리고 구글 워크스페이스 연동까지, 제미나이가 여러분의 업무 과정을 어떻게 자동화하고 고도화하는지 자세히 알아봅니다.
+
+### [챗GPT 부럽지 않는 GEMINI 미친 활용법 1](https://rab8bit.com/blog/yourblog-com-gemini-hacks-outperform-chatgpt-part-1)
+- **URL**: https://rab8bit.com/blog/yourblog-com-gemini-hacks-outperform-chatgpt-part-1
+- **Author**: GPT PARK
+- **Date**: 2026.05.06
+- **Tags**: 제미나이 활용법, 구글 제미나이, AI 생산성, 챗GPT 비교, 제미나이 2.5, AI 모델, 컨텍스트 윈도우, 실시간 웹 검색, 구글 워크스페이스 통합, 딥 리서치
+- **Summary**: 제미나이를 통해 업무와 일상을 어떻게 더욱 스마트하게 바꿀 수 있는지, 그 놀라운 활용법을 자세히 알려드릴게요!
+
+### [블로그 포스팅 5분으로 단축! 사진만 넣으면 SEO 글 자동 생성 - 스냅블로그(SnapBlog) 사용법](https://rab8bit.com/blog/snapblog-naver-blog-automation)
+- **URL**: https://rab8bit.com/blog/snapblog-naver-blog-automation
+- **Author**: GPT PARK
+- **Date**: 2026.05.04
+- **Tags**: 스냅블로그, SnapBlog, 블로그자동생성, 사진블로그AI, SEO자동화, 네이버블로그자동화, 티스토리자동화, 워드프레스자동화, Gemini API, AI블로그도구
+- **Summary**: 폰 사진만 업로드하면 AI가 직접 보고 SEO 블로그 글을 5분 안에 자동으로 작성해주는 도구 '스냅블로그(SnapBlog)' 사용법을 정리했습니다
+
+### [업무 효율 100배 상승! 직장인이 꼭 알아야 할 AI 프롬프트 비법](https://rab8bit.com/blog/10-powerful-ai-prompts-for-work-to-boost-productivity)
+- **URL**: https://rab8bit.com/blog/10-powerful-ai-prompts-for-work-to-boost-productivity
+- **Author**: GPT PARK
+- **Date**: 2026.04.30
+- **Tags**: AI 프롬프트, 업무 생산성, 직장인 업무 효율, AI 활용법, 챗GPT 활용, 업무 자동화, 프롬프트 엔지니어링, 스마트 워크, 디지털 전환, 일잘러 되는 법
+- **Summary**: 직접 경험하고 효과를 본, 여러분의 생산성을 한 단계 업그레이드할 수 있는 AI 프롬프트 10가지를 엄선해서 소개해 드릴게요
+
+### [당신이 AI 브라우저를 다시 생각해봐야 할 5가지 이유: 불편한 진실 집중 탐구](https://rab8bit.com/blog/risks-of-ai-browser-automation)
+- **URL**: https://rab8bit.com/blog/risks-of-ai-browser-automation
+- **Author**: GPT PARK
+- **Date**: 2026.04.26
+- **Tags**: AI 브라우저, 인공지능 브라우저, 프롬프트 주입 공격, 개인 정보 유출, AI 에이전트 보안, 웹 브라우저 확장 프로그램, AI 보안 취약점, 데이터 프라이버시, 웹 기술 혁신, 크로미움 브라우저
+- **Summary**: AI 브라우저, 정말 우리 웹 경험을 혁신할 새로운 물결일까요? 아니면 반짝이는 포장 속에 숨겨진 불편한 진실들이 존재할까요? 우리가 AI 브라우저에 대해 다시 한번 생각해봐야 할 5가지 핵심적인 이유를 깊이 있게 파고들어 봅니다. 
+
+### [더 이상 어렵지 않다! NotebookLM 활용 '초간단 학습 저널' 구축 노하우](https://rab8bit.com/blog/notebooklm-learning-journal-guide)
+- **URL**: https://rab8bit.com/blog/notebooklm-learning-journal-guide
+- **Author**: GPT PARK
+- **Date**: 2026.04.26
+- **Tags**: NotebookLM, 학습 저널, AI 학습 도구, 지식 관리, 생산성 향상, AI 노트 앱, 개인화 학습, 정보 정리, 효율적 학습, 학습 방법론
+- **Summary**: NotebookLM 활용 '초간단 학습 저널' 구축 노하우를 A부터 Z까지, 솔직하게 그리고 상세하게 알려드릴게요!
+
+### [프롬프트 엔지니어링, 과연 만능일까? 2026년 주목할 핵심 한계점 5가지](https://rab8bit.com/blog/5-limits-of-prompt-engineering-2026)
+- **URL**: https://rab8bit.com/blog/5-limits-of-prompt-engineering-2026
+- **Author**: GPT PARK
+- **Date**: 2026-04-22
+- **Tags**: 프롬프트엔지니어링한계, 2026 AI트렌드, AI모델블랙박스, 프롬프트엔지니어링비용, AI전문가인력, 확장성유지보수, 언어모델한계, AI발전방향, LLM활용법, 인공지능미래
+- **Summary**: AI 기술의 핵심 동력으로 떠오른 프롬프트 엔지니어링, 과연 모든 문제를 해결하는 만능열쇠일까요? 프롬프트 엔지니어링이 마주하게 될 주요 도전 과제 5가지를 깊이 있게 탐구하고, 우리가 앞으로 나아가야 할 방향에 대해 이야기해봅니다.
+
+### [Gemini Pro 200만 토큰의 힘 -  Google AI Studio에서 아키텍처 설계 마스터하기](https://rab8bit.com/blog/vibe-coding-google-ai-studio-auth)
+- **URL**: https://rab8bit.com/blog/vibe-coding-google-ai-studio-auth
+- **Author**: GPT PARK
+- **Date**: 2026.04.16
+- **Tags**: Google AI Studio, Gemini Pro 200만 토큰, 바이브 코딩, AI 아키텍처 설계, 인증(Auth) 문제 해결, Firestore 통합, Google Auth, AI 개발 환경, 노코드 개발, UX/UI AI 디자인
+- **Summary**: 개발자들이라면 한 번쯤 골머리를 앓았을 '인증(Auth)' 문제와 이를 획기적으로 해결해 줄 Google AI Studio, 그리고 강력한 Gemini Pro의 200만 토큰 컨텍스트 창이 어떻게 우리의 아키텍처 설계 방식을 변화시키는지 깊이 있게 다뤄볼게요. 
+
+### [음알못도 프로 뮤지션처럼? 제미니 Lyria 3 Pro 프롬프트 엔지니어링 마스터하기](https://rab8bit.com/blog/how-to-prompt-lyria-3-pro-like-a-professional)
+- **URL**: https://rab8bit.com/blog/how-to-prompt-lyria-3-pro-like-a-professional
+- **Author**: GPT PARK
+- **Date**: 2026.04.13
+- **Tags**: 제미니 Lyria 3 Pro, AI 음악 생성, 프롬프트 엔지니어링, 음악 인공지능, 구글 제미니, AI 작곡, 음악 제작 도구, Lyria 3, 메타 프롬프팅, AI 음악 앱
+- **Summary**: 제미니 Lyria 3 Pro는 단 몇 번의 프롬프트 입력만으로도 전문적인 수준의 음악을 제작할 수 있도록 돕는 선구적인 AI 모델입니다. 본 포스팅에서는 Lyria 3 Pro의 탁월한 역량과 효과적인 활용 방안을 상세히 다룹니다.
+
+### [AI 벽에 부딪힌 리더를 위한 신호등, 효율성을 넘어선 진짜 스마트 워크의 비밀](https://rab8bit.com/blog/overcoming-ai-wall-for-leaders)
+- **URL**: https://rab8bit.com/blog/overcoming-ai-wall-for-leaders
+- **Author**: GPT PARK
+- **Date**: 2026.04.07
+- **Tags**: AI 시대 리더십, 스마트 워크, AI 번아웃, 인공지능 한계, 인간 고유 역량, 공감 판단력, AI 파트너십, 효율성 넘어선, 미래 리더십, AI 활용 전략
+- **Summary**: AI 시대, 리더들은 효율성이라는 함정에 빠지기 쉽습니다. 인공지능이 제공하는 강력한 도구 뒤에 숨겨진 진짜 딜레마를 파헤치고, 인간만이 가진 고유한 5가지 핵심 역량이 왜 그 어느 때보다 중요한지 알려드립니다. 
+
+### [손글씨를 한 장의 깔끔한 인포그래픽으로! 프롬프트 공개](https://rab8bit.com/blog/turning-handwritten-chaos-into-infographic-gold-with-chatgpt)
+- **URL**: https://rab8bit.com/blog/turning-handwritten-chaos-into-infographic-gold-with-chatgpt
+- **Author**: GPT PARK
+- **Date**: 2026.04.06
+- **Tags**: ChatGPT 인포그래픽, 손글씨 변환, AI 디자인, 최적 프롬프트, 시각 자료 제작, 프레젠테이션 디자인, 소셜 미디어 콘텐츠, ChatGPT 활용법, 인공지능 도구, 콘텐츠 마케팅
+- **Summary**: 손으로 쓴 메모가 지저분하게 느껴질 때가 많으셨죠?  당신의 손글씨 아이디어를 전문가급 인포그래픽으로 탈바꿈시키는 프롬프트를 공개합니다.
+
+### [어려운 업무를 쉽게 시작하게 만드는 AI 프롬프트 전략](https://rab8bit.com/blog/ai-prompt-strategy-for-difficult-tasks)
+- **URL**: https://rab8bit.com/blog/ai-prompt-strategy-for-difficult-tasks
+- **Author**: GPT PARK
+- **Date**: 2026.03.30
+- **Tags**: AI 생산성, 업무 우선순위, AI 프롬프트, 어려운 업무 시작, 생산성 향상, 업무 관리, 시간 관리, 프롬프트 엔지니어링, 프로젝트 시작, 스마트 워크
+- **Summary**: 복잡하고 시작하기 어려운 업무 앞에서 한숨만 쉬고 계신가요? 2026년, 이제 AI가 당신의 가장 강력한 생산성 비서가 될 수 있습니다. 이 글에서는 AI 프롬프트 하나로 골치 아픈 업무들을 쉽게 시작하고, 효율적으로 관리할 수 있는 구체적인 전략을 소개합니다.
+
+### [터미널 AI 도구 완전 정복: 클로드코드·코덱스CLI·제미나이CLI, 뭘 써야 할까요?](https://rab8bit.com/blog/terminal-ai-tools-comparison-2026)
+- **URL**: https://rab8bit.com/blog/terminal-ai-tools-comparison-2026
+- **Author**: GPT PARK
+- **Date**: 2026.03.23
+- **Tags**: 클로드코드, 코덱스CLI, 제미나이CLI, AI 터미널 도구, Claude Code, Codex CLI, Gemini CLI, AI 코딩 어시스턴트
+- **Summary**: 터미널 안으로 들어온 AI 시대. 클로드코드, 코덱스CLI, 제미나이CLI 세 도구의 특징과 장단점을 낱낱이 비교하고, 내 작업 방식에 맞는 최적의 도구를 선택하는 가이드를 제공합니다.
+
+### [챗GPT에서 클로드로 갈아탔다면 필독: '쿼터 초과' 벽을 넘는 5가지 기술](https://rab8bit.com/blog/claude-quota-management-tips)
+- **URL**: https://rab8bit.com/blog/claude-quota-management-tips
+- **Author**: GPT PARK
+- **Date**: 2026.03.22
+- **Tags**: 클로드 쿼터, 클로드 프로 사용법, 컴퓨팅 기반 쿼터, 클로드 사용량 관리, 챗GPT 클로드 전환, AI 모델 쿼터, 클로드 Opus 4.6, 클로드 Sonnet 활용, LLM 쿼터 전략, AI 생산성 팁
+- **Summary**: 최근 챗GPT에서 클로드(Claude)로 갈아탄 사용자라면 이 글에 주목해주세요. 클로드의 '컴퓨팅 기반' 쿼터 시스템을 이해하고, 쿼터 제한에 부딪히지 않으면서 생산성을 극대화하는 5가지 실전 팁을 소개합니다.
+
+### [2026년 AI 이미지 생성 도구 대격돌: 나노바나나2, GPT, 미드저니, Grok 완벽 비교](https://rab8bit.com/blog/ai-image-generation-tools-comparison-2026)
+- **URL**: https://rab8bit.com/blog/ai-image-generation-tools-comparison-2026
+- **Author**: GPT PARK
+- **Date**: 2026.03.20
+- **Tags**: AI 이미지 생성, 나노바나나2, GPT Image, 미드저니, Grok AI, 텍스트 렌더링, 인공지능 예술, AI 도구 비교, 2026 AI 트렌드, 고해상도 AI 이미지
+- **Summary**: 2026년, 인공지능 이미지 생성 기술은 상상 이상의 속도로 발전했습니다. 나노바나나2, GPT Image, 미드저니, 그리고 Grok까지, 각기 다른 개성과 강점을 가진 이 도구들이 어떤 혁신을 가져왔고, 여러분의 창작 활동에 어떻게 기여할 수 있을지 완벽하게 비교 분석해 드립니다.
+
+### [AI 시대, 작가의! 창의력을 200% 끌어올리는 AI 공동 집필 워크플로우](https://rab8bit.com/blog/ai-writer-workflow-creativity)
+- **URL**: https://rab8bit.com/blog/ai-writer-workflow-creativity
+- **Author**: GPT PARK
+- **Date**: 2026.03.08
+- **Tags**: AI 공동 집필, AI 작가 워크플로우, 창의력 증진 AI, 소설 AI 보조, 시나리오 AI 활용, AI 글쓰기 도구, 캐릭터 페르소나 AI, 플롯 설계 AI, 작가 브레인스토밍, AI 창작 파트너
+- **Summary**: 2026년, AI는 작가에게 창작의 한계를 뛰어넘고 아이디어를 무한히 확장하며 플롯에 반전을 더하는 강력한 공동 집필 파트너가 될 수 있습니다. 캐릭터 페르소나 설정부터 스토리 전개 구상까지의 워크플로우를 소개합니다.
+
+### [마크다운(Markdown) 문법 하나로 AI의 응답 품질을 200% 높이는 구조화 프롬프트 기술](https://rab8bit.com/blog/markdown-structured-prompt-technique)
+- **URL**: https://rab8bit.com/blog/markdown-structured-prompt-technique
+- **Author**: GPT PARK
+- **Date**: 2026.03.03
+- **Tags**: AI 프롬프트, 마크다운, 구조화 프롬프트, AI 응답 품질, 프롬프트 엔지니어링, 챗GPT 활용, 생성형 AI, 효율적인 프롬프트, AI 글쓰기, 명확한 지시
+- **Summary**: AI와 대화할 때마다 원하는 답이 나오지 않아 답답하셨나요? 😓 마크다운(Markdown) 문법 하나로 AI의 응답 품질을 200% 높일 수 있는 구조화 프롬프트 기술! 오늘 이 포스팅에서 그 놀라운 비법을 공개합니다.
+
+### [AI 검색 엔진 최적화(AEO) 시대: 구글 검색 결과가 아닌 'AI의 답변'에 내 글이 채택되는 법](https://rab8bit.com/blog/ai-search-engine-optimization-aeo)
+- **URL**: https://rab8bit.com/blog/ai-search-engine-optimization-aeo
+- **Author**: GPT PARK
+- **Date**: 2026.03.03
+- **Tags**: AI 검색 엔진 최적화, AEO 전략, 구글 SGE, AI 챗봇 최적화, 콘텐츠 신뢰성, 사용자 의도, 검색 패러다임 변화, AI 답변 채택, 미래 SEO, 생성형 AI 검색
+- **Summary**: AI 기술의 발전은 검색 방식마저 혁신하고 있습니다. 더 이상 구글 검색 결과 상위 노출만이 성공의 척도가 아니죠. 2026년, 이제는 'AI의 답변'에 내 콘텐츠가 채택되는 새로운 최적화 전략, AEO(AI 검색 엔진 최적화)가 그 어느 때보다 중요해졌습니다.
+
+### [AI는 생각하지 않는다. LLM의 진짜 능력과 오해](https://rab8bit.com/blog/ai-llm-real-ability-and-misconceptions)
+- **URL**: https://rab8bit.com/blog/ai-llm-real-ability-and-misconceptions
+- **Author**: GPT PARK
+- **Date**: 2026.02.23
+- **Tags**: AI 오해, LLM 능력, 인공지능 진실, AI 학습 데이터, 모델 붕괴, 바이브 코딩, AI 윤리, 데이터 무단 사용, 생성형 AI, AI 한계
+- **Summary**: AI, 특히 LLM(대규모 언어 모델)에 대한 오해와 환상, 그리고 그 속에 숨겨진 진짜 능력과 불편한 진실을 파헤쳐 봅니다. 이 글을 통해 AI를 더욱 현실적이고 비판적인 시각으로 바라볼 수 있게 될 거예요.
+
+### [“AI가 AI를 가르친다?” 2026년 생산성을 폭발 제미나이 메타 프롬프팅 가이드](https://rab8bit.com/blog/gemini-meta-prompting-guide)
+- **URL**: https://rab8bit.com/blog/gemini-meta-prompting-guide
+- **Author**: GPT PARK
+- **Date**: 2026.02.10
+- **Tags**: 제미니, 메타 프롬프팅, 프롬프트 엔지니어링, AI 생산성, AI 활용법, 구글 딥마인드, 이미지생성 프롬프트, AI 앱 개발, LLM 최적화, 2026 AI 트렌드
+- **Summary**: 제미니 메타 프롬프팅은 AI가 챗봇에 입력될 프롬프트를 직접 생성하도록 하는 기술입니다. 이를 통해 이미지 생성, 앱 개발 등 다양한 분야에서 전문가 수준의 결과물을 얻고 생산성을 극대화하는 방법을 소개합니다.
+
+### [제미나이 익스텐션, 유튜브/드라이브 데이터를 활용한 자동화 가이드](https://rab8bit.com/blog/gemini-extensions-automation-guide)
+- **URL**: https://rab8bit.com/blog/gemini-extensions-automation-guide
+- **Author**: GPT PARK
+- **Date**: 2026.02.03
+- **Tags**: 제미나이 익스텐션, 구글 드라이브 연동, 유튜브 데이터 활용, AI 비서 자동화, 개인 맞춤형 AI, 업무 효율성 증대, 구글 서비스 연동, 제미나이 활용 가이드, AI 생산성 도구, 디지털 워크플로우
+- **Summary**: 점점 더 복잡해지는 디지털 세상, 나만의 맞춤형 AI 비서가 있다면 어떨까요? 이 가이드에서는 구글 제미나이 익스텐션을 활용해 업무를 자동화하는 방법을 알려드립니다.
+
+### [죽은 글도 살려내는 '인간화(Humanizing)' 프롬프트 엔지니어링 비법](https://rab8bit.com/blog/humanizing-prompt-engineering)
+- **URL**: https://rab8bit.com/blog/humanizing-prompt-engineering
+- **Author**: GPT PARK
+- **Date**: 2026.02.02
+- **Tags**: 프롬프트 엔지니어링, 인간화 프롬프트, AI 글쓰기, 자연스러운 AI 텍스트, 콘텐츠 마케팅, AI 활용법, 글쓰기 스킬, 생성형 AI, SEO 최적화 글쓰기, 감성적 글쓰기
+- **Summary**: AI가 생성한 텍스트가 왠지 모르게 딱딱하고 영혼 없이 느껴지시나요? 이 글에서는 기계적인 글을 사람의 마음을 움직이는 글로 바꾸는 '인간화(Humanizing)' 프롬프트 엔지니어링의 비밀을 알려드립니다.
+
+### [내 업무에 딱 맞는 AI는? Gemini vs ChatGPT, 실전 사용 후기 및 추천 가이드](https://rab8bit.com/blog/gemini-vs-chatgpt-guide)
+- **URL**: https://rab8bit.com/blog/gemini-vs-chatgpt-guide
+- **Author**: GPT PARK
+- **Date**: 2026.02.02
+- **Tags**: Gemini, ChatGPT, AI 활용법, 업무 효율 AI, 인공지능 추천, AI 코딩, AI 데이터 분석, AI 글쓰기, LLM 비교, 생산성 AI
+- **Summary**: 2026년 현재, 두 AI의 실제 사용 경험을 바탕으로 여러분의 업무에 가장 잘 맞는 AI를 찾을 수 있도록 실질적인 가이드를 제공합니다. 코딩부터 데이터 분석, 창의적 글쓰기까지!
+
+
+---
+
+## 3. Curated Prompts Categories & Top Prompts (270+)
+
+- **Prompts Index URL**: https://rab8bit.com/prompts
+- **[[2026.09.14] 고전환율(CVR) 랜딩페이지 후킹 카피 & CTA 생성기](https://rab8bit.com/prompts/daily-prompt-2026-09-14)** (undefined): 방문자의 시선을 3초 안에 사로잡고 클릭을 유도하는 감정 유발 헤드라인과 행동 촉구(CTA) 문구를 다각도로 도출합니다.
+- **[[2026.09.13] 시니어 아키텍트의 코드 리뷰 & 성능 최적화 검증기](https://rab8bit.com/prompts/daily-prompt-2026-09-13)** (undefined): 작성된 코드의 시간/공간 복잡도, 엣지 케이스, 보안 취약점, 가독성 리팩토링 포인트를 철저히 진단합니다.
+- **[[2026.09.12] 경영진/보고용 3단 압축 브리핑 보고서 작성기](https://rab8bit.com/prompts/daily-prompt-2026-09-12)** (undefined): 방대한 회의록이나 보고서 초안을 바쁜 의사결정권자가 30초 만에 파악할 수 있도록 핵심 요약, 수치 분석, 권고 행동으로 정제합니다.
+- **[타겟 고객의 마음을 읽는 '페르소나 설계'](https://rab8bit.com/prompts/370)** (undefined): 단순한 인구통계학적 분석을 넘어, 고객의 결핍과 욕망을 파고드는 상세 페르소나를 생성합니다.
+- **[직무 적합성 검사기](https://rab8bit.com/prompts/369)** (undefined): 이력서와 직무 설명을 비교하여 지원자의 직무 적합성을 분석하고, 강점·보완점·면접 답변까지 한 번에 도출하도록 설계된 한국 기업 맞춤형 채용 분석 도구입니다.
+- **[복잡한 개념 쉽게 이해하기](https://rab8bit.com/prompts/368)** (undefined): AI에게 스스로 가르치고 시각화하며 피드백을 주도록 만드는 마법 같은 학습 효율을 극대화 프롬프트
+- **[직접 작성한 문서 이미지를 인포그래픽으로](https://rab8bit.com/prompts/365)** (undefined): 직접 작성한 문서 이미지를 인포그래픽으로 변환하는 프롬프트
+- **[소셜 미디어 게시물 아이디어](https://rab8bit.com/prompts/1)** (undefined): 특정 제품이나 이벤트를 위한 매력적인 소셜 미디어 게시물 아이디어를 생성합니다.
+- **[블로그 게시물 개요 작성](https://rab8bit.com/prompts/2)** (undefined): 특정 키워드에 최적화된 SEO 친화적인 블로그 게시물 개요를 만듭니다.
+- **[학부모 상담 안내문](https://rab8bit.com/prompts/240)** (undefined): 학부모 상담 주간을 맞아 학부모에게 보내는 정중하고 따뜻한 가정통신문 인사말을 작성합니다.
+- **[시니어 개발자를 위한 코드 리뷰 체크리스트](https://rab8bit.com/prompts/200)** (undefined): 코드 리뷰 시 기능적 오류뿐만 아니라 유지보수성, 보안 등을 포괄적으로 점검하는 체크리스트입니다.
+- **[포트폴리오 케이스 스터디 구조](https://rab8bit.com/prompts/160)** (undefined): 디자이너의 문제 해결 능력을 보여주는 포트폴리오 케이스 스터디의 논리적 흐름을 구성합니다.
+- **[밈(Meme) 활용 마케팅 문구](https://rab8bit.com/prompts/120)** (undefined): 현재 유행하는 인터넷 밈을 적절히 활용하여 브랜드의 위트 있는 이미지를 보여주는 문구를 만듭니다.
+- **[비즈니스 글쓰기 가이드라인](https://rab8bit.com/prompts/80)** (undefined): 사내 문서나 이메일 작성 시 간결하고 명확한 커뮤니케이션을 위한 원칙을 정의합니다.
+- **[숏폼 챌린지 기획](https://rab8bit.com/prompts/40)** (undefined): 틱톡이나 릴스에서 유행할 만한 댄스 또는 참여형 챌린지를 기획합니다.
+- **[특수 교육(IEP) 목표 설정](https://rab8bit.com/prompts/239)** (undefined): 학습 장애가 있는 학생을 위한 개별화 교육 프로그램(IEP)의 구체적이고 측정 가능한 목표를 제안합니다.
+- **[Git 충돌(Merge Conflict) 해결 가이드](https://rab8bit.com/prompts/199)** (undefined): 초보 개발자가 복잡한 Git 병합 충돌 상황을 안전하게 해결하는 절차를 설명합니다.
+- **[게이미피케이션 요소 기획](https://rab8bit.com/prompts/159)** (undefined): 앱 사용자의 참여를 높이기 위한 배지, 레벨, 리더보드 등 게이미피케이션 요소를 디자인합니다.
+- **[상호작용형 퀴즈 콘텐츠](https://rab8bit.com/prompts/119)** (undefined): 독자의 참여를 유도하는 "나만의 유형 찾기" 심리 테스트나 퀴즈 콘텐츠를 기획합니다.
+- **[사내 멘토링 프로그램 기획](https://rab8bit.com/prompts/79)** (undefined): 선배 사원과 신입 사원을 매칭하여 성장을 돕는 사내 멘토링 프로그램의 운영 방안을 기획합니다.
+- **[CRM 문자/알림톡 시나리오](https://rab8bit.com/prompts/39)** (undefined): 고객의 생애 주기(가입, 구매, 재구매 등)에 맞춰 발송할 자동화 메시지를 작성합니다.
+- **[과학 탐구 보고서 템플릿](https://rab8bit.com/prompts/238)** (undefined): 과학 실험 후 가설 설정, 실험 과정, 결과 분석, 결론 도출을 체계적으로 정리하는 보고서 양식을 제공합니다.
+- **[마이크로 프론트엔드 설계 전략](https://rab8bit.com/prompts/198)** (undefined): 대규모 웹 앱을 마이크로 프론트엔드 아키텍처로 전환하기 위한 전략과 도구를 추천합니다.
+- **[서비스 블루프린트 작성](https://rab8bit.com/prompts/158)** (undefined): 사용자의 경험과 이를 지원하는 백엔드 프로세스를 연결하는 서비스 청사진을 그립니다.
+- **[웨비나 랜딩 페이지 문구](https://rab8bit.com/prompts/118)** (undefined): 웨비나 신청을 유도하기 위해, 무엇을 배울 수 있고 누구에게 필요한지 명확히 전달하는 랜딩 페이지 카피를 씁니다.
+- **[파트너십 제안서 구조](https://rab8bit.com/prompts/78)** (undefined): 잠재적 파트너 사에게 협력을 제안하는 문서의 설득력 있는 구조와 핵심 내용을 정리합니다.
+- **[오프라인 게릴라 마케팅](https://rab8bit.com/prompts/38)** (undefined): 적은 예산으로 큰 화제를 모을 수 있는 기발한 오프라인 마케팅 아이디어를 제안합니다.
+- **[역사 역할극(Role-play) 대본](https://rab8bit.com/prompts/237)** (undefined): 역사적 사건의 주요 인물이 되어 대화하는 상황극 대본을 작성하여 역사를 생생하게 체험하게 합니다.
+- **[TypeScript 인터페이스 정의](https://rab8bit.com/prompts/197)** (undefined): 복잡한 JSON 데이터 구조를 타입 안전한 TypeScript 인터페이스로 변환합니다.
+- **[아이소메트릭 일러스트 아이디어](https://rab8bit.com/prompts/157)** (undefined): 복잡한 시스템이나 건물을 표현하기 좋은 아이소메트릭(등각 투영) 일러스트의 구성을 제안합니다.
+- **[FAQ(자주 묻는 질문) 페이지 구성](https://rab8bit.com/prompts/117)** (undefined): 고객들이 서비스에 대해 가질 수 있는 의문점을 미리 해소하는 FAQ 페이지 콘텐츠를 작성합니다.
+- **[판매 스크립트(Cold Call Script)](https://rab8bit.com/prompts/77)** (undefined): 영업 담당자가 잠재 고객에게 전화를 걸어 미팅 약속을 잡기 위한 효과적인 스크립트를 작성합니다.
+- **[리퍼럴(추천인) 마케팅 프로그램](https://rab8bit.com/prompts/37)** (undefined): 기존 고객이 지인을 데려오도록 유도하는 추천인 프로그램의 구조와 혜택을 설계합니다.
+- **[영어 문법 오류 찾기 연습](https://rab8bit.com/prompts/236)** (undefined): 영어 문장에서 의도적으로 오류를 포함시킨 후, 학습자가 이를 찾아내도록 하는 연습 문제를 만듭니다.
+- **[SQL 쿼리 최적화](https://rab8bit.com/prompts/196)** (undefined): 실행 속도가 느린 복잡한 SQL 쿼리를 분석하고 인덱스 활용 등을 통해 최적화합니다.
+- **[접근성(Accessibility) 컬러 대비 가이드](https://rab8bit.com/prompts/156)** (undefined): WCAG 기준을 준수하는 텍스트와 배경색의 컬러 대비 조합을 추천합니다.
+- **[카드뉴스 텍스트 요약](https://rab8bit.com/prompts/116)** (undefined): 긴 줄글 형태의 정보를 인스타그램 카드뉴스(슬라이드)에 넣기 좋게 짧은 문장으로 요약합니다.
+- **[신규 입사자 온보딩 체크리스트](https://rab8bit.com/prompts/76)** (undefined): 새로 합류한 직원이 첫 주에 원활하게 적응할 수 있도록 돕는 온보딩 체크리스트를 만듭니다.
+- **[커뮤니티 활성화 전략](https://rab8bit.com/prompts/36)** (undefined): 브랜드 팬덤을 구축하고 고객 커뮤니티의 활동성을 높이는 전략을 수립합니다.
+- **[학급 규칙 만들기](https://rab8bit.com/prompts/235)** (undefined): 새 학기를 맞아 학생들과 함께 정할 수 있는 긍정적이고 구체적인 학급 규칙을 제안합니다.
+
+---
+
+## 4. Custom GPTs & System Instructions (100+)
+
+- **GPTs Index URL**: https://rab8bit.com/gpts
+- **[2026.09.14] 풀스택 API 설계 및 데이터베이스 스키마 마스터** (undefined): RESTful 및 GraphQL API 엔드포인트 설계부터 PostgreSQL/Prisma 스키마 최적화 및 인덱싱 가이드를 제공합니다.
+- **[2026.09.13] 스마트 업무 자동화 & 이메일 작성 어시스턴트** (undefined): 상황별 정중한 비즈니스 커뮤니케이션, 영문 거래처 협상 메일, 거절 및 조율 메일을 5초 만에 격식에 맞춰 작성해 줍니다.
+- **[2026.09.12] 풀스택 API 설계 및 데이터베이스 스키마 마스터** (undefined): RESTful 및 GraphQL API 엔드포인트 설계부터 PostgreSQL/Prisma 스키마 최적화 및 인덱싱 가이드를 제공합니다.
+- **인지 왜곡 점검 코치** (undefined): 사용자가 작성한 생각/걱정을 10가지 인지 왜곡 유형으로 진단하고, CBT 기반 합리적 대안 사고를 제시합니다.
+- **마트 장보기 최적화 도우미** (undefined): 주간 메뉴 계획·재고·예산을 입력하면 카테고리별로 정리된 쇼핑 리스트와 동선 최적화 순서를 제공합니다.
+- **외국어 어휘 마스터리 코치** (undefined): Spaced Repetition 기법으로 외국어 단어를 장기 기억에 정착시키는 개인 맞춤 학습 플랜과 예문을 제공합니다.
+- **인터랙티브 비주얼 노벨 작가** (undefined): 분기별 선택지가 있는 비주얼 노벨/CYOA 스토리를 챕터 단위로 작성합니다. 캐릭터 호감도와 엔딩 분기까지 관리합니다.
+- **API 명세 작성 도우미** (undefined): 엔드포인트 설명을 자연어로 입력하면 OpenAPI 3.0 형식의 명세와 예제 요청·응답을 생성합니다.
+- **회의 안건 자동 생성기** (undefined): 회의 목적·참석자·시간 제약을 입력하면 우선순위가 매겨진 안건과 시간 배분안을 자동으로 생성합니다.
+- **AI 툴 큐레이터** (undefined): 업무 효율을 높여주는 최신 AI 도구들을 사용자의 직무와 필요에 맞춰 추천하고 활용법을 알려줍니다.
+- **디지털 노마드 가이드** (undefined): 원격 근무를 하며 여행하는 디지털 노마드를 위해, 일하기 좋은 도시와 비자, 숙소 정보를 추천합니다.
+- **검색 광고 카피라이터** (undefined): 구글이나 네이버 검색 광고의 클릭률(CTR)을 높이는 짧고 강렬한 광고 문구를 작성합니다.
+- **온라인 커뮤니티 매니저** (undefined): 디스코드, 슬랙, 카페 등 온라인 커뮤니티의 참여도를 높이고 건전한 문화를 만드는 운영 전략을 제공합니다.
+- **전시회 도록 에디터** (undefined): 미술 전시회의 도록에 들어갈 작가 소개글, 작품 평론, 인사말 등을 품격 있게 작성합니다.
+- **투자 계약서 검토 도우미** (undefined): 투자 계약서(Term Sheet)의 주요 조항을 설명하고, 창업자에게 불리할 수 있는 독소 조항을 체크해줍니다.
+- **게임 퀘스트 디자이너** (undefined): RPG 게임 속 NPC가 주는 흥미로운 퀘스트의 내용, 보상, 대사 스크립트를 창작합니다.
+- **OKR 코치** (undefined): 조직이나 팀의 목표를 도전적이고 측정 가능한 OKR(Objectives and Key Results) 형태로 수립하도록 돕습니다.
+- **다큐멘터리 구성작가** (undefined): 특정 사회 문제나 인물, 자연 현상을 다루는 다큐멘터리의 기획안과 내레이션 대본을 작성합니다.
+- **뉴스레터 에디터** (undefined): 기업이나 개인의 뉴스레터를 기획하고, 구독자가 열어보고 싶게 만드는 제목과 본문 구성을 도와줍니다.
+- **방탈출 게임 시나리오 작가** (undefined): 오프라인 방탈출 카페나 온라인 추리 게임을 위한 테마 스토리와 트릭을 기획합니다.
+- **기업 문화 설계자** (undefined): 조직의 미션, 비전, 핵심 가치를 정의하고, 이를 직원들이 내재화할 수 있는 구체적인 행동 강령(Culture Deck)을 만듭니다.
+- **N행시 장인** (undefined): 제시된 단어나 이름으로 재치 있거나 감동적인 N행시를 지어줍니다.
+- **SaaS 가격 정책 설계자** (undefined): 소프트웨어 서비스(SaaS)의 수익을 극대화할 수 있는 티어별 가격 정책(Pricing Strategy)을 제안합니다.
+- **SF 세계관 건축가** (undefined): 공상과학 소설이나 게임을 위한 독창적이고 논리적인 미래 세계관 설정을 돕습니다.
+- **프레젠테이션 리허설 파트너** (undefined): 발표 연습을 듣고(텍스트 시뮬레이션), 청중의 입장에서 피드백을 제공하며 질의응답을 연습합니다.
+- **독립출판 에디터** (undefined): 자신의 책을 직접 출판하려는 예비 작가를 위해 책의 기획부터 인쇄, 유통까지의 과정을 가이드합니다.
+- **경쟁사 모니터링 봇** (undefined): 주요 경쟁사들의 최신 활동(신제품 출시, 가격 변경, 마케팅 캠페인)을 추적하고, 주간 요약 보고서를 생성합니다.
+- **이모티콘 기획자** (undefined): 카카오톡이나 라인 등 메신저에서 사용할 수 있는 이모티콘 세트의 컨셉과 감정 표현 리스트를 기획합니다.
+- **브랜드 네이밍 전문가** (undefined): 새로운 브랜드나 제품의 정체성을 담으면서도, 기억하기 쉽고 독창적인 이름 아이디어를 생성합니다.
+- **팬픽(Fan Fiction) 도우미** (undefined): 아이돌, 애니메이션, 영화 등의 기존 캐릭터를 활용한 2차 창작 소설의 플롯과 장면을 구상합니다.
+
+---
+
+## 5. Curated AI Tools Directory (150+)
+
+- **AI Tools Index URL**: https://rab8bit.com/ai-tools
+- **[AgentOps Studio](https://agentops.ai)** (업무 자동화 및 에이전트): AI 자율 에이전트의 실행 과정, 토큰 비용, 레이턴시, 오류 발생 구간을 실시간으로 추적하고 모니터링하는 차세대 LLMOps 플랫폼입니다.
+- **[Superwhisper](https://superwhisper.com)** (비즈니스 생산성): 로컬 AI 기반 초고정밀 음성 인식으로 모든 앱에서 말하는 즉시 완벽한 마크다운 문서 및 코드로 타이핑해 주는 온디바이스 음성 입력기입니다.
+- **[Sseoba](https://www.sseoba.com/)** (대화형 AI 및 글쓰기): GPT, Recraft, Imagen, Ideogram 등 다양한 최신 모델을 한곳에서 무제한으로 이용할 수 있는 한국어 특화 올인원 AI 플랫폼입니다.
+- **[Poe](https://poe.com/)** (대화형 AI 및 글쓰기): Quora에서 제공하는 플랫폼으로, ChatGPT, Claude 등 다양한 모델을 한 번에 구독하여 사용하고 자신만의 챗봇을 쉽게 제작할 수 있습니다.
+- **[Awesome MCP Servers](https://mcpservers.org/)** (업무 자동화 및 에이전트): Model Context Protocol(MCP)을 지원하는 서버들을 집계하여 오픈소스로 제공하는 저장소로, AI 에이전트의 확장성을 높이는 데 필수적인 리소스입니다.
+- **[codex](https://openai.com/index/introducing-codex/)** (코드 및 개발): OpenAI의 코드 생성 모델을 활용하여 독립적으로 소프트웨어 엔지니어링 작업을 수행하고 복잡한 프로그래밍 문제를 해결하는 에이전트 서비스입니다.
+- **[Langchain Open Agent Platform](https://oap.langchain.com/signin)** (업무 자동화 및 에이전트): UI, 실행 환경, 멀티 액션 기능을 통합하여 누구나 정교한 AI 에이전트 플랫폼을 구축하고 운영할 수 있도록 지원하는 도구입니다.
+- **[boo.ai](https://boo.ai)** (연구 및 분석): 문맥을 이해하고 자연스러운 문장을 제안하는 AI 글쓰기 비서로, 논문, 에세이, 블로그 포스팅 등 긴 글 작성을 효율적으로 도와줍니다.
+- **[ChatGPT](https://chatgpt.com)** (대화형 AI 및 글쓰기): 아이디어 구상부터 복잡한 보고서 작성, 코드 리뷰 및 데이터 분석까지 수행하는 범용 AI 서비스로, 최근 이미지 생성 및 음성 대화 기능이 대폭 강화되었습니다.
+- **[Claude](https://claude.ai)** (대화형 AI 및 글쓰기): Anthropic에서 개발한 AI로 인간적인 어조와 정교한 논리력을 갖추었으며, 특히 대용량 문서 분석과 코드 작성에서 매우 높은 신뢰도를 보여줍니다.
+- **[Copilot](https://copilot.microsoft.com/)** (업무 자동화 및 에이전트): Microsoft 서비스 전반에 통합된 AI 비서로, Office 도구와 연동하여 문서 초안 작성, PPT 슬라이드 생성, 이메일 답장 등을 자동화합니다.
+- **[copy.ai](https://copy.ai)** (마케팅 및 비즈니스): 마케팅 카피라이팅에 특화된 AI로, 제품 설명, 광고 문구, 이메일 마케팅 소구점 등을 브랜드 보이스에 맞춰 빠르게 생성해 줍니다.
+- **[DeepSeek](https://chat.deepseek.com)** (대화형 AI 및 글쓰기): 강력한 추론 능력과 코딩 성능을 갖춘 오픈소스 지향형 LLM으로, 기술적인 질문 답변과 복잡한 문제 해결에 최적화된 성능을 제공합니다.
+- **[Felo](https://chat.felo.ai)** (연구 및 분석): 다양한 AI 모델의 답변을 실시간으로 비교하고, 정보를 시각화하여 사용자가 최적의 결정을 내릴 수 있도록 돕는 스마트 검색 및 대화 도구입니다.
+- **[Gemini](https://gemini.google.com)** (대화형 AI 및 글쓰기): 구글의 최신 멀티모달 모델로, 구글 검색, 워크스페이스, 유튜브 등 구글 생태계와 밀접하게 연동되어 정보를 탐색하고 콘텐츠를 생성합니다.
+- **[Genspark](https://genspark.ai)** (연구 및 분석): 여러 AI 엔진의 검색 결과를 취합하여 하나의 완성된 리포트 형태로 제공하며, 사용자의 의도에 맞춰 정보를 재구성하는 AI 기반 리서치 플랫폼입니다.
+- **[Grok](https://grok.com/)** (대화형 AI 및 글쓰기): X(구 트위터)의 실시간 데이터를 학습하여 최신 뉴스와 이슈에 대해 유머러스하고 개성 있는 답변을 제공하는 대화형 AI입니다.
+- **[Jenni.AI](https://jenni.ai/)** (연구 및 분석): 아카데믹 리서치 보조 도구 기능을 바탕으로 사용자의 작업을 보조하고 효율적인 결과를 도출하도록 설계된 전문 AI 서비스입니다.
+- **[Le Chat](https://chat.mistral.ai/chat)** (비즈니스 생산성): 프랑스 스타트업 미스트랄 AI에서 만든 AI 어시스턴트 기능을 바탕으로 사용자의 작업을 보조하고 효율적인 결과를 도출하도록 설계된 전문 AI 서비스입니다.
+- **[Liner](https://getliner.com)** (연구 및 분석): 데이터 기반 리서치 및 에세이 작성 도우미 기능을 바탕으로 사용자의 작업을 보조하고 효율적인 결과를 도출하도록 설계된 전문 AI 서비스입니다.
+- **[Perplexity](https://perplexity.ai)** (연구 및 분석): 답변의 출처를 명확히 제시하는 대화형 검색 엔진으로, 환각 현상을 최소화하고 최신 웹 정보를 기반으로 정확한 지식을 전달합니다.
+- **[Qwen](https://chat.qwen.ai/c/guest)** (코드 및 개발): 알리바바 클라우드가 개발한 초대규모 언어 모델 기능을 바탕으로 사용자의 작업을 보조하고 효율적인 결과를 도출하도록 설계된 전문 AI 서비스입니다.
+- **[STORM](https://storm.genie.stanford.edu)** (연구 및 분석): 스탠퍼드 대학의 리서치 보조 AI 기능을 바탕으로 사용자의 작업을 보조하고 효율적인 결과를 도출하도록 설계된 전문 AI 서비스입니다.
+- **[Writesonic](https://app.writesonic.com)** (비즈니스 생산성): 콘텐츠 작성 지원 AI 기능을 바탕으로 사용자의 작업을 보조하고 효율적인 결과를 도출하도록 설계된 전문 AI 서비스입니다.
+- **[AnimateAI](https://animateai.pro)** (영상 및 오디오 제작): 이미지에 모션을 추가하는 애니메이션 생성기 서비스를 통해 텍스트나 이미지만으로 역동적인 비디오 콘텐츠를 제작하고 편집할 수 있는 혁신적인 플랫폼입니다.
+- **[Creati.ai](https://creati.ai/)** (마케팅 및 비즈니스): 제품 사진 드롭하면 제품 홍보 영상이 한번에 서비스를 통해 텍스트나 이미지만으로 역동적인 비디오 콘텐츠를 제작하고 편집할 수 있는 혁신적인 플랫폼입니다.
+- **[Dreamina](https://dreamina.capcut.com)** (영상 및 오디오 제작): CapCut 기반의 생성형 영상 제작 툴 서비스를 통해 텍스트나 이미지만으로 역동적인 비디오 콘텐츠를 제작하고 편집할 수 있는 혁신적인 플랫폼입니다.
+- **[Fliki](https://fliki.ai)** (영상 및 오디오 제작): AI로 텍스트→비디오·음성 자동변환 서비스를 통해 텍스트나 이미지만으로 역동적인 비디오 콘텐츠를 제작하고 편집할 수 있는 혁신적인 플랫폼입니다.
+- **[FLORA](https://florafauna.ai)** (영상 및 오디오 제작): node 기반 생성형 영상 콘텐츠 서비스를 통해 텍스트나 이미지만으로 역동적인 비디오 콘텐츠를 제작하고 편집할 수 있는 혁신적인 플랫폼입니다.
+- **[Freepik](https://freepik.com)** (영상 및 오디오 제작): 영상 템플릿 및 애니메이션 요소 제공 (생성형 영상 기능 포함) 서비스를 통해 텍스트나 이미지만으로 역동적인 비디오 콘텐츠를 제작하고 편집할 수 있는 혁신적인 플랫폼입니다.
+- **[Genspark](https://www.genspark.ai/)** (연구 및 분석): 여러 AI 엔진의 검색 결과를 취합하여 하나의 완성된 리포트 형태로 제공하며, 사용자의 의도에 맞춰 정보를 재구성하는 AI 기반 리서치 플랫폼입니다.
+- **[GetYarn.io](https://yarn.co)** (영상 및 오디오 제작): 대사 또는 인용구 기반으로 영상 클립 검색 서비스를 통해 텍스트나 이미지만으로 역동적인 비디오 콘텐츠를 제작하고 편집할 수 있는 혁신적인 플랫폼입니다.
+- **[HailuoAI](https://hailuoai.video/)** (영상 및 오디오 제작): 카메라 움직임이 포함된 AI 영상 생성 플랫폼 서비스를 통해 텍스트나 이미지만으로 역동적인 비디오 콘텐츠를 제작하고 편집할 수 있는 혁신적인 플랫폼입니다.
+- **[Higgsfield](https://higgsfield.ai)** (영상 및 오디오 제작): 모션 제어 특화 생성형 영상 플랫폼 서비스를 통해 텍스트나 이미지만으로 역동적인 비디오 콘텐츠를 제작하고 편집할 수 있는 혁신적인 플랫폼입니다.
+- **[ImagineArt Video Studio](https://imagine.art)** (영상 및 오디오 제작): 사진이나 텍스트를 영상으로 바꿔주는 AI 스튜디오 서비스를 통해 텍스트나 이미지만으로 역동적인 비디오 콘텐츠를 제작하고 편집할 수 있는 혁신적인 플랫폼입니다.
+- **[Kling](https://klingai.com)** (영상 및 오디오 제작): 차세대 영상 제작을 위한 생성형 크리에이티브 스튜디오 서비스를 통해 텍스트나 이미지만으로 역동적인 비디오 콘텐츠를 제작하고 편집할 수 있는 혁신적인 플랫폼입니다.
+- **[Krea AI](https://krea.ai)** (영상 및 오디오 제작): 디자인 보조뿐 아니라 모션 그래픽 영상 생성을 지원 서비스를 통해 텍스트나 이미지만으로 역동적인 비디오 콘텐츠를 제작하고 편집할 수 있는 혁신적인 플랫폼입니다.
+- **[Luma](https://lumalabs.ai)** (영상 및 오디오 제작): 3D 비디오 생성과 4D 재구성 기능 포함 서비스를 통해 텍스트나 이미지만으로 역동적인 비디오 콘텐츠를 제작하고 편집할 수 있는 혁신적인 플랫폼입니다.
+- **[MagicLight](https://www.magiclight.ai/)** (영상 및 오디오 제작): 극본 스토리, 씬생성, 등장인물 캐릭터 설정, 애니메이션 생성 한방에 서비스를 통해 텍스트나 이미지만으로 역동적인 비디오 콘텐츠를 제작하고 편집할 수 있는 혁신적인 플랫폼입니다.
+- **[Pictory](https://pictory.ai)** (영상 및 오디오 제작): AI로 텍스트→영상 즉시 자동변환 서비스를 통해 텍스트나 이미지만으로 역동적인 비디오 콘텐츠를 제작하고 편집할 수 있는 혁신적인 플랫폼입니다.

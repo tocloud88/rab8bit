@@ -9,11 +9,15 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "update:daily": "node scripts/daily-auto-update.mjs",
+    "update:daily": "node scripts/daily-auto-update.mjs && node scripts/generate-llms-txt.mjs",
+    "generate:llms": "node scripts/generate-llms-txt.mjs",
+    "generate:tools": "node scripts/generate-tool-images.mjs",
     "astro": "astro"
+
   },
   "dependencies": {
     "@astrojs/react": "^6.0.5",
+    "@astrojs/sitemap": "^3.7.4",
     "@tailwindcss/vite": "^4.3.3",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.7",

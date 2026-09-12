@@ -1,22 +1,242 @@
 ---
 interface Props {
-	title: string;
-	description?: string;
-	image?: string;
+  title: string;
+  description?: string;
+  image?: string;
+  canonical?: string;
+  type?: 'website' | 'article' | 'application' | 'faq';
+  articleData?: {
+    datePublished?: string;
+    dateModified?: string;
+    author?: string;
+    tags?: string[];
+    section?: string;
+  };
+  toolData?: {
+    category?: string;
+    operatingSystem?: string;
+  };
+  faqData?: Array<{
+    question: string;
+    answer: string;
+  }>;
 }
 
-const { title, description = "Google Stitch 스타일 AI 인사이트, 프롬프트 라이브러리 & 스마트 유틸리티 허브", image = "/logo.png" } = Astro.props;
+const {
+  title,
+  description = "최신 AI 인사이트, 270+ 프롬프트 라이브러리, 100+ GPTs 맞춤 지침, 100+ 무료 웹도구 및 170+ 추천 AI 도구 디렉토리 - rab8bit.com",
+  image = "/logo.png",
+  canonical,
+  type = "website",
+  articleData,
+  toolData,
+  faqData,
+} = Astro.props;
+
+const siteUrl = "https://rab8bit.com";
+const currentPath = Astro.url.pathname;
+const canonicalUrl = canonical ? (canonical.startsWith('http') ? canonical : `${siteUrl}${canonical}`) : `${siteUrl}${currentPath}`;
+const imageUrl = image.startsWith('http') ? image : `${siteUrl}${image.startsWith('/') ? image : `/${image}`}`;
+
+// Base Organization Schema
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${siteUrl}/#organization`,
+  "name": "rab8bit",
+  "url": siteUrl,
+  "logo": {
+    "@type": "ImageObject",
+    "url": `${siteUrl}/logo.png`,
+    "width": 512,
+    "height": 512
+  },
+  "description": "대한민국 올인원 AI 인사이트, 프롬프트, GPTs 지침, 100개 인터랙티브 웹 유틸리티 포털",
+  "sameAs": [
+    "https://github.com/tocloud88/rab8bit"
+  ]
+};
+
+// Base WebSite Schema with SearchAction
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${siteUrl}/#website`,
+  "url": siteUrl,
+  "name": "rab8bit",
+  "description": "AI 프롬프트, 인사이트, 100종 무료 인터랙티브 유틸리티 도구 모음",
+  "publisher": {
+    "@id": `${siteUrl}/#organization`
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": `${siteUrl}/search?q={search_term_string}`
+    },
+    "query-input": "required name=search_term_string"
+  },
+  "inLanguage": "ko-KR"
+};
+
+// BreadcrumbList Schema
+const pathSegments = currentPath.split('/').filter(Boolean);
+const breadcrumbItems = [
+  {
+    "@type": "ListItem",
+    "position": 1,
+    "name": "홈",
+    "item": siteUrl
+  }
+];
+
+let accumulatedPath = siteUrl;
+pathSegments.forEach((segment, index) => {
+  accumulatedPath += `/${segment}`;
+  let displayName = segment;
+  if (segment === 'blog') displayName = '블로그';
+  else if (segment === 'tools') displayName = '웹 도구';
+  else if (segment === 'prompts') displayName = '프롬프트';
+  else if (segment === 'gpts') displayName = 'GPTs 지침';
+  else if (segment === 'insights') displayName = '인사이트';
+  else if (segment === 'ai-tools') displayName = 'AI 도구';
+  else if (segment === 'gallery') displayName = '갤러리';
+  else if (segment === 'ebooks') displayName = '전자책';
+  else if (segment === 'faq') displayName = 'FAQ';
+  else if (index === pathSegments.length - 1) displayName = title.split('|')[0].trim();
+
+  breadcrumbItems.push({
+    "@type": "ListItem",
+    "position": index + 2,
+    "name": displayName,
+    "item": accumulatedPath
+  });
+});
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": breadcrumbItems
+};
+
+// Optional Article Schema
+let articleSchema = null;
+if (type === 'article' || articleData) {
+  articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": canonicalUrl
+    },
+    "headline": title.split('|')[0].trim(),
+    "description": description,
+    "image": [imageUrl],
+    "datePublished": articleData?.datePublished || "2026-09-01",
+    "dateModified": articleData?.dateModified || articleData?.datePublished || new Date().toISOString().split('T')[0],
+    "author": {
+      "@type": "Person",
+      "name": articleData?.author || "rab8bit AI Research Team"
+    },
+    "publisher": {
+      "@id": `${siteUrl}/#organization`
+    },
+    "inLanguage": "ko-KR",
+    "keywords": articleData?.tags?.join(', ') || "AI, 프롬프트, 바이브코딩, LLM"
+  };
+}
+
+// Optional WebApplication Schema for Tools
+let toolSchema = null;
+if (type === 'application' || currentPath.startsWith('/tools/')) {
+  toolSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": title.split('|')[0].trim(),
+    "url": canonicalUrl,
+    "description": description,
+    "image": imageUrl,
+    "applicationCategory": toolData?.category || "UtilitiesApplication",
+    "operatingSystem": toolData?.operatingSystem || "All",
+    "browserRequirements": "Requires JavaScript. Requires HTML5.",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "KRW"
+    },
+    "publisher": {
+      "@id": `${siteUrl}/#organization`
+    }
+  };
+}
+
+// Optional FAQPage Schema
+let faqSchema = null;
+if (type === 'faq' || faqData) {
+  faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": (faqData || []).map(item => ({
+      "@type": "Question",
+      "name": item.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.answer
+      }
+    }))
+  };
+}
 ---
 
+<!-- Essential Meta Tags -->
 <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<title>{title}</title>
 <meta name="description" content={description} />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="author" content="rab8bit" />
+<meta name="keywords" content="AI, 프롬프트, GPTs 지침, 웹 도구, 2026 연봉 계산기, 부동산 계산기, 로또 생성기, 인공지능, 제미나이, 챗GPT, Claude" />
+<link rel="canonical" href={canonicalUrl} />
+
+<!-- Robots & AI Crawlers Directive (Crucial for Google AI Overviews & Generative Engine Optimization) -->
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+<meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+<meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+<!-- Favicon & Icons -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="icon" type="image/png" href="/favicon.png" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#0f172a" />
 <meta name="generator" content={Astro.generator} />
-<title>{title}</title>
+
+<!-- OpenGraph / Facebook / KakaoTalk Meta Tags -->
+<meta property="og:type" content={type === 'article' ? 'article' : 'website'} />
+<meta property="og:site_name" content="rab8bit" />
+<meta property="og:locale" content="ko_KR" />
+<meta property="og:url" content={canonicalUrl} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={image} />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content={title} />
+
+<!-- Twitter Meta Tags -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content={image} />
+<meta name="twitter:site" content="@rab8bit" />
+<meta name="twitter:creator" content="@rab8bit" />
+<meta name="twitter:url" content={canonicalUrl} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />
+
+<!-- LLM & AI Discovery Link Rel -->
+<link rel="alternate" type="text/plain" href={`${siteUrl}/llms.txt`} title="LLM Knowledge Manifest" />
+
+<!-- Structured Data (Schema.org JSON-LD for SEO & GEO) -->
+<script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+{articleSchema && <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />}
+{toolSchema && <script type="application/ld+json" set:html={JSON.stringify(toolSchema)} />}
+{faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
