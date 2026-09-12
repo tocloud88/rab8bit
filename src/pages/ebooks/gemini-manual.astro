@@ -1,0 +1,214 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AdBanner from '../../components/ads/AdBanner.astro';
+import { GEMINI_MANUAL_PARTS } from '../../data/geminiManualData';
+---
+
+<Layout
+  title="2026 제미나이(Gemini) 1.5 실전 마스터 매뉴얼 (50P 실전 전자책) - rab8bit"
+  description="100만 토큰 대형 문서 분석부터 구글 워크스페이스 연동, 실무 프롬프트 템플릿과 AI Studio 자동화까지 50페이지로 완벽 마스터하는 제미나이 종합 실전 전자책입니다."
+>
+  <div class="w-full max-w-7xl mx-auto space-y-8 print:p-0">
+    {/* Top Breadcrumb */}
+    <nav class="flex items-center gap-2 text-xs text-slate-400 print:hidden">
+      <a href="/" class="hover:text-indigo-400 transition-colors">홈</a>
+      <span>&gt;</span>
+      <a href="/ebooks" class="hover:text-indigo-400 transition-colors">전자책</a>
+      <span>&gt;</span>
+      <span class="text-white font-medium">2026 제미나이 실전 마스터 매뉴얼</span>
+    </nav>
+
+    {/* Hero Header Card */}
+    <div class="stitch-card p-6 sm:p-8 rounded-3xl relative overflow-hidden print:border-none print:p-0">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+        {/* Left: Book Cover */}
+        <div class="md:col-span-5 flex justify-center">
+          <div class="relative rounded-2xl overflow-hidden shadow-2xl shadow-indigo-500/20 border border-slate-700/80 group max-w-md w-full aspect-[16/9]">
+            <img
+              src="/images/ebooks/gemini-manual-cover.jpg"
+              alt="2026 제미나이 실전 마스터 매뉴얼 전자책 표지"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+          </div>
+        </div>
+
+        {/* Right: Book Info & Actions */}
+        <div class="md:col-span-7 space-y-4">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="px-3 py-1 rounded-full text-xs font-bold bg-indigo-500/10 text-indigo-400 border border-indigo-500/30">
+              📘 50P 실전 마스터북
+            </span>
+            <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+              무료 공개
+            </span>
+            <span class="px-3 py-1 rounded-full text-xs font-bold bg-purple-500/10 text-purple-400 border border-purple-500/30">
+              2026 최신 개정판
+            </span>
+          </div>
+
+          <h1 class="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight leading-tight">
+            2026 제미나이(Gemini) 실전 마스터 매뉴얼
+          </h1>
+
+          <p class="text-sm sm:text-base text-slate-300 leading-relaxed">
+            100만~200만 토큰 대형 문서 분석부터 구글 워크스페이스(@Gmail, @Drive, @Docs) 연동, 프롬프트 엔지니어링 및 AI Studio API 무인 자동화까지 50페이지 분량으로 완벽 정리한 실무 지침서입니다.
+          </p>
+
+          <div class="pt-2 flex flex-wrap gap-3 print:hidden">
+            <button
+              id="printBtn"
+              class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-bold text-xs sm:text-sm hover:opacity-90 transition-all shadow-lg shadow-indigo-500/25 flex items-center gap-2 cursor-pointer"
+            >
+              <span>🖨️</span> PDF 저장 / 인쇄하기
+            </button>
+            <a
+              href="#part-1"
+              class="px-5 py-2.5 rounded-xl bg-slate-800 text-slate-200 hover:text-white hover:bg-slate-700 font-bold text-xs sm:text-sm transition-all border border-slate-700 flex items-center gap-2"
+            >
+              <span>📖</span> 1장부터 읽기
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Top Ad Slot */}
+    <div class="print:hidden">
+      <AdBanner type="leaderboard" label="AI 클라우드 스폰서" />
+    </div>
+
+    {/* Main Reading Container: Sidebar + Content */}
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      {/* Sticky Table of Contents Sidebar */}
+      <aside class="lg:col-span-4 sticky top-20 space-y-4 print:hidden">
+        <div class="bg-slate-900/80 backdrop-blur-xl p-5 rounded-2xl border border-slate-800 max-h-[calc(100vh-120px)] overflow-y-auto scrollbar-thin scrollbar-thumb-slate-700">
+          <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-800">
+            <h2 class="font-bold text-sm text-white flex items-center gap-2">
+              <span>📑</span> 전체 목차 (총 6부 19장)
+            </h2>
+            <span class="text-[11px] text-slate-400 font-mono">50 Pages</span>
+          </div>
+
+          <nav class="space-y-4 text-xs">
+            {GEMINI_MANUAL_PARTS.map((part, pIdx) => (
+              <div class="space-y-1.5">
+                <a
+                  href={`#${part.id}`}
+                  class="font-bold text-indigo-300 hover:text-indigo-200 transition-colors block py-1"
+                >
+                  {part.title}
+                </a>
+                <ul class="pl-2.5 border-l border-slate-800 space-y-1 text-slate-400">
+                  {part.chapters.map((ch) => (
+                    <li>
+                      <a
+                        href={`#${ch.id}`}
+                        class="hover:text-white transition-colors block py-0.5 truncate"
+                        title={ch.title}
+                      >
+                        {ch.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </nav>
+        </div>
+      </aside>
+
+      {/* Main Chapters Content */}
+      <main class="lg:col-span-8 space-y-12 print:col-span-12">
+        {GEMINI_MANUAL_PARTS.map((part, pIdx) => (
+          <section id={part.id} class="space-y-6 scroll-mt-24">
+            {/* Part Header */}
+            <div class="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-indigo-950/80 via-purple-950/50 to-slate-900 border border-indigo-500/30 flex items-center justify-between">
+              <div>
+                <span class="text-[10px] font-extrabold uppercase tracking-wider text-indigo-400 bg-indigo-500/10 px-2.5 py-0.5 rounded-full border border-indigo-500/20">
+                  {part.badge}
+                </span>
+                <h2 class="text-lg sm:text-xl font-black text-white mt-1">
+                  {part.title}
+                </h2>
+              </div>
+              <span class="text-xs font-mono text-slate-400">Part {pIdx + 1}</span>
+            </div>
+
+            {/* Chapters inside Part */}
+            <div class="space-y-6">
+              {part.chapters.map((ch) => (
+                <article
+                  id={ch.id}
+                  class="stitch-card p-6 sm:p-7 rounded-2xl space-y-4 scroll-mt-24 print:border-b print:border-slate-300 print:rounded-none"
+                >
+                  <div class="flex items-center justify-between border-b border-slate-800/80 pb-3">
+                    <h3 class="font-bold text-base sm:text-lg text-white">
+                      {ch.title}
+                    </h3>
+                    <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-800 text-indigo-400 border border-slate-700/60 font-semibold whitespace-nowrap">
+                      {ch.pageRange}
+                    </span>
+                  </div>
+
+                  <p class="text-xs text-indigo-300/90 font-medium italic bg-indigo-950/30 p-2.5 rounded-lg border border-indigo-500/20">
+                    📌 <strong>핵심 요약:</strong> {ch.summary}
+                  </p>
+
+                  <div class="prose prose-invert prose-sm max-w-none text-slate-300 leading-relaxed" set:html={ch.contentHtml} />
+                </article>
+              ))}
+            </div>
+
+            {/* In-Article Ad after Part 3 */}
+            {pIdx === 2 && (
+              <div class="print:hidden">
+                <AdBanner type="in-article" label="추천 AI 도구 가이드" />
+              </div>
+            )}
+          </section>
+        ))}
+
+        {/* Book Footer & Navigation */}
+        <div class="p-6 rounded-2xl bg-slate-900/60 border border-slate-800 text-center space-y-4 print:hidden">
+          <p class="text-sm text-slate-300">
+            🎉 축하합니다! 제미나이 50페이지 실전 마스터 과정을 모두 완료하셨습니다.
+          </p>
+          <div class="flex justify-center gap-3">
+            <a
+              href="/ebooks"
+              class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs transition-colors border border-slate-700"
+            >
+              &larr; 전자책 목록으로 돌아가기
+            </a>
+            <a
+              href="/prompts"
+              class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs transition-colors"
+            >
+              추천 프롬프트 둘러보기 &rarr;
+            </a>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('printBtn')?.addEventListener('click', () => {
+      window.print();
+    });
+  </script>
+
+  <style>
+    @media print {
+      body {
+        background: white !important;
+        color: black !important;
+      }
+      .stitch-card {
+        background: white !important;
+        color: black !important;
+        box-shadow: none !important;
+      }
+    }
+  </style>
+</Layout>

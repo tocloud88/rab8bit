@@ -11,6 +11,16 @@ export interface EbookItem {
 
 export const EBOOKS_DATA: EbookItem[] = [
   {
+    "id": "gemini-master-manual",
+    "title": "2026 제미나이(Gemini) 실전 마스터 매뉴얼",
+    "access": "무료",
+    "url": "/ebooks/gemini-manual",
+    "thumbnail": "/images/ebooks/gemini-manual-cover.jpg",
+    "description": "100만~200만 토큰 대형 문서 분석부터 구글 워크스페이스(@Gmail, @Drive, @Docs) 연동, 프롬프트 엔지니어링 및 AI Studio API 무인 자동화까지 50페이지로 완벽 정리한 실전 바이블입니다.",
+    "sort_order": 16,
+    "is_new": 1
+  },
+  {
     "id": 15,
     "title": "비법을 파는 사람에겐 비법이 없다",
     "access": "무료",
