@@ -1,4 +1,5 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { INSIGHTS_DATA, type InsightItem } from '../../data/insightsData';
 
 export default function InsightsDirectory() {
@@ -7,6 +8,22 @@ export default function InsightsDirectory() {
   const [selectedInsight, setSelectedInsight] = useState<InsightItem | null>(null);
   const [isPlayingVideo, setIsPlayingVideo] = useState<boolean>(false);
   const [copiedLink, setCopiedLink] = useState<boolean>(false);
+  const [mounted, setMounted] = useState<boolean>(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (selectedInsight) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [selectedInsight]);
 
   // Extract unique categories
   const categories = useMemo(() => {
@@ -208,18 +225,18 @@ export default function InsightsDirectory() {
       )}
 
       {/* Summary & Video Modal */}
-      {selectedInsight && (
+      {selectedInsight && mounted && typeof document !== 'undefined' && createPortal(
         <div
-          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 overflow-y-auto animate-fade-in"
+          className="fixed inset-0 z-[99999] bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-hidden animate-fade-in"
           onClick={() => setSelectedInsight(null)}
         >
           <div
-            className="relative w-full max-w-3xl bg-slate-900 border border-indigo-500/30 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl my-auto text-slate-200"
+            className="relative w-full max-w-3xl max-h-[90vh] bg-slate-900 border border-indigo-500/30 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl flex flex-col text-slate-200"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
-            <div className="p-4 sm:p-6 bg-slate-950/90 border-b border-slate-800/80 flex items-start justify-between gap-4">
-              <div className="space-y-2">
+            <div className="shrink-0 p-4 sm:p-5 bg-slate-950/95 border-b border-slate-800/80 flex items-start justify-between gap-4">
+              <div className="space-y-1.5">
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="px-2.5 py-0.5 rounded-md text-[11px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
                     🎬 {selectedInsight.category}
@@ -233,13 +250,13 @@ export default function InsightsDirectory() {
                     </span>
                   )}
                 </div>
-                <h2 className="text-base sm:text-xl font-extrabold text-white leading-snug">
+                <h2 className="text-sm sm:text-lg font-extrabold text-white leading-snug">
                   {selectedInsight.title}
                 </h2>
               </div>
               <button
                 onClick={() => setSelectedInsight(null)}
-                className="p-1.5 sm:p-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors"
+                className="p-1.5 sm:p-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors shrink-0"
                 aria-label="닫기"
               >
                 ✕
@@ -247,7 +264,7 @@ export default function InsightsDirectory() {
             </div>
 
             {/* Modal Body */}
-            <div className="p-4 sm:p-6 space-y-6 max-h-[75vh] overflow-y-auto">
+            <div className="flex-1 p-4 sm:p-6 space-y-6 overflow-y-auto overscroll-contain">
               {/* Video Player (Toggleable) */}
               {isPlayingVideo ? (
                 <div className="space-y-2">
@@ -398,7 +415,7 @@ export default function InsightsDirectory() {
             </div>
 
             {/* Modal Footer Actions */}
-            <div className="p-4 sm:p-5 bg-slate-950 border-t border-slate-800/90 flex flex-wrap items-center justify-between gap-2.5">
+            <div className="shrink-0 p-4 sm:p-5 bg-slate-950 border-t border-slate-800/90 flex flex-wrap items-center justify-between gap-2.5">
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setIsPlayingVideo(!isPlayingVideo)}
@@ -451,7 +468,8 @@ export default function InsightsDirectory() {
               </div>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );

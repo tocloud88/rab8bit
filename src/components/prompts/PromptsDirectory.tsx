@@ -1,4 +1,5 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { PROMPTS_DATA, PROMPT_CATEGORIES, type PromptItem } from '../../data/promptsData';
 import { GPTS_DATA, GPT_CATEGORIES, type GptItem } from '../../data/gptsData';
 
@@ -12,6 +13,22 @@ export default function PromptsDirectory({ initialTab = 'prompts' }: Props) {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [copiedId, setCopiedId] = useState<string | number | null>(null);
   const [activeModalItem, setActiveModalItem] = useState<(PromptItem | GptItem) | null>(null);
+  const [mounted, setMounted] = useState<boolean>(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (activeModalItem) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [activeModalItem]);
 
   // Switch tabs reset category
   const handleTabSwitch = (tab: 'prompts' | 'gpts') => {
@@ -189,17 +206,17 @@ export default function PromptsDirectory({ initialTab = 'prompts' }: Props) {
       )}
 
       {/* Detail Modal */}
-      {activeModalItem && (
+      {activeModalItem && mounted && typeof document !== 'undefined' && createPortal(
         <div
-          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4"
+          className="fixed inset-0 z-[99999] bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-hidden animate-fade-in"
           onClick={() => setActiveModalItem(null)}
         >
           <div
-            className="relative w-full max-w-2xl max-h-[85vh] bg-slate-900 rounded-2xl overflow-hidden border border-purple-500/30 shadow-2xl flex flex-col"
+            className="relative w-full max-w-2xl max-h-[85vh] bg-slate-900 rounded-2xl overflow-hidden border border-purple-500/30 shadow-2xl flex flex-col text-slate-200"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
-            <div className="p-4 bg-slate-950 flex justify-between items-center border-b border-slate-800">
+            <div className="shrink-0 p-4 bg-slate-950 flex justify-between items-center border-b border-slate-800">
               <div className="flex items-center gap-2">
                 <span className="text-xs px-2.5 py-1 rounded-full bg-purple-950 text-purple-300 font-bold border border-purple-800/50">
                   {activeModalItem.category_name}
@@ -217,7 +234,7 @@ export default function PromptsDirectory({ initialTab = 'prompts' }: Props) {
             </div>
 
             {/* Modal Body */}
-            <div className="p-4 sm:p-6 overflow-y-auto space-y-4">
+            <div className="flex-1 p-4 sm:p-6 overflow-y-auto space-y-4 overscroll-contain">
               {activeModalItem.description && (
                 <div className="p-3 rounded-xl bg-slate-950/60 border border-slate-800/80 text-xs text-slate-300 leading-relaxed">
                   💡 <strong className="text-white">설명:</strong> {activeModalItem.description}
@@ -240,7 +257,8 @@ export default function PromptsDirectory({ initialTab = 'prompts' }: Props) {
               </div>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );

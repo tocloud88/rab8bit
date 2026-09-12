@@ -1,4 +1,5 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { GALLERY_DATA, type GalleryItem } from '../../data/galleryData';
 
 export default function GalleryDirectory() {
@@ -6,6 +7,22 @@ export default function GalleryDirectory() {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [activeModalItem, setActiveModalItem] = useState<GalleryItem | null>(null);
   const [copiedId, setCopiedId] = useState<string | number | null>(null);
+  const [mounted, setMounted] = useState<boolean>(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (activeModalItem) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [activeModalItem]);
 
   // Extract categories
   const categories = useMemo(() => {
@@ -157,33 +174,33 @@ export default function GalleryDirectory() {
       )}
 
       {/* Modal */}
-      {activeModalItem && (
+      {activeModalItem && mounted && typeof document !== 'undefined' && createPortal(
         <div
-          className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4"
+          className="fixed inset-0 z-[99999] bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-hidden animate-fade-in"
           onClick={() => setActiveModalItem(null)}
         >
           <div
-            className="relative w-full max-w-4xl max-h-[90vh] bg-slate-900 rounded-2xl overflow-hidden border border-yellow-500/30 shadow-2xl flex flex-col md:flex-row"
+            className="relative w-full max-w-4xl max-h-[90vh] bg-slate-900 rounded-2xl overflow-hidden border border-yellow-500/30 shadow-2xl flex flex-col md:flex-row text-slate-200"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Image */}
-            <div className="md:w-1/2 bg-black flex items-center justify-center p-2">
+            <div className="md:w-1/2 bg-black flex items-center justify-center p-2 shrink-0">
               <img
                 src={activeModalItem.image_url}
                 alt={activeModalItem.title}
-                className="max-h-[50vh] md:max-h-[80vh] w-auto object-contain rounded-xl"
+                className="max-h-[40vh] md:max-h-[80vh] w-auto object-contain rounded-xl"
               />
             </div>
 
             {/* Modal Content */}
-            <div className="md:w-1/2 p-5 sm:p-6 flex flex-col justify-between overflow-y-auto space-y-4">
+            <div className="md:w-1/2 p-5 sm:p-6 flex flex-col justify-between overflow-y-auto space-y-4 overscroll-contain">
               <div className="space-y-3">
                 <div className="flex justify-between items-start gap-2">
                   <div>
                     <span className="text-xs px-2.5 py-1 rounded-full bg-yellow-950 text-yellow-300 font-bold border border-yellow-800/50">
                       {activeModalItem.category || '나노바나나 AI'}
                     </span>
-                    <h2 className="text-lg font-bold text-white mt-2">{activeModalItem.title}</h2>
+                    <h2 className="text-base sm:text-lg font-bold text-white mt-2">{activeModalItem.title}</h2>
                   </div>
                   <button
                     onClick={() => setActiveModalItem(null)}
@@ -221,7 +238,8 @@ export default function GalleryDirectory() {
               </div>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );
