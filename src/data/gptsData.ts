@@ -76,6 +76,16 @@ export const GPT_CATEGORIES: GptCategory[] = [
 ];
 export const GPTS_DATA: GptItem[] = [
   {
+    "id": "daily-gpt-2026-09-12",
+    "category_id": 5,
+    "category_name": "소프트웨어 개발",
+    "title": "[2026.09.12] 풀스택 API 설계 및 데이터베이스 스키마 마스터",
+    "description": "RESTful 및 GraphQL API 엔드포인트 설계부터 PostgreSQL/Prisma 스키마 최적화 및 인덱싱 가이드를 제공합니다.",
+    "content": "고성능 백엔드 아키텍처 설계와 효율적인 데이터베이스 모델링을 실시간으로 코칭하는 개발 전문 에이전트입니다.",
+    "sort_order": 155,
+    "is_new": 1
+  },
+  {
     "id": 376,
     "category_id": 12,
     "title": "인지 왜곡 점검 코치",

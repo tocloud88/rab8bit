@@ -21,6 +21,20 @@ export const AI_CATEGORIES = [
 
 export const AI_TOOLS: AiTool[] = [
   {
+    "name": "Superwhisper",
+    "link": "https://superwhisper.com",
+    "description": "로컬 AI 기반 초고정밀 음성 인식으로 모든 앱에서 말하는 즉시 완벽한 마크다운 문서 및 코드로 타이핑해 주는 온디바이스 음성 입력기입니다.",
+    "category": "비즈니스 생산성",
+    "keywords": [
+      "음성인식",
+      "Whisper",
+      "생산성",
+      "타이핑",
+      "2026추천",
+      "자동업데이트"
+    ]
+  },
+  {
     "name": "Sseoba",
     "link": "https://www.sseoba.com/",
     "description": "GPT, Recraft, Imagen, Ideogram 등 다양한 최신 모델을 한곳에서 무제한으로 이용할 수 있는 한국어 특화 올인원 AI 플랫폼입니다.",

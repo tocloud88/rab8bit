@@ -15,6 +15,28 @@ export interface InsightItem {
 
 export const INSIGHTS_DATA: InsightItem[] = [
   {
+    "id": "daily-insight-2026-09-12",
+    "category": "업무 자동화",
+    "access": "공개",
+    "title": "[2026.09.12] AI 에이전트로 엑셀 & 데이터 전처리 5분 만에 끝내는 실전 팁",
+    "video_url": "https://www.youtube.com/watch?v=qNQ6fGB-cWA",
+    "description": "복잡한 수식 없이 자연어로 대용량 CSV/Excel 데이터를 정제하고 피벗 테이블 및 시각화 차트를 즉시 생성하는 방법을 알아봅니다.",
+    "download_url": null,
+    "thumbnail": "https://i.ytimg.com/vi/qNQ6fGB-cWA/hqdefault.jpg",
+    "tags": [
+      "데이터분석",
+      "엑셀자동화",
+      "ChatGPT",
+      "Claude",
+      "실무생산성",
+      "데일리인사이트",
+      "2026AI"
+    ],
+    "date": "2026-09-12",
+    "sort_order": 155,
+    "is_new": 1
+  },
+  {
     "id": "chatgpt-chat-vs-work-selection-guide",
     "category": "ChatGPT 활용",
     "access": "공개",

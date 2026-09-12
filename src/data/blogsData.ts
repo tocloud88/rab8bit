@@ -14,6 +14,30 @@ export interface BlogPost {
 
 export const BLOGS_DATA: BlogPost[] = [
   {
+    "id": "daily-tech-insight-2026-09-12",
+    "title": "2026.09.12 최신 AI 트렌드 리포트: 실무 워크플로우 대전환: AI 에이전트 자동화 실전 가이드",
+    "excerpt": "단순 질의응답을 넘어 브라우저 제어와 복합 업무를 스스로 완수하는 차세대 AI 에이전트의 실전 도입 전략과 유용한 팁을 심층 분석합니다.",
+    "file_name": "",
+    "date": "2026.09.12",
+    "tags": [
+      "AI에이전트",
+      "업무자동화",
+      "생산성",
+      "LLM실무",
+      "프롬프트",
+      "AI_2026",
+      "최신트렌드"
+    ],
+    "thumbnail": "/images/blogs/ai-big-4-comparison.jpg",
+    "author": "rab8bit 자동 큐레이터",
+    "sort_order": 155,
+    "created_at": "2026-09-12 06:00:00",
+    "updated_at": "2026-09-12 06:00:00",
+    "is_new": 1,
+    "publish_at": null,
+    "content": "<div style=\"font-family: 'Noto Sans KR', sans-serif; line-height: 1.85; max-width: 800px; margin: 0 auto; font-size: 16px; box-sizing: border-box;\">\n  <div style=\"background-color: #f0fdf4; border-left: 4px solid #16a34a; padding: 18px 20px; border-radius: 0 10px 10px 0; font-size: 15.5px; margin-bottom: 28px; line-height: 1.7;\">\n    💡 <strong>2026.09.12 모닝 AI 인사이트:</strong> 단순 질의응답을 넘어 브라우저 제어와 복합 업무를 스스로 완수하는 차세대 AI 에이전트의 실전 도입 전략과 유용한 팁을 심층 분석합니다.\n  </div>\n\n  <p style=\"margin-bottom: 22px;\">\n    생성형 AI 생태계는 하루가 다르게 새로운 모델과 실무 도구들이 쏟아져 나오고 있습니다. 오늘 기준 가장 주목해야 할 <strong>AI 에이전트</strong> 분야의 핵심 포인트와 실전 적용 팁을 간결하게 정리해 드립니다.\n  </p>\n\n  <h2 style=\"font-size: 22px; color: white; background: linear-gradient(135deg, #2563eb, #4f46e5); margin: 35px 0 18px; border-radius: 12px; padding: 12px 25px; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); font-weight: 700; box-shadow: 0 4px 12px rgba(37,99,235,0.2);\">\n    <strong>1. 오늘의 핵심 기술 동향 & 실전 적용 포인트 🚀</strong>\n  </h2>\n\n  <ul style=\"margin: 20px 0; padding-left: 24px; font-size: 15.5px; line-height: 1.9;\">\n    <li><strong>자율형 컴퓨터 제어(Computer Use) 모델의 실제 작동 구조와 주의점</strong></li>\n    <li><strong>반복적인 엑셀 정리 및 이메일 발송 자동화 파이프라인 구성</strong></li>\n    <li><strong>할루시네이션 방지를 위한 다단계 검증 프롬프트 설계법</strong></li>\n  </ul>\n\n  <div style=\"background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; margin: 24px 0;\">\n    <h3 style=\"margin: 0 0 10px 0; font-size: 18px; font-weight: 800;\">💡 실무 적용 팁</h3>\n    <p style=\"margin: 0; font-size: 15px; line-height: 1.8;\">\n      단순히 도구를 아는 것보다 기존 업무 파이프라인의 병목 구간(예: 자료 수집, 1차 초안 작성, 코드 검증)에 정확히 매핑하여 5~10분 단위의 시간 절약을 쌓아가는 것이 가장 중요합니다.\n    </p>\n  </div>\n\n  <h2 style=\"font-size: 22px; color: white; background: linear-gradient(135deg, #2563eb, #4f46e5); margin: 35px 0 18px; border-radius: 12px; padding: 12px 25px; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); font-weight: 700; box-shadow: 0 4px 12px rgba(37,99,235,0.2);\">\n    <strong>2. 추천 실천 과제 🎯</strong>\n  </h2>\n  <p style=\"margin-bottom: 20px;\">\n    오늘 하루 업무를 시작하기 전, 위의 프롬프트나 자동화 도구 중 1가지를 직접 테스트해 보세요. 작은 자동화 경험이 축적되어 극적인 생산성 향상으로 이어집니다.\n  </p>\n</div>"
+  },
+  {
     "id": "ai-big-4-comparison-chatgpt-gemini-claude-grok",
     "title": "2026 최신 AI 빅4 플래그십 맞대결: GPT-6 Astra vs Gemini 3.1/3.8 vs Claude Opus 5/Mythos 5.1 vs Grok 4.6 완벽 비교",
     "excerpt": "OpenAI GPT-6 Astra, 구글 Gemini 3.8 Flash & 3.1 Pro, 앤트로픽 Claude Opus 5 & Mythos 5.1, xAI Grok 4.6까지! 2026년 하반기 최신 플래그십 인공지능의 컴퓨터 제어, 100만 토큰 문맥, 에이전트 성능 및 실무 추천을 완벽 분석합니다.",

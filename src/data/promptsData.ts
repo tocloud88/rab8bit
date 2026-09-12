@@ -99,6 +99,16 @@ export const PROMPT_CATEGORIES: PromptCategory[] = [
 ];
 export const PROMPTS_DATA: PromptItem[] = [
   {
+    "id": "daily-prompt-2026-09-12",
+    "category_id": 2,
+    "category_name": "비즈니스 및 업무",
+    "title": "[2026.09.12] 경영진/보고용 3단 압축 브리핑 보고서 작성기",
+    "description": "방대한 회의록이나 보고서 초안을 바쁜 의사결정권자가 30초 만에 파악할 수 있도록 핵심 요약, 수치 분석, 권고 행동으로 정제합니다.",
+    "content": "[역할 부여]\n당신은 글로벌 전략 컨설팅 펌 출신의 수석 비즈니스 애널리스트입니다.\n아래 제공된 원문 텍스트를 분석하여, 경영진이 30초 내에 핵심 의사결정을 내릴 수 있는 'Executive 1-Page Summary'로 변환해 주세요.\n\n[작성 포맷 규칙]\n1. 🎯 핵심 결론 (Executive Summary): 3문장 이내 (배경 - 핵심 성과/이슈 - 권고사항)\n2. 📊 주요 정량/정성 지표 (Key Metrics & Insights): 불릿 포인트 3~4개 (수치 강조)\n3. ⚠️ 리스크 요인 및 선제 조치 (Risk & Mitigation): 발생 가능한 리스크와 즉시 실행 대책\n4. 🚀 다음 실행 과제 (Next Action Items): 담당/기한/우선순위(P1, P2) 형태의 표\n\n[원문 데이터 입력]:\n{{여기에 회의록 또는 원문 내용을 붙여넣으세요}}",
+    "sort_order": 155,
+    "is_new": 1
+  },
+  {
     "id": 370,
     "category_id": 1,
     "title": "타겟 고객의 마음을 읽는 '페르소나 설계'",

@@ -9,6 +9,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "update:daily": "node scripts/daily-auto-update.mjs",
     "astro": "astro"
   },
   "dependencies": {
