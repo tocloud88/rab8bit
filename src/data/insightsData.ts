@@ -15,6 +15,27 @@ export interface InsightItem {
 
 export const INSIGHTS_DATA: InsightItem[] = [
   {
+    "id": "daily-insight-2026-09-13",
+    "category": "프롬프트 엔지니어링",
+    "access": "공개",
+    "title": "[2026.09.13] 프롬프트 작성 시 흔히 하는 3가지 실수와 즉각적인 개선책",
+    "video_url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "description": "AI에게 지나치게 모호한 지시를 내리거나 의도를 과도하게 주입하여 발생하는 환각(Hallucination)을 없애는 핵심 템플릿을 소개합니다.",
+    "download_url": null,
+    "thumbnail": "https://i.ytimg.com/vi/qNQ6fGB-cWA/hqdefault.jpg",
+    "tags": [
+      "프롬프트",
+      "할루시네이션",
+      "질문법",
+      "AI팁",
+      "데일리인사이트",
+      "2026AI"
+    ],
+    "date": "2026-09-13",
+    "sort_order": 156,
+    "is_new": 1
+  },
+  {
     "id": "daily-insight-2026-09-12",
     "category": "업무 자동화",
     "access": "공개",

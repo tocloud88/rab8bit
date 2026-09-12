@@ -21,6 +21,20 @@ export const AI_CATEGORIES = [
 
 export const AI_TOOLS: AiTool[] = [
   {
+    "name": "AgentOps Studio",
+    "link": "https://agentops.ai",
+    "description": "AI 자율 에이전트의 실행 과정, 토큰 비용, 레이턴시, 오류 발생 구간을 실시간으로 추적하고 모니터링하는 차세대 LLMOps 플랫폼입니다.",
+    "category": "업무 자동화 및 에이전트",
+    "keywords": [
+      "에이전트",
+      "모니터링",
+      "LLMOps",
+      "비용최적화",
+      "2026추천",
+      "자동업데이트"
+    ]
+  },
+  {
     "name": "Superwhisper",
     "link": "https://superwhisper.com",
     "description": "로컬 AI 기반 초고정밀 음성 인식으로 모든 앱에서 말하는 즉시 완벽한 마크다운 문서 및 코드로 타이핑해 주는 온디바이스 음성 입력기입니다.",

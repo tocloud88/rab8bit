@@ -99,6 +99,16 @@ export const PROMPT_CATEGORIES: PromptCategory[] = [
 ];
 export const PROMPTS_DATA: PromptItem[] = [
   {
+    "id": "daily-prompt-2026-09-13",
+    "category_id": 5,
+    "category_name": "소프트웨어 개발",
+    "title": "[2026.09.13] 시니어 아키텍트의 코드 리뷰 & 성능 최적화 검증기",
+    "description": "작성된 코드의 시간/공간 복잡도, 엣지 케이스, 보안 취약점, 가독성 리팩토링 포인트를 철저히 진단합니다.",
+    "content": "[역할 부여]\n당신은 15년 차 시니어 풀스택 소프트웨어 아키텍트이자 보안 감사관입니다.\n제시된 코드의 버그 가능성, 메모리 누수, 비동기 레이스 컨디션, O(N) 최적화 포인트를 단계별로 리뷰하세요.\n\n[리뷰 기준]\n1. 🐛 잠재 버그 및 엣지 케이스 (Null/Undefined, 경계값, 예외 처리 누락)\n2. ⚡ 성능 및 복잡도 분석 (현재 Big-O vs 최적화 가능한 Big-O)\n3. 🔒 보안 취약점 (XSS, Injection, 불필요한 민감 정보 노출)\n4. ✨ 클린 코드 & 리팩토링 제안 (개선 전/후 TypeScript 코드 diff 제공)\n\n[코드 입력]:\n```typescript\n{{여기에 분석할 코드를 입력하세요}}\n```",
+    "sort_order": 156,
+    "is_new": 1
+  },
+  {
     "id": "daily-prompt-2026-09-12",
     "category_id": 2,
     "category_name": "비즈니스 및 업무",

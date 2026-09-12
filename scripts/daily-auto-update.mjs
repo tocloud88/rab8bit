@@ -6,22 +6,29 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT_DIR = path.resolve(__dirname, '..');
 
-// Helper to get formatted KST Date
+// Helper to get formatted KST Date (Supports CLI argument --date YYYY-MM-DD)
 function getKSTDate() {
-  const now = new Date();
-  // Adjust to UTC+9
-  const utc = now.getTime() + now.getTimezoneOffset() * 60000;
-  const kst = new Date(utc + 9 * 3600000);
+  const args = process.argv.slice(2);
+  const dateArgIdx = args.indexOf('--date');
+  let targetTime;
 
-  const yyyy = kst.getFullYear();
-  const mm = String(kst.getMonth() + 1).padStart(2, '0');
-  const dd = String(kst.getDate()).padStart(2, '0');
+  if (dateArgIdx !== -1 && args[dateArgIdx + 1]) {
+    targetTime = new Date(args[dateArgIdx + 1]);
+  } else {
+    const now = new Date();
+    const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+    targetTime = new Date(utc + 9 * 3600000);
+  }
+
+  const yyyy = targetTime.getFullYear();
+  const mm = String(targetTime.getMonth() + 1).padStart(2, '0');
+  const dd = String(targetTime.getDate()).padStart(2, '0');
 
   return {
     dotDate: `${yyyy}.${mm}.${dd}`,
     dashDate: `${yyyy}-${mm}-${dd}`,
     timestamp: `${yyyy}-${mm}-${dd} 06:00:00`,
-    epoch: kst.getTime(),
+    epoch: targetTime.getTime(),
     yyyy,
     mm,
     dd

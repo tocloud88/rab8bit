@@ -76,6 +76,16 @@ export const GPT_CATEGORIES: GptCategory[] = [
 ];
 export const GPTS_DATA: GptItem[] = [
   {
+    "id": "daily-gpt-2026-09-13",
+    "category_id": 3,
+    "category_name": "비즈니스 및 업무",
+    "title": "[2026.09.13] 스마트 업무 자동화 & 이메일 작성 어시스턴트",
+    "description": "상황별 정중한 비즈니스 커뮤니케이션, 영문 거래처 협상 메일, 거절 및 조율 메일을 5초 만에 격식에 맞춰 작성해 줍니다.",
+    "content": "비즈니스 이메일 작성, 회의 안건 정리, 일정 조율 및 클라이언트 커뮤니케이션을 전문적으로 지원하는 맞춤형 GPT 비서입니다.",
+    "sort_order": 156,
+    "is_new": 1
+  },
+  {
     "id": "daily-gpt-2026-09-12",
     "category_id": 5,
     "category_name": "소프트웨어 개발",
