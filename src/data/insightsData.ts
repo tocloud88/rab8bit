@@ -15,6 +15,111 @@ export interface InsightItem {
 
 export const INSIGHTS_DATA: InsightItem[] = [
   {
+    "id": "daily-insight-2026-09-15-claude-agent-flow",
+    "category": "AI 에이전트",
+    "access": "공개",
+    "title": "[2026.09.15] 클로드 에이전트와 MCP로 반복 업무 95% 자동화하기",
+    "video_url": "https://www.youtube.com/watch?v=kCc8FmEb1nY",
+    "description": "Anthropic Model Context Protocol(MCP)을 활용하여 로컬 파일, DB, 슬랙, 노션을 연동하고 복잡한 일일 데이터 집계 및 리포트 작성을 자율 에이전트에게 위임하는 실전 튜토리얼입니다.",
+    "download_url": null,
+    "thumbnail": "https://i.ytimg.com/vi/kCc8FmEb1nY/hqdefault.jpg",
+    "tags": [
+      "클로드",
+      "MCP",
+      "AI에이전트",
+      "업무자동화",
+      "노코드",
+      "2026AI"
+    ],
+    "date": "2026-09-15",
+    "sort_order": 162,
+    "is_new": 1
+  },
+  {
+    "id": "daily-insight-2026-09-15-vibe-coding-master",
+    "category": "바이브 코딩",
+    "access": "공개",
+    "title": "[2026.09.15] 비전공자를 위한 2026 바이브 코딩(Vibe Coding) 핵심 파이프라인",
+    "video_url": "https://www.youtube.com/watch?v=0e3GPea1Tyg",
+    "description": "Cursor, Bolt.new, v0와 Gemini 2.5를 결합해 자연어 프롬프트만으로 30분 만에 웹앱 MVP를 완성하고 Cloudflare Workers에 배포하는 실전 프로세스입니다.",
+    "download_url": null,
+    "thumbnail": "https://i.ytimg.com/vi/0e3GPea1Tyg/hqdefault.jpg",
+    "tags": [
+      "바이브코딩",
+      "Cursor",
+      "Bolt",
+      "1인개발",
+      "웹앱제작",
+      "2026AI"
+    ],
+    "date": "2026-09-15",
+    "sort_order": 161,
+    "is_new": 1
+  },
+  {
+    "id": "daily-insight-2026-09-15-gemini-notebooklm-analysis",
+    "category": "지식 관리 & 리서치",
+    "access": "공개",
+    "title": "[2026.09.15] 제미나이 200만 토큰과 NotebookLM으로 1000페이지 전공서적 10분 마스터",
+    "video_url": "https://www.youtube.com/watch?v=fJ9rUzIMcZQ",
+    "description": "수백 장의 PDF 논문과 계약서, 기술 문서를 통째로 업로드하여 교차 검증하고 핵심 인포그래픽 요약 및 팟캐스트 오디오 오버뷰를 생성하는 고급 리서치 비법입니다.",
+    "download_url": null,
+    "thumbnail": "https://i.ytimg.com/vi/fJ9rUzIMcZQ/hqdefault.jpg",
+    "tags": [
+      "NotebookLM",
+      "Gemini200만",
+      "논문요약",
+      "PDF분석",
+      "리서치",
+      "2026AI"
+    ],
+    "date": "2026-09-15",
+    "sort_order": 160,
+    "is_new": 1
+  },
+  {
+    "id": "daily-insight-2026-09-15-midjourney-flux-character",
+    "category": "AI 이미지 생성",
+    "access": "공개",
+    "title": "[2026.09.15] 미드저니 v7 & FLUX.1으로 동일 인물 캐릭터 완벽 일관성 유지하기",
+    "video_url": "https://www.youtube.com/watch?v=kJQP7kiw5Fk",
+    "description": "캐릭터 참조(CREF) 파라미터와 LoRA 가중치를 조절해 웹툰, 동화책, 광고 모델의 얼굴과 의상을 수십 장의 연속 컷에서도 완벽하게 일치시키는 전문가 테크닉입니다.",
+    "download_url": null,
+    "thumbnail": "https://i.ytimg.com/vi/kJQP7kiw5Fk/hqdefault.jpg",
+    "tags": [
+      "미드저니",
+      "FLUX",
+      "캐릭터일관성",
+      "웹툰제작",
+      "AI일러스트",
+      "2026AI"
+    ],
+    "date": "2026-09-15",
+    "sort_order": 159,
+    "is_new": 1
+  },
+  {
+    "id": "daily-insight-2026-09-15-aeo-search-ranking",
+    "category": "AEO & 마케팅",
+    "access": "공개",
+    "title": "[2026.09.15] 구글 AI Overviews & Perplexity 1위 노출을 위한 AEO 온페이지 최적화",
+    "video_url": "https://www.youtube.com/watch?v=L_LUpnjgPso",
+    "description": "기존 SEO 키워드 반복 방식에서 벗어나 AI 검색엔진의 벡터 임베딩 모델이 직접 인용하고 출처로 채택하게 만드는 구조화 데이터(JSON-LD)와 답변 중심 콘텐츠 설계법입니다.",
+    "download_url": null,
+    "thumbnail": "https://i.ytimg.com/vi/L_LUpnjgPso/hqdefault.jpg",
+    "tags": [
+      "AEO",
+      "AI검색",
+      "구글오버뷰",
+      "Perplexity",
+      "SEO최적화",
+      "2026AI"
+    ],
+    "date": "2026-09-15",
+    "sort_order": 158,
+    "is_new": 1
+  },
+  {
     "id": "daily-insight-2026-09-14",
     "category": "AI 영상 제작",
     "access": "공개",
