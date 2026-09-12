@@ -1094,6 +1094,12 @@ export function renderStyle5_PerspectiveSlash(w, h, post, colorIdx = 0) {
   const theme = detectSceneTheme(post);
   const c = S5_COLOR_THEMES[colorIdx % S5_COLOR_THEMES.length];
 
+  // Dynamic font sizing to guarantee 100% visibility with zero clipping
+  const t1Len = Math.max(title1.length, 1);
+  const t2Len = Math.max(title2.length, 1);
+  const t1Size = Math.min(140, Math.max(95, Math.floor(1100 / Math.max(t1Len, 5.5))));
+  const t2Size = Math.min(148, Math.max(100, Math.floor(1150 / Math.max(t2Len, 5.5))));
+
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}">
   <defs>
     <linearGradient id="s5BgGrad_${colorIdx}" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -1122,7 +1128,7 @@ export function renderStyle5_PerspectiveSlash(w, h, post, colorIdx = 0) {
   <rect width="${w}" height="${h}" fill="url(#s5BgGrad_${colorIdx})" opacity="0.82"/>
 
   <!-- 3. High-Energy Fisheye 3D Perspective Speed Rays Converging to Center Horizon -->
-  <g opacity="0.35">
+  <g opacity="0.32">
     <polygon points="0,0 350,0 ${w/2 - 100},${h/2}" fill="${c.speedLines}"/>
     <polygon points="${w},0 ${w - 350},0 ${w/2 + 100},${h/2}" fill="${c.speedLines}"/>
     <polygon points="0,${h} 380,${h} ${w/2 - 120},${h/2}" fill="${c.speedLines}"/>
@@ -1133,88 +1139,85 @@ export function renderStyle5_PerspectiveSlash(w, h, post, colorIdx = 0) {
 
   <!-- 4. Corner Perspective Angled Banners & Doodles -->
   <!-- Top-Left Angled Strip -->
-  <g transform="translate(40, 70) rotate(-16)" filter="url(#megaShadow)">
-    <rect x="-10" y="-18" width="360" height="42" rx="6" fill="${c.bannerBg}"/>
-    <text x="170" y="9" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="16" font-weight="900" fill="${c.bannerText}" letter-spacing="1">
-      ⚡ 실전 AI 공략집 // ${escapeXml(badge)}
+  <g transform="translate(35, 60) rotate(-14)" filter="url(#megaShadow)">
+    <rect x="-10" y="-18" width="310" height="38" rx="6" fill="${c.bannerBg}"/>
+    <text x="145" y="8" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="15" font-weight="900" fill="${c.bannerText}" letter-spacing="1">
+      ⚡ AI 공략 // ${escapeXml(badge)}
     </text>
   </g>
 
   <!-- Top-Right Angled Strip -->
-  <g transform="translate(${w - 280}, 90) rotate(16)" filter="url(#megaShadow)">
-    <rect x="-10" y="-18" width="310" height="42" rx="6" fill="${c.bannerBg}"/>
-    <text x="145" y="9" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="15" font-weight="900" fill="${c.bannerText}" letter-spacing="1">
-      ★ 2026 최신 트렌드 // 100% 검증
+  <g transform="translate(${w - 280}, 65) rotate(14)" filter="url(#megaShadow)">
+    <rect x="-10" y="-18" width="280" height="38" rx="6" fill="${c.bannerBg}"/>
+    <text x="130" y="8" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="14" font-weight="900" fill="${c.bannerText}" letter-spacing="1">
+      ★ 2026 최신 트렌드 검증
     </text>
   </g>
 
   <!-- Bottom-Left Angled Strip -->
-  <g transform="translate(60, ${h - 85}) rotate(14)" filter="url(#megaShadow)">
-    <rect x="-10" y="-18" width="340" height="38" rx="6" fill="${c.bannerBg}"/>
-    <text x="160" y="8" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="15" font-weight="900" fill="${c.bannerText}">
-      ✔ 단 3분 만에 마스터하는 핵심 비법
+  <g transform="translate(45, ${h - 75}) rotate(12)" filter="url(#megaShadow)">
+    <rect x="-10" y="-18" width="290" height="36" rx="6" fill="${c.bannerBg}"/>
+    <text x="135" y="7" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="14" font-weight="900" fill="${c.bannerText}">
+      ✔ 단 3분 마스터 핵심 비법
     </text>
   </g>
 
   <!-- Bottom-Right Angled Strip -->
-  <g transform="translate(${w - 300}, ${h - 75}) rotate(-14)" filter="url(#megaShadow)">
-    <rect x="-10" y="-18" width="330" height="38" rx="6" fill="${c.bannerBg}"/>
-    <text x="155" y="8" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="15" font-weight="900" fill="${c.bannerText}">
-      ✦ GO! TAKE RISKS // NO.1 AI PORTAL
+  <g transform="translate(${w - 275}, ${h - 70}) rotate(-12)" filter="url(#megaShadow)">
+    <rect x="-10" y="-18" width="275" height="36" rx="6" fill="${c.bannerBg}"/>
+    <text x="127" y="7" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="14" font-weight="900" fill="${c.bannerText}">
+      ✦ GO! TAKE RISKS 100%
     </text>
   </g>
 
   <!-- Top Center Game Emblem Badge -->
-  <g transform="translate(${w/2}, 70)" filter="url(#megaShadow)">
-    <rect x="-140" y="-22" width="280" height="44" rx="22" fill="#000000" stroke="${c.highlight}" stroke-width="3"/>
-    <text x="0" y="7" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="18" font-weight="900" fill="#ffffff" letter-spacing="2">
+  <g transform="translate(${w/2}, 65)" filter="url(#megaShadow)">
+    <rect x="-130" y="-20" width="260" height="40" rx="20" fill="#000000" stroke="${c.highlight}" stroke-width="3"/>
+    <text x="0" y="7" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="17" font-weight="900" fill="#ffffff" letter-spacing="2">
       ⚡ RAB8BIT AI LAB
     </text>
   </g>
 
-  <!-- 5. Split Perspective Giant Typography (Left & Right Inward Fisheye Tilt) -->
-  
-  <!-- Left Giant Typography (Title 1) - Tilted Inwards -->
-  <g transform="translate(${w/2 - 270}, ${h/2 + 35}) rotate(-7) skewY(12)" filter="url(#megaShadow)">
-    <!-- 3D Shadow Extrusion -->
-    <text x="0" y="24" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="142" font-weight="900" fill="#000000" stroke="#000000" stroke-width="26" paint-order="stroke fill" letter-spacing="-5">
-      ${escapeXml(title1)}
-    </text>
-    <!-- Main Gradient Slash Glyph -->
-    <text x="0" y="0" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="142" font-weight="900" fill="url(#s5T1Grad_${colorIdx})" stroke="${c.title1Stroke}" stroke-width="14" paint-order="stroke fill" letter-spacing="-5">
-      ${escapeXml(title1)}
-    </text>
-    <!-- Spiky Comic Speed Cut Accents -->
-    <polygon points="-160,-70 -130,-45 -180,-30" fill="${c.highlight}"/>
-    <polygon points="140,50 180,65 150,25" fill="${c.highlight}"/>
-  </g>
+  <!-- 5. Central High-Energy 2-Line Manga Perspective Headline -->
+  <g transform="translate(${w/2}, ${h/2 - 10})" filter="url(#megaShadow)">
+    
+    <!-- Line 1 (Upper Tier - Dynamic Left Squeeze Tilt) -->
+    <g transform="translate(0, -50) rotate(-3.5) skewX(-4)">
+      <!-- Deep 3D Shadow -->
+      <text x="0" y="20" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="${t1Size}" font-weight="900" fill="#000000" stroke="#000000" stroke-width="26" paint-order="stroke fill" letter-spacing="-4">
+        ${escapeXml(title1)}
+      </text>
+      <!-- Main Gradient Body with Crisp White/Dark Stroke -->
+      <text x="0" y="0" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="${t1Size}" font-weight="900" fill="url(#s5T1Grad_${colorIdx})" stroke="${c.title1Stroke}" stroke-width="14" paint-order="stroke fill" letter-spacing="-4">
+        ${escapeXml(title1)}
+      </text>
+      <!-- Manga Slash Accents -->
+      <polygon points="${-t1Len * (t1Size * 0.38) - 30},-40 ${-t1Len * (t1Size * 0.38) - 10},-25 ${-t1Len * (t1Size * 0.38) - 45},-10" fill="${c.highlight}"/>
+    </g>
 
-  <!-- Center Energy Sparks & Lightning Arcs -->
-  <g transform="translate(${w/2}, ${h/2 + 20})" filter="url(#megaShadow)">
-    <circle cx="0" cy="0" r="38" fill="${c.sparkColor}" stroke="#000000" stroke-width="4"/>
-    <text x="0" y="11" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="32" font-weight="900" fill="#000000">VS</text>
-    <path d="M -60 -40 L -25 -10 L -45 -5 L -10 35 L -35 40" fill="none" stroke="${c.highlight}" stroke-width="6" stroke-linecap="round"/>
-    <path d="M 60 -40 L 25 -10 L 45 -5 L 10 35 L 35 40" fill="none" stroke="${c.highlight}" stroke-width="6" stroke-linecap="round"/>
-  </g>
+    <!-- Line 2 (Lower Tier - Dynamic Right Squeeze Tilt) -->
+    <g transform="translate(0, 95) rotate(2.5) skewX(3)">
+      <!-- Deep 3D Shadow -->
+      <text x="0" y="22" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="${t2Size}" font-weight="900" fill="#000000" stroke="#000000" stroke-width="28" paint-order="stroke fill" letter-spacing="-4">
+        ${escapeXml(title2)}
+      </text>
+      <!-- Main Gradient Body with Crisp White/Dark Stroke -->
+      <text x="0" y="0" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="${t2Size}" font-weight="900" fill="url(#s5T2Grad_${colorIdx})" stroke="${c.title2Stroke}" stroke-width="16" paint-order="stroke fill" letter-spacing="-4">
+        ${escapeXml(title2)}
+      </text>
+      <!-- Manga Slash Accents -->
+      <polygon points="${t2Len * (t2Size * 0.38) + 30},-30 ${t2Len * (t2Size * 0.38) + 10},-15 ${t2Len * (t2Size * 0.38) + 45},0" fill="${c.highlight}"/>
+    </g>
 
-  <!-- Right Giant Typography (Title 2) - Tilted Inwards -->
-  <g transform="translate(${w/2 + 270}, ${h/2 + 35}) rotate(7) skewY(-12)" filter="url(#megaShadow)">
-    <!-- 3D Shadow Extrusion -->
-    <text x="0" y="24" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="142" font-weight="900" fill="#000000" stroke="#000000" stroke-width="26" paint-order="stroke fill" letter-spacing="-5">
-      ${escapeXml(title2)}
-    </text>
-    <!-- Main Gradient Slash Glyph -->
-    <text x="0" y="0" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="142" font-weight="900" fill="url(#s5T2Grad_${colorIdx})" stroke="${c.title2Stroke}" stroke-width="14" paint-order="stroke fill" letter-spacing="-5">
-      ${escapeXml(title2)}
-    </text>
-    <!-- Spiky Comic Speed Cut Accents -->
-    <polygon points="160,-70 130,-45 180,-30" fill="${c.highlight}"/>
-    <polygon points="-140,50 -180,65 -150,25" fill="${c.highlight}"/>
+    <!-- Central Energy Spark Accents -->
+    <g transform="translate(${Math.min(360, t2Len * 50)}, 30)">
+      <polygon points="0,-22 14,0 2,0 10,22 -14,5 0,5" fill="${c.sparkColor}" stroke="#000000" stroke-width="3"/>
+    </g>
   </g>
 
   <!-- Bottom Anchor Subtitle Pill -->
-  <g transform="translate(${w/2}, ${h - 45})" filter="url(#megaShadow)">
-    <rect x="-280" y="-18" width="560" height="36" rx="18" fill="#000000" stroke="${c.highlight}" stroke-width="2"/>
+  <g transform="translate(${w/2}, ${h - 50})" filter="url(#megaShadow)">
+    <rect x="-260" y="-18" width="520" height="36" rx="18" fill="#000000" stroke="${c.highlight}" stroke-width="2"/>
     <text x="0" y="6" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="16" font-weight="900" fill="#ffffff">
       ✦ ${escapeXml(subTag)}
     </text>
@@ -1288,6 +1291,12 @@ export function renderStyle6_EditorialMonolith(w, h, post, colorIdx = 0) {
   const theme = detectSceneTheme(post);
   const c = S6_COLOR_THEMES[colorIdx % S6_COLOR_THEMES.length];
 
+  // Dynamic font sizing for left column so long words never overflow
+  const t1Len = Math.max(title1.length, 1);
+  const t2Len = Math.max(title2.length, 1);
+  const t1Size = Math.min(136, Math.max(88, Math.floor(660 / Math.max(t1Len, 4.2))));
+  const t2Size = Math.min(138, Math.max(90, Math.floor(680 / Math.max(t2Len, 4.2))));
+
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}">
   <defs>
     <!-- Woodblock / Brush Distressed Texture Filter -->
@@ -1311,70 +1320,70 @@ export function renderStyle6_EditorialMonolith(w, h, post, colorIdx = 0) {
   <rect width="${w}" height="${h}" fill="url(#s6Spotlight_${colorIdx})"/>
 
   <!-- 3. Right Cinematic Framing Graphic (Futuristic AI Portal Aesthetic) -->
-  <g transform="translate(${w - 320}, ${h/2})" opacity="0.4" filter="url(#megaShadow)">
-    <circle cx="0" cy="0" r="220" fill="none" stroke="${c.monoText}" stroke-width="4" stroke-dasharray="12,6"/>
-    <circle cx="0" cy="0" r="170" fill="none" stroke="${c.accentLine}" stroke-width="2"/>
-    <circle cx="0" cy="0" r="90" fill="${c.monoShadow}" opacity="0.6"/>
+  <g transform="translate(${w - 300}, ${h/2})" opacity="0.4" filter="url(#megaShadow)">
+    <circle cx="0" cy="0" r="210" fill="none" stroke="${c.monoText}" stroke-width="4" stroke-dasharray="12,6"/>
+    <circle cx="0" cy="0" r="160" fill="none" stroke="${c.accentLine}" stroke-width="2"/>
+    <circle cx="0" cy="0" r="85" fill="${c.monoShadow}" opacity="0.6"/>
   </g>
 
   <!-- 4. Top Editorial Metadata Headers -->
   <g transform="translate(80, 65)">
-    <rect x="0" y="-16" width="120" height="28" rx="4" fill="${c.tagBg}"/>
-    <text x="60" y="3" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="13" font-weight="900" fill="${c.tagText}">
+    <rect x="0" y="-16" width="130" height="28" rx="4" fill="${c.tagBg}"/>
+    <text x="65" y="3" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="13" font-weight="900" fill="${c.tagText}">
       ${escapeXml(badge)}
     </text>
-    <text x="140" y="3" font-family="monospace" font-size="14" font-weight="900" fill="#94a3b8" letter-spacing="2">
+    <text x="150" y="3" font-family="monospace" font-size="14" font-weight="900" fill="#94a3b8" letter-spacing="2">
       ISSUE NO.2026 // VOL.08 — RAB8BIT EDITORIAL ARCHIVE
     </text>
   </g>
 
   <!-- 5. Giant Left-Aligned 3-Tier Monolithic Stacked Typography -->
-  <g transform="translate(80, 110)" filter="url(#woodblockTexture_${colorIdx})">
+  <g transform="translate(80, 95)" filter="url(#woodblockTexture_${colorIdx})">
     
     <!-- Tier 1: Bold Top Hook Label -->
-    <g transform="translate(0, 100)" filter="url(#megaShadow)">
-      <text x="0" y="10" font-family="${FONT_FAMILY}" font-size="118" font-weight="900" fill="${c.monoShadow}" stroke="#000000" stroke-width="12" letter-spacing="-4">
+    <g transform="translate(0, 90)" filter="url(#megaShadow)">
+      <text x="0" y="10" font-family="${FONT_FAMILY}" font-size="95" font-weight="900" fill="${c.monoShadow}" stroke="#000000" stroke-width="12" letter-spacing="-3">
         AI TREND
       </text>
-      <text x="0" y="0" font-family="${FONT_FAMILY}" font-size="118" font-weight="900" fill="${c.monoText}" letter-spacing="-4">
+      <text x="0" y="0" font-family="${FONT_FAMILY}" font-size="95" font-weight="900" fill="${c.monoText}" letter-spacing="-3">
         AI TREND
       </text>
     </g>
 
     <!-- Tier 2: Title Line 1 (Giant Monolithic Condensed) -->
-    <g transform="translate(0, 240)" filter="url(#megaShadow)">
-      <text x="0" y="14" font-family="${FONT_FAMILY}" font-size="138" font-weight="900" fill="${c.monoShadow}" stroke="#000000" stroke-width="14" letter-spacing="-5">
+    <g transform="translate(0, 225)" filter="url(#megaShadow)">
+      <text x="0" y="14" font-family="${FONT_FAMILY}" font-size="${t1Size}" font-weight="900" fill="${c.monoShadow}" stroke="#000000" stroke-width="14" letter-spacing="-4">
         ${escapeXml(title1)}
       </text>
-      <text x="0" y="0" font-family="${FONT_FAMILY}" font-size="138" font-weight="900" fill="${c.monoText}" letter-spacing="-5">
+      <text x="0" y="0" font-family="${FONT_FAMILY}" font-size="${t1Size}" font-weight="900" fill="${c.monoText}" letter-spacing="-4">
         ${escapeXml(title1)}
       </text>
     </g>
 
     <!-- Tier 3: Title Line 2 (Giant Monolithic Condensed) -->
-    <g transform="translate(0, 385)" filter="url(#megaShadow)">
-      <text x="0" y="14" font-family="${FONT_FAMILY}" font-size="138" font-weight="900" fill="${c.monoShadow}" stroke="#000000" stroke-width="14" letter-spacing="-5">
+    <g transform="translate(0, 365)" filter="url(#megaShadow)">
+      <text x="0" y="14" font-family="${FONT_FAMILY}" font-size="${t2Size}" font-weight="900" fill="${c.monoShadow}" stroke="#000000" stroke-width="14" letter-spacing="-4">
         ${escapeXml(title2)}
       </text>
-      <text x="0" y="0" font-family="${FONT_FAMILY}" font-size="138" font-weight="900" fill="${c.monoText}" letter-spacing="-5">
+      <text x="0" y="0" font-family="${FONT_FAMILY}" font-size="${t2Size}" font-weight="900" fill="${c.monoText}" letter-spacing="-4">
         ${escapeXml(title2)}
       </text>
     </g>
   </g>
 
   <!-- 6. Editorial Quote Paragraph Beside/Below (Reference 2 Styling) -->
-  <g transform="translate(80, ${h - 110})" filter="url(#megaShadow)">
+  <g transform="translate(80, ${h - 90})" filter="url(#megaShadow)">
     <line x1="0" y1="0" x2="360" y2="0" stroke="${c.accentLine}" stroke-width="3"/>
-    <text x="0" y="24" font-family="${FONT_FAMILY}" font-size="15" font-weight="900" fill="${c.quoteColor}" letter-spacing="1">
+    <text x="0" y="22" font-family="${FONT_FAMILY}" font-size="15" font-weight="900" fill="${c.quoteColor}" letter-spacing="1">
       THE MOST POWERFUL AI WORKFLOW FOR MODERN BUILDERS.
     </text>
-    <text x="0" y="44" font-family="${FONT_FAMILY}" font-size="14" font-weight="800" fill="#cbd5e1" letter-spacing="0.5">
+    <text x="0" y="42" font-family="${FONT_FAMILY}" font-size="14" font-weight="800" fill="#cbd5e1" letter-spacing="0.5">
       ✦ ${escapeXml(subTag)}
     </text>
   </g>
 
   <!-- Right Side Minimalist Tech Seal -->
-  <g transform="translate(${w - 120}, ${h - 80}) rotate(90)" opacity="0.75">
+  <g transform="translate(${w - 80}, ${h - 80}) rotate(90)" opacity="0.75">
     <text x="0" y="0" text-anchor="middle" font-family="monospace" font-size="12" font-weight="900" fill="${c.quoteColor}" letter-spacing="4">
       RAB8BIT.COM // 2026
     </text>
