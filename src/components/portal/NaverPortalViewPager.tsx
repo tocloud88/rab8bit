@@ -496,7 +496,7 @@ export default function NaverPortalViewPager({ initialCategoryId = 'home' }: Pro
             return (
               <div
                 key={cat.id}
-                className={`w-full shrink-0 min-w-full box-border px-3 sm:px-0 ${
+                className={`w-full shrink-0 min-w-full box-border px-3 sm:px-4 md:px-6 lg:px-0 ${
                   shouldHaveHeight 
                     ? 'block' 
                     : 'h-0 max-h-0 overflow-hidden invisible pointer-events-none select-none'
