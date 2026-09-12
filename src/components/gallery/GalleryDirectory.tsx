@@ -64,11 +64,10 @@ export default function GalleryDirectory() {
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
-                selectedCategory === cat
+              className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${selectedCategory === cat
                   ? 'bg-gradient-to-r from-yellow-500 to-amber-500 text-slate-950 font-extrabold shadow-md shadow-yellow-500/25 scale-105'
                   : 'bg-slate-800/80 text-slate-300 hover:text-white hover:bg-slate-700/80 border border-slate-700/50'
-              }`}
+                }`}
             >
               {cat}
               {cat === '전체' && ` (${GALLERY_DATA.length})`}
@@ -150,11 +149,10 @@ export default function GalleryDirectory() {
                 <div className="pt-2 border-t border-slate-800/80 flex items-center gap-2">
                   <button
                     onClick={() => copyPrompt(item.prompt, item.id)}
-                    className={`w-full py-1.5 px-2 rounded-xl text-[11px] font-bold transition-all flex items-center justify-center gap-1 ${
-                      isCopied
+                    className={`w-full py-1.5 px-2 rounded-xl text-[11px] font-bold transition-all flex items-center justify-center gap-1 ${isCopied
                         ? 'bg-emerald-600 text-white'
                         : 'bg-yellow-500/10 hover:bg-yellow-500 text-yellow-300 hover:text-slate-950 border border-yellow-500/30'
-                    }`}
+                      }`}
                   >
                     <span>{isCopied ? '✓' : '🍌'}</span>
                     <span>{isCopied ? '프롬프트 복사 완료!' : '프롬프트 복사'}</span>
@@ -174,33 +172,33 @@ export default function GalleryDirectory() {
       )}
 
       {/* Modal */}
-      {activeModalItem && mounted && typeof document !== 'undefined' && createPortal(
+      {activeModalItem && (
         <div
-          className="fixed inset-0 z-[99999] bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-hidden animate-fade-in"
+          className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4"
           onClick={() => setActiveModalItem(null)}
         >
           <div
-            className="relative w-full max-w-4xl max-h-[90vh] bg-slate-900 rounded-2xl overflow-hidden border border-yellow-500/30 shadow-2xl flex flex-col md:flex-row text-slate-200"
+            className="relative w-full max-w-4xl max-h-[90vh] bg-slate-900 rounded-2xl overflow-hidden border border-yellow-500/30 shadow-2xl flex flex-col md:flex-row"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Image */}
-            <div className="md:w-1/2 bg-black flex items-center justify-center p-2 shrink-0">
+            <div className="md:w-1/2 bg-black flex items-center justify-center p-2">
               <img
                 src={activeModalItem.image_url}
                 alt={activeModalItem.title}
-                className="max-h-[40vh] md:max-h-[80vh] w-auto object-contain rounded-xl"
+                className="max-h-[50vh] md:max-h-[80vh] w-auto object-contain rounded-xl"
               />
             </div>
 
             {/* Modal Content */}
-            <div className="md:w-1/2 p-5 sm:p-6 flex flex-col justify-between overflow-y-auto space-y-4 overscroll-contain">
+            <div className="md:w-1/2 p-5 sm:p-6 flex flex-col justify-between overflow-y-auto space-y-4">
               <div className="space-y-3">
                 <div className="flex justify-between items-start gap-2">
                   <div>
                     <span className="text-xs px-2.5 py-1 rounded-full bg-yellow-950 text-yellow-300 font-bold border border-yellow-800/50">
                       {activeModalItem.category || '나노바나나 AI'}
                     </span>
-                    <h2 className="text-base sm:text-lg font-bold text-white mt-2">{activeModalItem.title}</h2>
+                    <h2 className="text-lg font-bold text-white mt-2">{activeModalItem.title}</h2>
                   </div>
                   <button
                     onClick={() => setActiveModalItem(null)}
@@ -238,8 +236,7 @@ export default function GalleryDirectory() {
               </div>
             </div>
           </div>
-        </div>,
-        document.body
+        </div>
       )}
     </div>
   );

@@ -34,15 +34,6 @@ const relatedPosts = BLOGS_DATA.filter((p) => p.id !== post.id).slice(0, 4);
 >
 
   <div class="max-w-4xl mx-auto space-y-8">
-    {/* Navigation Breadcrumb */}
-    <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
-      <a href="/" class="hover:text-indigo-600 dark:hover:text-white">홈</a>
-      <span>/</span>
-      <a href="/blog" class="hover:text-indigo-600 dark:hover:text-white">블로그</a>
-      <span>/</span>
-      <span class="text-indigo-600 dark:text-indigo-400 truncate max-w-xs">{post.title}</span>
-    </div>
-
     {/* Post Header */}
     <div class="space-y-4 border-b border-indigo-500/20 pb-6">
       <div class="flex flex-wrap items-center gap-2">
