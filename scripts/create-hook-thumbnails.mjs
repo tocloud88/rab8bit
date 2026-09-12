@@ -17,76 +17,70 @@ function escapeXml(str) {
     .replace(/'/g, '&apos;');
 }
 
-export function calcFontSize(text, baseSize, maxChars) {
-  if (!text) return baseSize;
-  const len = text.length;
-  if (len <= maxChars) return baseSize;
-  return Math.max(75, Math.round(baseSize * (maxChars / len)));
-}
-
 // -----------------------------------------------------------------------------
-// Curated Punchy 2-Line Hooking Dictionary for 100% Readability (Giant 110-130px)
+// Curated Short 2-Line Mega-Punchy Hooking Dictionary (Max 5~8 chars per line)
+// Guarantees Giant 130px~160px Text Size with ZERO Clutter
 // -----------------------------------------------------------------------------
-const PUNCHY_HOOK_MAP = {
-  'daily-tech-insight-2026-09-14': { badge: '⚡ 100만 토큰', title1: '100만 토큰', title2: '대형 문서 분석법' },
+export const PUNCHY_HOOK_MAP = {
+  'daily-tech-insight-2026-09-14': { badge: '⚡ 100만 토큰', title1: '100만 토큰', title2: '대형 문서 분석' },
   'daily-tech-insight-2026-09-13': { badge: '🚀 바이브 코딩', title1: '바이브 코딩', title2: '1인 창업 스택' },
-  'daily-tech-insight-2026-09-12': { badge: '🤖 AI 에이전트', title1: 'AI 에이전트', title2: '업무 자동화 대전환' },
-  'ai-big-4-comparison-chatgpt-gemini-claude-grok': { badge: '⚔️ 플래그십 대결', title1: 'AI 4대 천왕', title2: '플래그십 맞대결' },
-  'openai-gpt-6-astra-release-analysis': { badge: '🔥 OpenAI 충격', title1: 'GPT-6 Astra', title2: 'PC 직접 조작 충격' },
-  'ai-self-explanation-verification-guide': { badge: '⚠️ 환각 검증', title1: '모델의 자기설명', title2: '믿으면 안 되는 이유' },
-  'ai-side-hustle-course-verification-guide': { badge: '💰 재테크 검증', title1: 'AI 재테크 강의', title2: '거르는 강사 특징' },
-  'openai-pauses-training-google-opens-chrome': { badge: '🌐 빅테크 격돌', title1: '오픈AI는 멈췄고', title2: '구글은 크롬을 열었다' },
-  'why-ai-websites-look-same-claude-skills-solution': { badge: '🎨 웹 디자인', title1: 'AI 웹사이트', title2: '클로드 스킬로 해결' },
-  'gemini-paper-report-three-line-summary-guide': { badge: '📑 논문 요약', title1: '제미나이로', title2: '논문 3줄 요약법' },
-  'ai-meeting-minutes-action-plan-chatgpt-prompt': { badge: '⏱️ 업무 단축', title1: '회의 끝나고 한숨?', title2: 'AI로 업무 시간 단축' },
-  'ai-advisor-not-yesman-remove-intention-from-prompts': { badge: '💡 질문의 기술', title1: '예스맨 AI를', title2: '조언자로 바꾸는 법' },
-  'lessons-from-building-90-ai-tools': { badge: '🛠️ 인디 해킹', title1: 'AI 프로그램 90개', title2: '직접 만들고 건진 것' },
-  'adsense-rejected-ai-cooload-robots-txt-fix': { badge: '💵 애드센스 승인', title1: '애드센스 거절 3번?', title2: '클로드가 찾은 원인' },
-  'recover-lost-returns-stock-analysis-prompt': { badge: '📈 주가 분석', title1: '잃어버린 수익률', title2: 'AI 주가분석 프롬프트' },
-  'retro-game-site-deployer': { badge: '🎮 8비트 레트로', title1: '레트로 게임', title2: '사이트 제작 앱' },
-  'peurompeuteu-raibeureori': { badge: '📚 프롬프트 관리', title1: '프롬프트 270개', title2: '나만의 라이브러리' },
-  'preventing-gemini-api-disruptions': { badge: '⚡ API 대응', title1: 'Gemini API 종료?', title2: '충격 없는 대응법' },
-  '2026-world-cup-ai-prediction-prompt': { badge: '⚽ AI 스포츠', title1: '2026 월드컵', title2: 'AI 예측 프롬프트' },
-  'claude-unexpected-strengths': { badge: '🟣 Claude 강점', title1: '직접 써본 클로드', title2: '놀라운 강점 5가지' },
-  'claude-excel-prompts-6': { badge: '📊 엑셀 자동화', title1: '엑셀 노가다 끝!', title2: '마법의 클로드 프롬프트' },
-  'migrate-chatgpt-to-gemini-claude': { badge: '🔄 모델 이전', title1: 'ChatGPT 메모리', title2: '제미나이/클로드 이전' },
-  'blog-post-aeo-optimization-prompt': { badge: '🚀 트래픽 3배', title1: '블로그 트래픽 3배', title2: '4단계 AI 협업법' },
-  'google-ai-studio-android-app-build': { badge: '📱 노코드 앱', title1: '노코드 부동산 앱', title2: 'AI Studio 조합' },
-  'ai-fake-discount-checker-prompt': { badge: '🛒 스마트 쇼핑', title1: '쇼핑 효율 200%', title2: '가짜 할인 판독기' },
-  'chatgpt-vs-claude-comparison': { badge: '⚖️ 모델 선택', title1: '단순 작업은 ChatGPT', title2: '중요한 결정은 Claude' },
-  'notebooklm-prompts-for-complex-topics': { badge: '🧠 장기 기억', title1: 'NotebookLM으로', title2: '장기 기억 만드는 법' },
-  'chatgpt-bank-account-risk': { badge: '🔒 금융 보안', title1: 'ChatGPT에 내 통장', title2: '맡겨도 안전할까?' },
-  'html-is-the-new-markdown': { badge: '💻 웹 포맷', title1: '마크다운보다', title2: 'HTML이 더 나은 이유' },
-  'how-to-check-ai-outage-chatgpt-claude-gemini': { badge: '🚨 장애 진단', title1: 'ChatGPT 클로드', title2: '장애 확인법 3가지' },
-  'how-to-make-html5-fishing-game-with-google-ai-studio': { badge: '🎣 게임 개발', title1: 'AI Studio로', title2: 'HTML5 낚시게임 제작' },
-  'best-ai-tools-for-research-claude-notebooklm': { badge: '🔬 연구 워크플로', title1: '데이터는 NotebookLM', title2: '글쓰기는 Claude' },
-  'manage-learning-materials-with-notebooklm': { badge: '📁 지식 관리', title1: '흩어진 학습 자료', title2: 'NotebookLM 통합 관리' },
-  'work-prompt-examples-10-for-business': { badge: '💼 직장인 실무', title1: '직장인 실무', title2: '상황별 프롬프트 10선' },
-  'how-to-organize-files-with-claude-code-for-beginners': { badge: '📂 파일 정리', title1: '클로드 코드로', title2: '파일 정리 완벽 마스터' },
-  '3-step-ai-prompt-guide': { badge: '🎯 프롬프트 기초', title1: '프롬프트 작성법', title2: '초보자 3단계 가이드' },
-  'gemini-advanced-marketing-tactics-part-2': { badge: '📢 마케팅 실전', title1: '블로거 & 마케터', title2: '제미나이 실전 활용 2' },
-  'yourblog-com-gemini-hacks-outperform-chatgpt-part-1': { badge: '🔥 제미나이 꿀팁', title1: 'ChatGPT 뛰어넘는', title2: '제미나이 미친 활용법' },
-  'snapblog-naver-blog-automation': { badge: '⚡ 블로그 자동화', title1: '사진만 넣으면 끝!', title2: '스냅블로그 SEO 자동화' },
-  '10-powerful-ai-prompts-for-work-to-boost-productivity': { badge: '🚀 업무 효율 100배', title1: '업무 효율 100배!', title2: '필수 AI 프롬프트 비법' },
-  'risks-of-ai-browser-automation': { badge: '⚠️ AI 브라우저', title1: 'AI 브라우저', title2: '불편한 진실 집중 탐구' },
-  'notebooklm-learning-journal-guide': { badge: '📝 학습 저널', title1: 'NotebookLM 활용', title2: '초간단 학습 저널 구축' },
-  '5-limits-of-prompt-engineering-2026': { badge: '🔍 한계 분석', title1: '프롬프트 엔지니어링', title2: '2026 핵심 한계점 5' },
-  'vibe-coding-google-ai-studio-auth': { badge: '⚡ 200만 토큰', title1: 'Gemini Pro 200만', title2: 'AI Studio 아키텍처' },
-  'how-to-prompt-lyria-3-pro-like-a-professional': { badge: '🎵 AI 작곡', title1: '제미니 Lyria 3', title2: 'AI 작곡 프롬프트' },
-  'overcoming-ai-wall-for-leaders': { badge: '👔 AI 리더십', title1: 'AI 벽에 부딪힌 리더', title2: '스마트 워크의 비밀' },
-  'turning-handwritten-chaos-into-infographic-gold-with-chatgpt': { badge: '📊 인포그래픽', title1: '손글씨를 깔끔한', title2: '인포그래픽으로 변환' },
-  'ai-prompt-strategy-for-difficult-tasks': { badge: '🎯 난제 해결', title1: '어려운 업무도 쉽게!', title2: 'AI 프롬프트 전략' },
-  'terminal-ai-tools-comparison-2026': { badge: '💻 터미널 AI', title1: '터미널 AI 도구', title2: 'Claude vs Codex vs Gemini' },
-  'claude-quota-management-tips': { badge: '⚙️ 쿼터 공략', title1: '클로드 쿼터 초과?', title2: '벽을 넘는 5가지 기술' },
-  'ai-image-generation-tools-comparison-2026': { badge: '🎨 이미지 AI', title1: 'AI 이미지 대격돌', title2: '나노바나나 vs 미드저니' },
-  'ai-writer-workflow-creativity': { badge: '✍️ 창의적 글쓰기', title1: '작가의 창의력 200%', title2: 'AI 공동 집필 워크플로우' },
-  'markdown-structured-prompt-technique': { badge: '📑 마크다운 팁', title1: '마크다운 문법으로', title2: 'AI 응답 품질 200%' },
-  'ai-search-engine-optimization-aeo': { badge: '🔍 AEO 전략', title1: 'AI 검색 최적화(AEO)', title2: 'AI 답변 채택 전략' },
-  'ai-llm-real-ability-and-misconceptions': { badge: '🧠 LLM 진실', title1: 'AI는 생각 안 한다', title2: 'LLM의 진짜 능력과 오해' },
-  'gemini-meta-prompting-guide': { badge: '🤖 메타 프롬프트', title1: 'AI가 AI를 가르친다', title2: '제미나이 메타 프롬프팅' },
-  'gemini-extensions-automation-guide': { badge: '🔌 구글 익스텐션', title1: '제미나이 익스텐션', title2: '드라이브/유튜브 자동화' },
-  'humanizing-prompt-engineering': { badge: '🌿 인간화 프롬프트', title1: '죽은 글도 살려내는', title2: '인간화 프롬프트 비법' },
-  'gemini-vs-chatgpt-guide': { badge: '🥊 모델 맞대결', title1: 'Gemini vs ChatGPT', title2: '실전 비교 & 추천 가이드' }
+  'daily-tech-insight-2026-09-12': { badge: '🤖 AI 에이전트', title1: 'AI 에이전트', title2: '업무 자동화' },
+  'ai-big-4-comparison-chatgpt-gemini-claude-grok': { badge: '⚔️ 플래그십', title1: 'AI 4대 천왕', title2: '끝장 맞대결' },
+  'openai-gpt-6-astra-release-analysis': { badge: '🔥 OpenAI 충격', title1: 'GPT-6 Astra', title2: 'PC 직접 조작' },
+  'ai-self-explanation-verification-guide': { badge: '⚠️ 환각 주의', title1: '모델 자기설명', title2: '믿지 마세요!' },
+  'ai-side-hustle-course-verification-guide': { badge: '💰 재테크 검증', title1: 'AI 재테크 강의', title2: '가짜 강사 거르기' },
+  'openai-pauses-training-google-opens-chrome': { badge: '🌐 빅테크 격돌', title1: '오픈AI 멈춤', title2: '구글 크롬 개방' },
+  'why-ai-websites-look-same-claude-skills-solution': { badge: '🎨 웹 디자인', title1: '똑같은 AI 웹', title2: '클로드로 탈출' },
+  'gemini-paper-report-three-line-summary-guide': { badge: '📑 논문 요약', title1: '제미나이로', title2: '논문 3줄 요약' },
+  'ai-meeting-minutes-action-plan-chatgpt-prompt': { badge: '⏱️ 업무 단축', title1: '회의록 한숨 끝', title2: 'AI로 업무 단축' },
+  'ai-advisor-not-yesman-remove-intention-from-prompts': { badge: '💡 질문의 기술', title1: '예스맨 AI를', title2: '조언자로 변신' },
+  'lessons-from-building-90-ai-tools': { badge: '🛠️ 인디 해킹', title1: 'AI 앱 90개', title2: '직접 만든 후기' },
+  'adsense-rejected-ai-cooload-robots-txt-fix': { badge: '💵 애드센스', title1: '애드센스 거절', title2: '클로드가 해결' },
+  'recover-lost-returns-stock-analysis-prompt': { badge: '📈 주가 분석', title1: '잃어버린 수익', title2: 'AI 주가 프롬프트' },
+  'retro-game-site-deployer': { badge: '🎮 8비트 게임', title1: '레트로 게임', title2: '앱 제작기' },
+  'peurompeuteu-raibeureori': { badge: '📚 프롬프트', title1: '프롬프트 270개', title2: '나만의 서재' },
+  'preventing-gemini-api-disruptions': { badge: '⚡ API 대응', title1: 'Gemini API 종료', title2: '무충격 대응법' },
+  '2026-world-cup-ai-prediction-prompt': { badge: '⚽ 2026 월드컵', title1: '2026 월드컵', title2: 'AI 예측 프롬프트' },
+  'claude-unexpected-strengths': { badge: '🟣 Claude 강점', title1: '직접 써본 클로드', title2: '놀라운 강점 5' },
+  'claude-excel-prompts-6': { badge: '📊 엑셀 혁신', title1: '엑셀 노가다 끝!', title2: '마법의 프롬프트' },
+  'migrate-chatgpt-to-gemini-claude': { badge: '🔄 모델 이전', title1: 'ChatGPT 메모리', title2: '클로드로 이전' },
+  'blog-post-aeo-optimization-prompt': { badge: '🚀 트래픽 3배', title1: '블로그 트래픽', title2: '3배 폭발 비법' },
+  'google-ai-studio-android-app-build': { badge: '📱 노코드 앱', title1: '코딩 없이 제작', title2: '부동산 조회 앱' },
+  'ai-fake-discount-checker-prompt': { badge: '🛒 스마트 쇼핑', title1: '쇼핑 효율 200%', title2: '가짜 할인 판독' },
+  'chatgpt-vs-claude-comparison': { badge: '⚖️ 모델 선택', title1: '단순 작업 ChatGPT', title2: '중요 결정 Claude' },
+  'notebooklm-prompts-for-complex-topics': { badge: '🧠 장기 기억', title1: 'NotebookLM으로', title2: '장기 기억 구축' },
+  'chatgpt-bank-account-risk': { badge: '🔒 금융 보안', title1: 'ChatGPT에 통장', title2: '맡겨도 될까?' },
+  'html-is-the-new-markdown': { badge: '💻 웹 포맷', title1: '마크다운보다', title2: 'HTML이 나은 이유' },
+  'how-to-check-ai-outage-chatgpt-claude-gemini': { badge: '🚨 장애 진단', title1: 'AI 먹통일 때', title2: '장애 확인 3법' },
+  'how-to-make-html5-fishing-game-with-google-ai-studio': { badge: '🎣 게임 개발', title1: 'AI Studio로', title2: '낚시게임 제작' },
+  'best-ai-tools-for-research-claude-notebooklm': { badge: '🔬 연구 툴', title1: '자료는 노트북LM', title2: '글쓰기는 클로드' },
+  'manage-learning-materials-with-notebooklm': { badge: '📁 지식 관리', title1: '흩어진 학습 자료', title2: '한 번에 통합' },
+  'work-prompt-examples-10-for-business': { badge: '💼 직장인 실무', title1: '직장인 실무', title2: '필수 프롬프트 10' },
+  'how-to-organize-files-with-claude-code-for-beginners': { badge: '📂 파일 정리', title1: '클로드 코드로', title2: '파일 정리 끝!' },
+  '3-step-ai-prompt-guide': { badge: '🎯 프롬프트 기초', title1: '프롬프트 작성', title2: '3단계 마스터' },
+  'gemini-advanced-marketing-tactics-part-2': { badge: '📢 마케팅 실전', title1: '블로거 & 마케터', title2: '제미나이 200%' },
+  'yourblog-com-gemini-hacks-outperform-chatgpt-part-1': { badge: '🔥 제미나이 꿀팁', title1: 'ChatGPT 넘는', title2: '제미나이 미친 팁' },
+  'snapblog-naver-blog-automation': { badge: '⚡ 블로그 자동화', title1: '사진만 넣으면 끝', title2: 'SEO 글 자동생성' },
+  '10-powerful-ai-prompts-for-work-to-boost-productivity': { badge: '🚀 업무 효율 100배', title1: '업무 효율 100배', title2: '비밀 프롬프트' },
+  'risks-of-ai-browser-automation': { badge: '⚠️ AI 브라우저', title1: 'AI 브라우저', title2: '불편한 진실 5' },
+  'notebooklm-learning-journal-guide': { badge: '📝 학습 저널', title1: 'NotebookLM으로', title2: '초간단 저널 구축' },
+  '5-limits-of-prompt-engineering-2026': { badge: '🔍 한계 분석', title1: '프롬프트 한계', title2: '2026 팩트체크' },
+  'vibe-coding-google-ai-studio-auth': { badge: '⚡ 200만 토큰', title1: 'Gemini 200만', title2: '아키텍처 설계' },
+  'how-to-prompt-lyria-3-pro-like-a-professional': { badge: '🎵 AI 작곡', title1: '제미니 Lyria 3', title2: '프로 작곡 비법' },
+  'overcoming-ai-wall-for-leaders': { badge: '👔 AI 리더십', title1: 'AI 벽에 부딪힌', title2: '리더를 위한 해법' },
+  'turning-handwritten-chaos-into-infographic-gold-with-chatgpt': { badge: '📊 인포그래픽', title1: '손글씨 메모를', title2: '인포그래픽으로' },
+  'ai-prompt-strategy-for-difficult-tasks': { badge: '🎯 난제 해결', title1: '어려운 업무', title2: 'AI로 쉽게 시작' },
+  'terminal-ai-tools-comparison-2026': { badge: '💻 터미널 AI', title1: '터미널 AI 3대장', title2: '완벽 비교' },
+  'claude-quota-management-tips': { badge: '⚙️ 쿼터 공략', title1: '클로드 쿼터 초과', title2: '돌파하는 5가지 팁' },
+  'ai-image-generation-tools-comparison-2026': { badge: '🎨 이미지 AI', title1: 'AI 이미지 대격돌', title2: '최고의 툴 1위는?' },
+  'ai-writer-workflow-creativity': { badge: '✍️ 창의적 글쓰기', title1: '작가 창의력 200%', title2: 'AI 공동 집필법' },
+  'markdown-structured-prompt-technique': { badge: '📑 마크다운 팁', title1: '마크다운 문법', title2: 'AI 응답 200% UP' },
+  'ai-search-engine-optimization-aeo': { badge: '🔍 AEO 전략', title1: 'AI 검색 최적화', title2: '답변 채택 전략' },
+  'ai-llm-real-ability-and-misconceptions': { badge: '🧠 LLM 진실', title1: 'AI는 생각 안 한다', title2: 'LLM의 진짜 능력' },
+  'gemini-meta-prompting-guide': { badge: '🤖 메타 프롬프트', title1: 'AI가 AI를 교육', title2: '메타 프롬프팅' },
+  'gemini-extensions-automation-guide': { badge: '🔌 구글 익스텐션', title1: '제미나이 확장', title2: '드라이브 자동화' },
+  'humanizing-prompt-engineering': { badge: '🌿 인간화 프롬프트', title1: '죽은 글 살리기', title2: '인간화 프롬프트' },
+  'gemini-vs-chatgpt-guide': { badge: '🥊 모델 맞대결', title1: 'Gemini vs ChatGPT', title2: '실전 비교 가이드' }
 };
 
 export function parseHookingCopy(post) {
@@ -97,22 +91,22 @@ export function parseHookingCopy(post) {
       badge: item.badge,
       title1: item.title1,
       title2: item.title2,
-      subTag: (post.excerpt || '2026 대한민국 1위 AI 포털').slice(0, 22) + '...'
+      subTag: (post.excerpt || '2026 대한민국 1위 AI 포털').slice(0, 20) + '...'
     };
   }
 
-  // Fallback: extract super short tokens
+  // Fallback
   const rawTitle = (post.title || '').trim().replace(/\[.*?\]/g, '').replace(/["'“”]/g, '');
   const words = rawTitle.split(/[:—\- ]/).filter(w => w.trim().length > 0);
   const mid = Math.ceil(words.length / 2);
-  const title1 = words.slice(0, Math.min(3, mid)).join(' ');
-  const title2 = words.slice(Math.min(3, mid), Math.min(7, words.length)).join(' ') || '핵심 가이드';
+  const title1 = words.slice(0, Math.min(2, mid)).join(' ');
+  const title2 = words.slice(Math.min(2, mid), Math.min(5, words.length)).join(' ') || '핵심 가이드';
 
   return {
     badge: post.tags && post.tags[0] ? post.tags[0] : '2026 AI 트렌드',
-    title1: title1.slice(0, 10),
-    title2: title2.slice(0, 12),
-    subTag: (post.excerpt || '2026 대한민국 1위 AI 포털').slice(0, 22) + '...'
+    title1: title1.slice(0, 8),
+    title2: title2.slice(0, 8),
+    subTag: (post.excerpt || '2026 대한민국 1위 AI 포털').slice(0, 20) + '...'
   };
 }
 
@@ -297,9 +291,9 @@ export function renderThematicBackgroundScene(theme, w = 1280, h = 720) {
 export function renderStyle1_FreshNews(w, h, post, variantIdx = 0) {
   const { badge, title1, title2, subTag } = parseHookingCopy(post);
   const theme = detectSceneTheme(post);
-  const title1Size = calcFontSize(title1, 115, 8);
-  const title2Size = calcFontSize(title2, 125, 8);
-  const boxWidth = Math.max(760, title1.length * 80 + 100);
+  const title1Size = 135;
+  const title2Size = 145;
+  const boxWidth = Math.max(820, title1.length * 105 + 100);
 
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}">
   <defs>
@@ -315,7 +309,7 @@ export function renderStyle1_FreshNews(w, h, post, variantIdx = 0) {
     </linearGradient>
 
     <filter id="s1Shadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#000000" flood-opacity="0.85"/>
+      <feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="#000000" flood-opacity="0.9"/>
     </filter>
   </defs>
 
@@ -327,46 +321,46 @@ export function renderStyle1_FreshNews(w, h, post, variantIdx = 0) {
 
   <!-- 3. Yellow Circular Orbiting Arrow -->
   <g transform="translate(${w / 2}, ${h / 2 - 20}) rotate(-12)" filter="url(#s1Shadow)">
-    <path d="M -300 0 A 300 240 0 1 1 270 90" fill="none" stroke="url(#s1ArrowGrad)" stroke-width="24" stroke-linecap="round"/>
-    <polygon points="270,40 325,100 240,120" fill="#f59e0b"/>
-    <path d="M 280 -140 L 290 -115 L 315 -105 L 290 -95 L 280 -70 L 270 -95 L 245 -105 L 270 -115 Z" fill="#fbbf24"/>
+    <path d="M -340 0 A 340 260 0 1 1 310 90" fill="none" stroke="url(#s1ArrowGrad)" stroke-width="26" stroke-linecap="round"/>
+    <polygon points="310,40 370,105 280,125" fill="#f59e0b"/>
+    <path d="M 320 -140 L 330 -115 L 355 -105 L 330 -95 L 320 -70 L 310 -95 L 285 -105 L 310 -115 Z" fill="#fbbf24"/>
   </g>
 
   <!-- 4. Central Giant Typography (-6.5 deg dynamic tilt) -->
   <g transform="translate(${w / 2}, ${h / 2 - 10}) rotate(-6.5)" filter="url(#s1Shadow)">
     
     <!-- Top Curved Category Arch -->
-    <g transform="translate(0, -115)">
-      <path d="M -160 25 Q 0 -20 160 25" fill="none" stroke="#1e40af" stroke-width="40" stroke-linecap="round"/>
-      <text x="0" y="16" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="24" font-weight="900" fill="#ffffff">
+    <g transform="translate(0, -125)">
+      <path d="M -180 25 Q 0 -25 180 25" fill="none" stroke="#1e40af" stroke-width="44" stroke-linecap="round"/>
+      <text x="0" y="16" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="26" font-weight="900" fill="#ffffff">
         ${escapeXml(badge)}
       </text>
     </g>
 
     <!-- 3D Ribbon Box for Title 1 -->
     <g transform="translate(0, 5)">
-      <polygon points="${-boxWidth / 2 + 10},-60 ${boxWidth / 2 + 40},-60 ${boxWidth / 2 - 10},70 ${-boxWidth / 2 - 40},70" fill="#000000" opacity="0.7"/>
-      <polygon points="${-boxWidth / 2},-70 ${boxWidth / 2 + 30},-70 ${boxWidth / 2 - 20},60 ${-boxWidth / 2 - 50},60" fill="url(#s1BoxGrad)"/>
-      <polygon points="${-boxWidth / 2},-70 ${boxWidth / 2 + 30},-70 ${boxWidth / 2 + 25},-55 ${-boxWidth / 2 - 5},-55" fill="#ffffff" opacity="0.4"/>
+      <polygon points="${-boxWidth / 2 + 10},-70 ${boxWidth / 2 + 50},-70 ${boxWidth / 2 - 10},80 ${-boxWidth / 2 - 50},80" fill="#000000" opacity="0.75"/>
+      <polygon points="${-boxWidth / 2},-80 ${boxWidth / 2 + 40},-80 ${boxWidth / 2 - 20},70 ${-boxWidth / 2 - 60},70" fill="url(#s1BoxGrad)"/>
+      <polygon points="${-boxWidth / 2},-80 ${boxWidth / 2 + 40},-80 ${boxWidth / 2 + 35},-65 ${-boxWidth / 2 - 5},-65" fill="#ffffff" opacity="0.45"/>
       
-      <text x="-5" y="18" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="${title1Size}" font-weight="900" fill="#ffffff" stroke="#000000" stroke-width="12" paint-order="stroke fill" letter-spacing="-2">
+      <text x="-5" y="24" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="${title1Size}" font-weight="900" fill="#ffffff" stroke="#000000" stroke-width="14" paint-order="stroke fill" letter-spacing="-3">
         ${escapeXml(title1)}
       </text>
     </g>
 
     <!-- Title 2 (Massive Solid Blue Text with 3D White/Dark Outlines) -->
-    <g transform="translate(0, 140)">
-      <text x="0" y="12" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="${title2Size}" font-weight="900" fill="#000000" stroke="#000000" stroke-width="22" paint-order="stroke fill" letter-spacing="-3">
+    <g transform="translate(0, 160)">
+      <text x="0" y="14" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="${title2Size}" font-weight="900" fill="#000000" stroke="#000000" stroke-width="26" paint-order="stroke fill" letter-spacing="-4">
         ${escapeXml(title2)}
       </text>
-      <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="${title2Size}" font-weight="900" fill="#38bdf8" stroke="#ffffff" stroke-width="14" paint-order="stroke fill" letter-spacing="-3">
+      <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="${title2Size}" font-weight="900" fill="#38bdf8" stroke="#ffffff" stroke-width="18" paint-order="stroke fill" letter-spacing="-4">
         ${escapeXml(title2)}
       </text>
     </g>
   </g>
 
   <!-- Bottom Crisp Subtitle Pill -->
-  <g transform="translate(${w / 2}, ${h - 60})" filter="url(#s1Shadow)">
+  <g transform="translate(${w / 2}, ${h - 55})" filter="url(#s1Shadow)">
     <rect x="-300" y="-22" width="600" height="44" rx="22" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
     <text x="0" y="7" text-anchor="middle" font-family="'Paperlogy', 'Noto Sans KR', sans-serif" font-size="20" font-weight="800" fill="#ffffff">
       ✦ ${escapeXml(subTag)}
@@ -381,9 +375,9 @@ export function renderStyle1_FreshNews(w, h, post, variantIdx = 0) {
 export function renderStyle2_ComicPop(w, h, post, variantIdx = 0) {
   const { badge, title1, title2, subTag } = parseHookingCopy(post);
   const theme = detectSceneTheme(post);
-  const title1Size = calcFontSize(title1, 115, 8);
-  const title2Size = calcFontSize(title2, 125, 8);
-  const boxWidth = Math.max(740, title1.length * 80 + 80);
+  const title1Size = 135;
+  const title2Size = 145;
+  const boxWidth = Math.max(800, title1.length * 105 + 80);
 
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}">
   <defs>
@@ -393,7 +387,7 @@ export function renderStyle2_ComicPop(w, h, post, variantIdx = 0) {
     </linearGradient>
 
     <filter id="s2ComicShadow" x="-30%" y="-30%" width="160%" height="160%">
-      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#000000" flood-opacity="0.85"/>
+      <feDropShadow dx="0" dy="20" stdDeviation="26" flood-color="#000000" flood-opacity="0.9"/>
     </filter>
   </defs>
 
@@ -406,44 +400,44 @@ export function renderStyle2_ComicPop(w, h, post, variantIdx = 0) {
   <!-- 3. Giant Comic Starburst Backdrop -->
   <g transform="translate(${w / 2}, ${h / 2 - 10})" filter="url(#s2ComicShadow)">
     <polygon points="
-      0,-250 50,-130 180,-230 130,-100 270,-130 170,-20 300,30 170,80 250,200 120,150 140,270 30,170
-      -20,270 -60,160 -180,240 -130,110 -280,140 -180,20 -300,-40 -170,-80 -250,-190 -110,-140 -120,-260 -20,-160
-    " fill="url(#s2StarGrad)" stroke="#000000" stroke-width="12"/>
+      0,-270 55,-140 200,-250 145,-110 300,-140 185,-20 330,30 185,90 270,220 130,165 155,295 30,185
+      -20,295 -65,175 -200,260 -145,120 -310,150 -200,20 -330,-40 -185,-90 -270,-210 -120,-155 -130,-285 -20,-175
+    " fill="url(#s2StarGrad)" stroke="#000000" stroke-width="14"/>
 
-    <polygon points="210,-170 230,-120 205,-115 245,-60 215,-70 235,-10 185,-65 210,-70" fill="#facc15" stroke="#000000" stroke-width="5"/>
-    <polygon points="-210,120 -230,70 -205,65 -245,10 -215,20 -235,-40 -185,15 -210,20" fill="#facc15" stroke="#000000" stroke-width="5"/>
+    <polygon points="230,-190 255,-130 225,-125 270,-65 235,-75 260,-10 205,-70 230,-75" fill="#facc15" stroke="#000000" stroke-width="5"/>
+    <polygon points="-230,130 -255,75 -225,70 -270,10 -235,20 -260,-45 -205,15 -230,20" fill="#facc15" stroke="#000000" stroke-width="5"/>
   </g>
 
   <!-- 4. Electric Plug Wire Loop -->
   <g transform="translate(${w / 2}, ${h / 2 - 10})" filter="url(#s2ComicShadow)">
-    <path d="M -340 10 Q -400 120 -200 160 Q 200 180 340 100" fill="none" stroke="#000000" stroke-width="24" stroke-linecap="round"/>
-    <path d="M 330 95 L 375 110 L 360 145 L 315 130 Z" fill="#000000"/>
-    <rect x="370" y="105" width="22" height="6" fill="#fbbf24" stroke="#000000" stroke-width="2"/>
-    <rect x="360" y="125" width="22" height="6" fill="#fbbf24" stroke="#000000" stroke-width="2"/>
+    <path d="M -380 10 Q -440 130 -220 175 Q 220 195 380 110" fill="none" stroke="#000000" stroke-width="26" stroke-linecap="round"/>
+    <path d="M 370 105 L 420 120 L 400 160 L 350 145 Z" fill="#000000"/>
+    <rect x="415" y="115" width="24" height="7" fill="#fbbf24" stroke="#000000" stroke-width="2"/>
+    <rect x="405" y="138" width="24" height="7" fill="#fbbf24" stroke="#000000" stroke-width="2"/>
   </g>
 
   <!-- 5. Central Giant Dynamic Headline (-4 deg dynamic tilt) -->
   <g transform="translate(${w / 2}, ${h / 2 - 15}) rotate(-4)" filter="url(#s2ComicShadow)">
     
     <!-- Top Black Box for Title 1 -->
-    <g transform="translate(0, -60)">
-      <rect x="${-boxWidth / 2}" y="-65" width="${boxWidth}" height="120" rx="16" fill="#000000" stroke="#000000" stroke-width="8"/>
-      <text x="0" y="24" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="${title1Size}" font-weight="900" fill="#ffffff" letter-spacing="-2">
+    <g transform="translate(0, -65)">
+      <rect x="${-boxWidth / 2}" y="-70" width="${boxWidth}" height="135" rx="18" fill="#000000" stroke="#000000" stroke-width="8"/>
+      <text x="0" y="28" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="${title1Size}" font-weight="900" fill="#ffffff" letter-spacing="-3">
         ${escapeXml(title1)}
       </text>
     </g>
 
     <!-- Bottom Giant Neon Text for Title 2 -->
-    <g transform="translate(0, 85)">
-      <text x="0" y="14" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="${title2Size}" font-weight="900" fill="#000000" stroke="#000000" stroke-width="22" paint-order="stroke fill" letter-spacing="-3">
+    <g transform="translate(0, 95)">
+      <text x="0" y="16" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="${title2Size}" font-weight="900" fill="#000000" stroke="#000000" stroke-width="26" paint-order="stroke fill" letter-spacing="-4">
         ${escapeXml(title2)}
       </text>
-      <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="${title2Size}" font-weight="900" fill="#facc15" stroke="#000000" stroke-width="16" paint-order="stroke fill" letter-spacing="-3">
+      <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="${title2Size}" font-weight="900" fill="#facc15" stroke="#000000" stroke-width="18" paint-order="stroke fill" letter-spacing="-4">
         ${escapeXml(title2)}
       </text>
 
-      <g transform="translate(${Math.min(260, title2.length * 35)}, -35)">
-        <polygon points="0,-25 15,0 2,0 12,25 -15,5 0,5" fill="#38bdf8" stroke="#000000" stroke-width="4"/>
+      <g transform="translate(${Math.min(300, title2.length * 40)}, -40)">
+        <polygon points="0,-28 18,0 3,0 14,28 -18,6 0,6" fill="#38bdf8" stroke="#000000" stroke-width="4"/>
       </g>
     </g>
   </g>
@@ -464,8 +458,8 @@ export function renderStyle2_ComicPop(w, h, post, variantIdx = 0) {
 export function renderStyle3_StreetGraffiti(w, h, post, variantIdx = 0) {
   const { badge, title1, title2, subTag } = parseHookingCopy(post);
   const theme = detectSceneTheme(post);
-  const title1Size = calcFontSize(title1, 110, 8);
-  const title2Size = calcFontSize(title2, 125, 8);
+  const title1Size = 130;
+  const title2Size = 145;
 
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}">
   <defs>
@@ -475,7 +469,7 @@ export function renderStyle3_StreetGraffiti(w, h, post, variantIdx = 0) {
     </pattern>
 
     <filter id="s3Shadow" x="-30%" y="-30%" width="160%" height="160%">
-      <feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="#000000" flood-opacity="0.85"/>
+      <feDropShadow dx="0" dy="20" stdDeviation="26" flood-color="#000000" flood-opacity="0.9"/>
     </filter>
   </defs>
 
@@ -505,8 +499,8 @@ export function renderStyle3_StreetGraffiti(w, h, post, variantIdx = 0) {
   <!-- 4. Big Dark Silhouette Star Backdrop -->
   <g transform="translate(${w / 2}, ${h / 2 - 10})" filter="url(#s3Shadow)">
     <polygon points="
-      0,-220 55,-70 215,-70 90,30 140,185 0,95 -140,185 -90,30 -215,-70 -55,-70
-    " fill="#000000" stroke="#ccff00" stroke-width="5"/>
+      0,-240 60,-80 230,-80 100,35 150,200 0,105 -150,200 -100,35 -230,-80 -60,-80
+    " fill="#000000" stroke="#ccff00" stroke-width="6"/>
   </g>
 
   <!-- Tech Stickers -->
@@ -531,29 +525,29 @@ export function renderStyle3_StreetGraffiti(w, h, post, variantIdx = 0) {
   <g transform="translate(${w / 2}, ${h / 2 - 10}) rotate(-4.5) skewX(-3)" filter="url(#s3Shadow)">
     
     <!-- Top Stencil Badge -->
-    <g transform="translate(0, -90)">
-      <rect x="-140" y="-20" width="280" height="40" rx="6" fill="#ffffff" stroke="#000000" stroke-width="4"/>
-      <text x="0" y="7" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="18" font-weight="900" fill="#000000" letter-spacing="2">
+    <g transform="translate(0, -100)">
+      <rect x="-150" y="-22" width="300" height="44" rx="8" fill="#ffffff" stroke="#000000" stroke-width="4"/>
+      <text x="0" y="8" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="20" font-weight="900" fill="#000000" letter-spacing="2">
         ✦ ${escapeXml(badge)}
       </text>
     </g>
 
     <!-- Line 1 (White Ultra Bold with Thick Black Shadow) -->
     <g transform="translate(0, 5)">
-      <text x="0" y="8" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="${title1Size}" font-weight="900" fill="#000000" stroke="#000000" stroke-width="20" paint-order="stroke fill" letter-spacing="-2">
+      <text x="0" y="10" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="${title1Size}" font-weight="900" fill="#000000" stroke="#000000" stroke-width="24" paint-order="stroke fill" letter-spacing="-3">
         ${escapeXml(title1)}
       </text>
-      <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="${title1Size}" font-weight="900" fill="#ffffff" stroke="#000000" stroke-width="14" paint-order="stroke fill" letter-spacing="-2">
+      <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="${title1Size}" font-weight="900" fill="#ffffff" stroke="#000000" stroke-width="16" paint-order="stroke fill" letter-spacing="-3">
         ${escapeXml(title1)}
       </text>
     </g>
 
     <!-- Line 2 (Massive Acid Volt Neon with 3D Extrusion) -->
-    <g transform="translate(0, 115)">
-      <text x="0" y="16" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="${title2Size}" font-weight="900" fill="#000000" stroke="#000000" stroke-width="24" paint-order="stroke fill" letter-spacing="-3">
+    <g transform="translate(0, 130)">
+      <text x="0" y="18" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="${title2Size}" font-weight="900" fill="#000000" stroke="#000000" stroke-width="28" paint-order="stroke fill" letter-spacing="-4">
         ${escapeXml(title2)}
       </text>
-      <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="${title2Size}" font-weight="900" fill="#ccff00" stroke="#000000" stroke-width="16" paint-order="stroke fill" letter-spacing="-3">
+      <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="${title2Size}" font-weight="900" fill="#ccff00" stroke="#000000" stroke-width="18" paint-order="stroke fill" letter-spacing="-4">
         ${escapeXml(title2)}
       </text>
     </g>
@@ -575,13 +569,13 @@ export function renderStyle3_StreetGraffiti(w, h, post, variantIdx = 0) {
 export function renderStyle4_EditorialKinetic(w, h, post, variantIdx = 0) {
   const { badge, title1, title2, subTag } = parseHookingCopy(post);
   const theme = detectSceneTheme(post);
-  const title1Size = calcFontSize(title1, 115, 8);
-  const title2Size = calcFontSize(title2, 125, 8);
+  const title1Size = 135;
+  const title2Size = 145;
 
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}">
   <defs>
     <filter id="s4Shadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="#000000" flood-opacity="0.9"/>
+      <feDropShadow dx="0" dy="20" stdDeviation="28" flood-color="#000000" flood-opacity="0.95"/>
     </filter>
   </defs>
 
@@ -592,13 +586,13 @@ export function renderStyle4_EditorialKinetic(w, h, post, variantIdx = 0) {
   <rect width="${w}" height="${h}" fill="#000000" opacity="0.45"/>
 
   <!-- 3. Repeated Wireframe Outline Typography Echoes (Top & Bottom) -->
-  <g transform="translate(${w / 2}, 110) rotate(-4.5) skewX(-4)" opacity="0.3">
-    <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="125" font-weight="900" fill="none" stroke="#38bdf8" stroke-width="2.5" letter-spacing="-3">
+  <g transform="translate(${w / 2}, 110) rotate(-4.5) skewX(-4)" opacity="0.35">
+    <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="135" font-weight="900" fill="none" stroke="#38bdf8" stroke-width="3" letter-spacing="-4">
       ${escapeXml(title1)} ${escapeXml(title2)}
     </text>
   </g>
-  <g transform="translate(${w / 2}, ${h - 40}) rotate(-4.5) skewX(-4)" opacity="0.3">
-    <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="125" font-weight="900" fill="none" stroke="#38bdf8" stroke-width="2.5" letter-spacing="-3">
+  <g transform="translate(${w / 2}, ${h - 40}) rotate(-4.5) skewX(-4)" opacity="0.35">
+    <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="135" font-weight="900" fill="none" stroke="#38bdf8" stroke-width="3" letter-spacing="-4">
       ${escapeXml(title1)} ${escapeXml(title2)}
     </text>
   </g>
@@ -640,29 +634,29 @@ export function renderStyle4_EditorialKinetic(w, h, post, variantIdx = 0) {
   <g transform="translate(${w / 2}, ${h / 2 - 10}) rotate(-4.5) skewX(-4)" filter="url(#s4Shadow)">
     
     <!-- Top Mini Arch Badge -->
-    <g transform="translate(0, -90)">
-      <rect x="-120" y="-18" width="240" height="36" rx="18" fill="#a855f7"/>
-      <text x="0" y="6" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="16" font-weight="900" fill="#ffffff">
+    <g transform="translate(0, -100)">
+      <rect x="-130" y="-20" width="260" height="40" rx="20" fill="#a855f7"/>
+      <text x="0" y="7" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="18" font-weight="900" fill="#ffffff">
         ${escapeXml(badge)}
       </text>
     </g>
 
     <!-- Main Solid Bold White Headline (Line 1) -->
     <g transform="translate(0, 15)">
-      <text x="0" y="10" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="${title1Size}" font-weight="900" fill="#000000" stroke="#000000" stroke-width="20" paint-order="stroke fill" letter-spacing="-3">
+      <text x="0" y="12" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="${title1Size}" font-weight="900" fill="#000000" stroke="#000000" stroke-width="24" paint-order="stroke fill" letter-spacing="-4">
         ${escapeXml(title1)}
       </text>
-      <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="${title1Size}" font-weight="900" fill="#ffffff" stroke="#000000" stroke-width="14" paint-order="stroke fill" letter-spacing="-3">
+      <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="${title1Size}" font-weight="900" fill="#ffffff" stroke="#000000" stroke-width="16" paint-order="stroke fill" letter-spacing="-4">
         ${escapeXml(title1)}
       </text>
     </g>
 
     <!-- Line 2 (Second Line with High Contrast Color) -->
-    <g transform="translate(0, 115)">
-      <text x="0" y="10" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="${title2Size}" font-weight="900" fill="#000000" stroke="#000000" stroke-width="20" paint-order="stroke fill" letter-spacing="-3">
+    <g transform="translate(0, 130)">
+      <text x="0" y="12" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="${title2Size}" font-weight="900" fill="#000000" stroke="#000000" stroke-width="24" paint-order="stroke fill" letter-spacing="-4">
         ${escapeXml(title2)}
       </text>
-      <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="${title2Size}" font-weight="900" fill="#facc15" stroke="#000000" stroke-width="14" paint-order="stroke fill" letter-spacing="-3">
+      <text x="0" y="0" text-anchor="middle" font-family="'Paperlogy', 'Paperlogy-9Black', sans-serif" font-size="${title2Size}" font-weight="900" fill="#facc15" stroke="#000000" stroke-width="16" paint-order="stroke fill" letter-spacing="-4">
         ${escapeXml(title2)}
       </text>
     </g>
@@ -709,7 +703,7 @@ export function renderContentAwareBlogSVG(post, w = 1280, h = 720) {
 // Generate All 59 Thumbnails
 // -----------------------------------------------------------------------------
 export async function generateAllHookThumbnails() {
-  console.log('🚀 Generating Giant Ultra-Sharp 115-125px Hook Thumbnails with Content Backgrounds...');
+  console.log('🚀 Generating Giant 135-145px Ultra-Sharp Hook Thumbnails for all 59 posts...');
   const outDir = path.join(ROOT_DIR, 'public/images/blogs');
   if (!fs.existsSync(outDir)) {
     fs.mkdirSync(outDir, { recursive: true });
@@ -743,7 +737,7 @@ export async function generateAllHookThumbnails() {
     count++;
   }
 
-  console.log(`✅ Successfully generated ${count} giant crystal-clear thumbnails in ${outDir}`);
+  console.log(`✅ Successfully generated ${count} giant 140px crystal-clear thumbnails in ${outDir}`);
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
