@@ -188,10 +188,8 @@ const isPortalCategoryPage = [
     </header>
 
     {/* Main Container */}
-    <main class="flex-1 container mx-auto px-4 sm:px-6 py-6 md:py-8 overflow-x-clip">
-      <div id="swipe-content-wrapper" class="w-full flex-1 flex flex-col will-change-transform transition-all duration-200">
-        <slot />
-      </div>
+    <main class="flex-1 container mx-auto px-4 sm:px-6 py-4 md:py-8">
+      <slot />
     </main>
 
     {/* Footer */}
@@ -438,7 +436,7 @@ const isPortalCategoryPage = [
       </div>
     </footer>
 
-    {/* Theme Toggle & Mobile Naver-Style Swipe Navigation Client Scripts */}
+    {/* Theme Toggle Script */}
     <script is:inline>
       function initThemeToggle() {
         const toggleBtn = document.getElementById('theme-toggle-btn');
@@ -473,246 +471,12 @@ const isPortalCategoryPage = [
         }
       }
 
-      function initMobileSwipeNavigation() {
-        // Auto-center active category in mobile sub-header bar smoothly (Naver style)
-        const activeNav = document.getElementById('active-mobile-nav');
-        const navBar = document.getElementById('mobile-nav-bar');
-        if (activeNav && navBar) {
-          requestAnimationFrame(function() {
-            const navRect = navBar.getBoundingClientRect();
-            const itemRect = activeNav.getBoundingClientRect();
-            const scrollLeft = activeNav.offsetLeft - (navRect.width / 2) + (itemRect.width / 2);
-            navBar.scrollTo({ left: scrollLeft, behavior: 'smooth' });
-          });
-        }
-
-        const categories = [
-          { href: '/insights', label: '인사이트' },
-          { href: '/ai-tools', label: 'AI 도구' },
-          { href: '/blog', label: '블로그' },
-          { href: '/tools', label: '웹 도구' },
-          { href: '/prompts', label: '프롬프트' },
-          { href: '/gpts', label: '챗봇지침' },
-          { href: '/gallery', label: '바나나 갤러리' },
-          { href: '/ebooks', label: '전자책' },
-          { href: '/faq', label: 'FAQ' },
-        ];
-
-        const path = window.location.pathname;
-        let currentIndex = categories.findIndex(function(c) {
-          return c.href === path || (c.href !== '/' && path.startsWith(c.href));
-        });
-
-        if (currentIndex === -1) {
-          if (path === '/') currentIndex = 0;
-          else return; // Don't hijack swipe on standalone sub-pages
-        }
-
-        // Prefetch adjacent category pages for instant Naver-like tab switching
-        const nextTarget = currentIndex < categories.length - 1 ? categories[currentIndex + 1] : null;
-        const prevTarget = currentIndex > 0 ? categories[currentIndex - 1] : null;
-
-        [nextTarget, prevTarget].forEach(function(target) {
-          if (target && !document.querySelector('link[rel="prefetch"][href="' + target.href + '"]')) {
-            const link = document.createElement('link');
-            link.rel = 'prefetch';
-            link.href = target.href;
-            document.head.appendChild(link);
-          }
-        });
-
-        const contentWrapper = document.getElementById('swipe-content-wrapper');
-
-        // Check if entered from previous swipe transition
-        try {
-          const swipeDir = sessionStorage.getItem('rab8bit_swipe_dir');
-          if (swipeDir && contentWrapper) {
-            sessionStorage.removeItem('rab8bit_swipe_dir');
-            contentWrapper.style.transition = 'none';
-            contentWrapper.style.transform = swipeDir === 'next' ? 'translateX(35px)' : 'translateX(-35px)';
-            contentWrapper.style.opacity = '0.4';
-            requestAnimationFrame(function() {
-              contentWrapper.style.transition = 'transform 0.26s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.26s ease-out';
-              contentWrapper.style.transform = 'translateX(0)';
-              contentWrapper.style.opacity = '1';
-            });
-          }
-        } catch(e) {}
-
-        let startX = 0;
-        let startY = 0;
-        let startTime = 0;
-        let isTouching = false;
-        let isDirectionLocked = false;
-        let isHorizontalSwipe = false;
-        let currentDeltaX = 0;
-
-        let toast = document.getElementById('swipe-nav-toast');
-        if (!toast) {
-          toast = document.createElement('div');
-          toast.id = 'swipe-nav-toast';
-          toast.className = 'fixed bottom-12 left-1/2 -translate-x-1/2 z-50 px-4 py-2 rounded-full bg-slate-900/95 text-white font-extrabold text-xs shadow-2xl border border-indigo-500/50 backdrop-blur-md transition-all duration-150 pointer-events-none opacity-0 flex items-center gap-2 will-change-transform';
-          document.body.appendChild(toast);
-        }
-
-        function onTouchStart(e) {
-          if (e.touches.length !== 1) return;
-          const target = e.target;
-          // Ignore interactive controls, code blocks, inputs, or horizontal carousel containers
-          if (target && target.closest && target.closest('input, textarea, select, pre, code, canvas, button, a, [data-no-swipe], .no-swipe, .overflow-x-auto, #mobile-nav-bar')) {
-            return;
-          }
-          startX = e.touches[0].clientX;
-          startY = e.touches[0].clientY;
-          startTime = Date.now();
-          isTouching = true;
-          isDirectionLocked = false;
-          isHorizontalSwipe = false;
-          currentDeltaX = 0;
-
-          if (contentWrapper) {
-            contentWrapper.style.transition = 'none';
-          }
-        }
-
-        function onTouchMove(e) {
-          if (!isTouching || e.touches.length !== 1) return;
-          const curX = e.touches[0].clientX;
-          const curY = e.touches[0].clientY;
-          const deltaX = curX - startX;
-          const deltaY = curY - startY;
-
-          // Naver direction lock: Determine within the first 8px of movement
-          if (!isDirectionLocked) {
-            const absX = Math.abs(deltaX);
-            const absY = Math.abs(deltaY);
-            if (absX > 8 || absY > 8) {
-              isDirectionLocked = true;
-              // If vertical movement is dominant, lock to vertical scroll and ignore swipe
-              if (absY >= absX) {
-                isHorizontalSwipe = false;
-                isTouching = false;
-                return;
-              } else {
-                isHorizontalSwipe = true;
-              }
-            }
-          }
-
-          if (!isHorizontalSwipe) return;
-
-          // Prevent native horizontal scroll rubberband
-          if (e.cancelable) {
-            e.preventDefault();
-          }
-
-          // Rubber-band resistance if swiping past edge boundaries
-          let effectiveDeltaX = deltaX;
-          if ((deltaX < 0 && !nextTarget) || (deltaX > 0 && !prevTarget)) {
-            effectiveDeltaX = deltaX * 0.22; // Elastic rubber-band resistance
-          } else {
-            effectiveDeltaX = deltaX * 0.75;
-          }
-
-          currentDeltaX = effectiveDeltaX;
-
-          // Real-time finger follow transform on content wrapper (60/120fps smooth)
-          if (contentWrapper) {
-            const scale = Math.max(0.97, 1 - Math.abs(effectiveDeltaX) * 0.0004);
-            const opacity = Math.max(0.65, 1 - Math.abs(effectiveDeltaX) * 0.001);
-            contentWrapper.style.transform = 'translateX(' + effectiveDeltaX + 'px) scale(' + scale + ')';
-            contentWrapper.style.opacity = opacity;
-          }
-
-          // Show Naver-style dynamic direction toast hint
-          if (Math.abs(deltaX) > 25) {
-            if (deltaX < 0 && nextTarget) {
-              toast.innerHTML = '<span class="text-indigo-400">다음</span> <span>' + nextTarget.label + '</span> <span class="text-indigo-400 text-sm">→</span>';
-              toast.style.opacity = '1';
-              toast.style.transform = 'translate(-50%, -6px) scale(1)';
-            } else if (deltaX > 0 && prevTarget) {
-              toast.innerHTML = '<span class="text-indigo-400 text-sm">←</span> <span class="text-indigo-400">이전</span> <span>' + prevTarget.label + '</span>';
-              toast.style.opacity = '1';
-              toast.style.transform = 'translate(-50%, -6px) scale(1)';
-            }
-          } else {
-            toast.style.opacity = '0';
-          }
-        }
-
-        function onTouchEnd(e) {
-          if (!isTouching) return;
-          isTouching = false;
-          if (!isHorizontalSwipe) return;
-
-          const duration = Date.now() - startTime;
-          const velocity = Math.abs(currentDeltaX) / Math.max(duration, 1);
-
-          // Threshold: Fast flick (>0.30px/ms with >25px) or long swipe (>45px)
-          const passedThreshold = Math.abs(currentDeltaX) > 45 || (Math.abs(currentDeltaX) > 25 && velocity > 0.30);
-
-          if (passedThreshold) {
-            if (currentDeltaX < 0 && nextTarget) {
-              // Smooth Slide Out to Left (Naver style)
-              if (contentWrapper) {
-                contentWrapper.style.transition = 'transform 0.22s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.22s ease-out';
-                contentWrapper.style.transform = 'translateX(-105%) scale(0.95)';
-                contentWrapper.style.opacity = '0';
-              }
-              try { sessionStorage.setItem('rab8bit_swipe_dir', 'next'); } catch(e) {}
-              setTimeout(function() {
-                window.location.href = nextTarget.href;
-              }, 140);
-              return;
-            } else if (currentDeltaX > 0 && prevTarget) {
-              // Smooth Slide Out to Right (Naver style)
-              if (contentWrapper) {
-                contentWrapper.style.transition = 'transform 0.22s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.22s ease-out';
-                contentWrapper.style.transform = 'translateX(105%) scale(0.95)';
-                contentWrapper.style.opacity = '0';
-              }
-              try { sessionStorage.setItem('rab8bit_swipe_dir', 'prev'); } catch(e) {}
-              setTimeout(function() {
-                window.location.href = prevTarget.href;
-              }, 140);
-              return;
-            }
-          }
-
-          // Snap back with smooth spring damping (Naver style)
-          if (contentWrapper) {
-            contentWrapper.style.transition = 'transform 0.26s cubic-bezier(0.175, 0.885, 0.32, 1.15), opacity 0.24s ease';
-            contentWrapper.style.transform = 'translateX(0) scale(1)';
-            contentWrapper.style.opacity = '1';
-          }
-          if (toast) {
-            toast.style.opacity = '0';
-            toast.style.transform = 'translate(-50%, 0) scale(0.95)';
-          }
-        }
-
-        window.removeEventListener('touchstart', onTouchStart);
-        window.removeEventListener('touchmove', onTouchMove);
-        window.removeEventListener('touchend', onTouchEnd);
-        window.removeEventListener('touchcancel', onTouchEnd);
-
-        window.addEventListener('touchstart', onTouchStart, { passive: true });
-        window.addEventListener('touchmove', onTouchMove, { passive: false });
-        window.addEventListener('touchend', onTouchEnd, { passive: true });
-        window.addEventListener('touchcancel', onTouchEnd, { passive: true });
-      }
-
-      function initAll() {
-        initThemeToggle();
-        initMobileSwipeNavigation();
-      }
-
       if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initAll);
+        document.addEventListener('DOMContentLoaded', initThemeToggle);
       } else {
-        initAll();
+        initThemeToggle();
       }
-      document.addEventListener('astro:after-swap', initAll);
+      document.addEventListener('astro:after-swap', initThemeToggle);
     </script>
   </body>
 </html>
