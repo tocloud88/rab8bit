@@ -1,0 +1,6 @@
+{
+  "chat.editing.alwaysAccept": true,
+  "chat.editing.autoAccept": true,
+  "chat.autoApply": true,
+  "chat.tools.autoAccept": true
+}

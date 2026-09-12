@@ -15,6 +15,28 @@ export interface InsightItem {
 
 export const INSIGHTS_DATA: InsightItem[] = [
   {
+    "id": "daily-insight-2026-09-14",
+    "category": "AI 영상 제작",
+    "access": "공개",
+    "title": "[2026.09.14] 유튜브 쇼츠 & 릴스 제작 시간을 1/10로 줄이는 AI 툴 조합",
+    "video_url": "https://www.youtube.com/watch?v=kYV3FwT0tB4",
+    "description": "대본 작성부터 음성 합성, B-roll 영상 클립 생성 및 자막 자동 싱크까지 완전 자동화 파이프라인을 구축하는 노하우입니다.",
+    "download_url": null,
+    "thumbnail": "https://i.ytimg.com/vi/kYV3FwT0tB4/hqdefault.jpg",
+    "tags": [
+      "쇼츠제작",
+      "릴스",
+      "Kling",
+      "ElevenLabs",
+      "크리에이터",
+      "데일리인사이트",
+      "2026AI"
+    ],
+    "date": "2026-09-14",
+    "sort_order": 157,
+    "is_new": 1
+  },
+  {
     "id": "daily-insight-2026-09-13",
     "category": "프롬프트 엔지니어링",
     "access": "공개",
