@@ -318,20 +318,111 @@ function getVectorIconSVG(slug, color = '#ffffff') {
 // -----------------------------------------------------------------------------
 // Curated 2-Line High-Impact Titles and Sub-features for all 100 Tools
 // -----------------------------------------------------------------------------
+// Curated 2-Line High-Impact Titles for all 100 Tools
+// -----------------------------------------------------------------------------
 function parseToolVisualData(tool, index) {
   const slug = tool.slug || '';
   const rawTitle = (tool.title || '').replace(/계산기/g, '').replace(/생성기/g, '').trim();
-  const words = rawTitle.split(/[ &+,/·]/).filter(w => w.trim().length > 0);
   
-  let title1 = words[0] || '스마트';
-  let title2 = words.slice(1).join(' ') || (tool.title.includes('계산기') ? '계산기' : '도구');
+  let title1 = '';
+  let title2 = '';
 
-  if (title1.length > 7) {
-    title2 = title1.slice(5) + ' ' + title2;
-    title1 = title1.slice(0, 5);
-  }
-  if (title2.length > 10) {
-    title2 = title2.slice(0, 10);
+  if (slug === 'salary-calculator') {
+    title1 = '2026 연봉';
+    title2 = '실수령액';
+  } else if (slug === 'stock-water') {
+    title1 = '주식';
+    title2 = '물타기 평단가';
+  } else if (slug === 'realtor-fee') {
+    title1 = '부동산';
+    title2 = '중개보수(복비)';
+  } else if (slug === 'loan-calculator') {
+    title1 = '대출';
+    title2 = '이자 상환';
+  } else if (slug === 'freelancer-tax') {
+    title1 = '3.3% 프리랜서';
+    title2 = '사업소득세';
+  } else if (slug === 'crypto-calc') {
+    title1 = '코인·가상자산';
+    title2 = '수익률 계산';
+  } else if (slug === 'lotto-generator') {
+    title1 = '로또 6/45';
+    title2 = '행운 번호추첨';
+  } else if (slug === 'ladder' || slug === 'ladder-game') {
+    title1 = '사다리타기';
+    title2 = '벌칙 랜덤추첨';
+  } else if (slug === 'qr-code') {
+    title1 = '고화질 QR';
+    title2 = '코드 생성기';
+  } else if (slug === 'barcode-generator') {
+    title1 = '바코드';
+    title2 = '원클릭 생성기';
+  } else if (slug === 'password-generator') {
+    title1 = '안전한 비밀번호';
+    title2 = '강력 암호생성';
+  } else if (slug === 'mbti-match') {
+    title1 = 'MBTI 성격';
+    title2 = '16유형 궁합';
+  } else if (slug === 'pomodoro-timer') {
+    title1 = '포모도로';
+    title2 = '25분 집중타이머';
+  } else if (slug === 'bmi-calculator') {
+    title1 = 'BMI 비만도';
+    title2 = '표준체중 계산';
+  } else if (slug === 'caffeine-calc') {
+    title1 = '체내 카페인';
+    title2 = '반감기 분석';
+  } else if (slug === 'alcohol-breakdown') {
+    title1 = '알코올 분해';
+    title2 = '숙취해소 시간';
+  } else if (slug === 'tarot-today') {
+    title1 = '오늘의 타로';
+    title2 = '22장 운세카드';
+  } else if (slug === 'lunch-roulette' || slug === 'roulette') {
+    title1 = '점심·야식';
+    title2 = '룰렛 메뉴추첨';
+  } else if (slug === 'severance-pay') {
+    title1 = '근로기준법';
+    title2 = '퇴직금 계산';
+  } else if (slug === 'annual-leave-pay') {
+    title1 = '통상임금';
+    title2 = '연차수당 계산';
+  } else if (slug === 'weekly-holiday-pay') {
+    title1 = '알바·직장인';
+    title2 = '주휴수당 계산';
+  } else if (slug === 'comprehensive-tax') {
+    title1 = '종합소득세';
+    title2 = '8단계 누진세율';
+  } else if (slug === 'bonus-tax') {
+    title1 = '성과급·상여금';
+    title2 = '세후 실수령액';
+  } else if (slug === 'dday-calculator') {
+    title1 = 'D-Day 디데이';
+    title2 = '기념일 계산기';
+  } else if (slug === 'json-formatter') {
+    title1 = 'JSON';
+    title2 = '포맷터·검증기';
+  } else if (slug === 'jwt-decoder') {
+    title1 = 'JWT 토큰';
+    title2 = '페이로드 디코더';
+  } else if (slug === 'unit-converter') {
+    title1 = '단위 변환';
+    title2 = '길이·무게·넓이';
+  } else if (slug === 'pyeong-converter') {
+    title1 = '아파트 평수';
+    title2 = '㎡ 단위변환기';
+  } else {
+    const words = rawTitle.split(/[ &+,/·]/).filter(w => w.trim().length > 0);
+    title1 = words[0] || '스마트';
+    title2 = words.slice(1).join(' ') || (tool.title.includes('계산기') ? '계산기' : '도구');
+
+    if (title1.length > 6) {
+      title2 = title1.slice(5) + ' ' + title2;
+      title1 = title1.slice(0, 5);
+    }
+    if (title2.length > 9) {
+      title2 = title2.slice(0, 9);
+    }
   }
 
   // Pick palette by hash + index to ensure adjacent tools have contrasting colors
@@ -339,53 +430,41 @@ function parseToolVisualData(tool, index) {
   const paletteIdx = (hash + index * 3) % PALETTES.length;
   const p = PALETTES[paletteIdx];
 
-  // Pick sub-feature text
-  const desc = tool.description || '';
-  let subFeature = '✦ 2026 최신 알고리즘 실시간 분석';
-  if (desc.includes('4대보험')) subFeature = '✔ 2026 4대보험 & 세후 실수령액 계산';
-  else if (desc.includes('평단가')) subFeature = '✔ 목표 탈출 단가 & 물타기 시뮬레이션';
-  else if (desc.includes('중개')) subFeature = '✔ 법정 상한 요율 복비 & 부가세 계산';
-  else if (desc.includes('이자')) subFeature = '✔ 원리금/원금 균등 상환액 비교';
-  else if (desc.includes('3.3%')) subFeature = '✔ 3.3% 사업소득세 원천징수 계산';
-  else if (desc.includes('수익률')) subFeature = '✔ 매수/매도 수수료 & 순수익 계산';
-  else if (desc.includes('로또')) subFeature = '✔ 6/45 행운 난수 100% 랜덤 추출';
-  else if (desc.includes('사다리')) subFeature = '✔ 최대 12명 벌칙 내기 원클릭 추첨';
-  else if (desc.includes('MBTI')) subFeature = '✔ 16가지 성격 유형별 궁합 지수';
-  else if (desc.includes('포모도로')) subFeature = '✔ 25분 집중 + 5분 휴식 타이머';
-  else if (desc.includes('QR')) subFeature = '✔ 고화질 QR 코드 즉시 다운로드';
-  else if (desc.includes('JSON')) subFeature = '✔ JSON 문법 오류 검증 & 정렬';
-  else if (desc.includes('JWT')) subFeature = '✔ Header & Payload 페이로드 디코딩';
-  else if (desc.includes('비밀번호')) subFeature = '✔ 100% 안전한 고난도 암호 생성';
-  else if (desc.includes('D-Day') || desc.includes('디데이')) subFeature = '✔ 디데이 & 백일/천일 기념일 계산';
-  else if (desc.includes('BMI')) subFeature = '✔ 비만도 지수 & 표준 체중 산출';
-  else if (desc.includes('카페인')) subFeature = '✔ 체내 잔여 카페인 반감기 분석';
-  else if (desc.includes('알코올')) subFeature = '✔ 위드마크 공식 분해 시간 산출';
-  else if (desc.includes('타로')) subFeature = '✔ 22장 메이저 아르카나 오늘의 운세';
-  else if (desc.includes('룰렛')) subFeature = '✔ 점심/야식 메뉴 랜덤 원클릭 추첨';
-  else if (desc.includes('퇴직금')) subFeature = '✔ 근로기준법 3개월 평균임금 계산';
-  else if (desc.includes('연차')) subFeature = '✔ 통상임금 기준 미사용 연차 수당';
-  else if (desc.includes('주휴')) subFeature = '✔ 주 15시간 이상 근무 주휴수당';
-  else if (desc.includes('종합소득세')) subFeature = '✔ 6%~45% 8단계 누진세율 적용';
-  else if (desc.includes('상여금')) subFeature = '✔ 성과급 & 보너스 세후 수령액';
-
   return {
     title1: escapeXml(title1),
     title2: escapeXml(title2),
-    subFeature: escapeXml(subFeature),
     palette: p
   };
 }
 
+// Dynamic Font Size helper for Title
+function getTitleFontSizes(t1, t2) {
+  let s1 = 66;
+  if (t1.length <= 2) s1 = 76;
+  else if (t1.length <= 4) s1 = 68;
+  else if (t1.length <= 6) s1 = 58;
+  else s1 = 50;
+
+  let s2 = 58;
+  if (t2.length <= 4) s2 = 64;
+  else if (t2.length <= 6) s2 = 56;
+  else if (t2.length <= 8) s2 = 48;
+  else s2 = 42;
+
+  return { s1, s2 };
+}
+
 // -----------------------------------------------------------------------------
-// SVG Card Generator for 640x360 Tool Thumbnail (Ultra High Readability & Icon Visibility)
+// SVG Card Generator for 640x360 Tool Thumbnail (Maximized Icon & Giant Typography)
 // -----------------------------------------------------------------------------
 function generateToolSVG(tool, index) {
   const w = 640;
   const h = 360;
-  const { title1, title2, subFeature, palette: p } = parseToolVisualData(tool, index);
-  const category = escapeXml(tool.category || '스마트 도구');
-  const badge = escapeXml(tool.badge || 'PRO');
+  const { title1, title2, palette: p } = parseToolVisualData(tool, index);
+  const category = escapeXml(tool.category || '변환/계산');
+  const badge = escapeXml(tool.badge || '스마트');
   const iconSVG = getVectorIconSVG(tool.slug, p.iconFill);
+  const { s1, s2 } = getTitleFontSizes(title1, title2);
 
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}">
   <defs>
@@ -396,92 +475,84 @@ function generateToolSVG(tool, index) {
       <stop offset="100%" stop-color="${p.bgGrad[2]}"/>
     </linearGradient>
 
-    <!-- Icon Container Gradient (Vibrant, never black) -->
+    <!-- Icon Container Gradient (Vibrant, luminous) -->
     <linearGradient id="iconContainerGrad_${index}" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="${p.accentDark}"/>
-      <stop offset="50%" stop-color="${p.bgGrad[1]}"/>
+      <stop offset="60%" stop-color="${p.bgGrad[1]}"/>
       <stop offset="100%" stop-color="${p.bgGrad[0]}"/>
     </linearGradient>
 
     <!-- Radial Glow for Icon -->
     <radialGradient id="iconRadialGlow_${index}" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="${p.glowColor}" stop-opacity="0.6"/>
-      <stop offset="60%" stop-color="${p.glowColor}" stop-opacity="0.15"/>
+      <stop offset="0%" stop-color="${p.glowColor}" stop-opacity="0.65"/>
+      <stop offset="60%" stop-color="${p.glowColor}" stop-opacity="0.2"/>
       <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
     </radialGradient>
 
-    <!-- Drop Shadow Filter for Elements -->
-    <filter id="crispShadow_${index}" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#000000" flood-opacity="0.9"/>
+    <!-- Heavy Drop Shadow Filter for Giant Typography & Icon -->
+    <filter id="megaShadow_${index}" x="-25%" y="-25%" width="150%" height="150%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.95"/>
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.8"/>
     </filter>
   </defs>
 
   <!-- 1. Rich Background Canvas -->
   <rect width="${w}" height="${h}" fill="url(#bgGrad_${index})"/>
 
-  <!-- 2. High-Tech Background Decorative Curves & Glow Orbs -->
-  <circle cx="120" cy="180" r="140" fill="url(#iconRadialGlow_${index})"/>
-  <g opacity="0.18">
-    <circle cx="${w - 60}" cy="60" r="180" fill="none" stroke="${p.accent}" stroke-width="2.5" stroke-dasharray="10,8"/>
-    <circle cx="${w - 60}" cy="60" r="120" fill="none" stroke="${p.accent}" stroke-width="1.5"/>
-    <line x1="0" y1="70" x2="${w}" y2="70" stroke="${p.accent}" stroke-width="1.5" stroke-dasharray="6,6"/>
-    <line x1="0" y1="285" x2="${w}" y2="285" stroke="${p.accent}" stroke-width="1.5" stroke-dasharray="6,6"/>
+  <!-- 2. High-Tech Background Decorative Grid & Glow -->
+  <circle cx="120" cy="205" r="160" fill="url(#iconRadialGlow_${index})"/>
+  <g opacity="0.16">
+    <circle cx="${w - 60}" cy="80" r="200" fill="none" stroke="${p.accent}" stroke-width="2.5" stroke-dasharray="12,8"/>
+    <circle cx="${w - 60}" cy="80" r="130" fill="none" stroke="${p.accent}" stroke-width="1.5"/>
+    <line x1="0" y1="78" x2="${w}" y2="78" stroke="${p.accent}" stroke-width="1.5" stroke-dasharray="6,6"/>
+    <line x1="0" y1="315" x2="${w}" y2="315" stroke="${p.accent}" stroke-width="1.5" stroke-dasharray="6,6"/>
   </g>
 
-  <!-- 3. Left Zone: High-Visibility Glowing Vector Icon Emblem (156x156px) -->
-  <g transform="translate(118, 180)" filter="url(#crispShadow_${index})">
-    <!-- Outer Glowing Rounded Squircle Frame -->
-    <rect x="-78" y="-78" width="156" height="156" rx="40" fill="url(#iconContainerGrad_${index})" stroke="${p.accent}" stroke-width="4"/>
-    <!-- Inner Glass Border -->
-    <rect x="-70" y="-70" width="140" height="140" rx="34" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-opacity="0.35"/>
-    
-    <!-- Giant Crisp Vector Icon (Scaled up to fill squircle) -->
-    <g transform="translate(-43, -43) scale(1.35)">
-      ${iconSVG}
-    </g>
-  </g>
-
-  <!-- 4. Right Zone: Large, High-Contrast Typography & Badges -->
-
-  <!-- Top Category Pill -->
-  <g transform="translate(225, 58)" filter="url(#crispShadow_${index})">
+  <!-- 3. Top Header: Category Pill (Left) & Badge (Right) -->
+  <!-- Top-Left Category Pill -->
+  <g transform="translate(36, 46)" filter="url(#megaShadow_${index})">
     <rect x="0" y="-18" width="135" height="36" rx="18" fill="#000000" fill-opacity="0.85" stroke="${p.accent}" stroke-width="2.2"/>
     <text x="67" y="6" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="16" font-weight="900" fill="${p.accentLight}" letter-spacing="0.5">
       ${category}
     </text>
   </g>
 
-  <!-- Top-Right Badge -->
-  <g transform="translate(${w - 95}, 58)" filter="url(#crispShadow_${index})">
+  <!-- Top-Right Highlight Badge -->
+  <g transform="translate(${w - 95}, 46)" filter="url(#megaShadow_${index})">
     <rect x="-55" y="-18" width="110" height="36" rx="18" fill="${p.badgeBg}" stroke="#ffffff" stroke-width="2.2"/>
     <text x="0" y="6" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="16" font-weight="900" fill="${p.badgeText}">
       ${badge}
     </text>
   </g>
 
-  <!-- Main Huge Tool Title (46px & 40px) -->
-  <g transform="translate(225, 142)" filter="url(#crispShadow_${index})">
-    <!-- Line 1 (Crisp Pure White) -->
-    <text x="0" y="0" font-family="${FONT_FAMILY}" font-size="46" font-weight="900" fill="#ffffff" letter-spacing="-1">
+  <!-- 4. Left Zone: High-Visibility Glowing Vector Icon Emblem (156x156px) -->
+  <g transform="translate(118, 210)" filter="url(#megaShadow_${index})">
+    <!-- Outer Glowing Squircle Base -->
+    <rect x="-78" y="-78" width="156" height="156" rx="42" fill="url(#iconContainerGrad_${index})" stroke="${p.accent}" stroke-width="4.5"/>
+    <!-- Inner Glass Ring -->
+    <rect x="-70" y="-70" width="140" height="140" rx="36" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-opacity="0.4"/>
+    
+    <!-- Crisp Scaled Vector Icon (86x86 equivalent) -->
+    <g transform="translate(-43, -43) scale(1.35)">
+      ${iconSVG}
+    </g>
+  </g>
+
+  <!-- 5. Right Zone: GIGANTIC 2-Line Typography (Maximizing Canvas Height) -->
+  <g transform="translate(225, 130)" filter="url(#megaShadow_${index})">
+    <!-- Line 1: Pure Solid White Hero Title -->
+    <text x="0" y="${s1}" font-family="${FONT_FAMILY}" font-size="${s1}" font-weight="900" fill="#ffffff" letter-spacing="-1.5">
       ${title1}
     </text>
 
-    <!-- Line 2 (Vibrant Neon Accent) -->
-    <text x="0" y="54" font-family="${FONT_FAMILY}" font-size="40" font-weight="900" fill="${p.title2Color}" letter-spacing="-1">
+    <!-- Line 2: Vibrant High-Luminance Neon Title -->
+    <text x="0" y="${s1 + s2 + 16}" font-family="${FONT_FAMILY}" font-size="${s2}" font-weight="900" fill="${p.title2Color}" letter-spacing="-1.2">
       ${title2}
     </text>
   </g>
 
-  <!-- Bottom Highlight Sub-Feature Pill (High Contrast & Clear) -->
-  <g transform="translate(225, 282)" filter="url(#crispShadow_${index})">
-    <rect x="-8" y="-19" width="405" height="38" rx="19" fill="#030712" fill-opacity="0.95" stroke="${p.accent}" stroke-width="2.2"/>
-    <text x="14" y="6" font-family="${FONT_FAMILY}" font-size="16" font-weight="900" fill="#ffffff" letter-spacing="0.2">
-      ${subFeature}
-    </text>
-  </g>
-
-  <!-- Bottom Right Decorative Neon Dots -->
-  <g transform="translate(${w - 30}, ${h - 22})" opacity="0.8">
+  <!-- Bottom Right Mini Decorative Neon Emblem -->
+  <g transform="translate(${w - 28}, ${h - 20})" opacity="0.8">
     <circle cx="0" cy="0" r="7" fill="${p.accent}"/>
     <circle cx="-18" cy="0" r="3.5" fill="${p.accent}"/>
   </g>
