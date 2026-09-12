@@ -5,26 +5,26 @@ import AiToolsDirectory from '../../components/ai-tools/AiToolsDirectory';
 ---
 
 <Layout 
-  title="추천 AI 웹사이트 & 도구 모음 (152종) - rab8bit" 
-  description="152개 이상의 엄선된 최고의 AI 웹사이트와 도구 모음. 대화형 AI, 코드 개발, 비디오/오디오 생성, 업무 자동화, 리서치, 비즈니스 등 카테고리별 AI 서비스를 한눈에 찾아보세요."
+  title="추천 AI 웹사이트 & 도구 모음 (172종) - 2026 최신 큐레이션 | rab8bit" 
+  description="2026년 9월 12일 기준 엄선된 최고의 172+ AI 웹사이트와 도구 모음. 자율 코딩 에이전트, 컴퓨터 유즈, 4K 이미지 생성, 10초 비디오, 음악 작곡 등 카테고리별 AI 서비스를 한눈에 확인하세요."
 >
-  <div class="w-full space-y-10">
+  <div class="w-full space-y-8">
     <!-- Header Hero Banner -->
     <div class="relative text-center py-10 px-6 rounded-3xl stitch-card overflow-hidden border border-indigo-500/30 shadow-2xl">
       <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl pointer-events-none"></div>
       <div class="absolute -bottom-24 right-10 w-80 h-80 bg-purple-600/20 rounded-full blur-3xl pointer-events-none"></div>
 
-      <div class="relative z-10 max-w-3xl mx-auto space-y-4">
+      <div class="relative z-10 max-w-3xl mx-auto space-y-3">
         <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full stitch-pill text-xs font-bold">
-          ✨ 152개 엄선 AI 도구 아카이브
+          ✨ 2026.09 최신 172+ 엄선 AI 도구 아카이브
         </div>
 
-        <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
           추천 <span class="gradient-text-stitch">AI 웹사이트 & 도구 모음</span>
         </h1>
 
-        <p class="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto leading-relaxed">
-          대화형 AI, 코드 개발, 비디오/오디오 제작, 업무 자동화 에이전트 등 업무와 창작의 생산성을 극대화하는 글로벌 최신 AI 도구를 카테고리별로 확인하세요.
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
+          Claude Code, Operator, Flux 1.1 Ultra, Kling 1.5, Bolt.new 등 업무와 창작의 생산성을 극대화하는 글로벌 최신 AI 도구를 카테고리별로 확인하세요.
         </p>
       </div>
     </div>
@@ -32,7 +32,106 @@ import AiToolsDirectory from '../../components/ai-tools/AiToolsDirectory';
     <!-- Ad Slot -->
     <AdBanner type="leaderboard" label="글로벌 AI 도구 & SaaS 스폰서" />
 
-    <!-- Interactive Directory Directory -->
-    <AiToolsDirectory client:load />
+    <!-- Main Content & Aside Grid Layout -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <!-- Left: Interactive AI Tools Directory -->
+      <div class="lg:col-span-8 xl:col-span-9 space-y-6">
+        <AiToolsDirectory client:load />
+      </div>
+
+      <!-- Right: Curated Aside Sidebar -->
+      <aside class="lg:col-span-4 xl:col-span-3 space-y-6 lg:sticky lg:top-20">
+        <!-- 1. 2026 Editor's Pick (New Arrivals) -->
+        <div class="stitch-card p-5 rounded-2xl border border-indigo-500/25 space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-2.5">
+            <h3 class="font-extrabold text-sm text-slate-900 dark:text-white flex items-center gap-1.5">
+              <span>🔥</span> 2026 핫 신규 AI 픽
+            </h3>
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-pink-500/20 text-pink-500 dark:text-pink-400 font-bold">NEW</span>
+          </div>
+
+          <div class="space-y-3 text-xs">
+            <a href="https://claude.ai/code" target="_blank" rel="noopener noreferrer" class="group flex items-start gap-2.5 p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">
+              <span class="w-7 h-7 rounded-lg bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold text-xs shrink-0">⚡</span>
+              <div>
+                <p class="font-bold text-slate-900 dark:text-white group-hover:text-indigo-500 transition-colors">Claude Code</p>
+                <p class="text-[11px] text-slate-500 dark:text-slate-400 line-clamp-1">Anthropic 터미널 자율 코딩 에이전트</p>
+              </div>
+            </a>
+
+            <a href="https://bolt.new/" target="_blank" rel="noopener noreferrer" class="group flex items-start gap-2.5 p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">
+              <span class="w-7 h-7 rounded-lg bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold text-xs shrink-0">🚀</span>
+              <div>
+                <p class="font-bold text-slate-900 dark:text-white group-hover:text-indigo-500 transition-colors">Bolt.new</p>
+                <p class="text-[11px] text-slate-500 dark:text-slate-400 line-clamp-1">원클릭 풀스택 바이브 코딩</p>
+              </div>
+            </a>
+
+            <a href="https://openai.com/" target="_blank" rel="noopener noreferrer" class="group flex items-start gap-2.5 p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">
+              <span class="w-7 h-7 rounded-lg bg-amber-500/20 text-amber-600 dark:text-amber-400 flex items-center justify-center font-bold text-xs shrink-0">🤖</span>
+              <div>
+                <p class="font-bold text-slate-900 dark:text-white group-hover:text-indigo-500 transition-colors">OpenAI Operator</p>
+                <p class="text-[11px] text-slate-500 dark:text-slate-400 line-clamp-1">GPT-6 기반 자율 컴퓨터 조작</p>
+              </div>
+            </a>
+
+            <a href="https://blackforestlabs.ai/" target="_blank" rel="noopener noreferrer" class="group flex items-start gap-2.5 p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">
+              <span class="w-7 h-7 rounded-lg bg-pink-500/20 text-pink-600 dark:text-pink-400 flex items-center justify-center font-bold text-xs shrink-0">🎨</span>
+              <div>
+                <p class="font-bold text-slate-900 dark:text-white group-hover:text-indigo-500 transition-colors">Flux 1.1 Pro Ultra</p>
+                <p class="text-[11px] text-slate-500 dark:text-slate-400 line-clamp-1">4K 고해상도 사실적 이미지</p>
+              </div>
+            </a>
+
+            <a href="https://klingai.com/" target="_blank" rel="noopener noreferrer" class="group flex items-start gap-2.5 p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">
+              <span class="w-7 h-7 rounded-lg bg-purple-500/20 text-purple-600 dark:text-purple-400 flex items-center justify-center font-bold text-xs shrink-0">🎬</span>
+              <div>
+                <p class="font-bold text-slate-900 dark:text-white group-hover:text-indigo-500 transition-colors">Kling 1.5 Pro</p>
+                <p class="text-[11px] text-slate-500 dark:text-slate-400 line-clamp-1">물리 기반 10초 연속 비디오 AI</p>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- 2. Workflow Stacks Recommendation -->
+        <div class="stitch-card p-5 rounded-2xl border border-indigo-500/25 space-y-3.5">
+          <h3 class="font-extrabold text-sm text-slate-900 dark:text-white flex items-center gap-1.5 border-b border-slate-200 dark:border-slate-800 pb-2.5">
+            <span>💡</span> 목적별 추천 AI 조합
+          </h3>
+          <div class="space-y-3 text-xs">
+            <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 space-y-1">
+              <p class="font-bold text-indigo-600 dark:text-indigo-400">🧑‍💻 1인 바이브 코딩</p>
+              <p class="text-[11px] text-slate-600 dark:text-slate-400">Bolt.new + Cursor + Claude Code</p>
+            </div>
+            <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 space-y-1">
+              <p class="font-bold text-purple-600 dark:text-purple-400">🎬 유튜브 쇼츠/롱폼 제작</p>
+              <p class="text-[11px] text-slate-600 dark:text-slate-400">Kling 1.5 + Hedra + Suno v4</p>
+            </div>
+            <div class="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 space-y-1">
+              <p class="font-bold text-cyan-600 dark:text-cyan-400">📊 논문 & 시장 리서치</p>
+              <p class="text-[11px] text-slate-600 dark:text-slate-400">NotebookLM Plus + Genspark AI</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Prompt Library Link CTA -->
+        <div class="p-5 rounded-2xl bg-gradient-to-br from-indigo-900/60 to-purple-950/60 border border-indigo-500/30 text-white space-y-3 text-center shadow-lg">
+          <p class="text-xs font-bold text-indigo-200">검증된 실전 프롬프트가 필요할 때</p>
+          <h4 class="font-extrabold text-sm sm:text-base leading-snug text-white">
+            374+ 프롬프트 & <br />GPTs 지침 즉시 복사
+          </h4>
+          <a
+            href="/prompts"
+            class="inline-block w-full py-2 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-400 hover:to-purple-400 font-bold text-xs transition-all shadow-md shadow-indigo-500/30"
+          >
+            프롬프트 보러가기 &rarr;
+          </a>
+        </div>
+
+        <!-- 4. Sidebar Ad Slot -->
+        <AdBanner type="compact" label="추천 파트너 & 스폰서" />
+      </aside>
+    </div>
   </div>
 </Layout>
+

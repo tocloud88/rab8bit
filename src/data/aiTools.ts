@@ -1701,5 +1701,146 @@ export const AI_TOOLS: AiTool[] = [
       "요약",
       "학술"
     ]
+  },
+  {
+    "name": "Claude Code",
+    "link": "https://claude.ai/code",
+    "description": "Anthropic의 공식 터미널 기반 에이전틱 코딩 도구로, 로컬 코드베이스 분석, 파일 수정, 단위 테스트 및 git 커밋을 자율 수행합니다.",
+    "category": "코드 및 개발",
+    "keywords": ["바이브코딩", "CLI", "코드개발", "에이전트"]
+  },
+  {
+    "name": "Bolt.new",
+    "link": "https://bolt.new/",
+    "description": "StackBlitz가 개발한 브라우저 기반 AI 풀스택 개발 플랫폼으로, 자연어 프롬프트 하나로 웹 앱을 즉시 빌드, 실행, 배포합니다.",
+    "category": "코드 및 개발",
+    "keywords": ["바이브코딩", "풀스택", "웹개발", "프로토타입"]
+  },
+  {
+    "name": "OpenAI Operator (GPT-6 Astra)",
+    "link": "https://openai.com/",
+    "description": "웹 브라우징과 데스크톱 GUI 소프트웨어를 마우스와 키보드로 직접 제어하며 복합 업무를 완수하는 OpenAI의 차세대 컴퓨터 제어 에이전트입니다.",
+    "category": "업무 자동화 및 에이전트",
+    "keywords": ["컴퓨터유즈", "에이전트", "GPT-6", "자동화"]
+  },
+  {
+    "name": "Flux 1.1 Pro Ultra",
+    "link": "https://blackforestlabs.ai/",
+    "description": "최대 4K 초고해상도 포토리얼리즘 렌더링과 정교한 영문 텍스트 타이포그래피 생성을 지원하는 2026 차세대 플래그십 이미지 생성 AI입니다.",
+    "category": "이미지 및 디자인",
+    "keywords": ["이미지생성", "4K", "포토리얼", "디자인"]
+  },
+  {
+    "name": "Kling 1.5 Pro",
+    "link": "https://klingai.com/",
+    "description": "1080p 고화질 10초 연속 비디오 생성과 정밀한 물리 법칙 시뮬레이션, 역동적인 카메라 모션을 구현하는 글로벌 탑티어 비디오 AI입니다.",
+    "category": "영상 및 오디오 제작",
+    "keywords": ["비디오생성", "영상제작", "AI영상", "물리시뮬레이션"]
+  },
+  {
+    "name": "Hedra Character-2",
+    "link": "https://www.hedra.com/",
+    "description": "오디오와 텍스트를 기반으로 생생한 얼굴 표정과 립싱크를 구현하는 차세대 토킹 아바타 및 영상 콘텐츠 제작 플랫폼입니다.",
+    "category": "영상 및 오디오 제작",
+    "keywords": ["토킹아바타", "립싱크", "캐릭터", "유튜브"]
+  },
+  {
+    "name": "Manus AI",
+    "link": "https://manus.im/",
+    "description": "다단계 웹 탐색, 데이터 수집, 장문 시장 보고서 작성을 단 한 번의 지시로 브라우저 상에서 완수하는 차세대 범용 자율 에이전트입니다.",
+    "category": "업무 자동화 및 에이전트",
+    "keywords": ["범용에이전트", "리서치", "업무자동화", "보고서"]
+  },
+  {
+    "name": "Devin 2.0",
+    "link": "https://devin.ai/",
+    "description": "복잡한 엔지니어링 티켓 해결, 테스트 코드 작성, 환경 설정 및 클라우드 배포를 독립적으로 완수하는 세계 최초 완전 자율 AI 엔지니어입니다.",
+    "category": "코드 및 개발",
+    "keywords": ["자율개발", "소프트웨어", "디버깅", "풀스택"]
+  },
+  {
+    "name": "NotebookLM Plus",
+    "link": "https://notebooklm.google.com/",
+    "description": "50개 이상의 대용량 멀티모달 자료를 동시 분석하고 2인 대화형 팟캐스트 오디오(Audio Overview)를 자동 생성하는 구글 지식 연구 도구입니다.",
+    "category": "연구 및 분석",
+    "keywords": ["연구분석", "팟캐스트", "논문요약", "구글"]
+  },
+  {
+    "name": "Luma Dream Machine 1.5",
+    "link": "https://lumalabs.ai/dream-machine",
+    "description": "3D 공간 일관성과 사실적인 카메라 트래킹, 고속 렌더링을 지원하는 텍스트/이미지 기반 초현실적 비디오 생성 도구입니다.",
+    "category": "영상 및 오디오 제작",
+    "keywords": ["비디오생성", "3D카메라", "영상제작", "시네마틱"]
+  },
+  {
+    "name": "Genspark AI Search",
+    "link": "https://www.genspark.ai/",
+    "description": "복수의 AI 에이전트가 실시간 협력하여 맞춤형 스파크페이지(Sparkpage)를 자동 구축해 다각도 정보를 비교 제공하는 차세대 AI 검색 포털입니다.",
+    "category": "연구 및 분석",
+    "keywords": ["AI검색", "스파크페이지", "리서치", "정보수집"]
+  },
+  {
+    "name": "v0 by Vercel",
+    "link": "https://v0.dev/",
+    "description": "자연어 지시만으로 React, Tailwind CSS, shadcn/ui 기반의 고품질 반응형 인터랙티브 웹 UI를 실시간 생성해주는 프론트엔드 도구입니다.",
+    "category": "코드 및 개발",
+    "keywords": ["UI생성", "React", "Tailwind", "프론트엔드"]
+  },
+  {
+    "name": "Suno v4",
+    "link": "https://suno.com/",
+    "description": "스튜디오 퀄리티의 마스터링 사운드, 복합 보컬 하모니, 다양한 장르 믹싱을 지원하는 2026 차세대 AI 작곡 및 음원 생성 플랫폼입니다.",
+    "category": "영상 및 오디오 제작",
+    "keywords": ["음악생성", "작곡", "음원제작", "보컬"]
+  },
+  {
+    "name": "Recraft v3",
+    "link": "https://www.recraft.ai/",
+    "description": "벡터(SVG), 3D 일러스트, 브랜드 디자인 시스템을 전문가 수준으로 정밀 제어 및 생성하는 전문 디자이너 특화 AI입니다.",
+    "category": "이미지 및 디자인",
+    "keywords": ["벡터SVG", "일러스트", "브랜딩", "디자인"]
+  },
+  {
+    "name": "Jan.ai",
+    "link": "https://jan.ai/",
+    "description": "로컬 PC의 GPU를 활용하여 DeepSeek, Llama 3.3, Qwen 등을 100% 오프라인 프라이빗 환경에서 구동하는 오픈소스 데스크톱 클라이언트입니다.",
+    "category": "대화형 AI 및 글쓰기",
+    "keywords": ["로컬LLM", "오프라인", "프라이버시", "오픈소스"]
+  },
+  {
+    "name": "Ollama",
+    "link": "https://ollama.com/",
+    "description": "터미널에서 Llama, DeepSeek, Mistral 등 고성능 오픈소스 LLM을 단 한 줄의 명령어로 설치 및 실행하고 API로 연동하는 프레임워크입니다.",
+    "category": "코드 및 개발",
+    "keywords": ["로컬LLM", "오픈소스", "CLI", "API서빙"]
+  },
+  {
+    "name": "ChatHub",
+    "link": "https://chathub.gg/",
+    "description": "ChatGPT, Claude, Gemini, DeepSeek 등 여러 주요 AI 모델에 동일한 프롬프트를 동시에 질의하고 응답을 나란히 비교하는 올인원 브라우저 확장입니다.",
+    "category": "대화형 AI 및 글쓰기",
+    "keywords": ["모델비교", "멀티챗봇", "확장프로그램", "생산성"]
+  },
+  {
+    "name": "Phind V3",
+    "link": "https://www.phind.com/",
+    "description": "개발자와 엔지니어를 위해 맞춤 설계된 초고속 코드 특화 AI 검색 엔진으로 심층 디버깅과 기술 공식 문서를 신속하게 제공합니다.",
+    "category": "코드 및 개발",
+    "keywords": ["개발자검색", "디버깅", "코드검색", "기술문서"]
+  },
+  {
+    "name": "ElevenLabs Reader & Voice 3",
+    "link": "https://elevenlabs.io/",
+    "description": "인간과 구별 불가능한 감정 표현, 억양, 다국어 실시간 보이스 클로닝과 고품질 텍스트 음성 변환(TTS)을 지원하는 선도적 오디오 AI입니다.",
+    "category": "영상 및 오디오 제작",
+    "keywords": ["음성합성", "TTS", "보이스클로닝", "더빙"]
+  },
+  {
+    "name": "Mapify (MyMap.ai)",
+    "link": "https://mapify.so/",
+    "description": "PDF, 유튜브 영상, 장문 기사를 1초 만에 깔끔한 인터랙티브 마인드맵과 구조화된 다이어그램으로 변환해주는 지식 시각화 AI 도구입니다.",
+    "category": "비즈니스 생산성",
+    "keywords": ["마인드맵", "다이어그램", "시각화", "문서요약"]
   }
 ];
+
