@@ -28,7 +28,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "AI_2026",
       "최신트렌드"
     ],
-    "thumbnail": "/images/blogs/large-context-docs-2026.jpg",
+    "thumbnail": "/images/blogs/daily-tech-insight-2026-09-14.jpg",
     "author": "rab8bit 자동 큐레이터",
     "sort_order": 157,
     "created_at": "2026-09-14 06:00:00",
@@ -53,7 +53,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "AI_2026",
       "최신트렌드"
     ],
-    "thumbnail": "/images/blogs/vibe-coding-2026.jpg",
+    "thumbnail": "/images/blogs/daily-tech-insight-2026-09-13.jpg",
     "author": "rab8bit 자동 큐레이터",
     "sort_order": 156,
     "created_at": "2026-09-13 06:00:00",
@@ -77,7 +77,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "AI_2026",
       "최신트렌드"
     ],
-    "thumbnail": "/images/blogs/ai-agent-workflow.jpg",
+    "thumbnail": "/images/blogs/daily-tech-insight-2026-09-12.jpg",
     "author": "rab8bit 자동 큐레이터",
     "sort_order": 155,
     "created_at": "2026-09-12 06:00:00",
@@ -107,7 +107,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "플래그십 모델",
       "AI 에이전트"
     ],
-    "thumbnail": "/images/blogs/ai-big-4-comparison.jpg",
+    "thumbnail": "/images/blogs/ai-big-4-comparison-chatgpt-gemini-claude-grok.jpg",
     "author": "rab8bit 에디터",
     "sort_order": 56,
     "created_at": "2026-09-12 15:50:00",
@@ -134,7 +134,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "ChatGPT Plus",
       "자동화"
     ],
-    "thumbnail": "/images/blogs/gpt-6-astra-agent.jpg",
+    "thumbnail": "/images/blogs/openai-gpt-6-astra-release-analysis.jpg",
     "author": "rab8bit 에디터",
     "sort_order": 55,
     "created_at": "2026-09-10 23:30:00",
@@ -161,7 +161,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "AI 도구 활용법",
       "LLM 한계"
     ],
-    "thumbnail": "https://gptparkai.com/cdn/thumbnails/1788837158055-sc9hwc0neu.jpeg",
+    "thumbnail": "/images/blogs/ai-self-explanation-verification-guide.jpg",
     "author": "GPT PARK",
     "sort_order": 54,
     "created_at": "2026-09-08 03:14:32",
@@ -188,7 +188,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "소비자분쟁해결기준",
       "부업 사기 구제"
     ],
-    "thumbnail": "https://gptparkai.com/cdn/thumbnails/1788133801948-mc5t27m74mg.jpeg",
+    "thumbnail": "/images/blogs/ai-side-hustle-course-verification-guide.jpg",
     "author": "GPT PARK",
     "sort_order": 53,
     "created_at": "2026-08-30 23:51:27",
@@ -215,7 +215,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "AI 거버넌스",
       "GEO 최적화"
     ],
-    "thumbnail": "https://gptparkai.com/cdn/thumbnails/1787187064032-88notv7h7lh.jpeg",
+    "thumbnail": "/images/blogs/openai-pauses-training-google-opens-chrome.jpg",
     "author": "GPT PARK",
     "sort_order": 52,
     "created_at": "2026-08-20 00:52:54",
@@ -242,7 +242,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "웹디자인자동화",
       "클로드코워크"
     ],
-    "thumbnail": "https://gptparkai.com/cdn/thumbnails/1786596526683-a0tah39x30w.jpeg",
+    "thumbnail": "/images/blogs/why-ai-websites-look-same-claude-skills-solution.jpg",
     "author": "GPT PARK",
     "sort_order": 51,
     "created_at": "2026-08-13 04:48:51",
@@ -269,7 +269,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "생산성도구",
       "AI업무혁신"
     ],
-    "thumbnail": "https://gptparkai.com/cdn/thumbnails/1786189447871-qby50w0omj.jpeg",
+    "thumbnail": "/images/blogs/gemini-paper-report-three-line-summary-guide.jpg",
     "author": "GPT PARK",
     "sort_order": 50,
     "created_at": "2026-08-08 11:45:12",
@@ -296,7 +296,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "AI 업무 활용",
       "개인정보 처리"
     ],
-    "thumbnail": "https://gptparkai.com/cdn/thumbnails/1785462175477-jnxcj2m8tm.jpg",
+    "thumbnail": "/images/blogs/ai-meeting-minutes-action-plan-chatgpt-prompt.jpg",
     "author": "GPT PARK",
     "sort_order": 49,
     "created_at": "2026-07-31 01:43:04",
@@ -323,7 +323,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "비판적 사고 AI",
       "챗GPT 활용팁"
     ],
-    "thumbnail": "https://gptparkai.com/cdn/thumbnails/1784628409233-lzdyevujh3m.jpg",
+    "thumbnail": "/images/blogs/ai-advisor-not-yesman-remove-intention-from-prompts.jpg",
     "author": "GPT PARK",
     "sort_order": 48,
     "created_at": "2026-07-21 10:07:09",
@@ -350,7 +350,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "생성형 AI 활용",
       "노코드 AI 도구"
     ],
-    "thumbnail": "https://gptparkai.com/cdn/thumbnails/1783896762394-ixpqjc9epch.jpg",
+    "thumbnail": "/images/blogs/lessons-from-building-90-ai-tools.jpg",
     "author": "GPT PARK",
     "sort_order": 47,
     "created_at": "2026-07-12 22:54:11",
@@ -377,7 +377,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "블로그 SEO 최적화",
       "애드센스 해결 방안"
     ],
-    "thumbnail": "https://gptparkai.com/cdn/thumbnails/1783491508102-m3osbgut2br.jpg",
+    "thumbnail": "/images/blogs/adsense-rejected-ai-cooload-robots-txt-fix.jpg",
     "author": "GPT PARK",
     "sort_order": 46,
     "created_at": "2026-07-08 06:23:36",
@@ -404,7 +404,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "볼린저밴드 주식",
       "반도체 주식 투자"
     ],
-    "thumbnail": "https://gptparkai.com/cdn/thumbnails/1782984579363-y4ndfc6n0j.jpg",
+    "thumbnail": "/images/blogs/recover-lost-returns-stock-analysis-prompt.jpg",
     "author": "GPT PARK",
     "sort_order": 45,
     "created_at": "2026-07-02 09:34:25",
@@ -431,7 +431,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "웹사이트 트래픽 증가",
       "SEO 친화적 웹사이트"
     ],
-    "thumbnail": "https://gptparkai.com/cdn/thumbnails/1782604645229-4r2661cicz9.jpg",
+    "thumbnail": "/images/blogs/retro-game-site-deployer.jpg",
     "author": "GPT PARK",
     "sort_order": 44,
     "created_at": "2026-06-28 00:04:08",
@@ -458,7 +458,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "제미나이 프롬프트",
       "업무 생산성 향상"
     ],
-    "thumbnail": "https://gptparkai.com/cdn/thumbnails/1781827984899-dgcumne9lh.jpg",
+    "thumbnail": "/images/blogs/peurompeuteu-raibeureori.jpg",
     "author": "GPT PARK",
     "sort_order": 43,
     "created_at": "2026-06-19 00:14:57",
@@ -485,7 +485,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "모델 마이그레이션",
       "ai 백엔드"
     ],
-    "thumbnail": "https://gptparkai.com/cdn/thumbnails/1781668688862-u574sb78bz.jpg",
+    "thumbnail": "/images/blogs/preventing-gemini-api-disruptions.jpg",
     "author": "GPT PARK",
     "sort_order": 42,
     "created_at": "2026-06-17 04:26:40",
@@ -517,7 +517,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "월드컵우승후보",
       "AI축구예측"
     ],
-    "thumbnail": "https://gptparkai.com/cdn/thumbnails/1781241840489-nwqql9zoow.jpg",
+    "thumbnail": "/images/blogs/2026-world-cup-ai-prediction-prompt.jpg",
     "author": "GPT PARK",
     "sort_order": 41,
     "created_at": "2026-06-12 05:26:27",
@@ -544,7 +544,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "컴퓨터 사용 기능",
       "자연스러운 AI 문체"
     ],
-    "thumbnail": "https://gptparkai.com/cdn/thumbnails/1781059841798-qwy9umv8v8f.jpg",
+    "thumbnail": "/images/blogs/claude-unexpected-strengths.jpg",
     "author": "GPT PARK",
     "sort_order": 40,
     "created_at": "2026-06-10 02:51:54",
@@ -571,7 +571,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "AI 엑셀",
       "보고서 작성"
     ],
-    "thumbnail": "https://gptparkai.com/cdn/thumbnails/1780987205266-bcfhy6vwzmj.jpg",
+    "thumbnail": "/images/blogs/claude-excel-prompts-6.jpg",
     "author": "GPT PARK",
     "sort_order": 39,
     "created_at": "2026-06-09 06:45:45",
@@ -596,7 +596,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "제미나이",
       "클로드"
     ],
-    "thumbnail": "https://gptparkai.com/cdn/thumbnails/1780875260992-y8x4ctbgdle.jpeg",
+    "thumbnail": "/images/blogs/migrate-chatgpt-to-gemini-claude.jpg",
     "author": "GPT PARK",
     "sort_order": 38,
     "created_at": "2026-06-07 23:35:58",
@@ -623,7 +623,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "AI 검색 엔진 노출",
       "디지털 마케팅 워크플로우"
     ],
-    "thumbnail": "https://gptparkai.com/cdn/thumbnails/1780562481942-keky8023pz.jpeg",
+    "thumbnail": "/images/blogs/blog-post-aeo-optimization-prompt.jpg",
     "author": "GPT PARK",
     "sort_order": 37,
     "created_at": "2026-06-04 08:43:27",
@@ -650,7 +650,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "공공데이터 API 활용",
       "지피티팍"
     ],
-    "thumbnail": "https://gptparkai.com/cdn/thumbnails/1780216982421-t3q0gszliq.jpg",
+    "thumbnail": "/images/blogs/google-ai-studio-android-app-build.jpg",
     "author": "GPT PARK",
     "sort_order": 36,
     "created_at": "2026-05-31 08:44:56",
@@ -677,7 +677,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "가격 추적 무료 도구",
       "똑똑한 온라인 쇼핑"
     ],
-    "thumbnail": "https://gptparkai.com/cdn/thumbnails/1780045895815-72tsqk0sus.jpeg",
+    "thumbnail": "/images/blogs/ai-fake-discount-checker-prompt.jpg",
     "author": "GPT PARK",
     "sort_order": 35,
     "created_at": "2026-05-29 09:21:08",
@@ -704,7 +704,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "업무 생산성 향상",
       "비즈니스 AI 가이드"
     ],
-    "thumbnail": "https://gptparkai.com/cdn/thumbnails/1779844177208-5cmv38q0oui.jpg",
+    "thumbnail": "/images/blogs/chatgpt-vs-claude-comparison.jpg",
     "author": "GPT PARK",
     "sort_order": 34,
     "created_at": "2026-05-27 01:11:41",
@@ -731,7 +731,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "노트북LM 활용",
       "지식 내면화"
     ],
-    "thumbnail": "https://gptparkai.com/cdn/thumbnails/1779750250228-u0nj5r31mjk.jpeg",
+    "thumbnail": "/images/blogs/notebooklm-prompts-for-complex-topics.jpg",
     "author": "GPT PARK",
     "sort_order": 33,
     "created_at": "2026-05-25 23:07:59",
@@ -758,7 +758,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "챗GPT 보안",
       "데이터 프라이버시"
     ],
-    "thumbnail": "https://gptparkai.com/cdn/thumbnails/1779414010912-kut1i9yo30d.webp",
+    "thumbnail": "/images/blogs/chatgpt-bank-account-risk.jpg",
     "author": "GPT PARK",
     "sort_order": 32,
     "created_at": "2026-05-22 01:42:21",
@@ -785,7 +785,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "디자인 시스템",
       "Compute Allocator"
     ],
-    "thumbnail": "https://gptparkai.com/cdn/thumbnails/1779327978748-e2zu4dp2pbf.webp",
+    "thumbnail": "/images/blogs/html-is-the-new-markdown.jpg",
     "author": "GPT PARK",
     "sort_order": 31,
     "created_at": "2026-05-21 01:50:17",
@@ -812,7 +812,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "StatusGator 설정",
       "인공지능 서비스 중단"
     ],
-    "thumbnail": "https://gptparkai.com/cdn/thumbnails/1779156001028-n94gooienv.jpeg",
+    "thumbnail": "/images/blogs/how-to-check-ai-outage-chatgpt-claude-gemini.jpg",
     "author": "GPT PARK",
     "sort_order": 30,
     "created_at": "2026-05-19 02:04:08",
@@ -839,7 +839,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "심해 낚시 시뮬레이터",
       "Web Audio API 활용"
     ],
-    "thumbnail": "https://gptparkai.com/cdn/thumbnails/1779060531139-odhvdpge5fb.png",
+    "thumbnail": "/images/blogs/how-to-make-html5-fishing-game-with-google-ai-studio.jpg",
     "author": "GPT PARK",
     "sort_order": 29,
     "created_at": "2026-05-17 23:31:21",
@@ -866,7 +866,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "AI 글쓰기 팁",
       "연구 효율화"
     ],
-    "thumbnail": "https://gptparkai.com/cdn/thumbnails/1778819708972-tecxp62e07t.jpeg",
+    "thumbnail": "/images/blogs/best-ai-tools-for-research-claude-notebooklm.jpg",
     "author": "GPT PARK",
     "sort_order": 28,
     "created_at": "2026-05-15 04:50:58",
@@ -893,7 +893,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "대학생꿀팁",
       "노트정리"
     ],
-    "thumbnail": "https://gptparkai.com/cdn/thumbnails/1778727752188-xmae8wlj4ob.jpeg",
+    "thumbnail": "/images/blogs/manage-learning-materials-with-notebooklm.jpg",
     "author": "GPT PARK",
     "sort_order": 27,
     "created_at": "2026-05-14 03:08:55",
@@ -920,7 +920,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "성과 기술서 작성법",
       "칼퇴 비결"
     ],
-    "thumbnail": "https://gptparkai.com/cdn/thumbnails/1778639996926-2iydozs9jz2.jpeg",
+    "thumbnail": "/images/blogs/work-prompt-examples-10-for-business.jpg",
     "author": "GPT PARK",
     "sort_order": 26,
     "created_at": "2026-05-13 02:45:28",
@@ -947,7 +947,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "앤스로픽",
       "초보자 AI 활용"
     ],
-    "thumbnail": "https://gptparkai.com/cdn/thumbnails/1778476109923-rodf9riaw1r.jpeg",
+    "thumbnail": "/images/blogs/how-to-organize-files-with-claude-code-for-beginners.jpg",
     "author": "GPT PARK",
     "sort_order": 25,
     "created_at": "2026-05-11 05:10:44",
@@ -974,7 +974,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "프롬프트 팁",
       "AI 비서 활용"
     ],
-    "thumbnail": "https://gptparkai.com/cdn/thumbnails/1778419080413-fiabsuhtfq4.jpg",
+    "thumbnail": "/images/blogs/3-step-ai-prompt-guide.jpg",
     "author": "GPT PARK",
     "sort_order": 24,
     "created_at": "2026-05-10 13:17:33",
@@ -1001,7 +1001,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "디지털 마케팅 자동화",
       "콘텐츠 파이프라인"
     ],
-    "thumbnail": "https://gptparkai.com/cdn/thumbnails/1778031355857-wq2xdx73i4o.jpeg",
+    "thumbnail": "/images/blogs/gemini-advanced-marketing-tactics-part-2.jpg",
     "author": "GPT PARK",
     "sort_order": 23,
     "created_at": "2026-05-06 01:37:41",
@@ -1028,7 +1028,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "구글 워크스페이스 통합",
       "딥 리서치"
     ],
-    "thumbnail": "https://gptparkai.com/cdn/thumbnails/1778030570913-6insbnrfc4a.jpeg",
+    "thumbnail": "/images/blogs/yourblog-com-gemini-hacks-outperform-chatgpt-part-1.jpg",
     "author": "GPT PARK",
     "sort_order": 22,
     "created_at": "2026-05-06 01:22:02",
@@ -1055,7 +1055,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "Gemini API",
       "AI블로그도구"
     ],
-    "thumbnail": "https://gptparkai.com/cdn/thumbnails/1777893702321-9dadbw6yzh9.jpeg",
+    "thumbnail": "/images/blogs/snapblog-naver-blog-automation.jpg",
     "author": "GPT PARK",
     "sort_order": 21,
     "created_at": "2026-05-04 11:24:16",
@@ -1082,7 +1082,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "디지털 전환",
       "일잘러 되는 법"
     ],
-    "thumbnail": "https://gptparkai.com/cdn/thumbnails/1777503612627-j2o27pmyjkk.jpeg",
+    "thumbnail": "/images/blogs/10-powerful-ai-prompts-for-work-to-boost-productivity.jpg",
     "author": "GPT PARK",
     "sort_order": 20,
     "created_at": "2026-04-29 23:00:58",
@@ -1109,7 +1109,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "웹 기술 혁신",
       "크로미움 브라우저"
     ],
-    "thumbnail": "https://gptparkai.com/cdn/thumbnails/1777172135408-w8kyrdr3vo9.jpeg",
+    "thumbnail": "/images/blogs/risks-of-ai-browser-automation.jpg",
     "author": "GPT PARK",
     "sort_order": 19,
     "created_at": "2026-04-26 02:56:47",
@@ -1136,7 +1136,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "효율적 학습",
       "학습 방법론"
     ],
-    "thumbnail": "https://gptparkai.com/cdn/thumbnails/1777170699248-j86r9cavhu.jpeg",
+    "thumbnail": "/images/blogs/notebooklm-learning-journal-guide.jpg",
     "author": "GPT PARK",
     "sort_order": 18,
     "created_at": "2026-04-26 02:33:06",
@@ -1163,7 +1163,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "LLM활용법",
       "인공지능미래"
     ],
-    "thumbnail": "https://gptparkai.com/cdn/thumbnails/1776841879477-p3idix01krs.jpeg",
+    "thumbnail": "/images/blogs/5-limits-of-prompt-engineering-2026.jpg",
     "author": "GPT PARK",
     "sort_order": 17,
     "created_at": "2026-04-22 07:14:02",
@@ -1190,7 +1190,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "노코드 개발",
       "UX/UI AI 디자인"
     ],
-    "thumbnail": "https://gptparkai.com/cdn/thumbnails/1776308356472-9z9bdrukmce.jpeg",
+    "thumbnail": "/images/blogs/vibe-coding-google-ai-studio-auth.jpg",
     "author": "GPT PARK",
     "sort_order": 16,
     "created_at": "2026-04-16 03:01:57",
@@ -1217,7 +1217,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "메타 프롬프팅",
       "AI 음악 앱"
     ],
-    "thumbnail": "https://gptparkai.com/cdn/thumbnails/1776042205068-3vvne0ad3n9.jpeg",
+    "thumbnail": "/images/blogs/how-to-prompt-lyria-3-pro-like-a-professional.jpg",
     "author": "GPT PARK",
     "sort_order": 15,
     "created_at": "2026-04-13 01:04:55",
@@ -1244,7 +1244,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "미래 리더십",
       "AI 활용 전략"
     ],
-    "thumbnail": "https://gptparkai.com/cdn/thumbnails/1775521789984-lp4x67e3ql.jpeg",
+    "thumbnail": "/images/blogs/overcoming-ai-wall-for-leaders.jpg",
     "author": "GPT PARK",
     "sort_order": 14,
     "created_at": "2026-04-07 00:41:54",
@@ -1271,7 +1271,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "인공지능 도구",
       "콘텐츠 마케팅"
     ],
-    "thumbnail": "https://gptparkai.com/cdn/thumbnails/1775452056994-fjeruh42tzq.jpeg",
+    "thumbnail": "/images/blogs/turning-handwritten-chaos-into-infographic-gold-with-chatgpt.jpg",
     "author": "GPT PARK",
     "sort_order": 13,
     "created_at": "2026-04-06 05:07:40",
@@ -1298,7 +1298,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "프로젝트 시작",
       "스마트 워크"
     ],
-    "thumbnail": "https://raw.githubusercontent.com/muzbox1973/gptpartai_site/main/post1/post12_thumbnail.jpeg",
+    "thumbnail": "/images/blogs/ai-prompt-strategy-for-difficult-tasks.jpg",
     "author": "GPT PARK",
     "sort_order": 12,
     "created_at": "2026-04-06 04:00:06",
@@ -1323,7 +1323,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "Gemini CLI",
       "AI 코딩 어시스턴트"
     ],
-    "thumbnail": "https://raw.githubusercontent.com/muzbox1973/gptpartai_site/main/post1/post11_thumbnail.jpg",
+    "thumbnail": "/images/blogs/terminal-ai-tools-comparison-2026.jpg",
     "author": "GPT PARK",
     "sort_order": 11,
     "created_at": "2026-04-06 04:00:06",
@@ -1350,7 +1350,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "LLM 쿼터 전략",
       "AI 생산성 팁"
     ],
-    "thumbnail": "https://raw.githubusercontent.com/muzbox1973/gptpartai_site/main/post1/post10_thumbnail.jpeg",
+    "thumbnail": "/images/blogs/claude-quota-management-tips.jpg",
     "author": "GPT PARK",
     "sort_order": 10,
     "created_at": "2026-04-06 04:00:05",
@@ -1377,7 +1377,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "2026 AI 트렌드",
       "고해상도 AI 이미지"
     ],
-    "thumbnail": "https://raw.githubusercontent.com/muzbox1973/gptpartai_site/main/post1/post9_thumbnail.jpeg",
+    "thumbnail": "/images/blogs/ai-image-generation-tools-comparison-2026.jpg",
     "author": "GPT PARK",
     "sort_order": 9,
     "created_at": "2026-04-06 04:00:05",
@@ -1404,7 +1404,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "작가 브레인스토밍",
       "AI 창작 파트너"
     ],
-    "thumbnail": "https://raw.githubusercontent.com/muzbox1973/gptpartai_site/main/post1/post8_thumbnail.jpeg",
+    "thumbnail": "/images/blogs/ai-writer-workflow-creativity.jpg",
     "author": "GPT PARK",
     "sort_order": 8,
     "created_at": "2026-04-06 04:00:05",
@@ -1431,7 +1431,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "AI 글쓰기",
       "명확한 지시"
     ],
-    "thumbnail": "https://raw.githubusercontent.com/muzbox1973/gptpartai_site/main/post1/post6_thumbnail.jpeg",
+    "thumbnail": "/images/blogs/markdown-structured-prompt-technique.jpg",
     "author": "GPT PARK",
     "sort_order": 7,
     "created_at": "2026-04-06 04:00:05",
@@ -1458,7 +1458,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "미래 SEO",
       "생성형 AI 검색"
     ],
-    "thumbnail": "https://raw.githubusercontent.com/muzbox1973/gptpartai_site/main/post1/post7_thumbnail.jpeg",
+    "thumbnail": "/images/blogs/ai-search-engine-optimization-aeo.jpg",
     "author": "GPT PARK",
     "sort_order": 6,
     "created_at": "2026-04-06 04:00:05",
@@ -1485,7 +1485,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "생성형 AI",
       "AI 한계"
     ],
-    "thumbnail": "https://raw.githubusercontent.com/muzbox1973/gptpartai_site/main/post1/post5_thumbnail.jpeg",
+    "thumbnail": "/images/blogs/ai-llm-real-ability-and-misconceptions.jpg",
     "author": "GPT PARK",
     "sort_order": 5,
     "created_at": "2026-04-06 04:00:05",
@@ -1512,7 +1512,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "LLM 최적화",
       "2026 AI 트렌드"
     ],
-    "thumbnail": "https://raw.githubusercontent.com/muzbox1973/gptpartai_site/main/post1/post4_thumbnail.jpeg",
+    "thumbnail": "/images/blogs/gemini-meta-prompting-guide.jpg",
     "author": "GPT PARK",
     "sort_order": 4,
     "created_at": "2026-04-06 04:00:05",
@@ -1539,7 +1539,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "AI 생산성 도구",
       "디지털 워크플로우"
     ],
-    "thumbnail": "https://raw.githubusercontent.com/muzbox1973/gptpartai_site/main/post1/post3_thumbnail.jpeg",
+    "thumbnail": "/images/blogs/gemini-extensions-automation-guide.jpg",
     "author": "GPT PARK",
     "sort_order": 3,
     "created_at": "2026-04-06 04:00:05",
@@ -1566,7 +1566,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "SEO 최적화 글쓰기",
       "감성적 글쓰기"
     ],
-    "thumbnail": "https://raw.githubusercontent.com/muzbox1973/gptpartai_site/main/post1/post2_thumbnail.jpeg",
+    "thumbnail": "/images/blogs/humanizing-prompt-engineering.jpg",
     "author": "GPT PARK",
     "sort_order": 2,
     "created_at": "2026-04-06 04:00:05",
@@ -1593,7 +1593,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "LLM 비교",
       "생산성 AI"
     ],
-    "thumbnail": "https://raw.githubusercontent.com/muzbox1973/gptpartai_site/main/post1/post1_thumbnail.webp",
+    "thumbnail": "/images/blogs/gemini-vs-chatgpt-guide.jpg",
     "author": "GPT PARK",
     "sort_order": 1,
     "created_at": "2026-04-06 04:00:05",
