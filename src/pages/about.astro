@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import AdBanner from '../components/ads/AdBanner.astro';
 ---
 
 <Layout
@@ -45,5 +46,9 @@ import Layout from '../layouts/Layout.astro';
         <li><strong class="text-white">글로벌 AI 사이트 큐레이션</strong>: 분야별 152개 검증 AI 디렉토리</li>
       </ul>
     </div>
+
+    {/* Bottom Horizontal Ad Slot */}
+    <AdBanner type="horizontal" className="my-8" />
   </div>
 </Layout>
+

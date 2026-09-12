@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AdBanner from '../../components/ads/AdBanner.astro';
 import PromptsDirectory from '../../components/prompts/PromptsDirectory';
 ---
 
@@ -20,6 +21,9 @@ import PromptsDirectory from '../../components/prompts/PromptsDirectory';
         비즈니스, 마케팅, 코딩, 글쓰기, 업무 자동화 등 목적에 맞는 최적의 프롬프트를 원클릭으로 복사하여 활용하세요.
       </p>
     </div>
+
+    {/* Top Ad Slot */}
+    <AdBanner type="leaderboard" label="AI 프롬프트 & 생산성 도구 스폰서" />
 
     {/* Interactive Prompts Directory */}
     <PromptsDirectory client:load initialTab="prompts" />

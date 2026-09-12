@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import CharacterCounter from '../../components/tools/CharacterCounter';
+import AdBanner from '../../components/ads/AdBanner.astro';
 ---
 
 <Layout 
@@ -20,8 +21,11 @@ import CharacterCounter from '../../components/tools/CharacterCounter';
 
     <CharacterCounter client:load />
 
+    {/* In-tool Horizontal Ad Slot */}
+    <AdBanner type="horizontal" className="my-8" />
+
     <!-- SEO & Usage Guide -->
-    <div class="mt-12 stitch-card p-6 rounded-3xl border border-indigo-500/20 space-y-4 text-sm text-slate-300">
+    <div class="mt-8 stitch-card p-6 rounded-3xl border border-indigo-500/20 space-y-4 text-sm text-slate-300">
       <h2 class="text-lg font-bold text-white flex items-center gap-2">
         <span>📖</span> 글자수 세기 활용 가이드
       </h2>
@@ -33,3 +37,4 @@ import CharacterCounter from '../../components/tools/CharacterCounter';
     </div>
   </div>
 </Layout>
+

@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AdBanner from '../../components/ads/AdBanner.astro';
 import { BLOGS_DATA, type BlogPost } from '../../data/blogsData';
 
 export async function getStaticPaths() {
@@ -86,6 +87,9 @@ const relatedPosts = BLOGS_DATA.filter((p) => p.id !== post.id).slice(0, 4);
     <article class="prose prose-invert prose-indigo max-w-none prose-headings:font-bold prose-headings:text-white prose-p:text-slate-300 prose-p:leading-relaxed prose-a:text-indigo-400 prose-a:no-underline hover:prose-a:underline prose-code:text-indigo-300 prose-code:bg-slate-900 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-img:rounded-2xl prose-img:border prose-img:border-slate-800 space-y-4">
       <div class="blog-content bg-slate-900/30 p-4 sm:p-8 rounded-3xl border border-slate-800/80 leading-relaxed" set:html={post.content} />
     </article>
+
+    {/* In-Article Bottom Ad Slot */}
+    <AdBanner type="in-article" label="추천 AI 도구 & 실무 솔루션" />
 
     {/* Back to Blog List CTA */}
     <div class="pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">

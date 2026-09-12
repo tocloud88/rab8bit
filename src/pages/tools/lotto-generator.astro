@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import LottoGenerator from '../../components/tools/LottoGenerator';
+import AdBanner from '../../components/ads/AdBanner.astro';
 ---
 
 <Layout 
@@ -20,7 +21,10 @@ import LottoGenerator from '../../components/tools/LottoGenerator';
 
     <LottoGenerator client:load />
 
-    <div class="mt-12 stitch-card p-6 rounded-3xl border border-indigo-500/20 space-y-3 text-sm text-slate-300">
+    {/* In-tool Horizontal Ad Slot */}
+    <AdBanner type="horizontal" className="my-8" />
+
+    <div class="mt-8 stitch-card p-6 rounded-3xl border border-indigo-500/20 space-y-3 text-sm text-slate-300">
       <h2 class="text-lg font-bold text-white">🎱 로또 공식 공 색상 안내</h2>
       <div className="flex flex-wrap gap-2 text-xs pt-1">
         <span class="px-2.5 py-1 rounded-lg bg-amber-500/20 text-amber-300 border border-amber-500/30">1~10번: 노란색</span>
@@ -32,3 +36,4 @@ import LottoGenerator from '../../components/tools/LottoGenerator';
     </div>
   </div>
 </Layout>
+

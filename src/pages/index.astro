@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import AdBanner from '../components/ads/AdBanner.astro';
 import { BLOGS_DATA } from '../data/blogsData';
 import { INSIGHTS_DATA } from '../data/insightsData';
 import { PROMPTS_DATA } from '../data/promptsData';
@@ -93,6 +94,9 @@ const featuredEbooks = EBOOKS_DATA.slice(0, 4);
         </div>
       </div>
     </section>
+
+    {/* Top Leaderboard Ad Slot */}
+    <AdBanner type="leaderboard" label="추천 AI 서비스 & 솔루션" />
 
     {/* 1. AI Blog Latest Section (4 cols Web, 2 cols Mobile) */}
     <section class="space-y-4">
@@ -191,6 +195,9 @@ const featuredEbooks = EBOOKS_DATA.slice(0, 4);
       </div>
     </section>
 
+    {/* Mid Section Ad Slot */}
+    <AdBanner type="horizontal" label="스마트 비즈니스 도구 추천" />
+
     {/* 3. Smart Utilities & Tools Section (4 cols Web, 2 cols Mobile) */}
     <section class="space-y-4">
       <div class="flex items-end justify-between border-b border-indigo-500/20 pb-3">
@@ -271,6 +278,9 @@ const featuredEbooks = EBOOKS_DATA.slice(0, 4);
         ))}
       </div>
     </section>
+
+    {/* Creative AI & Tools Ad Slot */}
+    <AdBanner type="horizontal" label="크리에이티브 AI & 프롬프트 스폰서" />
 
     {/* 5. Banana AI Gallery Showcase (4 cols Web, 2 cols Mobile) */}
     <section class="space-y-4">

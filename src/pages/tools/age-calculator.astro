@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AgeCalculator from '../../components/tools/AgeCalculator';
+import AdBanner from '../../components/ads/AdBanner.astro';
 ---
 
 <Layout 
@@ -20,7 +21,10 @@ import AgeCalculator from '../../components/tools/AgeCalculator';
 
     <AgeCalculator client:load />
 
-    <div class="mt-12 stitch-card p-6 rounded-3xl border border-indigo-500/20 space-y-3 text-sm text-slate-300">
+    {/* In-tool Horizontal Ad Slot */}
+    <AdBanner type="horizontal" className="my-8" />
+
+    <div class="mt-8 stitch-card p-6 rounded-3xl border border-indigo-500/20 space-y-3 text-sm text-slate-300">
       <h2 class="text-lg font-bold text-white">⚖️ 대한민국 나이 계산 기준 안내</h2>
       <ul class="list-disc list-inside space-y-1.5 text-slate-400">
         <li><strong>만 나이</strong>: 2023년 6월 28일부터 행정·민사상 공식 적용되는 법적 나이입니다. 출생일을 0세로 시작해 매 생일마다 1세씩 증가합니다.</li>
@@ -30,3 +34,4 @@ import AgeCalculator from '../../components/tools/AgeCalculator';
     </div>
   </div>
 </Layout>
+

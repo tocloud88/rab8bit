@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import EbooksDirectory from '../../components/ebooks/EbooksDirectory';
+import AdBanner from '../../components/ads/AdBanner.astro';
 ---
 
 <Layout
@@ -21,7 +22,14 @@ import EbooksDirectory from '../../components/ebooks/EbooksDirectory';
       </p>
     </div>
 
+    {/* Top Leaderboard Ad Slot */}
+    <AdBanner type="leaderboard" />
+
     {/* Interactive Ebooks Directory */}
     <EbooksDirectory client:load />
+
+    {/* Bottom Horizontal Ad Slot */}
+    <AdBanner type="horizontal" className="mt-12" />
   </div>
 </Layout>
+

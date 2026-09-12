@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AdBanner from '../../components/ads/AdBanner.astro';
 import PromptsDirectory from '../../components/prompts/PromptsDirectory';
 ---
 
@@ -20,6 +21,9 @@ import PromptsDirectory from '../../components/prompts/PromptsDirectory';
         나만의 AI 어시스턴트, 전문가 어드바이저, 코딩 튜터, 콘텐츠 크리에이터를 구축하는 완벽한 시스템 프롬프트입니다.
       </p>
     </div>
+
+    {/* Top Ad Slot */}
+    <AdBanner type="leaderboard" label="맞춤형 AI 챗봇 & 솔루션 스폰서" />
 
     {/* Interactive Prompts Directory in GPTs Tab */}
     <PromptsDirectory client:load initialTab="gpts" />

@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AdBanner from '../../components/ads/AdBanner.astro';
 import AiToolsDirectory from '../../components/ai-tools/AiToolsDirectory';
 ---
 
@@ -27,6 +28,9 @@ import AiToolsDirectory from '../../components/ai-tools/AiToolsDirectory';
         </p>
       </div>
     </div>
+
+    <!-- Ad Slot -->
+    <AdBanner type="leaderboard" label="글로벌 AI 도구 & SaaS 스폰서" />
 
     <!-- Interactive Directory Directory -->
     <AiToolsDirectory client:load />

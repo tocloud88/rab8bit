@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import AdBanner from '../components/ads/AdBanner.astro';
 
 const faqs = [
   {
@@ -47,6 +48,9 @@ const faqs = [
       </p>
     </div>
 
+    {/* Top Leaderboard Ad Slot */}
+    <AdBanner type="leaderboard" />
+
     {/* FAQ Accordion List */}
     <div class="space-y-4">
       {faqs.map((faq, idx) => (
@@ -67,6 +71,9 @@ const faqs = [
       ))}
     </div>
 
+    {/* Bottom In-Article Ad Slot */}
+    <AdBanner type="in-article" />
+
     {/* Help CTA */}
     <div class="text-center p-6 rounded-2xl bg-slate-900/50 border border-indigo-500/20 space-y-3">
       <p class="text-sm text-slate-300">원하시는 답변을 찾지 못하셨나요?</p>
@@ -79,3 +86,4 @@ const faqs = [
     </div>
   </div>
 </Layout>
+

@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AdBanner from '../../components/ads/AdBanner.astro';
 import ToolsDirectory from '../../components/tools/ToolsDirectory';
 ---
 
@@ -20,6 +21,9 @@ import ToolsDirectory from '../../components/tools/ToolsDirectory';
         설치나 회원가입 없이 브라우저에서 안전하게 실행되는 계산기, 텍스트 도구, 랜덤 게임, 개발자 유틸리티를 자유롭게 사용하세요.
       </p>
     </div>
+
+    <!-- Ad Slot -->
+    <AdBanner type="leaderboard" label="스마트 비즈니스 & 생산성 유틸리티 스폰서" />
 
     <!-- Interactive Tools Directory Component -->
     <ToolsDirectory client:load />

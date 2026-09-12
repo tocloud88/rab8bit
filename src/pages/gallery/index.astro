@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import AdBanner from '../../components/ads/AdBanner.astro';
 import GalleryDirectory from '../../components/gallery/GalleryDirectory';
 ---
 
@@ -20,6 +21,9 @@ import GalleryDirectory from '../../components/gallery/GalleryDirectory';
         검증된 고화질 AI 생성 이미지의 프롬프트를 원클릭으로 복사하여 나만의 미드저니, 바나나, DALL-E 작품을 만들어보세요.
       </p>
     </div>
+
+    {/* Top Ad Slot */}
+    <AdBanner type="leaderboard" label="AI 디자인 & 이미지 생성 도구 스폰서" />
 
     {/* Interactive Gallery */}
     <GalleryDirectory client:load />

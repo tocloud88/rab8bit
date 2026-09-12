@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import GlobalSearch from '../components/search/GlobalSearch';
+import AdBanner from '../components/ads/AdBanner.astro';
 ---
 
 <Layout
@@ -20,5 +21,9 @@ import GlobalSearch from '../components/search/GlobalSearch';
 
     {/* Search Interface */}
     <GlobalSearch client:load />
+
+    {/* Bottom Horizontal Ad Slot */}
+    <AdBanner type="horizontal" className="mt-8" />
   </div>
 </Layout>
+

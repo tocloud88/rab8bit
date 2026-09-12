@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import QrCodeGenerator from '../../components/tools/QrCodeGenerator';
+import AdBanner from '../../components/ads/AdBanner.astro';
 ---
 
 <Layout 
@@ -19,5 +20,9 @@ import QrCodeGenerator from '../../components/tools/QrCodeGenerator';
     </div>
 
     <QrCodeGenerator client:load />
+
+    {/* In-tool Horizontal Ad Slot */}
+    <AdBanner type="horizontal" className="my-8" />
   </div>
 </Layout>
+
