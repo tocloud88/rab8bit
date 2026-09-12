@@ -103,10 +103,33 @@ export function parseHookingCopy(post) {
 
   return {
     badge: post.tags && post.tags[0] ? post.tags[0] : '2026 AI 트렌드',
-    title1: title1.slice(0, 7),
-    title2: title2.slice(0, 7),
+    title1: title1.slice(0, 10),
+    title2: title2.slice(0, 10),
     subTag: (post.excerpt || '2026 대한민국 1위 AI 포털').slice(0, 24) + '...'
   };
+}
+
+const FONT_FAMILY = "'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', 'Noto Sans KR', sans-serif";
+
+// Calculate safe font size ensuring text NEVER overflows max width (1000px)
+export function getSafeFontSize(text, maxPixelWidth = 980, maxFontSize = 114, minFontSize = 66) {
+  if (!text) return maxFontSize;
+  let estimatedUnits = 0;
+  for (const ch of text) {
+    if (ch >= '\uAC00' && ch <= '\uD7A3') {
+      estimatedUnits += 1.0;
+    } else if (/[A-Z]/.test(ch)) {
+      estimatedUnits += 0.8;
+    } else if (/[a-z0-9]/.test(ch)) {
+      estimatedUnits += 0.58;
+    } else if (/\s/.test(ch)) {
+      estimatedUnits += 0.35;
+    } else {
+      estimatedUnits += 0.8;
+    }
+  }
+  const calcSize = Math.floor(maxPixelWidth / Math.max(1, estimatedUnits));
+  return Math.min(maxFontSize, Math.max(minFontSize, calcSize));
 }
 
 // -----------------------------------------------------------------------------
@@ -422,11 +445,9 @@ export function renderThematicBackgroundScene(theme, w = 1280, h = 720) {
 }
 
 // ==============================================================================
-// 4 SIGNATURE STYLES (EXACT APPROVED GEOMETRIES) x 5 COLOR PALETTES (20 TOTAL)
+// 6 SIGNATURE STYLES x 5 COLOR PALETTES (30 TOTAL)
 // FONT: Paperlogy ('Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif)
 // ==============================================================================
-
-const FONT_FAMILY = "'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', 'Noto Sans KR', sans-serif";
 
 const DROP_SHADOW_FILTER = `
   <filter id="megaShadow" x="-30%" y="-30%" width="160%" height="160%">
@@ -498,8 +519,12 @@ const S1_COLOR_THEMES = [
 export function renderStyle1_FreshNews(w, h, post, colorIdx = 0) {
   const { badge, title1, title2, subTag } = parseHookingCopy(post);
   const theme = detectSceneTheme(post);
-  const boxWidth = Math.max(820, title1.length * 115 + 100);
   const c = S1_COLOR_THEMES[colorIdx % S1_COLOR_THEMES.length];
+
+  const s1 = getSafeFontSize(title1, 980, 114, 70);
+  const s2 = getSafeFontSize(title2, 980, 118, 72);
+  const boxWidth = Math.min(1080, Math.max(760, title1.length * (s1 * 0.82) + 120));
+  const boxHeight = Math.floor(s1 * 1.35);
 
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}">
   <defs>
@@ -520,43 +545,41 @@ export function renderStyle1_FreshNews(w, h, post, colorIdx = 0) {
   ${renderThematicBackgroundScene(theme, w, h)}
 
   <!-- 2. Dark Wash -->
-  <rect width="${w}" height="${h}" fill="#000000" opacity="0.35"/>
+  <rect width="${w}" height="${h}" fill="#000000" opacity="0.45"/>
 
-  <!-- 3. Yellow Circular Orbiting Arrow -->
-  <g transform="translate(${w / 2}, ${h / 2 - 20}) rotate(-12)" filter="url(#megaShadow)">
-    <path d="M -340 0 A 340 260 0 1 1 310 90" fill="none" stroke="url(#s1ArrowGrad_${colorIdx})" stroke-width="26" stroke-linecap="round"/>
-    <polygon points="310,40 370,105 280,125" fill="${c.arrowHead}"/>
-    <path d="M 320 -140 L 330 -115 L 355 -105 L 330 -95 L 320 -70 L 310 -95 L 285 -105 L 310 -115 Z" fill="${c.arrowGrad[1]}"/>
+  <!-- 3. Circular Orbiting Light Arc -->
+  <g transform="translate(${w / 2}, ${h / 2 - 20}) rotate(-10)" opacity="0.75" filter="url(#megaShadow)">
+    <path d="M -380 20 A 390 280 0 1 1 360 90" fill="none" stroke="url(#s1ArrowGrad_${colorIdx})" stroke-width="16" stroke-linecap="round" stroke-dasharray="24,14"/>
+    <circle cx="360" cy="90" r="12" fill="${c.arrowHead}"/>
   </g>
 
-  <!-- 4. Central Giant Typography (-6.5 deg dynamic tilt) -->
-  <g transform="translate(${w / 2}, ${h / 2 - 10}) rotate(-6.5)" filter="url(#megaShadow)">
+  <!-- 4. Central Giant Typography (-2.5 deg dynamic tilt for maximum readability) -->
+  <g transform="translate(${w / 2}, ${h / 2 - 15}) rotate(-2.5)" filter="url(#megaShadow)">
     
-    <!-- Top Curved Category Arch -->
-    <g transform="translate(0, -125)">
-      <path d="M -180 25 Q 0 -25 180 25" fill="none" stroke="${c.archBg}" stroke-width="44" stroke-linecap="round"/>
-      <text x="0" y="16" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="26" font-weight="900" fill="#ffffff">
+    <!-- Top Curved Category Badge -->
+    <g transform="translate(0, -140)">
+      <rect x="-140" y="-22" width="280" height="44" rx="22" fill="${c.archBg}" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="2"/>
+      <text x="0" y="8" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="22" font-weight="900" fill="#ffffff">
         ${escapeXml(badge)}
       </text>
     </g>
 
     <!-- 3D Ribbon Box for Title 1 -->
-    <g transform="translate(0, 5)">
-      <polygon points="${-boxWidth / 2 + 10},-70 ${boxWidth / 2 + 50},-70 ${boxWidth / 2 - 10},80 ${-boxWidth / 2 - 50},80" fill="#000000" opacity="0.75"/>
-      <polygon points="${-boxWidth / 2},-80 ${boxWidth / 2 + 40},-80 ${boxWidth / 2 - 20},70 ${-boxWidth / 2 - 60},70" fill="url(#s1BoxGrad_${colorIdx})"/>
-      <polygon points="${-boxWidth / 2},-80 ${boxWidth / 2 + 40},-80 ${boxWidth / 2 + 35},-65 ${-boxWidth / 2 - 5},-65" fill="#ffffff" opacity="0.45"/>
+    <g transform="translate(0, -20)">
+      <rect x="${-boxWidth / 2 + 8}" y="${-boxHeight / 2 + 8}" width="${boxWidth}" height="${boxHeight}" rx="14" fill="#000000" opacity="0.75"/>
+      <rect x="${-boxWidth / 2}" y="${-boxHeight / 2}" width="${boxWidth}" height="${boxHeight}" rx="14" fill="url(#s1BoxGrad_${colorIdx})" stroke="#FFFFFF" stroke-opacity="0.4" stroke-width="2.5"/>
       
-      <text x="-5" y="24" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="140" font-weight="900" fill="${c.title1Color}" stroke="#000000" stroke-width="14" paint-order="stroke fill" letter-spacing="-3">
+      <text x="0" y="${s1 * 0.35}" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="${s1}" font-weight="900" fill="${c.title1Color}" stroke="#000000" stroke-width="6" paint-order="stroke fill" letter-spacing="-1">
         ${escapeXml(title1)}
       </text>
     </g>
 
-    <!-- Title 2 (Massive Solid Text with 3D Outlines) -->
-    <g transform="translate(0, 160)">
-      <text x="0" y="14" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="148" font-weight="900" fill="#000000" stroke="#000000" stroke-width="28" paint-order="stroke fill" letter-spacing="-4">
+    <!-- Title 2 (Massive Solid Text with High Contrast Neon Accent) -->
+    <g transform="translate(0, 115)">
+      <text x="0" y="${s2 * 0.35 + 8}" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="${s2}" font-weight="900" fill="#000000" stroke="#000000" stroke-width="14" paint-order="stroke fill" letter-spacing="-1">
         ${escapeXml(title2)}
       </text>
-      <text x="0" y="0" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="148" font-weight="900" fill="${c.title2Color}" stroke="${c.title2Stroke}" stroke-width="18" paint-order="stroke fill" letter-spacing="-4">
+      <text x="0" y="${s2 * 0.35}" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="${s2}" font-weight="900" fill="${c.title2Color}" stroke="#000000" stroke-width="5" paint-order="stroke fill" letter-spacing="-1">
         ${escapeXml(title2)}
       </text>
     </g>
@@ -564,8 +587,8 @@ export function renderStyle1_FreshNews(w, h, post, colorIdx = 0) {
 
   <!-- Bottom Crisp Subtitle Pill -->
   <g transform="translate(${w / 2}, ${h - 55})" filter="url(#megaShadow)">
-    <rect x="-300" y="-22" width="600" height="44" rx="22" fill="#0f172a" stroke="${c.pillBorder}" stroke-width="2"/>
-    <text x="0" y="7" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="20" font-weight="800" fill="#ffffff">
+    <rect x="-340" y="-24" width="680" height="48" rx="24" fill="#0f172a" stroke="${c.pillBorder}" stroke-width="2.5"/>
+    <text x="0" y="8" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="22" font-weight="800" fill="#ffffff">
       ✦ ${escapeXml(subTag)}
     </text>
   </g>
@@ -626,8 +649,12 @@ const S2_COLOR_THEMES = [
 export function renderStyle2_ComicPop(w, h, post, colorIdx = 0) {
   const { badge, title1, title2, subTag } = parseHookingCopy(post);
   const theme = detectSceneTheme(post);
-  const boxWidth = Math.max(800, title1.length * 115 + 90);
   const c = S2_COLOR_THEMES[colorIdx % S2_COLOR_THEMES.length];
+
+  const s1 = getSafeFontSize(title1, 980, 114, 70);
+  const s2 = getSafeFontSize(title2, 980, 118, 72);
+  const boxWidth = Math.min(1080, Math.max(760, title1.length * (s1 * 0.82) + 120));
+  const boxHeight = Math.floor(s1 * 1.35);
 
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}">
   <defs>
@@ -638,62 +665,54 @@ export function renderStyle2_ComicPop(w, h, post, colorIdx = 0) {
     ${DROP_SHADOW_FILTER}
   </defs>
 
-  <!-- 1. Content-Aware Background Scene -->
+  <!-- 1. Background Content Scene -->
   ${renderThematicBackgroundScene(theme, w, h)}
 
-  <!-- 2. Dark Wash -->
-  <rect width="${w}" height="${h}" fill="#000000" opacity="0.35"/>
+  <!-- 2. Dark Wash Scrim -->
+  <rect width="${w}" height="${h}" fill="#000000" opacity="0.45"/>
 
-  <!-- 3. Giant Comic Starburst Backdrop -->
-  <g transform="translate(${w / 2}, ${h / 2 - 10})" filter="url(#megaShadow)">
-    <polygon points="
-      0,-270 55,-140 200,-250 145,-110 300,-140 185,-20 330,30 185,90 270,220 130,165 155,295 30,185
-      -20,295 -65,175 -200,260 -145,120 -310,150 -200,20 -330,-40 -185,-90 -270,-210 -120,-155 -130,-285 -20,-175
-    " fill="url(#s2StarGrad_${colorIdx})" stroke="#000000" stroke-width="14"/>
-
-    <polygon points="230,-190 255,-130 225,-125 270,-65 235,-75 260,-10 205,-70 230,-75" fill="${c.starSpark}" stroke="#000000" stroke-width="5"/>
-    <polygon points="-230,130 -255,75 -225,70 -270,10 -235,20 -260,-45 -205,15 -230,20" fill="${c.starSpark}" stroke="#000000" stroke-width="5"/>
+  <!-- 3. Dynamic Halftone Comic Rays -->
+  <g transform="translate(${w / 2}, ${h / 2})" opacity="0.35">
+    <circle cx="0" cy="0" r="380" fill="none" stroke="${c.starSpark}" stroke-width="8" stroke-dasharray="16,24"/>
   </g>
 
-  <!-- 4. Electric Plug Wire Loop -->
-  <g transform="translate(${w / 2}, ${h / 2 - 10})" filter="url(#megaShadow)">
-    <path d="M -380 10 Q -440 130 -220 175 Q 220 195 380 110" fill="none" stroke="#000000" stroke-width="26" stroke-linecap="round"/>
-    <path d="M 370 105 L 420 120 L 400 160 L 350 145 Z" fill="#000000"/>
-    <rect x="415" y="115" width="24" height="7" fill="${c.wirePin}" stroke="#000000" stroke-width="2"/>
-    <rect x="405" y="138" width="24" height="7" fill="${c.wirePin}" stroke="#000000" stroke-width="2"/>
-  </g>
-
-  <!-- 5. Central Giant Dynamic Headline (-4 deg dynamic tilt) -->
-  <g transform="translate(${w / 2}, ${h / 2 - 15}) rotate(-4)" filter="url(#megaShadow)">
+  <!-- 4. Central Pop Typography (-2.5 deg dynamic tilt) -->
+  <g transform="translate(${w / 2}, ${h / 2 - 15}) rotate(-2.5)" filter="url(#megaShadow)">
     
-    <!-- Top Black Box for Title 1 -->
-    <g transform="translate(0, -65)">
-      <rect x="${-boxWidth / 2}" y="-70" width="${boxWidth}" height="135" rx="18" fill="#000000" stroke="#000000" stroke-width="8"/>
-      <text x="0" y="28" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="138" font-weight="900" fill="#ffffff" letter-spacing="-3">
+    <!-- Top Category Tag -->
+    <g transform="translate(0, -140)">
+      <rect x="-140" y="-22" width="280" height="44" rx="22" fill="${c.subPillBg}" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="2"/>
+      <text x="0" y="8" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="22" font-weight="900" fill="#ffffff">
+        ${escapeXml(badge)}
+      </text>
+    </g>
+
+    <!-- Line 1: Pure White with Dark Box -->
+    <g transform="translate(0, -20)">
+      <rect x="${-boxWidth / 2 + 8}" y="${-boxHeight / 2 + 8}" width="${boxWidth}" height="${boxHeight}" rx="14" fill="#000000" opacity="0.75"/>
+      <rect x="${-boxWidth / 2}" y="${-boxHeight / 2}" width="${boxWidth}" height="${boxHeight}" rx="14" fill="url(#s2StarGrad_${colorIdx})" stroke="#FFFFFF" stroke-opacity="0.4" stroke-width="2.5"/>
+      
+      <text x="0" y="${s1 * 0.35}" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="${s1}" font-weight="900" fill="#ffffff" stroke="#000000" stroke-width="6" paint-order="stroke fill" letter-spacing="-1">
         ${escapeXml(title1)}
       </text>
     </g>
 
-    <!-- Bottom Giant Neon Text for Title 2 -->
-    <g transform="translate(0, 95)">
-      <text x="0" y="16" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="148" font-weight="900" fill="#000000" stroke="#000000" stroke-width="26" paint-order="stroke fill" letter-spacing="-4">
+    <!-- Line 2: Neon Accent -->
+    <g transform="translate(0, 115)">
+      <text x="0" y="${s2 * 0.35 + 8}" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="${s2}" font-weight="900" fill="#000000" stroke="#000000" stroke-width="14" paint-order="stroke fill" letter-spacing="-1">
         ${escapeXml(title2)}
       </text>
-      <text x="0" y="0" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="148" font-weight="900" fill="${c.title2Color}" stroke="#000000" stroke-width="18" paint-order="stroke fill" letter-spacing="-4">
+      <text x="0" y="${s2 * 0.35}" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="${s2}" font-weight="900" fill="${c.title2Color}" stroke="#000000" stroke-width="5" paint-order="stroke fill" letter-spacing="-1">
         ${escapeXml(title2)}
       </text>
-
-      <g transform="translate(${Math.min(300, title2.length * 40)}, -40)">
-        <polygon points="0,-28 18,0 3,0 14,28 -18,6 0,6" fill="${c.boltColor}" stroke="#000000" stroke-width="4"/>
-      </g>
     </g>
   </g>
 
-  <!-- Bottom Highlight Subtitle Pill -->
+  <!-- Bottom Subtitle Pill -->
   <g transform="translate(${w / 2}, ${h - 55})" filter="url(#megaShadow)">
-    <rect x="-280" y="-22" width="560" height="44" rx="22" fill="${c.subPillBg}" stroke="#000000" stroke-width="4"/>
-    <text x="0" y="7" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="19" font-weight="900" fill="#ffffff">
-      ⚡ ${escapeXml(subTag)}
+    <rect x="-340" y="-24" width="680" height="48" rx="24" fill="#0f172a" stroke="${c.starSpark}" stroke-width="2.5"/>
+    <text x="0" y="8" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="22" font-weight="800" fill="#ffffff">
+      ✦ ${escapeXml(subTag)}
     </text>
   </g>
 </svg>`;
@@ -755,11 +774,16 @@ export function renderStyle3_StreetCaution(w, h, post, colorIdx = 0) {
   const theme = detectSceneTheme(post);
   const c = S3_COLOR_THEMES[colorIdx % S3_COLOR_THEMES.length];
 
+  const s1 = getSafeFontSize(title1, 980, 114, 70);
+  const s2 = getSafeFontSize(title2, 980, 118, 72);
+  const boxWidth = Math.min(1080, Math.max(760, title1.length * (s1 * 0.82) + 120));
+  const boxHeight = Math.floor(s1 * 1.35);
+
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}">
   <defs>
-    <pattern id="s3CautionPattern_${colorIdx}" width="60" height="60" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-      <rect width="30" height="60" fill="${c.stripeColor}"/>
-      <rect x="30" width="30" height="60" fill="#000000"/>
+    <pattern id="s3CautionPattern_${colorIdx}" width="40" height="40" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="20" height="40" fill="${c.stripeColor}"/>
+      <rect x="20" width="20" height="40" fill="#000000"/>
     </pattern>
     ${DROP_SHADOW_FILTER}
   </defs>
@@ -768,7 +792,7 @@ export function renderStyle3_StreetCaution(w, h, post, colorIdx = 0) {
   ${renderThematicBackgroundScene(theme, w, h)}
 
   <!-- 2. Dark Wash -->
-  <rect width="${w}" height="${h}" fill="#000000" opacity="0.4"/>
+  <rect width="${w}" height="${h}" fill="#000000" opacity="0.45"/>
 
   <!-- 3. Diagonal Caution Tapes -->
   <g transform="translate(-80, 50) rotate(-22)" filter="url(#megaShadow)">
@@ -787,67 +811,42 @@ export function renderStyle3_StreetCaution(w, h, post, colorIdx = 0) {
     </text>
   </g>
 
-  <!-- 4. Big Dark Silhouette Star Backdrop -->
-  <g transform="translate(${w / 2}, ${h / 2 - 10})" filter="url(#megaShadow)">
-    <polygon points="
-      0,-240 60,-80 230,-80 100,35 150,200 0,105 -150,200 -100,35 -230,-80 -60,-80
-    " fill="#000000" stroke="${c.starStroke}" stroke-width="6"/>
-  </g>
-
-  <!-- Tech Stickers -->
-  <g transform="translate(${w - 150}, 160) rotate(8)" filter="url(#megaShadow)">
-    <circle cx="0" cy="0" r="45" fill="${c.smileyBg}" stroke="#000000" stroke-width="6"/>
-    <circle cx="-16" cy="-10" r="6" fill="#000000"/>
-    <circle cx="16" cy="-10" r="6" fill="#000000"/>
-    <path d="M -22 10 Q 0 34 22 10" fill="none" stroke="#000000" stroke-width="6" stroke-linecap="round"/>
-  </g>
-
-  <g transform="translate(${w - 180}, ${h - 140}) rotate(-10)" filter="url(#megaShadow)">
-    <rect x="-65" y="-30" width="130" height="60" rx="8" fill="#ffffff" stroke="#000000" stroke-width="4"/>
-    <text x="0" y="-8" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="12" font-weight="900" fill="#000000">100% VERIFIED</text>
-    <line x1="-50" y1="5" x2="-50" y2="20" stroke="#000000" stroke-width="4"/>
-    <line x1="-30" y1="5" x2="-30" y2="20" stroke="#000000" stroke-width="4"/>
-    <line x1="-10" y1="5" x2="-10" y2="20" stroke="#000000" stroke-width="4"/>
-    <line x1="10" y1="5" x2="10" y2="20" stroke="#000000" stroke-width="4"/>
-    <line x1="30" y1="5" x2="30" y2="20" stroke="#000000" stroke-width="4"/>
-  </g>
-
-  <!-- 5. Central 3D Graffiti Headline (-4.5 deg dynamic tilt) -->
-  <g transform="translate(${w / 2}, ${h / 2 - 10}) rotate(-4.5) skewX(-3)" filter="url(#megaShadow)">
+  <!-- 4. Central 3D Graffiti Headline (-2.5 deg dynamic tilt for maximum readability) -->
+  <g transform="translate(${w / 2}, ${h / 2 - 15}) rotate(-2.5)" filter="url(#megaShadow)">
     
     <!-- Top Stencil Badge -->
-    <g transform="translate(0, -125)">
-      <rect x="-160" y="-22" width="320" height="44" rx="8" fill="#ffffff" stroke="#000000" stroke-width="4"/>
-      <text x="0" y="8" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="20" font-weight="900" fill="#000000" letter-spacing="2">
+    <g transform="translate(0, -140)">
+      <rect x="-140" y="-22" width="280" height="44" rx="22" fill="${c.tagBg}" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="2"/>
+      <text x="0" y="8" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="22" font-weight="900" fill="${c.tagTextColor}" letter-spacing="1">
         ✦ ${escapeXml(badge)}
       </text>
     </g>
 
-    <!-- Line 1 (White Ultra Bold with Thick Black Shadow) -->
-    <g transform="translate(0, 18)">
-      <text x="0" y="10" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="138" font-weight="900" fill="#000000" stroke="#000000" stroke-width="24" paint-order="stroke fill" letter-spacing="-3">
-        ${escapeXml(title1)}
-      </text>
-      <text x="0" y="0" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="138" font-weight="900" fill="#ffffff" stroke="#000000" stroke-width="16" paint-order="stroke fill" letter-spacing="-3">
+    <!-- Line 1 (White Ultra Bold with Crisp Box) -->
+    <g transform="translate(0, -20)">
+      <rect x="${-boxWidth / 2 + 8}" y="${-boxHeight / 2 + 8}" width="${boxWidth}" height="${boxHeight}" rx="14" fill="#000000" opacity="0.75"/>
+      <rect x="${-boxWidth / 2}" y="${-boxHeight / 2}" width="${boxWidth}" height="${boxHeight}" rx="14" fill="#000000" stroke="${c.starStroke}" stroke-width="2.5"/>
+      
+      <text x="0" y="${s1 * 0.35}" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="${s1}" font-weight="900" fill="#ffffff" stroke="#000000" stroke-width="6" paint-order="stroke fill" letter-spacing="-1">
         ${escapeXml(title1)}
       </text>
     </g>
 
-    <!-- Line 2 (Massive Neon with 3D Extrusion) -->
-    <g transform="translate(0, 148)">
-      <text x="0" y="18" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="148" font-weight="900" fill="#000000" stroke="#000000" stroke-width="28" paint-order="stroke fill" letter-spacing="-4">
+    <!-- Line 2 (Massive Neon with 3D Shadow) -->
+    <g transform="translate(0, 115)">
+      <text x="0" y="${s2 * 0.35 + 8}" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="${s2}" font-weight="900" fill="#000000" stroke="#000000" stroke-width="14" paint-order="stroke fill" letter-spacing="-1">
         ${escapeXml(title2)}
       </text>
-      <text x="0" y="0" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="148" font-weight="900" fill="${c.title2Color}" stroke="#000000" stroke-width="18" paint-order="stroke fill" letter-spacing="-4">
+      <text x="0" y="${s2 * 0.35}" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="${s2}" font-weight="900" fill="${c.title2Color}" stroke="#000000" stroke-width="5" paint-order="stroke fill" letter-spacing="-1">
         ${escapeXml(title2)}
       </text>
     </g>
   </g>
 
   <!-- Bottom Tag Sticker -->
-  <g transform="translate(${w / 2}, ${h - 55}) rotate(2)" filter="url(#megaShadow)">
-    <rect x="-260" y="-20" width="520" height="40" rx="8" fill="${c.tagBg}" stroke="#000000" stroke-width="4"/>
-    <text x="0" y="6" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="18" font-weight="900" fill="${c.tagTextColor}">
+  <g transform="translate(${w / 2}, ${h - 55})" filter="url(#megaShadow)">
+    <rect x="-340" y="-24" width="680" height="48" rx="24" fill="#0f172a" stroke="${c.starStroke}" stroke-width="2.5"/>
+    <text x="0" y="8" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="22" font-weight="800" fill="#ffffff">
       🔥 ${escapeXml(subTag)}
     </text>
   </g>
@@ -880,22 +879,22 @@ const S4_COLOR_THEMES = [
     title2Color: '#38bdf8',
     subBarBorder: '#4ade80'
   },
-  // 2: Hot Pink Wireframes & Volt Lime 3D Title (Hyperpop Dark)
+  // 2: Crimson Wireframes & Volt Green 3D Title (Hyper Impact)
   {
     wireColor: '#f43f5e',
-    pill1Bg: '#db2777',
+    pill1Bg: '#e11d48',
     ovalBg: '#8b5cf6',
-    pill2Bg: '#f43f5e',
+    pill2Bg: '#fb7185',
     pill3Bg: '#ccff00',
-    badgeBg: '#e11d48',
+    badgeBg: '#dc2626',
     title2Color: '#ccff00',
     subBarBorder: '#f43f5e'
   },
-  // 3: Amber Wireframes & Sky Cyan 3D Title (Solar Eclipse)
+  // 3: Sunset Orange Wireframes & Sky Blue 3D Title (Solar Kinetic)
   {
-    wireColor: '#fbbf24',
+    wireColor: '#fb923c',
     pill1Bg: '#ea580c',
-    ovalBg: '#06b6d4',
+    ovalBg: '#10b981',
     pill2Bg: '#fbbf24',
     pill3Bg: '#38bdf8',
     badgeBg: '#d97706',
@@ -920,6 +919,11 @@ export function renderStyle4_EditorialKinetic(w, h, post, colorIdx = 0) {
   const theme = detectSceneTheme(post);
   const c = S4_COLOR_THEMES[colorIdx % S4_COLOR_THEMES.length];
 
+  const s1 = getSafeFontSize(title1, 980, 114, 70);
+  const s2 = getSafeFontSize(title2, 980, 118, 72);
+  const boxWidth = Math.min(1080, Math.max(760, title1.length * (s1 * 0.82) + 120));
+  const boxHeight = Math.floor(s1 * 1.35);
+
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}">
   <defs>
     ${DROP_SHADOW_FILTER}
@@ -931,21 +935,9 @@ export function renderStyle4_EditorialKinetic(w, h, post, colorIdx = 0) {
   <!-- 2. Dark Wash -->
   <rect width="${w}" height="${h}" fill="#000000" opacity="0.45"/>
 
-  <!-- 3. Repeated Wireframe Outline Typography Echoes (Top & Bottom) -->
-  <g transform="translate(${w / 2}, 110) rotate(-4.5) skewX(-4)" opacity="0.35">
-    <text x="0" y="0" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="135" font-weight="900" fill="none" stroke="${c.wireColor}" stroke-width="3" letter-spacing="-4">
-      ${escapeXml(title1)} ${escapeXml(title2)}
-    </text>
-  </g>
-  <g transform="translate(${w / 2}, ${h - 40}) rotate(-4.5) skewX(-4)" opacity="0.35">
-    <text x="0" y="0" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="135" font-weight="900" fill="none" stroke="${c.wireColor}" stroke-width="3" letter-spacing="-4">
-      ${escapeXml(title1)} ${escapeXml(title2)}
-    </text>
-  </g>
-
-  <!-- 4. Colorful Kinetic Stickers Scattered Around -->
+  <!-- 3. Colorful Kinetic Stickers Scattered Around -->
   <!-- Top-Left Pill -->
-  <g transform="translate(180, 100) rotate(-12)" filter="url(#megaShadow)">
+  <g transform="translate(180, 90) rotate(-8)" filter="url(#megaShadow)">
     <rect x="-85" y="-22" width="170" height="44" rx="22" fill="${c.pill1Bg}"/>
     <text x="0" y="7" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="16" font-weight="900" fill="#ffffff" letter-spacing="1">
       ✦ START NOW
@@ -953,56 +945,40 @@ export function renderStyle4_EditorialKinetic(w, h, post, colorIdx = 0) {
   </g>
 
   <!-- Top-Right Oval Sticker -->
-  <g transform="translate(${w - 200}, 90) rotate(14)" filter="url(#megaShadow)">
-    <ellipse cx="0" cy="0" rx="65" ry="32" fill="${c.ovalBg}"/>
-    <text x="0" y="6" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="15" font-weight="900" fill="#ffffff">
+  <g transform="translate(${w - 200}, 85) rotate(8)" filter="url(#megaShadow)">
+    <ellipse cx="0" cy="0" rx="75" ry="32" fill="${c.ovalBg}"/>
+    <text x="0" y="6" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="16" font-weight="900" fill="#ffffff">
       ${escapeXml(badge)}
     </text>
   </g>
 
-  <!-- Bottom-Left Pill -->
-  <g transform="translate(190, ${h - 130}) rotate(8)" filter="url(#megaShadow)">
-    <rect x="-95" y="-22" width="190" height="44" rx="22" fill="${c.pill2Bg}"/>
-    <text x="0" y="7" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="15" font-weight="900" fill="#000000">
-      ✔ AI 최적화 완료
-    </text>
-  </g>
-
-  <!-- Bottom-Right Pill -->
-  <g transform="translate(${w - 180}, ${h - 130}) rotate(-8)" filter="url(#megaShadow)">
-    <rect x="-90" y="-22" width="180" height="44" rx="22" fill="${c.pill3Bg}"/>
-    <text x="0" y="7" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="16" font-weight="900" fill="#000000" letter-spacing="1">
-      ★ 실전 적용 100%
-    </text>
-  </g>
-
-  <!-- 5. Central Solid Giant White Headline (-4.5 deg dynamic tilt) -->
-  <g transform="translate(${w / 2}, ${h / 2 - 10}) rotate(-4.5) skewX(-4)" filter="url(#megaShadow)">
+  <!-- 4. Central Solid Giant Headline (-2.5 deg dynamic tilt) -->
+  <g transform="translate(${w / 2}, ${h / 2 - 15}) rotate(-2.5)" filter="url(#megaShadow)">
     
     <!-- Top Mini Arch Badge -->
-    <g transform="translate(0, -100)">
-      <rect x="-130" y="-20" width="260" height="40" rx="20" fill="${c.badgeBg}"/>
-      <text x="0" y="7" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="18" font-weight="900" fill="#ffffff">
+    <g transform="translate(0, -140)">
+      <rect x="-140" y="-22" width="280" height="44" rx="22" fill="${c.badgeBg}" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="2"/>
+      <text x="0" y="8" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="22" font-weight="900" fill="#ffffff">
         ${escapeXml(badge)}
       </text>
     </g>
 
     <!-- Main Solid Bold White Headline (Line 1) -->
-    <g transform="translate(0, 15)">
-      <text x="0" y="12" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="140" font-weight="900" fill="#000000" stroke="#000000" stroke-width="24" paint-order="stroke fill" letter-spacing="-4">
-        ${escapeXml(title1)}
-      </text>
-      <text x="0" y="0" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="140" font-weight="900" fill="#ffffff" stroke="#000000" stroke-width="16" paint-order="stroke fill" letter-spacing="-4">
+    <g transform="translate(0, -20)">
+      <rect x="${-boxWidth / 2 + 8}" y="${-boxHeight / 2 + 8}" width="${boxWidth}" height="${boxHeight}" rx="14" fill="#000000" opacity="0.75"/>
+      <rect x="${-boxWidth / 2}" y="${-boxHeight / 2}" width="${boxWidth}" height="${boxHeight}" rx="14" fill="#0f172a" stroke="${c.wireColor}" stroke-width="2.5"/>
+      
+      <text x="0" y="${s1 * 0.35}" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="${s1}" font-weight="900" fill="#ffffff" stroke="#000000" stroke-width="6" paint-order="stroke fill" letter-spacing="-1">
         ${escapeXml(title1)}
       </text>
     </g>
 
     <!-- Line 2 (Second Line with High Contrast Color) -->
-    <g transform="translate(0, 130)">
-      <text x="0" y="12" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="148" font-weight="900" fill="#000000" stroke="#000000" stroke-width="24" paint-order="stroke fill" letter-spacing="-4">
+    <g transform="translate(0, 115)">
+      <text x="0" y="${s2 * 0.35 + 8}" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="${s2}" font-weight="900" fill="#000000" stroke="#000000" stroke-width="14" paint-order="stroke fill" letter-spacing="-1">
         ${escapeXml(title2)}
       </text>
-      <text x="0" y="0" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="148" font-weight="900" fill="${c.title2Color}" stroke="#000000" stroke-width="16" paint-order="stroke fill" letter-spacing="-4">
+      <text x="0" y="${s2 * 0.35}" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="${s2}" font-weight="900" fill="${c.title2Color}" stroke="#000000" stroke-width="5" paint-order="stroke fill" letter-spacing="-1">
         ${escapeXml(title2)}
       </text>
     </g>
@@ -1010,8 +986,8 @@ export function renderStyle4_EditorialKinetic(w, h, post, colorIdx = 0) {
 
   <!-- Bottom Center Subtitle Bar -->
   <g transform="translate(${w / 2}, ${h - 55})" filter="url(#megaShadow)">
-    <rect x="-260" y="-20" width="520" height="40" rx="20" fill="#000000" stroke="${c.subBarBorder}" stroke-width="2"/>
-    <text x="0" y="6" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="18" font-weight="800" fill="#ffffff">
+    <rect x="-340" y="-24" width="680" height="48" rx="24" fill="#0f172a" stroke="${c.subBarBorder}" stroke-width="2.5"/>
+    <text x="0" y="8" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="22" font-weight="800" fill="#ffffff">
       ✦ ${escapeXml(subTag)}
     </text>
   </g>
@@ -1019,69 +995,69 @@ export function renderStyle4_EditorialKinetic(w, h, post, colorIdx = 0) {
 }
 
 // -----------------------------------------------------------------------------
-// STYLE 5: Perspective Manga Squeeze / 3D Speed Slash (Reference: "LOL 峡谷成功学")
+// STYLE 5: Perspective Slash (5 Color Variations)
 // -----------------------------------------------------------------------------
 const S5_COLOR_THEMES = [
-  // 0: Anime Electric Blue (Original Reference)
+  // 0: Deep Obsidian & Cyber Lime
   {
-    bgGrad: ['#f0f9ff', '#e0f2fe', '#bae6fd'],
-    speedLines: '#2563eb',
-    title1Grad: ['#1d4ed8', '#2563eb'],
-    title1Stroke: '#ffffff',
-    title2Grad: ['#0284c7', '#0369a1'],
-    title2Stroke: '#ffffff',
-    bannerBg: '#1e293b',
+    bgGrad: ['#0f172a', '#020617', '#000000'],
+    speedLines: '#334155',
+    title1Grad: ['#ffffff', '#e2e8f0'],
+    title1Stroke: '#000000',
+    title2Grad: ['#ccff00', '#84cc16'],
+    title2Stroke: '#000000',
+    bannerBg: '#0f172a',
     bannerText: '#ffffff',
-    highlight: '#38bdf8',
+    highlight: '#ccff00',
     sparkColor: '#facc15'
   },
-  // 1: Mecha Crimson Fire
+  // 1: Ultra Marine Cobalt & Neon Cyan
   {
-    bgGrad: ['#fff1f2', '#ffe4e6', '#fecdd3'],
-    speedLines: '#dc2626',
-    title1Grad: ['#b91c1c', '#dc2626'],
-    title1Stroke: '#ffffff',
-    title2Grad: ['#991b1b', '#b91c1c'],
-    title2Stroke: '#ffffff',
-    bannerBg: '#450a0a',
-    bannerText: '#ffffff',
-    highlight: '#fb7185',
-    sparkColor: '#facc15'
-  },
-  // 2: Cyber Acid Volt (Dark Mode High Contrast)
-  {
-    bgGrad: ['#090d16', '#0f172a', '#1e293b'],
-    speedLines: '#65a30d',
-    title1Grad: ['#ccff00', '#a3e635'],
+    bgGrad: ['#1e3a8a', '#0f172a', '#020617'],
+    speedLines: '#1d4ed8',
+    title1Grad: ['#ffffff', '#bae6fd'],
     title1Stroke: '#000000',
     title2Grad: ['#38bdf8', '#0284c7'],
     title2Stroke: '#000000',
-    bannerBg: '#000000',
-    bannerText: '#ccff00',
-    highlight: '#ccff00',
+    bannerBg: '#1e293b',
+    bannerText: '#ffffff',
+    highlight: '#38bdf8',
     sparkColor: '#38bdf8'
   },
-  // 3: Hyper Violet Arcade
+  // 2: Royal Purple & Hot Pink
   {
-    bgGrad: ['#faf5ff', '#f3e8ff', '#e9d5ff'],
-    speedLines: '#7c3aed',
-    title1Grad: ['#6d28d9', '#7c3aed'],
-    title1Stroke: '#ffffff',
-    title2Grad: ['#4c1d95', '#6d28d9'],
-    title2Stroke: '#ffffff',
-    bannerBg: '#2e1065',
+    bgGrad: ['#581c87', '#2e1065', '#090514'],
+    speedLines: '#7e22ce',
+    title1Grad: ['#ffffff', '#f5d0fe'],
+    title1Stroke: '#000000',
+    title2Grad: ['#f472b6', '#db2777'],
+    title2Stroke: '#000000',
+    bannerBg: '#3b0764',
     bannerText: '#ffffff',
-    highlight: '#c084fc',
-    sparkColor: '#facc15'
+    highlight: '#f472b6',
+    sparkColor: '#f472b6'
+  },
+  // 3: Crimson Hazard & Bright Amber
+  {
+    bgGrad: ['#7f1d1d', '#450a0a', '#180404'],
+    speedLines: '#991b1b',
+    title1Grad: ['#ffffff', '#fecaca'],
+    title1Stroke: '#000000',
+    title2Grad: ['#fbbf24', '#d97706'],
+    title2Stroke: '#000000',
+    bannerBg: '#450a0a',
+    bannerText: '#ffffff',
+    highlight: '#facc15',
+    sparkColor: '#ea580c'
   },
   // 4: Solar Gold Dynamo
   {
-    bgGrad: ['#fffbeb', '#fef3c7', '#fde68a'],
-    speedLines: '#d97706',
-    title1Grad: ['#b45309', '#d97706'],
-    title1Stroke: '#ffffff',
-    title2Grad: ['#92400e', '#b45309'],
-    title2Stroke: '#ffffff',
+    bgGrad: ['#78350f', '#451a03', '#1c0a02'],
+    speedLines: '#92400e',
+    title1Grad: ['#ffffff', '#fef3c7'],
+    title1Stroke: '#000000',
+    title2Grad: ['#fde047', '#eab308'],
+    title2Stroke: '#000000',
     bannerBg: '#451a03',
     bannerText: '#ffffff',
     highlight: '#facc15',
@@ -1094,11 +1070,10 @@ export function renderStyle5_PerspectiveSlash(w, h, post, colorIdx = 0) {
   const theme = detectSceneTheme(post);
   const c = S5_COLOR_THEMES[colorIdx % S5_COLOR_THEMES.length];
 
-  // Dynamic font sizing to guarantee 100% visibility with zero clipping
-  const t1Len = Math.max(title1.length, 1);
-  const t2Len = Math.max(title2.length, 1);
-  const t1Size = Math.min(140, Math.max(95, Math.floor(1100 / Math.max(t1Len, 5.5))));
-  const t2Size = Math.min(148, Math.max(100, Math.floor(1150 / Math.max(t2Len, 5.5))));
+  const s1 = getSafeFontSize(title1, 980, 114, 70);
+  const s2 = getSafeFontSize(title2, 980, 118, 72);
+  const boxWidth = Math.min(1080, Math.max(760, title1.length * (s1 * 0.82) + 120));
+  const boxHeight = Math.floor(s1 * 1.35);
 
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}">
   <defs>
@@ -1108,117 +1083,51 @@ export function renderStyle5_PerspectiveSlash(w, h, post, colorIdx = 0) {
       <stop offset="100%" stop-color="${c.bgGrad[2]}"/>
     </linearGradient>
 
-    <linearGradient id="s5T1Grad_${colorIdx}" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="${c.title1Grad[0]}"/>
-      <stop offset="100%" stop-color="${c.title1Grad[1]}"/>
-    </linearGradient>
-
-    <linearGradient id="s5T2Grad_${colorIdx}" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="${c.title2Grad[0]}"/>
-      <stop offset="100%" stop-color="${c.title2Grad[1]}"/>
-    </linearGradient>
-
     ${DROP_SHADOW_FILTER}
   </defs>
 
   <!-- 1. Content-Aware Thematic Background -->
   ${renderThematicBackgroundScene(theme, w, h)}
 
-  <!-- 2. Dynamic Perspective Base Gradient Overlay -->
+  <!-- 2. Base Gradient Overlay -->
   <rect width="${w}" height="${h}" fill="url(#s5BgGrad_${colorIdx})" opacity="0.82"/>
 
-  <!-- 3. High-Energy Fisheye 3D Perspective Speed Rays Converging to Center Horizon -->
-  <g opacity="0.32">
-    <polygon points="0,0 350,0 ${w/2 - 100},${h/2}" fill="${c.speedLines}"/>
-    <polygon points="${w},0 ${w - 350},0 ${w/2 + 100},${h/2}" fill="${c.speedLines}"/>
-    <polygon points="0,${h} 380,${h} ${w/2 - 120},${h/2}" fill="${c.speedLines}"/>
-    <polygon points="${w},${h} ${w - 380},${h} ${w/2 + 120},${h/2}" fill="${c.speedLines}"/>
-    <polygon points="0,${h/2 - 90} 0,${h/2 + 90} ${w/2 - 150},${h/2}" fill="${c.speedLines}"/>
-    <polygon points="${w},${h/2 - 90} ${w},${h/2 + 90} ${w/2 + 150},${h/2}" fill="${c.speedLines}"/>
-  </g>
-
-  <!-- 4. Corner Perspective Angled Banners & Doodles -->
-  <!-- Top-Left Angled Strip -->
-  <g transform="translate(35, 60) rotate(-14)" filter="url(#megaShadow)">
-    <rect x="-10" y="-18" width="310" height="38" rx="6" fill="${c.bannerBg}"/>
-    <text x="145" y="8" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="15" font-weight="900" fill="${c.bannerText}" letter-spacing="1">
-      ⚡ AI 공략 // ${escapeXml(badge)}
-    </text>
-  </g>
-
-  <!-- Top-Right Angled Strip -->
-  <g transform="translate(${w - 280}, 65) rotate(14)" filter="url(#megaShadow)">
-    <rect x="-10" y="-18" width="280" height="38" rx="6" fill="${c.bannerBg}"/>
-    <text x="130" y="8" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="14" font-weight="900" fill="${c.bannerText}" letter-spacing="1">
-      ★ 2026 최신 트렌드 검증
-    </text>
-  </g>
-
-  <!-- Bottom-Left Angled Strip -->
-  <g transform="translate(45, ${h - 75}) rotate(12)" filter="url(#megaShadow)">
-    <rect x="-10" y="-18" width="290" height="36" rx="6" fill="${c.bannerBg}"/>
-    <text x="135" y="7" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="14" font-weight="900" fill="${c.bannerText}">
-      ✔ 단 3분 마스터 핵심 비법
-    </text>
-  </g>
-
-  <!-- Bottom-Right Angled Strip -->
-  <g transform="translate(${w - 275}, ${h - 70}) rotate(-12)" filter="url(#megaShadow)">
-    <rect x="-10" y="-18" width="275" height="36" rx="6" fill="${c.bannerBg}"/>
-    <text x="127" y="7" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="14" font-weight="900" fill="${c.bannerText}">
-      ✦ GO! TAKE RISKS 100%
-    </text>
-  </g>
-
-  <!-- Top Center Game Emblem Badge -->
-  <g transform="translate(${w/2}, 65)" filter="url(#megaShadow)">
-    <rect x="-130" y="-20" width="260" height="40" rx="20" fill="#000000" stroke="${c.highlight}" stroke-width="3"/>
-    <text x="0" y="7" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="17" font-weight="900" fill="#ffffff" letter-spacing="2">
-      ⚡ RAB8BIT AI LAB
-    </text>
-  </g>
-
-  <!-- 5. Central High-Energy 2-Line Manga Perspective Headline -->
-  <g transform="translate(${w/2}, ${h/2 - 10})" filter="url(#megaShadow)">
+  <!-- 3. Central Dynamic Headline (-2.5 deg dynamic tilt) -->
+  <g transform="translate(${w / 2}, ${h / 2 - 15}) rotate(-2.5)" filter="url(#megaShadow)">
     
-    <!-- Line 1 (Upper Tier - Dynamic Left Squeeze Tilt) -->
-    <g transform="translate(0, -50) rotate(-3.5) skewX(-4)">
-      <!-- Deep 3D Shadow -->
-      <text x="0" y="20" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="${t1Size}" font-weight="900" fill="#000000" stroke="#000000" stroke-width="26" paint-order="stroke fill" letter-spacing="-4">
-        ${escapeXml(title1)}
+    <!-- Top Badge -->
+    <g transform="translate(0, -140)">
+      <rect x="-140" y="-22" width="280" height="44" rx="22" fill="${c.bannerBg}" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="2"/>
+      <text x="0" y="8" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="22" font-weight="900" fill="${c.bannerText}">
+        ⚡ ${escapeXml(badge)}
       </text>
-      <!-- Main Gradient Body with Crisp White/Dark Stroke -->
-      <text x="0" y="0" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="${t1Size}" font-weight="900" fill="url(#s5T1Grad_${colorIdx})" stroke="${c.title1Stroke}" stroke-width="14" paint-order="stroke fill" letter-spacing="-4">
-        ${escapeXml(title1)}
-      </text>
-      <!-- Manga Slash Accents -->
-      <polygon points="${-t1Len * (t1Size * 0.38) - 30},-40 ${-t1Len * (t1Size * 0.38) - 10},-25 ${-t1Len * (t1Size * 0.38) - 45},-10" fill="${c.highlight}"/>
     </g>
 
-    <!-- Line 2 (Lower Tier - Dynamic Right Squeeze Tilt) -->
-    <g transform="translate(0, 95) rotate(2.5) skewX(3)">
-      <!-- Deep 3D Shadow -->
-      <text x="0" y="22" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="${t2Size}" font-weight="900" fill="#000000" stroke="#000000" stroke-width="28" paint-order="stroke fill" letter-spacing="-4">
-        ${escapeXml(title2)}
+    <!-- Line 1: Pure White with Box -->
+    <g transform="translate(0, -20)">
+      <rect x="${-boxWidth / 2 + 8}" y="${-boxHeight / 2 + 8}" width="${boxWidth}" height="${boxHeight}" rx="14" fill="#000000" opacity="0.75"/>
+      <rect x="${-boxWidth / 2}" y="${-boxHeight / 2}" width="${boxWidth}" height="${boxHeight}" rx="14" fill="${c.bannerBg}" stroke="${c.highlight}" stroke-width="2.5"/>
+      
+      <text x="0" y="${s1 * 0.35}" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="${s1}" font-weight="900" fill="#ffffff" stroke="#000000" stroke-width="6" paint-order="stroke fill" letter-spacing="-1">
+        ${escapeXml(title1)}
       </text>
-      <!-- Main Gradient Body with Crisp White/Dark Stroke -->
-      <text x="0" y="0" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="${t2Size}" font-weight="900" fill="url(#s5T2Grad_${colorIdx})" stroke="${c.title2Stroke}" stroke-width="16" paint-order="stroke fill" letter-spacing="-4">
-        ${escapeXml(title2)}
-      </text>
-      <!-- Manga Slash Accents -->
-      <polygon points="${t2Len * (t2Size * 0.38) + 30},-30 ${t2Len * (t2Size * 0.38) + 10},-15 ${t2Len * (t2Size * 0.38) + 45},0" fill="${c.highlight}"/>
     </g>
 
-    <!-- Central Energy Spark Accents -->
-    <g transform="translate(${Math.min(360, t2Len * 50)}, 30)">
-      <polygon points="0,-22 14,0 2,0 10,22 -14,5 0,5" fill="${c.sparkColor}" stroke="#000000" stroke-width="3"/>
+    <!-- Line 2: Vibrant Color -->
+    <g transform="translate(0, 115)">
+      <text x="0" y="${s2 * 0.35 + 8}" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="${s2}" font-weight="900" fill="#000000" stroke="#000000" stroke-width="14" paint-order="stroke fill" letter-spacing="-1">
+        ${escapeXml(title2)}
+      </text>
+      <text x="0" y="${s2 * 0.35}" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="${s2}" font-weight="900" fill="${c.highlight}" stroke="#000000" stroke-width="5" paint-order="stroke fill" letter-spacing="-1">
+        ${escapeXml(title2)}
+      </text>
     </g>
   </g>
 
   <!-- Bottom Anchor Subtitle Pill -->
-  <g transform="translate(${w/2}, ${h - 50})" filter="url(#megaShadow)">
-    <rect x="-260" y="-18" width="520" height="36" rx="18" fill="#000000" stroke="${c.highlight}" stroke-width="2"/>
-    <text x="0" y="6" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="16" font-weight="900" fill="#ffffff">
+  <g transform="translate(${w/2}, ${h - 55})" filter="url(#megaShadow)">
+    <rect x="-340" y="-24" width="680" height="48" rx="24" fill="#000000" stroke="${c.highlight}" stroke-width="2.5"/>
+    <text x="0" y="8" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="22" font-weight="800" fill="#ffffff">
       ✦ ${escapeXml(subTag)}
     </text>
   </g>
@@ -1226,58 +1135,53 @@ export function renderStyle5_PerspectiveSlash(w, h, post, colorIdx = 0) {
 }
 
 // -----------------------------------------------------------------------------
-// STYLE 6: Editorial Monolithic Stack / Fashion Headline (Reference: "I AM POWERFUL")
+// STYLE 6: Editorial Monolithic Stack / Fashion Headline
 // -----------------------------------------------------------------------------
 const S6_COLOR_THEMES = [
-  // 0: Vogue Carmine Red & Studio Charcoal (Original Reference)
+  // 0: Carmine Red
   {
     bgWash: '#09090b',
     monoText: '#ef4444',
-    monoTextStroke: '#000000',
     monoShadow: '#7f1d1d',
     accentLine: '#f87171',
     quoteColor: '#fca5a5',
     tagBg: '#ef4444',
     tagText: '#ffffff'
   },
-  // 1: Acid Volt & Deep Obsidian
+  // 1: Acid Volt
   {
     bgWash: '#020617',
     monoText: '#ccff00',
-    monoTextStroke: '#000000',
     monoShadow: '#365314',
     accentLine: '#a3e635',
     quoteColor: '#bef264',
     tagBg: '#ccff00',
     tagText: '#000000'
   },
-  // 2: Cyber Sky Cyan & Midnight Cobalt
+  // 2: Cyber Sky Cyan
   {
     bgWash: '#030712',
     monoText: '#38bdf8',
-    monoTextStroke: '#000000',
     monoShadow: '#0c4a6e',
     accentLine: '#7dd3fc',
     quoteColor: '#bae6fd',
     tagBg: '#0284c7',
     tagText: '#ffffff'
   },
-  // 3: Radiant Gold & Espresso Noir
+  // 3: Radiant Gold
   {
     bgWash: '#1c1917',
     monoText: '#facc15',
-    monoTextStroke: '#000000',
     monoShadow: '#78350f',
     accentLine: '#fde047',
     quoteColor: '#fef08a',
     tagBg: '#eab308',
     tagText: '#000000'
   },
-  // 4: Hyper Neon Pink & Velvet Smoke
+  // 4: Hyper Neon Pink
   {
     bgWash: '#0f172a',
     monoText: '#f43f5e',
-    monoTextStroke: '#000000',
     monoShadow: '#881337',
     accentLine: '#fb7185',
     quoteColor: '#fbcfe8',
@@ -1291,26 +1195,18 @@ export function renderStyle6_EditorialMonolith(w, h, post, colorIdx = 0) {
   const theme = detectSceneTheme(post);
   const c = S6_COLOR_THEMES[colorIdx % S6_COLOR_THEMES.length];
 
-  // Dynamic font sizing for left column so long words never overflow
-  const t1Len = Math.max(title1.length, 1);
-  const t2Len = Math.max(title2.length, 1);
-  const t1Size = Math.min(136, Math.max(88, Math.floor(660 / Math.max(t1Len, 4.2))));
-  const t2Size = Math.min(138, Math.max(90, Math.floor(680 / Math.max(t2Len, 4.2))));
+  const s1 = getSafeFontSize(title1, 750, 114, 70);
+  const s2 = getSafeFontSize(title2, 750, 118, 72);
 
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}">
   <defs>
-    <!-- Woodblock / Brush Distressed Texture Filter -->
-    <filter id="woodblockTexture_${colorIdx}" x="0%" y="0%" width="100%" height="100%">
-      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise"/>
-      <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G"/>
-    </filter>
     ${DROP_SHADOW_FILTER}
   </defs>
 
   <!-- 1. Thematic Background Scene -->
   ${renderThematicBackgroundScene(theme, w, h)}
 
-  <!-- 2. Dark Cinematic Vignette & Studio Lighting Overlay -->
+  <!-- 2. Dark Studio Lighting Overlay -->
   <rect width="${w}" height="${h}" fill="${c.bgWash}" opacity="0.65"/>
   <radialGradient id="s6Spotlight_${colorIdx}" cx="75%" cy="45%" r="65%">
     <stop offset="0%" stop-color="${c.accentLine}" stop-opacity="0.25"/>
@@ -1319,53 +1215,36 @@ export function renderStyle6_EditorialMonolith(w, h, post, colorIdx = 0) {
   </radialGradient>
   <rect width="${w}" height="${h}" fill="url(#s6Spotlight_${colorIdx})"/>
 
-  <!-- 3. Right Cinematic Framing Graphic (Futuristic AI Portal Aesthetic) -->
-  <g transform="translate(${w - 300}, ${h/2})" opacity="0.4" filter="url(#megaShadow)">
-    <circle cx="0" cy="0" r="210" fill="none" stroke="${c.monoText}" stroke-width="4" stroke-dasharray="12,6"/>
-    <circle cx="0" cy="0" r="160" fill="none" stroke="${c.accentLine}" stroke-width="2"/>
-    <circle cx="0" cy="0" r="85" fill="${c.monoShadow}" opacity="0.6"/>
-  </g>
-
-  <!-- 4. Top Editorial Metadata Headers -->
+  <!-- 3. Top Editorial Metadata Headers -->
   <g transform="translate(80, 65)">
-    <rect x="0" y="-16" width="130" height="28" rx="4" fill="${c.tagBg}"/>
-    <text x="65" y="3" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="13" font-weight="900" fill="${c.tagText}">
+    <rect x="0" y="-16" width="130" height="32" rx="4" fill="${c.tagBg}"/>
+    <text x="65" y="6" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="15" font-weight="900" fill="${c.tagText}">
       ${escapeXml(badge)}
     </text>
-    <text x="150" y="3" font-family="monospace" font-size="14" font-weight="900" fill="#94a3b8" letter-spacing="2">
+    <text x="150" y="5" font-family="monospace" font-size="14" font-weight="900" fill="#94a3b8" letter-spacing="2">
       ISSUE NO.2026 // VOL.08 — RAB8BIT EDITORIAL ARCHIVE
     </text>
   </g>
 
-  <!-- 5. Giant Left-Aligned 3-Tier Monolithic Stacked Typography -->
-  <g transform="translate(80, 95)" filter="url(#woodblockTexture_${colorIdx})">
-    
+  <!-- 4. Giant Left-Aligned 3-Tier Monolithic Stacked Typography -->
+  <g transform="translate(80, 110)">
     <!-- Tier 1: Bold Top Hook Label -->
-    <g transform="translate(0, 90)" filter="url(#megaShadow)">
-      <text x="0" y="10" font-family="${FONT_FAMILY}" font-size="95" font-weight="900" fill="${c.monoShadow}" stroke="#000000" stroke-width="12" letter-spacing="-3">
-        AI TREND
-      </text>
-      <text x="0" y="0" font-family="${FONT_FAMILY}" font-size="95" font-weight="900" fill="${c.monoText}" letter-spacing="-3">
+    <g transform="translate(0, 75)" filter="url(#megaShadow)">
+      <text x="0" y="0" font-family="${FONT_FAMILY}" font-size="75" font-weight="900" fill="${c.monoText}" letter-spacing="-2">
         AI TREND
       </text>
     </g>
 
-    <!-- Tier 2: Title Line 1 (Giant Monolithic Condensed) -->
-    <g transform="translate(0, 225)" filter="url(#megaShadow)">
-      <text x="0" y="14" font-family="${FONT_FAMILY}" font-size="${t1Size}" font-weight="900" fill="${c.monoShadow}" stroke="#000000" stroke-width="14" letter-spacing="-4">
-        ${escapeXml(title1)}
-      </text>
-      <text x="0" y="0" font-family="${FONT_FAMILY}" font-size="${t1Size}" font-weight="900" fill="${c.monoText}" letter-spacing="-4">
+    <!-- Tier 2: Title Line 1 (Giant Monolithic) -->
+    <g transform="translate(0, 195)" filter="url(#megaShadow)">
+      <text x="0" y="0" font-family="${FONT_FAMILY}" font-size="${s1}" font-weight="900" fill="#ffffff" stroke="#000000" stroke-width="4" paint-order="stroke fill" letter-spacing="-2">
         ${escapeXml(title1)}
       </text>
     </g>
 
-    <!-- Tier 3: Title Line 2 (Giant Monolithic Condensed) -->
-    <g transform="translate(0, 365)" filter="url(#megaShadow)">
-      <text x="0" y="14" font-family="${FONT_FAMILY}" font-size="${t2Size}" font-weight="900" fill="${c.monoShadow}" stroke="#000000" stroke-width="14" letter-spacing="-4">
-        ${escapeXml(title2)}
-      </text>
-      <text x="0" y="0" font-family="${FONT_FAMILY}" font-size="${t2Size}" font-weight="900" fill="${c.monoText}" letter-spacing="-4">
+    <!-- Tier 3: Title Line 2 (Giant Monolithic) -->
+    <g transform="translate(0, 315)" filter="url(#megaShadow)">
+      <text x="0" y="0" font-family="${FONT_FAMILY}" font-size="${s2}" font-weight="900" fill="${c.monoText}" stroke="#000000" stroke-width="4" paint-order="stroke fill" letter-spacing="-2">
         ${escapeXml(title2)}
       </text>
     </g>
