@@ -21,6 +21,7 @@ function escapeXml(str) {
 // Curated Short 2-Line Mega-Punchy Hooking Dictionary (Strict 3~6 chars per line)
 // -----------------------------------------------------------------------------
 export const PUNCHY_HOOK_MAP = {
+  'daily-tech-insight-2026-09-15': { badge: '🔍 딥 리서치', title1: '딥 리서치 AI', title2: '보고서 10배 단축' },
   'daily-tech-insight-2026-09-14': { badge: '⚡ 100만 토큰', title1: '100만 토큰', title2: '대형 문서 분석' },
   'daily-tech-insight-2026-09-13': { badge: '🚀 바이브 코딩', title1: '바이브 코딩', title2: '1인 창업 스택' },
   'daily-tech-insight-2026-09-12': { badge: '🤖 AI 에이전트', title1: 'AI 에이전트', title2: '업무 자동화' },
