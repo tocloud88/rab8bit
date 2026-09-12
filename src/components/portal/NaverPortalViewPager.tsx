@@ -19,9 +19,9 @@ export interface CategoryTab {
 export const PORTAL_CATEGORIES: CategoryTab[] = [
   { id: 'home', label: '홈', href: '/', icon: '🏠', title: 'rab8bit | AI 인사이트, 프롬프트, 도구 & 갤러리 올인원 플랫폼' },
   { id: 'insights', label: '인사이트', href: '/insights', icon: '🎬', title: 'AI 인사이트 & 실무 팁 - rab8bit' },
-  { id: 'ai-tools', label: 'AI 도구', href: '/ai-tools', icon: '🤖', title: '추천 AI 웹사이트 & 도구 모음 (172종) | rab8bit' },
-  { id: 'blog', label: '블로그', href: '/blog', icon: '📝', title: 'AI 심층 블로그 & 최신 테크 아티클 | rab8bit' },
   { id: 'tools', label: '웹 도구', href: '/tools', icon: '🛠️', title: '130+ 무료 스마트 웹 도구 & 계산기 | rab8bit' },
+  { id: 'blog', label: '블로그', href: '/blog', icon: '📝', title: 'AI 심층 블로그 & 최신 테크 아티클 | rab8bit' },
+  { id: 'ai-tools', label: 'AI 도구', href: '/ai-tools', icon: '🤖', title: '추천 AI 웹사이트 & 도구 모음 (172종) | rab8bit' },
   { id: 'prompts', label: '프롬프트', href: '/prompts', icon: '💬', title: '실무 프롬프트 라이브러리 (274종) | rab8bit' },
   { id: 'gpts', label: '챗봇지침', href: '/gpts', icon: '🤖', title: '검증된 GPTs 챗봇지침 (100종) | rab8bit' },
   { id: 'gallery', label: '바나나 갤러리', href: '/gallery', icon: '🍌', title: '바나나 AI 이미지 갤러리 | rab8bit' },

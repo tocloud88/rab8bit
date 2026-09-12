@@ -106,10 +106,10 @@ export default function HomePortalPanel({ onNavigateTab }: Props) {
               <span>🎬</span> 인사이트 ({INSIGHTS_DATA.length})
             </button>
             <button
-              onClick={handleNav('ai-tools', '/ai-tools')}
+              onClick={handleNav('tools', '/tools')}
               className="px-3.5 py-2 rounded-xl bg-slate-900/90 hover:bg-indigo-600 text-slate-200 hover:text-white font-bold text-xs border border-indigo-500/30 transition-all hover:scale-105 cursor-pointer flex items-center gap-1"
             >
-              <span>🌐</span> AI 도구 (172)
+              <span>🛠️</span> 웹 도구 (130+)
             </button>
             <button
               onClick={handleNav('blog', '/blog')}
@@ -118,10 +118,10 @@ export default function HomePortalPanel({ onNavigateTab }: Props) {
               <span>📝</span> 블로그 ({BLOGS_DATA.length})
             </button>
             <button
-              onClick={handleNav('tools', '/tools')}
+              onClick={handleNav('ai-tools', '/ai-tools')}
               className="px-3.5 py-2 rounded-xl bg-slate-900/90 hover:bg-indigo-600 text-slate-200 hover:text-white font-bold text-xs border border-indigo-500/30 transition-all hover:scale-105 cursor-pointer flex items-center gap-1"
             >
-              <span>🛠️</span> 웹 도구 (130+)
+              <span>🌐</span> AI 도구 (172)
             </button>
             <button
               onClick={handleNav('prompts', '/prompts')}
@@ -154,61 +154,7 @@ export default function HomePortalPanel({ onNavigateTab }: Props) {
       {/* Top Leaderboard Ad Banner */}
       <AdSlotBanner label="스폰서 추천 광고" mockImg="/images/ads/mock-leaderboard-cloud.png" href="/ai-tools" />
 
-      {/* 2. Latest AI Blogs Section */}
-      <section className="space-y-4">
-        <div className="flex items-end justify-between border-b border-indigo-500/20 pb-3">
-          <div>
-            <span className="text-xs font-bold text-indigo-400 tracking-wider uppercase">Editorial</span>
-            <h2 className="text-lg sm:text-2xl font-extrabold text-white flex items-center gap-2">
-              <span>📰</span> 최신 AI 블로그 &amp; 인사이트
-            </h2>
-          </div>
-          <button
-            onClick={handleNav('blog', '/blog')}
-            className="text-xs sm:text-sm font-bold text-indigo-400 hover:underline cursor-pointer"
-          >
-            전체 {BLOGS_DATA.length}편 보기 &rarr;
-          </button>
-        </div>
-
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-5">
-          {latestBlogs.map((post) => (
-            <a
-              key={post.id}
-              href={`/blog/${post.id}`}
-              className="stitch-card rounded-2xl overflow-hidden flex flex-col justify-between group hover:border-indigo-500/50 transition-all hover:-translate-y-1"
-            >
-              <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-950">
-                {post.thumbnail ? (
-                  <img
-                    src={`${post.thumbnail}?v=v30ultra`}
-                    alt={post.title}
-                    loading="lazy"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center bg-indigo-950/40 text-indigo-400 text-2xl">
-                    📝
-                  </div>
-                )}
-              </div>
-              <div className="p-3 sm:p-4 flex-1 flex flex-col justify-between space-y-2">
-                <div>
-                  <span className="text-[10px] text-slate-500">{post.date}</span>
-                  <h3 className="font-bold text-xs sm:text-sm text-white group-hover:text-indigo-400 transition-colors line-clamp-2 leading-snug">
-                    {post.title}
-                  </h3>
-                </div>
-                <span className="text-[11px] text-indigo-400 font-bold pt-2 border-t border-slate-800">
-                  읽기 &rarr;
-                </span>
-              </div>
-            </a>
-          ))}
-        </div>
-      </section>
-
-      {/* 3. Featured Video Insights Section */}
+      {/* 2. Featured Video Insights Section */}
       <section className="space-y-4">
         <div className="flex items-end justify-between border-b border-indigo-500/20 pb-3">
           <div>
@@ -264,10 +210,7 @@ export default function HomePortalPanel({ onNavigateTab }: Props) {
         </div>
       </section>
 
-      {/* Mid Horizontal Ad Slot */}
-      <AdSlotBanner label="스마트 비즈니스 도구 추천" mockImg="/images/ads/mock-leaderboard-cloud.png" href="/ai-tools" />
-
-      {/* 4. Popular Smart Web Tools Section (with rich ToolCardVisual) */}
+      {/* 3. Popular Smart Web Tools Section (with rich ToolCardVisual) */}
       <section className="space-y-4">
         <div className="flex items-end justify-between border-b border-indigo-500/20 pb-3">
           <div>
@@ -305,6 +248,63 @@ export default function HomePortalPanel({ onNavigateTab }: Props) {
                   <span className="text-slate-500 text-[10px]">{tool.category}</span>
                   <span className="group-hover:translate-x-1 transition-transform">도구 열기 &rarr;</span>
                 </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      {/* Mid Horizontal Ad Slot */}
+      <AdSlotBanner label="스마트 비즈니스 도구 추천" mockImg="/images/ads/mock-leaderboard-cloud.png" href="/ai-tools" />
+
+      {/* 4. Latest AI Blogs Section */}
+      <section className="space-y-4">
+        <div className="flex items-end justify-between border-b border-indigo-500/20 pb-3">
+          <div>
+            <span className="text-xs font-bold text-indigo-400 tracking-wider uppercase">Editorial</span>
+            <h2 className="text-lg sm:text-2xl font-extrabold text-white flex items-center gap-2">
+              <span>📰</span> 최신 AI 블로그 &amp; 아티클
+            </h2>
+          </div>
+          <button
+            onClick={handleNav('blog', '/blog')}
+            className="text-xs sm:text-sm font-bold text-indigo-400 hover:underline cursor-pointer"
+          >
+            전체 {BLOGS_DATA.length}편 보기 &rarr;
+          </button>
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-5">
+          {latestBlogs.map((post) => (
+            <a
+              key={post.id}
+              href={`/blog/${post.id}`}
+              className="stitch-card rounded-2xl overflow-hidden flex flex-col justify-between group hover:border-indigo-500/50 transition-all hover:-translate-y-1"
+            >
+              <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-950">
+                {post.thumbnail ? (
+                  <img
+                    src={`${post.thumbnail}?v=v30ultra`}
+                    alt={post.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center bg-indigo-950/40 text-indigo-400 text-2xl">
+                    📝
+                  </div>
+                )}
+              </div>
+              <div className="p-3 sm:p-4 flex-1 flex flex-col justify-between space-y-2">
+                <div>
+                  <span className="text-[10px] text-slate-500">{post.date}</span>
+                  <h3 className="font-bold text-xs sm:text-sm text-white group-hover:text-indigo-400 transition-colors line-clamp-2 leading-snug">
+                    {post.title}
+                  </h3>
+                </div>
+                <span className="text-[11px] text-indigo-400 font-bold pt-2 border-t border-slate-800">
+                  읽기 &rarr;
+                </span>
               </div>
             </a>
           ))}
