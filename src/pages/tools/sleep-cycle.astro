@@ -1,0 +1,36 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SleepCycleCalculator from '../../components/tools/SleepCycleCalculator';
+import AdBanner from '../../components/ads/AdBanner.astro';
+---
+
+<Layout 
+  title="수면 사이클 계산기 | 90분 렘수면 최적 기상·취침 알람 - rab8bit"
+  description="90분 주기 렘수면(REM) 사이클을 바탕으로 지금 잠들었을 때 아침에 가장 개운하게 일어날 수 있는 추천 알람 시각을 계산합니다."
+>
+  <div class="max-w-4xl mx-auto space-y-8 py-4">
+    <div class="text-center space-y-2">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full stitch-pill text-xs font-bold">
+        😴 수면 / 피로회복
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white">최적 수면 사이클 계산기</h1>
+      <p class="text-slate-400 text-sm sm:text-base">
+        수면 관성(Sleep Inertia) 없이 가뿐하게 눈을 뜰 수 있는 최적의 기상 및 취침 시각을 확인하세요.
+      </p>
+    </div>
+
+    <SleepCycleCalculator client:load />
+
+    {/* In-tool Horizontal Ad Slot */}
+    <AdBanner type="horizontal" className="my-8" />
+
+    <div class="mt-8 stitch-card p-6 rounded-3xl border border-indigo-500/20 space-y-3 text-sm text-slate-300">
+      <h2 class="text-lg font-bold text-white">🌙 90분 수면 주기(Ultradian Cycle)의 원리</h2>
+      <ul class="list-disc list-inside space-y-1.5 text-slate-400">
+        <li>사람의 수면은 얕은 수면, 깊은 수면, 렘수면(REM) 주기를 약 90분 단위로 반복합니다.</li>
+        <li>깊은 수면 도중에 알람이 울리면 잠에서 깨도 피로감이 심한 수면 관성이 발생합니다.</li>
+        <li>90분 주기의 끝(렘수면 직후)에 기상하면 수면 시간이 적더라도 훨씬 개운함을 느낄 수 있습니다.</li>
+      </ul>
+    </div>
+  </div>
+</Layout>

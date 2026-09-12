@@ -12,6 +12,98 @@ export interface InteractiveToolItem {
 }
 
 export const INTERACTIVE_TOOLS: InteractiveToolItem[] = [
+  // 5. New 2026 Life Utilities
+  {
+    slug: "duty-calculator",
+    title: "해외직구 관·부가세 계산기",
+    description: "미국($200), 일본·유럽·중국($150) 면세 한도와 품목별 예상 관세 및 부가세를 실시간 계산합니다.",
+    category: "변환/계산",
+    icon: "✈️",
+    badge: "2026 신규",
+    tags: ["해외직구", "관세", "부가세", "환율", "면세한도"]
+  },
+  {
+    slug: "dutch-pay",
+    title: "스마트 더치페이 & 1/N 정산기",
+    description: "개인별 메뉴 금액에 배달팁과 할인쿠폰을 공평하게 분배하고 카카오톡 정산 문구를 생성합니다.",
+    category: "변환/계산",
+    icon: "🍗",
+    badge: "2026 신규",
+    tags: ["더치페이", "N분의1", "배달비", "정산", "카톡공유"]
+  },
+  {
+    slug: "holiday-planner",
+    title: "황금연차 & 연휴 플래너",
+    description: "내 입사일 기준 연차 발생 일수 계산과 2026/2027년 최장 9일 황금연휴 추천 일정을 확인합니다.",
+    category: "지식/정보",
+    icon: "📅",
+    badge: "2026 신규",
+    tags: ["황금연차", "공휴일", "연차계산", "대체공휴일", "휴가"]
+  },
+  {
+    slug: "severance-pay",
+    title: "퇴직금 & 실업급여 계산기",
+    description: "근속기간과 최근 3개월 급여 기반 예상 퇴직금 및 고용보험 실업급여 수급액을 모의 계산합니다.",
+    category: "변환/계산",
+    icon: "💰",
+    badge: "2026 신규",
+    tags: ["퇴직금", "실업급여", "구직급여", "평균임금", "급여"]
+  },
+  {
+    slug: "savings-calc",
+    title: "예금·적금 이자 계산기",
+    description: "정기예금 및 적금 만기 시 원금, 세전 이자, 이자소득세(15.4%/비과세) 차감 후 만기 수령액을 계산합니다.",
+    category: "변환/계산",
+    icon: "🏦",
+    badge: "2026 신규",
+    tags: ["적금이자", "정기예금", "복리계산", "비과세", "풍차돌리기"]
+  },
+  {
+    slug: "pomodoro-timer",
+    title: "뽀모도로 타이머 & 백색소음",
+    description: "25분 몰입과 5분 휴식 인터벌로 생산성을 극대화하며 오프라인 집중 백색소음을 재생합니다.",
+    category: "텍스트",
+    icon: "🍅",
+    badge: "2026 신규",
+    tags: ["뽀모도로", "타이머", "백색소음", "몰입", "생산성"]
+  },
+  {
+    slug: "recipe-portion",
+    title: "요리 레시피 인분 변환기",
+    description: "1인분 레시피를 원하는 인분 수에 맞춰 자동 증량 계산하고 밥숟가락, 종이컵 계량으로 변환합니다.",
+    category: "변환/계산",
+    icon: "🍳",
+    badge: "2026 신규",
+    tags: ["레시피", "인분변환", "계량", "밥숟가락", "종이컵"]
+  },
+  {
+    slug: "sleep-cycle",
+    title: "수면 사이클 계산기",
+    description: "90분 렘수면 주기를 바탕으로 아침에 가장 개운하게 눈뜰 수 있는 최적의 기상/취침 시각을 계산합니다.",
+    category: "지식/정보",
+    icon: "😴",
+    badge: "2026 신규",
+    tags: ["수면사이클", "렘수면", "기상시간", "알람", "피로회복"]
+  },
+  {
+    slug: "dday-calculator",
+    title: "디데이(D-Day) & 기념일 계산기",
+    description: "기념일, 시험, 목표일까지 남은 D-Day와 100일, 1주년, 1000일 기념일 날짜를 자동 계산합니다.",
+    category: "변환/계산",
+    icon: "🎁",
+    badge: "2026 신규",
+    tags: ["디데이", "D-day", "기념일", "100일", "커플"]
+  },
+  {
+    slug: "bmr-tdee-calc",
+    title: "기초대사량(BMR) & TDEE 계산기",
+    description: "나의 기초대사량과 하루 유지 칼로리를 계산하고 다이어트 맞춤 탄·단·지(g) 비율을 산출합니다.",
+    category: "변환/계산",
+    icon: "🔥",
+    badge: "2026 신규",
+    tags: ["기초대사량", "BMR", "TDEE", "다이어트", "칼로리", "탄단지"]
+  },
+
   // 1. Text
   {
     slug: 'character-counter',

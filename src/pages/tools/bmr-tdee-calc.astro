@@ -1,0 +1,36 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BmrTdeeCalculator from '../../components/tools/BmrTdeeCalculator';
+import AdBanner from '../../components/ads/AdBanner.astro';
+---
+
+<Layout 
+  title="기초대사량(BMR) & 활동대사량(TDEE) 계산기 | 탄단지 다이어트 - rab8bit"
+  description="미플린-지어 공식을 통한 나의 기초대사량(BMR)과 하루 총 에너지 소비량(TDEE) 계산. 다이어트 및 벌크업 맞춤 일일 탄·단·지(g)를 확인하세요."
+>
+  <div class="max-w-4xl mx-auto space-y-8 py-4">
+    <div class="text-center space-y-2">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full stitch-pill text-xs font-bold">
+        🔥 헬스 / 다이어트
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white">기초대사량 & TDEE 계산기</h1>
+      <p class="text-slate-400 text-sm sm:text-base">
+        성별, 나이, 키, 체중, 활동량을 입력하여 내 몸의 유지 칼로리와 다이어트 맞춤 영양 섭취량을 계산하세요.
+      </p>
+    </div>
+
+    <BmrTdeeCalculator client:load />
+
+    {/* In-tool Horizontal Ad Slot */}
+    <AdBanner type="horizontal" className="my-8" />
+
+    <div class="mt-8 stitch-card p-6 rounded-3xl border border-indigo-500/20 space-y-3 text-sm text-slate-300">
+      <h2 class="text-lg font-bold text-white">📊 BMR과 TDEE 개념 정리</h2>
+      <ul class="list-disc list-inside space-y-1.5 text-slate-400">
+        <li>기초대사량 (BMR): 숨만 쉬어도 생명 유지를 위해 소모되는 최소 에너지</li>
+        <li>유지 칼로리 (TDEE): 일상 활동 및 운동을 포함해 현재 체중을 유지하는 데 필요한 총 칼로리</li>
+        <li>다이어트 공식: TDEE에서 약 300~500kcal 적게 섭취 시 안전하고 지속 가능한 체지방 감량 가능</li>
+      </ul>
+    </div>
+  </div>
+</Layout>

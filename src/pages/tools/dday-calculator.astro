@@ -1,0 +1,36 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import DdayCalculator from '../../components/tools/DdayCalculator';
+import AdBanner from '../../components/ads/AdBanner.astro';
+---
+
+<Layout 
+  title="디데이(D-Day) & 기념일 계산기 | 100일·1주년·시험 카운트다운 - rab8bit"
+  description="기념일, 시험, 수능, 전역일까지 남은 날짜 D-Day 카운트다운과 100일, 200일, 1주년, 1000일 기념일 날짜를 자동으로 계산합니다."
+>
+  <div class="max-w-4xl mx-auto space-y-8 py-4">
+    <div class="text-center space-y-2">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full stitch-pill text-xs font-bold">
+        🎁 디데이 / 기념일
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white">디데이(D-Day) & 기념일 계산기</h1>
+      <p class="text-slate-400 text-sm sm:text-base">
+        소중한 기념일이나 목표일까지 남은 일수를 실시간 카운트다운하고 주요 기념일 일정을 한눈에 확인하세요.
+      </p>
+    </div>
+
+    <DdayCalculator client:load />
+
+    {/* In-tool Horizontal Ad Slot */}
+    <AdBanner type="horizontal" className="my-8" />
+
+    <div class="mt-8 stitch-card p-6 rounded-3xl border border-indigo-500/20 space-y-3 text-sm text-slate-300">
+      <h2 class="text-lg font-bold text-white">📅 기념일 계산법 안내</h2>
+      <ul class="list-disc list-inside space-y-1.5 text-slate-400">
+        <li>D-Day 계산: 목표일까지 남은 일수 (당일은 D-DAY)</li>
+        <li>100일 계산법: 만난 날을 1일째로 포함하여 100일째 되는 날 산출 (당일 + 99일)</li>
+        <li>1주년(365일): 만난 날로부터 정확히 365일째 되는 날짜</li>
+      </ul>
+    </div>
+  </div>
+</Layout>

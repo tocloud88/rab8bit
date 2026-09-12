@@ -1,0 +1,36 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PomodoroTimer from '../../components/tools/PomodoroTimer';
+import AdBanner from '../../components/ads/AdBanner.astro';
+---
+
+<Layout 
+  title="뽀모도로 타이머 & 집중 백색소음기 | 25분 몰입 5분 휴식 - rab8bit"
+  description="25분 집중과 5분 휴식 주기로 업무와 공부 효율을 극대화하는 온라인 뽀모도로 타이머. 오프라인 작동 백색소음 플레이어를 지원합니다."
+>
+  <div class="max-w-4xl mx-auto space-y-8 py-4">
+    <div class="text-center space-y-2">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full stitch-pill text-xs font-bold">
+        🍅 생산성 / 집중
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white">뽀모도로 타이머 & 집중 백색소음</h1>
+      <p class="text-slate-400 text-sm sm:text-base">
+        과학적으로 검증된 25분 집중 인터벌과 차분한 백색소음으로 깊은 몰입(Deep Work) 상태를 유지하세요.
+      </p>
+    </div>
+
+    <PomodoroTimer client:load />
+
+    {/* In-tool Horizontal Ad Slot */}
+    <AdBanner type="horizontal" className="my-8" />
+
+    <div class="mt-8 stitch-card p-6 rounded-3xl border border-indigo-500/20 space-y-3 text-sm text-slate-300">
+      <h2 class="text-lg font-bold text-white">🧠 뽀모도로(Pomodoro) 기법 활용법</h2>
+      <ul class="list-disc list-inside space-y-1.5 text-slate-400">
+        <li>1단계: 단 하나의 작업 목표를 정하고 25분간 온전히 집중합니다.</li>
+        <li>2단계: 25분이 끝나면 알람과 함께 5분간 스트레칭 등 가벼운 휴식을 취합니다.</li>
+        <li>3단계: 4세트를 완료하면 15~30분의 긴 휴식을 가지며 뇌의 피로를 회복합니다.</li>
+      </ul>
+    </div>
+  </div>
+</Layout>

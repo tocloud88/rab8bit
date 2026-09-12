@@ -1,0 +1,36 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import DutyCalculator from '../../components/tools/DutyCalculator';
+import AdBanner from '../../components/ads/AdBanner.astro';
+---
+
+<Layout 
+  title="해외직구 관·부가세 계산기 | 면세 한도·실시간 환율·품목별 관세율 - rab8bit"
+  description="미국($200), 일본·유럽·중국($150) 해외직구 면세 한도와 품목별(의류, 전자, 화장품, 영양제) 예상 관세 및 부가세를 실시간으로 자동 계산합니다."
+>
+  <div class="max-w-4xl mx-auto space-y-8 py-4">
+    <div class="text-center space-y-2">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full stitch-pill text-xs font-bold">
+        ✈️ 해외직구 / 관세
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white">해외직구 관·부가세 계산기</h1>
+      <p class="text-slate-400 text-sm sm:text-base">
+        달러/엔화/유로 환율과 품목별 관세율을 적용하여 최종 통관 예상 비용을 한눈에 확인하세요.
+      </p>
+    </div>
+
+    <DutyCalculator client:load />
+
+    {/* In-tool Horizontal Ad Slot */}
+    <AdBanner type="horizontal" className="my-8" />
+
+    <div class="mt-8 stitch-card p-6 rounded-3xl border border-indigo-500/20 space-y-3 text-sm text-slate-300">
+      <h2 class="text-lg font-bold text-white">📦 해외직구 통관 및 면세 기준 안내</h2>
+      <ul class="list-disc list-inside space-y-1.5 text-slate-400">
+        <li>미국발 물품(목록통관): 총 결제금액 $200 이하 면세</li>
+        <li>미국 외 국가(일본, 유럽, 중국 등) 또는 일반통관: 총 결제금액 $150 이하 면세</li>
+        <li>건강기능식품 및 의약품: 자가사용 기준 최대 6병까지만 통관 가능 (일반통관 $150 기준 적용)</li>
+      </ul>
+    </div>
+  </div>
+</Layout>

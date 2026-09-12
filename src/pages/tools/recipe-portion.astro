@@ -1,0 +1,36 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import RecipePortionConverter from '../../components/tools/RecipePortionConverter';
+import AdBanner from '../../components/ads/AdBanner.astro';
+---
+
+<Layout 
+  title="요리 레시피 인분 변환기 | 1인분 계량 숟가락·종이컵 환산 - rab8bit"
+  description="1인분 요리 레시피를 2인분, 3인분, 4인분으로 자동 증량 계산하고 밥숟가락, 종이컵(180ml), g, ml 계량 단위로 변환합니다."
+>
+  <div class="max-w-4xl mx-auto space-y-8 py-4">
+    <div class="text-center space-y-2">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full stitch-pill text-xs font-bold">
+        🍳 요리 / 레시피 계량
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white">요리 레시피 인분 변환기</h1>
+      <p class="text-slate-400 text-sm sm:text-base">
+        기준 레시피의 인분 수와 재료 용량을 원하는 인분 수에 맞춰 황금 비율로 즉시 자동 계산하세요.
+      </p>
+    </div>
+
+    <RecipePortionConverter client:load />
+
+    {/* In-tool Horizontal Ad Slot */}
+    <AdBanner type="horizontal" className="my-8" />
+
+    <div class="mt-8 stitch-card p-6 rounded-3xl border border-indigo-500/20 space-y-3 text-sm text-slate-300">
+      <h2 class="text-lg font-bold text-white">🥄 한국 표준 계량 단위 환산표</h2>
+      <ul class="list-disc list-inside space-y-1.5 text-slate-400">
+        <li>밥숟가락 1큰술(1T): 액체 약 10ml, 가루류 약 7~10g</li>
+        <li>종이컵 1컵: 물/액체 기준 180ml, 쌀 기준 약 150g, 밀가루 기준 약 100g</li>
+        <li>티스푼 1작은술(1t): 약 5ml, 1꼬집: 엄지와 검지로 살짝 집은 양(약 0.5~1g)</li>
+      </ul>
+    </div>
+  </div>
+</Layout>

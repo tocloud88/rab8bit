@@ -1,0 +1,36 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import HolidayPlanner from '../../components/tools/HolidayPlanner';
+import AdBanner from '../../components/ads/AdBanner.astro';
+---
+
+<Layout 
+  title="2026 황금연차 & 연휴 플래너 | 입사일 기준 연차 계산기 - rab8bit"
+  description="내 입사일 기준 발생 연차 일수 계산과 2026/2027년 대체공휴일 포함 최장 9일 황금연휴를 만드는 추천 연차 사용일을 확인하세요."
+>
+  <div class="max-w-4xl mx-auto space-y-8 py-4">
+    <div class="text-center space-y-2">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full stitch-pill text-xs font-bold">
+        📅 연차 / 공휴일
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white">황금연차 & 연휴 플래너</h1>
+      <p class="text-slate-400 text-sm sm:text-base">
+        내 법정 연차 발생 일수를 조회하고, 2026년 공휴일과 주말을 연계한 최적의 휴가 일정을 계획하세요.
+      </p>
+    </div>
+
+    <HolidayPlanner client:load />
+
+    {/* In-tool Horizontal Ad Slot */}
+    <AdBanner type="horizontal" className="my-8" />
+
+    <div class="mt-8 stitch-card p-6 rounded-3xl border border-indigo-500/20 space-y-3 text-sm text-slate-300">
+      <h2 class="text-lg font-bold text-white">⚖️ 근로기준법상 연차 유급휴가 발생 기준</h2>
+      <ul class="list-disc list-inside space-y-1.5 text-slate-400">
+        <li>입사 1년 미만: 1개월 개근 시 매월 1일씩 (최대 11일 발생)</li>
+        <li>입사 1년 이상: 1년간 80% 이상 출근 시 기본 15일 발생</li>
+        <li>근속 3년 이상: 매 2년 근속마다 1일씩 가산 (최대 25일 한도)</li>
+      </ul>
+    </div>
+  </div>
+</Layout>

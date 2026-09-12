@@ -1,0 +1,35 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import DutchPayCalculator from '../../components/tools/DutchPayCalculator';
+import AdBanner from '../../components/ads/AdBanner.astro';
+---
+
+<Layout 
+  title="배달비 & 모임 1/N 스마트 정산기 | 더치페이 카톡 공유 - rab8bit"
+  description="개인별 메뉴 금액에 배달팁과 할인쿠폰을 공평하게 N분의 1로 분배하고 카카오톡/토스 전송용 정산 문구를 원클릭으로 완성합니다."
+>
+  <div class="max-w-4xl mx-auto space-y-8 py-4">
+    <div class="text-center space-y-2">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full stitch-pill text-xs font-bold">
+        🍗 모임 / 배달 정산
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-white">스마트 더치페이 & 1/N 정산기</h1>
+      <p class="text-slate-400 text-sm sm:text-base">
+        인원별 메뉴 가격, 공통 배달비, 할인쿠폰을 깔끔하게 나누고 카톡 공유 문구를 복사하세요.
+      </p>
+    </div>
+
+    <DutchPayCalculator client:load />
+
+    {/* In-tool Horizontal Ad Slot */}
+    <AdBanner type="horizontal" className="my-8" />
+
+    <div class="mt-8 stitch-card p-6 rounded-3xl border border-indigo-500/20 space-y-3 text-sm text-slate-300">
+      <h2 class="text-lg font-bold text-white">💡 정산 팁 & 단위 절사 안내</h2>
+      <ul class="list-disc list-inside space-y-1.5 text-slate-400">
+        <li>100원 단위 올림을 설정하면 자투리 동전 없이 깔끔하게 입금 요청이 가능합니다.</li>
+        <li>공통 배달비와 할인쿠폰은 참여한 모든 인원에게 균등하게 자동 분배됩니다.</li>
+      </ul>
+    </div>
+  </div>
+</Layout>
