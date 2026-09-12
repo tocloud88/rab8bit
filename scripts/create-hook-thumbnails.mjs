@@ -421,8 +421,11 @@ export function renderThematicBackgroundScene(theme, w = 1280, h = 720) {
 }
 
 // ==============================================================================
-// 4 SIGNATURE STYLES (EXACT 100% USER-APPROVED DESIGNS & COLORS)
+// 4 SIGNATURE STYLES (EXACT APPROVED GEOMETRIES) x 5 COLOR PALETTES (20 TOTAL)
+// FONT: Paperlogy ('Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', sans-serif)
 // ==============================================================================
+
+const FONT_FAMILY = "'Paperlogy', 'Paperlogy-9Black', 'Paperlogy-8ExtraBold', 'Noto Sans KR', sans-serif";
 
 const DROP_SHADOW_FILTER = `
   <filter id="megaShadow" x="-30%" y="-30%" width="160%" height="160%">
@@ -431,24 +434,83 @@ const DROP_SHADOW_FILTER = `
 `;
 
 // -----------------------------------------------------------------------------
-// STYLE 1: Eco Clean / Fresh News 3D Ribbon (Reference: "100만 토큰 대형 문서 분석")
+// STYLE 1: Eco Clean / Fresh News 3D Ribbon (5 Color Variations)
 // -----------------------------------------------------------------------------
-export function renderStyle1_FreshNews(w, h, post) {
+const S1_COLOR_THEMES = [
+  // 0: Original Royal Blue & Sky Cyan
+  {
+    boxGrad: ['#1d4ed8', '#2563eb'],
+    arrowGrad: ['#fef08a', '#facc15', '#f59e0b'],
+    arrowHead: '#f59e0b',
+    archBg: '#1e40af',
+    title1Color: '#ffffff',
+    title2Color: '#38bdf8',
+    title2Stroke: '#ffffff',
+    pillBorder: '#38bdf8'
+  },
+  // 1: Crimson Red & Neon Amber (Fire Energy)
+  {
+    boxGrad: ['#be123c', '#e11d48'],
+    arrowGrad: ['#a5f3fc', '#38bdf8', '#0284c7'],
+    arrowHead: '#0284c7',
+    archBg: '#9f1239',
+    title1Color: '#ffffff',
+    title2Color: '#fbbf24',
+    title2Stroke: '#ffffff',
+    pillBorder: '#fb7185'
+  },
+  // 2: Cyber Purple & Volt Lime (Synthwave Power)
+  {
+    boxGrad: ['#6b21a8', '#9333ea'],
+    arrowGrad: ['#bef264', '#a3e635', '#65a30d'],
+    arrowHead: '#65a30d',
+    archBg: '#581c87',
+    title1Color: '#ffffff',
+    title2Color: '#ccff00',
+    title2Stroke: '#ffffff',
+    pillBorder: '#c084fc'
+  },
+  // 3: Deep Emerald & Gold Sunshine (Money/Tech Alpha)
+  {
+    boxGrad: ['#047857', '#059669'],
+    arrowGrad: ['#fed7aa', '#fb923c', '#ea580c'],
+    arrowHead: '#ea580c',
+    archBg: '#065f46',
+    title1Color: '#ffffff',
+    title2Color: '#fde047',
+    title2Stroke: '#ffffff',
+    pillBorder: '#34d399'
+  },
+  // 4: Sunset Magenta & Cyber Mint (Ultra Modern Punch)
+  {
+    boxGrad: ['#c026d3', '#db2777'],
+    arrowGrad: ['#a7f3d0', '#34d399', '#059669'],
+    arrowHead: '#059669',
+    archBg: '#86198f',
+    title1Color: '#ffffff',
+    title2Color: '#22d3ee',
+    title2Stroke: '#ffffff',
+    pillBorder: '#f472b6'
+  }
+];
+
+export function renderStyle1_FreshNews(w, h, post, colorIdx = 0) {
   const { badge, title1, title2, subTag } = parseHookingCopy(post);
   const theme = detectSceneTheme(post);
   const boxWidth = Math.max(820, title1.length * 115 + 100);
+  const c = S1_COLOR_THEMES[colorIdx % S1_COLOR_THEMES.length];
 
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}">
   <defs>
-    <linearGradient id="s1BoxGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#1d4ed8"/>
-      <stop offset="100%" stop-color="#2563eb"/>
+    <linearGradient id="s1BoxGrad_${colorIdx}" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="${c.boxGrad[0]}"/>
+      <stop offset="100%" stop-color="${c.boxGrad[1]}"/>
     </linearGradient>
 
-    <linearGradient id="s1ArrowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#fef08a"/>
-      <stop offset="50%" stop-color="#facc15"/>
-      <stop offset="100%" stop-color="#f59e0b"/>
+    <linearGradient id="s1ArrowGrad_${colorIdx}" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="${c.arrowGrad[0]}"/>
+      <stop offset="50%" stop-color="${c.arrowGrad[1]}"/>
+      <stop offset="100%" stop-color="${c.arrowGrad[2]}"/>
     </linearGradient>
     ${DROP_SHADOW_FILTER}
   </defs>
@@ -461,9 +523,9 @@ export function renderStyle1_FreshNews(w, h, post) {
 
   <!-- 3. Yellow Circular Orbiting Arrow -->
   <g transform="translate(${w / 2}, ${h / 2 - 20}) rotate(-12)" filter="url(#megaShadow)">
-    <path d="M -340 0 A 340 260 0 1 1 310 90" fill="none" stroke="url(#s1ArrowGrad)" stroke-width="26" stroke-linecap="round"/>
-    <polygon points="310,40 370,105 280,125" fill="#f59e0b"/>
-    <path d="M 320 -140 L 330 -115 L 355 -105 L 330 -95 L 320 -70 L 310 -95 L 285 -105 L 310 -115 Z" fill="#fbbf24"/>
+    <path d="M -340 0 A 340 260 0 1 1 310 90" fill="none" stroke="url(#s1ArrowGrad_${colorIdx})" stroke-width="26" stroke-linecap="round"/>
+    <polygon points="310,40 370,105 280,125" fill="${c.arrowHead}"/>
+    <path d="M 320 -140 L 330 -115 L 355 -105 L 330 -95 L 320 -70 L 310 -95 L 285 -105 L 310 -115 Z" fill="${c.arrowGrad[1]}"/>
   </g>
 
   <!-- 4. Central Giant Typography (-6.5 deg dynamic tilt) -->
@@ -471,8 +533,8 @@ export function renderStyle1_FreshNews(w, h, post) {
     
     <!-- Top Curved Category Arch -->
     <g transform="translate(0, -125)">
-      <path d="M -180 25 Q 0 -25 180 25" fill="none" stroke="#1e40af" stroke-width="44" stroke-linecap="round"/>
-      <text x="0" y="16" text-anchor="middle" font-family="'Noto Sans KR', sans-serif" font-size="26" font-weight="900" fill="#ffffff">
+      <path d="M -180 25 Q 0 -25 180 25" fill="none" stroke="${c.archBg}" stroke-width="44" stroke-linecap="round"/>
+      <text x="0" y="16" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="26" font-weight="900" fill="#ffffff">
         ${escapeXml(badge)}
       </text>
     </g>
@@ -480,20 +542,20 @@ export function renderStyle1_FreshNews(w, h, post) {
     <!-- 3D Ribbon Box for Title 1 -->
     <g transform="translate(0, 5)">
       <polygon points="${-boxWidth / 2 + 10},-70 ${boxWidth / 2 + 50},-70 ${boxWidth / 2 - 10},80 ${-boxWidth / 2 - 50},80" fill="#000000" opacity="0.75"/>
-      <polygon points="${-boxWidth / 2},-80 ${boxWidth / 2 + 40},-80 ${boxWidth / 2 - 20},70 ${-boxWidth / 2 - 60},70" fill="url(#s1BoxGrad)"/>
+      <polygon points="${-boxWidth / 2},-80 ${boxWidth / 2 + 40},-80 ${boxWidth / 2 - 20},70 ${-boxWidth / 2 - 60},70" fill="url(#s1BoxGrad_${colorIdx})"/>
       <polygon points="${-boxWidth / 2},-80 ${boxWidth / 2 + 40},-80 ${boxWidth / 2 + 35},-65 ${-boxWidth / 2 - 5},-65" fill="#ffffff" opacity="0.45"/>
       
-      <text x="-5" y="24" text-anchor="middle" font-family="'Noto Sans KR', sans-serif" font-size="140" font-weight="900" fill="#ffffff" stroke="#000000" stroke-width="14" paint-order="stroke fill" letter-spacing="-3">
+      <text x="-5" y="24" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="140" font-weight="900" fill="${c.title1Color}" stroke="#000000" stroke-width="14" paint-order="stroke fill" letter-spacing="-3">
         ${escapeXml(title1)}
       </text>
     </g>
 
-    <!-- Title 2 (Massive Solid Blue Text with 3D White/Dark Outlines) -->
+    <!-- Title 2 (Massive Solid Text with 3D Outlines) -->
     <g transform="translate(0, 160)">
-      <text x="0" y="14" text-anchor="middle" font-family="'Noto Sans KR', sans-serif" font-size="148" font-weight="900" fill="#000000" stroke="#000000" stroke-width="28" paint-order="stroke fill" letter-spacing="-4">
+      <text x="0" y="14" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="148" font-weight="900" fill="#000000" stroke="#000000" stroke-width="28" paint-order="stroke fill" letter-spacing="-4">
         ${escapeXml(title2)}
       </text>
-      <text x="0" y="0" text-anchor="middle" font-family="'Noto Sans KR', sans-serif" font-size="148" font-weight="900" fill="#38bdf8" stroke="#ffffff" stroke-width="18" paint-order="stroke fill" letter-spacing="-4">
+      <text x="0" y="0" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="148" font-weight="900" fill="${c.title2Color}" stroke="${c.title2Stroke}" stroke-width="18" paint-order="stroke fill" letter-spacing="-4">
         ${escapeXml(title2)}
       </text>
     </g>
@@ -501,8 +563,8 @@ export function renderStyle1_FreshNews(w, h, post) {
 
   <!-- Bottom Crisp Subtitle Pill -->
   <g transform="translate(${w / 2}, ${h - 55})" filter="url(#megaShadow)">
-    <rect x="-300" y="-22" width="600" height="44" rx="22" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
-    <text x="0" y="7" text-anchor="middle" font-family="'Noto Sans KR', sans-serif" font-size="20" font-weight="800" fill="#ffffff">
+    <rect x="-300" y="-22" width="600" height="44" rx="22" fill="#0f172a" stroke="${c.pillBorder}" stroke-width="2"/>
+    <text x="0" y="7" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="20" font-weight="800" fill="#ffffff">
       ✦ ${escapeXml(subTag)}
     </text>
   </g>
@@ -510,18 +572,67 @@ export function renderStyle1_FreshNews(w, h, post) {
 }
 
 // -----------------------------------------------------------------------------
-// STYLE 2: Comic Pop / Starburst Electric Punch (Reference: "바이브 코딩 1인 창업 스택")
+// STYLE 2: Comic Pop / Starburst Electric Punch (5 Color Variations)
 // -----------------------------------------------------------------------------
-export function renderStyle2_ComicPop(w, h, post) {
+const S2_COLOR_THEMES = [
+  // 0: Original Deep Navy & Electric Yellow
+  {
+    starGrad: ['#0284c7', '#1e3a8a'],
+    starSpark: '#facc15',
+    wirePin: '#fbbf24',
+    title2Color: '#facc15',
+    boltColor: '#38bdf8',
+    subPillBg: '#e11d48'
+  },
+  // 1: Midnight Purple & Volt Green (Cyber Toxic Pop)
+  {
+    starGrad: ['#7c3aed', '#3b0764'],
+    starSpark: '#ccff00',
+    wirePin: '#ccff00',
+    title2Color: '#ccff00',
+    boltColor: '#f43f5e',
+    subPillBg: '#9333ea'
+  },
+  // 2: Ruby Black & Cyan Burst (High Voltage Arcade)
+  {
+    starGrad: ['#dc2626', '#450a0a'],
+    starSpark: '#38bdf8',
+    wirePin: '#38bdf8',
+    title2Color: '#38bdf8',
+    boltColor: '#facc15',
+    subPillBg: '#2563eb'
+  },
+  // 3: Dark Teal & Sunset Orange (Explosive Impact)
+  {
+    starGrad: ['#0d9488', '#042f2e'],
+    starSpark: '#fb923c',
+    wirePin: '#fb923c',
+    title2Color: '#fb923c',
+    boltColor: '#facc15',
+    subPillBg: '#059669'
+  },
+  // 4: Pure Carbon Black & Neon Hot Pink (Bold Street Pop)
+  {
+    starGrad: ['#db2777', '#500724'],
+    starSpark: '#fef08a',
+    wirePin: '#facc15',
+    title2Color: '#f43f5e',
+    boltColor: '#38bdf8',
+    subPillBg: '#eab308'
+  }
+];
+
+export function renderStyle2_ComicPop(w, h, post, colorIdx = 0) {
   const { badge, title1, title2, subTag } = parseHookingCopy(post);
   const theme = detectSceneTheme(post);
   const boxWidth = Math.max(800, title1.length * 115 + 90);
+  const c = S2_COLOR_THEMES[colorIdx % S2_COLOR_THEMES.length];
 
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}">
   <defs>
-    <linearGradient id="s2StarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0284c7"/>
-      <stop offset="100%" stop-color="#1e3a8a"/>
+    <linearGradient id="s2StarGrad_${colorIdx}" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="${c.starGrad[0]}"/>
+      <stop offset="100%" stop-color="${c.starGrad[1]}"/>
     </linearGradient>
     ${DROP_SHADOW_FILTER}
   </defs>
@@ -537,18 +648,18 @@ export function renderStyle2_ComicPop(w, h, post) {
     <polygon points="
       0,-270 55,-140 200,-250 145,-110 300,-140 185,-20 330,30 185,90 270,220 130,165 155,295 30,185
       -20,295 -65,175 -200,260 -145,120 -310,150 -200,20 -330,-40 -185,-90 -270,-210 -120,-155 -130,-285 -20,-175
-    " fill="url(#s2StarGrad)" stroke="#000000" stroke-width="14"/>
+    " fill="url(#s2StarGrad_${colorIdx})" stroke="#000000" stroke-width="14"/>
 
-    <polygon points="230,-190 255,-130 225,-125 270,-65 235,-75 260,-10 205,-70 230,-75" fill="#facc15" stroke="#000000" stroke-width="5"/>
-    <polygon points="-230,130 -255,75 -225,70 -270,10 -235,20 -260,-45 -205,15 -230,20" fill="#facc15" stroke="#000000" stroke-width="5"/>
+    <polygon points="230,-190 255,-130 225,-125 270,-65 235,-75 260,-10 205,-70 230,-75" fill="${c.starSpark}" stroke="#000000" stroke-width="5"/>
+    <polygon points="-230,130 -255,75 -225,70 -270,10 -235,20 -260,-45 -205,15 -230,20" fill="${c.starSpark}" stroke="#000000" stroke-width="5"/>
   </g>
 
   <!-- 4. Electric Plug Wire Loop -->
   <g transform="translate(${w / 2}, ${h / 2 - 10})" filter="url(#megaShadow)">
     <path d="M -380 10 Q -440 130 -220 175 Q 220 195 380 110" fill="none" stroke="#000000" stroke-width="26" stroke-linecap="round"/>
     <path d="M 370 105 L 420 120 L 400 160 L 350 145 Z" fill="#000000"/>
-    <rect x="415" y="115" width="24" height="7" fill="#fbbf24" stroke="#000000" stroke-width="2"/>
-    <rect x="405" y="138" width="24" height="7" fill="#fbbf24" stroke="#000000" stroke-width="2"/>
+    <rect x="415" y="115" width="24" height="7" fill="${c.wirePin}" stroke="#000000" stroke-width="2"/>
+    <rect x="405" y="138" width="24" height="7" fill="${c.wirePin}" stroke="#000000" stroke-width="2"/>
   </g>
 
   <!-- 5. Central Giant Dynamic Headline (-4 deg dynamic tilt) -->
@@ -557,30 +668,30 @@ export function renderStyle2_ComicPop(w, h, post) {
     <!-- Top Black Box for Title 1 -->
     <g transform="translate(0, -65)">
       <rect x="${-boxWidth / 2}" y="-70" width="${boxWidth}" height="135" rx="18" fill="#000000" stroke="#000000" stroke-width="8"/>
-      <text x="0" y="28" text-anchor="middle" font-family="'Noto Sans KR', sans-serif" font-size="138" font-weight="900" fill="#ffffff" letter-spacing="-3">
+      <text x="0" y="28" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="138" font-weight="900" fill="#ffffff" letter-spacing="-3">
         ${escapeXml(title1)}
       </text>
     </g>
 
     <!-- Bottom Giant Neon Text for Title 2 -->
     <g transform="translate(0, 95)">
-      <text x="0" y="16" text-anchor="middle" font-family="'Noto Sans KR', sans-serif" font-size="148" font-weight="900" fill="#000000" stroke="#000000" stroke-width="26" paint-order="stroke fill" letter-spacing="-4">
+      <text x="0" y="16" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="148" font-weight="900" fill="#000000" stroke="#000000" stroke-width="26" paint-order="stroke fill" letter-spacing="-4">
         ${escapeXml(title2)}
       </text>
-      <text x="0" y="0" text-anchor="middle" font-family="'Noto Sans KR', sans-serif" font-size="148" font-weight="900" fill="#facc15" stroke="#000000" stroke-width="18" paint-order="stroke fill" letter-spacing="-4">
+      <text x="0" y="0" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="148" font-weight="900" fill="${c.title2Color}" stroke="#000000" stroke-width="18" paint-order="stroke fill" letter-spacing="-4">
         ${escapeXml(title2)}
       </text>
 
       <g transform="translate(${Math.min(300, title2.length * 40)}, -40)">
-        <polygon points="0,-28 18,0 3,0 14,28 -18,6 0,6" fill="#38bdf8" stroke="#000000" stroke-width="4"/>
+        <polygon points="0,-28 18,0 3,0 14,28 -18,6 0,6" fill="${c.boltColor}" stroke="#000000" stroke-width="4"/>
       </g>
     </g>
   </g>
 
   <!-- Bottom Highlight Subtitle Pill -->
   <g transform="translate(${w / 2}, ${h - 55})" filter="url(#megaShadow)">
-    <rect x="-280" y="-22" width="560" height="44" rx="22" fill="#e11d48" stroke="#000000" stroke-width="4"/>
-    <text x="0" y="7" text-anchor="middle" font-family="'Noto Sans KR', sans-serif" font-size="19" font-weight="900" fill="#ffffff">
+    <rect x="-280" y="-22" width="560" height="44" rx="22" fill="${c.subPillBg}" stroke="#000000" stroke-width="4"/>
+    <text x="0" y="7" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="19" font-weight="900" fill="#ffffff">
       ⚡ ${escapeXml(subTag)}
     </text>
   </g>
@@ -588,16 +699,65 @@ export function renderStyle2_ComicPop(w, h, post) {
 }
 
 // -----------------------------------------------------------------------------
-// STYLE 3: Street Graffiti & Caution Tech (Reference: "AI 에이전트 업무 자동화")
+// STYLE 3: Street Graffiti & Caution Tech (5 Color Variations)
 // -----------------------------------------------------------------------------
-export function renderStyle3_StreetCaution(w, h, post) {
+const S3_COLOR_THEMES = [
+  // 0: Original Volt Lime & Caution Yellow
+  {
+    stripeColor: '#facc15',
+    starStroke: '#ccff00',
+    smileyBg: '#facc15',
+    title2Color: '#ccff00',
+    tagBg: '#ccff00',
+    tagTextColor: '#000000'
+  },
+  // 1: Electric Cyan & Hazard Orange
+  {
+    stripeColor: '#fb923c',
+    starStroke: '#38bdf8',
+    smileyBg: '#38bdf8',
+    title2Color: '#38bdf8',
+    tagBg: '#38bdf8',
+    tagTextColor: '#000000'
+  },
+  // 2: Hot Magenta & Hazard Yellow
+  {
+    stripeColor: '#facc15',
+    starStroke: '#f43f5e',
+    smileyBg: '#f43f5e',
+    title2Color: '#fb7185',
+    tagBg: '#fb7185',
+    tagTextColor: '#000000'
+  },
+  // 3: Acid Yellow & Hazard Green
+  {
+    stripeColor: '#4ade80',
+    starStroke: '#facc15',
+    smileyBg: '#4ade80',
+    title2Color: '#facc15',
+    tagBg: '#facc15',
+    tagTextColor: '#000000'
+  },
+  // 4: Royal Purple & Hazard Cyan
+  {
+    stripeColor: '#38bdf8',
+    starStroke: '#c084fc',
+    smileyBg: '#c084fc',
+    title2Color: '#c084fc',
+    tagBg: '#c084fc',
+    tagTextColor: '#000000'
+  }
+];
+
+export function renderStyle3_StreetCaution(w, h, post, colorIdx = 0) {
   const { badge, title1, title2, subTag } = parseHookingCopy(post);
   const theme = detectSceneTheme(post);
+  const c = S3_COLOR_THEMES[colorIdx % S3_COLOR_THEMES.length];
 
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}">
   <defs>
-    <pattern id="s3CautionPattern" width="60" height="60" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-      <rect width="30" height="60" fill="#facc15"/>
+    <pattern id="s3CautionPattern_${colorIdx}" width="60" height="60" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="30" height="60" fill="${c.stripeColor}"/>
       <rect x="30" width="30" height="60" fill="#000000"/>
     </pattern>
     ${DROP_SHADOW_FILTER}
@@ -611,17 +771,17 @@ export function renderStyle3_StreetCaution(w, h, post) {
 
   <!-- 3. Diagonal Caution Tapes -->
   <g transform="translate(-80, 50) rotate(-22)" filter="url(#megaShadow)">
-    <rect width="450" height="42" fill="url(#s3CautionPattern)" stroke="#000000" stroke-width="4"/>
+    <rect width="450" height="42" fill="url(#s3CautionPattern_${colorIdx})" stroke="#000000" stroke-width="4"/>
     <rect x="40" y="6" width="370" height="30" fill="#000000"/>
-    <text x="225" y="27" text-anchor="middle" font-family="monospace" font-size="16" font-weight="900" fill="#facc15" letter-spacing="3">
+    <text x="225" y="27" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="16" font-weight="900" fill="${c.stripeColor}" letter-spacing="3">
       ⚠️ KEEP OUT! CAUTION // AI TECH
     </text>
   </g>
 
   <g transform="translate(${w - 320}, ${h - 20}) rotate(-18)" filter="url(#megaShadow)">
-    <rect width="450" height="42" fill="url(#s3CautionPattern)" stroke="#000000" stroke-width="4"/>
+    <rect width="450" height="42" fill="url(#s3CautionPattern_${colorIdx})" stroke="#000000" stroke-width="4"/>
     <rect x="40" y="6" width="370" height="30" fill="#000000"/>
-    <text x="225" y="27" text-anchor="middle" font-family="monospace" font-size="16" font-weight="900" fill="#facc15" letter-spacing="3">
+    <text x="225" y="27" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="16" font-weight="900" fill="${c.stripeColor}" letter-spacing="3">
       ⚡ 2026 HOT DEAL $420
     </text>
   </g>
@@ -630,12 +790,12 @@ export function renderStyle3_StreetCaution(w, h, post) {
   <g transform="translate(${w / 2}, ${h / 2 - 10})" filter="url(#megaShadow)">
     <polygon points="
       0,-240 60,-80 230,-80 100,35 150,200 0,105 -150,200 -100,35 -230,-80 -60,-80
-    " fill="#000000" stroke="#ccff00" stroke-width="6"/>
+    " fill="#000000" stroke="${c.starStroke}" stroke-width="6"/>
   </g>
 
   <!-- Tech Stickers -->
   <g transform="translate(${w - 150}, 160) rotate(8)" filter="url(#megaShadow)">
-    <circle cx="0" cy="0" r="45" fill="#facc15" stroke="#000000" stroke-width="6"/>
+    <circle cx="0" cy="0" r="45" fill="${c.smileyBg}" stroke="#000000" stroke-width="6"/>
     <circle cx="-16" cy="-10" r="6" fill="#000000"/>
     <circle cx="16" cy="-10" r="6" fill="#000000"/>
     <path d="M -22 10 Q 0 34 22 10" fill="none" stroke="#000000" stroke-width="6" stroke-linecap="round"/>
@@ -643,7 +803,7 @@ export function renderStyle3_StreetCaution(w, h, post) {
 
   <g transform="translate(${w - 180}, ${h - 140}) rotate(-10)" filter="url(#megaShadow)">
     <rect x="-65" y="-30" width="130" height="60" rx="8" fill="#ffffff" stroke="#000000" stroke-width="4"/>
-    <text x="0" y="-8" text-anchor="middle" font-family="monospace" font-size="12" font-weight="900" fill="#000000">100% VERIFIED</text>
+    <text x="0" y="-8" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="12" font-weight="900" fill="#000000">100% VERIFIED</text>
     <line x1="-50" y1="5" x2="-50" y2="20" stroke="#000000" stroke-width="4"/>
     <line x1="-30" y1="5" x2="-30" y2="20" stroke="#000000" stroke-width="4"/>
     <line x1="-10" y1="5" x2="-10" y2="20" stroke="#000000" stroke-width="4"/>
@@ -657,27 +817,27 @@ export function renderStyle3_StreetCaution(w, h, post) {
     <!-- Top Stencil Badge -->
     <g transform="translate(0, -125)">
       <rect x="-160" y="-22" width="320" height="44" rx="8" fill="#ffffff" stroke="#000000" stroke-width="4"/>
-      <text x="0" y="8" text-anchor="middle" font-family="'Noto Sans KR', sans-serif" font-size="20" font-weight="900" fill="#000000" letter-spacing="2">
+      <text x="0" y="8" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="20" font-weight="900" fill="#000000" letter-spacing="2">
         ✦ ${escapeXml(badge)}
       </text>
     </g>
 
     <!-- Line 1 (White Ultra Bold with Thick Black Shadow) -->
     <g transform="translate(0, 18)">
-      <text x="0" y="10" text-anchor="middle" font-family="'Noto Sans KR', sans-serif" font-size="138" font-weight="900" fill="#000000" stroke="#000000" stroke-width="24" paint-order="stroke fill" letter-spacing="-3">
+      <text x="0" y="10" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="138" font-weight="900" fill="#000000" stroke="#000000" stroke-width="24" paint-order="stroke fill" letter-spacing="-3">
         ${escapeXml(title1)}
       </text>
-      <text x="0" y="0" text-anchor="middle" font-family="'Noto Sans KR', sans-serif" font-size="138" font-weight="900" fill="#ffffff" stroke="#000000" stroke-width="16" paint-order="stroke fill" letter-spacing="-3">
+      <text x="0" y="0" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="138" font-weight="900" fill="#ffffff" stroke="#000000" stroke-width="16" paint-order="stroke fill" letter-spacing="-3">
         ${escapeXml(title1)}
       </text>
     </g>
 
-    <!-- Line 2 (Massive Acid Volt Neon with 3D Extrusion) -->
+    <!-- Line 2 (Massive Neon with 3D Extrusion) -->
     <g transform="translate(0, 148)">
-      <text x="0" y="18" text-anchor="middle" font-family="'Noto Sans KR', sans-serif" font-size="148" font-weight="900" fill="#000000" stroke="#000000" stroke-width="28" paint-order="stroke fill" letter-spacing="-4">
+      <text x="0" y="18" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="148" font-weight="900" fill="#000000" stroke="#000000" stroke-width="28" paint-order="stroke fill" letter-spacing="-4">
         ${escapeXml(title2)}
       </text>
-      <text x="0" y="0" text-anchor="middle" font-family="'Noto Sans KR', sans-serif" font-size="148" font-weight="900" fill="#ccff00" stroke="#000000" stroke-width="18" paint-order="stroke fill" letter-spacing="-4">
+      <text x="0" y="0" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="148" font-weight="900" fill="${c.title2Color}" stroke="#000000" stroke-width="18" paint-order="stroke fill" letter-spacing="-4">
         ${escapeXml(title2)}
       </text>
     </g>
@@ -685,8 +845,8 @@ export function renderStyle3_StreetCaution(w, h, post) {
 
   <!-- Bottom Tag Sticker -->
   <g transform="translate(${w / 2}, ${h - 55}) rotate(2)" filter="url(#megaShadow)">
-    <rect x="-260" y="-20" width="520" height="40" rx="8" fill="#ccff00" stroke="#000000" stroke-width="4"/>
-    <text x="0" y="6" text-anchor="middle" font-family="'Noto Sans KR', sans-serif" font-size="18" font-weight="900" fill="#000000">
+    <rect x="-260" y="-20" width="520" height="40" rx="8" fill="${c.tagBg}" stroke="#000000" stroke-width="4"/>
+    <text x="0" y="6" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="18" font-weight="900" fill="${c.tagTextColor}">
       🔥 ${escapeXml(subTag)}
     </text>
   </g>
@@ -694,11 +854,70 @@ export function renderStyle3_StreetCaution(w, h, post) {
 }
 
 // -----------------------------------------------------------------------------
-// STYLE 4: Editorial Kinetic Dark (Reference: "AI 4대 천왕 끝장 맞대결")
+// STYLE 4: Editorial Kinetic Dark (5 Color Variations)
 // -----------------------------------------------------------------------------
-export function renderStyle4_EditorialKinetic(w, h, post) {
+const S4_COLOR_THEMES = [
+  // 0: Original Cyan Wireframes & Gold 3D Title
+  {
+    wireColor: '#38bdf8',
+    pill1Bg: '#2563eb',
+    ovalBg: '#f43f5e',
+    pill2Bg: '#38bdf8',
+    pill3Bg: '#facc15',
+    badgeBg: '#a855f7',
+    title2Color: '#facc15',
+    subBarBorder: '#38bdf8'
+  },
+  // 1: Lime Wireframes & Cyan 3D Title (Matrix Kinetic)
+  {
+    wireColor: '#4ade80',
+    pill1Bg: '#16a34a',
+    ovalBg: '#f97316',
+    pill2Bg: '#4ade80',
+    pill3Bg: '#38bdf8',
+    badgeBg: '#0284c7',
+    title2Color: '#38bdf8',
+    subBarBorder: '#4ade80'
+  },
+  // 2: Hot Pink Wireframes & Volt Lime 3D Title (Hyperpop Dark)
+  {
+    wireColor: '#f43f5e',
+    pill1Bg: '#db2777',
+    ovalBg: '#8b5cf6',
+    pill2Bg: '#f43f5e',
+    pill3Bg: '#ccff00',
+    badgeBg: '#e11d48',
+    title2Color: '#ccff00',
+    subBarBorder: '#f43f5e'
+  },
+  // 3: Amber Wireframes & Sky Cyan 3D Title (Solar Eclipse)
+  {
+    wireColor: '#fbbf24',
+    pill1Bg: '#ea580c',
+    ovalBg: '#06b6d4',
+    pill2Bg: '#fbbf24',
+    pill3Bg: '#38bdf8',
+    badgeBg: '#d97706',
+    title2Color: '#38bdf8',
+    subBarBorder: '#fbbf24'
+  },
+  // 4: Purple Violet Wireframes & Radiant Gold 3D Title (Luxury Tech)
+  {
+    wireColor: '#c084fc',
+    pill1Bg: '#7c3aed',
+    ovalBg: '#ef4444',
+    pill2Bg: '#c084fc',
+    pill3Bg: '#facc15',
+    badgeBg: '#9333ea',
+    title2Color: '#fde047',
+    subBarBorder: '#c084fc'
+  }
+];
+
+export function renderStyle4_EditorialKinetic(w, h, post, colorIdx = 0) {
   const { badge, title1, title2, subTag } = parseHookingCopy(post);
   const theme = detectSceneTheme(post);
+  const c = S4_COLOR_THEMES[colorIdx % S4_COLOR_THEMES.length];
 
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}">
   <defs>
@@ -713,12 +932,12 @@ export function renderStyle4_EditorialKinetic(w, h, post) {
 
   <!-- 3. Repeated Wireframe Outline Typography Echoes (Top & Bottom) -->
   <g transform="translate(${w / 2}, 110) rotate(-4.5) skewX(-4)" opacity="0.35">
-    <text x="0" y="0" text-anchor="middle" font-family="'Noto Sans KR', sans-serif" font-size="135" font-weight="900" fill="none" stroke="#38bdf8" stroke-width="3" letter-spacing="-4">
+    <text x="0" y="0" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="135" font-weight="900" fill="none" stroke="${c.wireColor}" stroke-width="3" letter-spacing="-4">
       ${escapeXml(title1)} ${escapeXml(title2)}
     </text>
   </g>
   <g transform="translate(${w / 2}, ${h - 40}) rotate(-4.5) skewX(-4)" opacity="0.35">
-    <text x="0" y="0" text-anchor="middle" font-family="'Noto Sans KR', sans-serif" font-size="135" font-weight="900" fill="none" stroke="#38bdf8" stroke-width="3" letter-spacing="-4">
+    <text x="0" y="0" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="135" font-weight="900" fill="none" stroke="${c.wireColor}" stroke-width="3" letter-spacing="-4">
       ${escapeXml(title1)} ${escapeXml(title2)}
     </text>
   </g>
@@ -726,32 +945,32 @@ export function renderStyle4_EditorialKinetic(w, h, post) {
   <!-- 4. Colorful Kinetic Stickers Scattered Around -->
   <!-- Top-Left Pill -->
   <g transform="translate(180, 100) rotate(-12)" filter="url(#megaShadow)">
-    <rect x="-85" y="-22" width="170" height="44" rx="22" fill="#2563eb"/>
-    <text x="0" y="7" text-anchor="middle" font-family="'Noto Sans KR', sans-serif" font-size="16" font-weight="900" fill="#ffffff" letter-spacing="1">
+    <rect x="-85" y="-22" width="170" height="44" rx="22" fill="${c.pill1Bg}"/>
+    <text x="0" y="7" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="16" font-weight="900" fill="#ffffff" letter-spacing="1">
       ✦ START NOW
     </text>
   </g>
 
   <!-- Top-Right Oval Sticker -->
   <g transform="translate(${w - 200}, 90) rotate(14)" filter="url(#megaShadow)">
-    <ellipse cx="0" cy="0" rx="65" ry="32" fill="#f43f5e"/>
-    <text x="0" y="6" text-anchor="middle" font-family="'Noto Sans KR', sans-serif" font-size="15" font-weight="900" fill="#ffffff">
+    <ellipse cx="0" cy="0" rx="65" ry="32" fill="${c.ovalBg}"/>
+    <text x="0" y="6" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="15" font-weight="900" fill="#ffffff">
       ${escapeXml(badge)}
     </text>
   </g>
 
   <!-- Bottom-Left Pill -->
   <g transform="translate(190, ${h - 130}) rotate(8)" filter="url(#megaShadow)">
-    <rect x="-95" y="-22" width="190" height="44" rx="22" fill="#38bdf8"/>
-    <text x="0" y="7" text-anchor="middle" font-family="'Noto Sans KR', sans-serif" font-size="15" font-weight="900" fill="#000000">
+    <rect x="-95" y="-22" width="190" height="44" rx="22" fill="${c.pill2Bg}"/>
+    <text x="0" y="7" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="15" font-weight="900" fill="#000000">
       ✔ AI 최적화 완료
     </text>
   </g>
 
   <!-- Bottom-Right Pill -->
   <g transform="translate(${w - 180}, ${h - 130}) rotate(-8)" filter="url(#megaShadow)">
-    <rect x="-90" y="-22" width="180" height="44" rx="22" fill="#facc15"/>
-    <text x="0" y="7" text-anchor="middle" font-family="'Noto Sans KR', sans-serif" font-size="16" font-weight="900" fill="#000000" letter-spacing="1">
+    <rect x="-90" y="-22" width="180" height="44" rx="22" fill="${c.pill3Bg}"/>
+    <text x="0" y="7" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="16" font-weight="900" fill="#000000" letter-spacing="1">
       ★ 실전 적용 100%
     </text>
   </g>
@@ -761,28 +980,28 @@ export function renderStyle4_EditorialKinetic(w, h, post) {
     
     <!-- Top Mini Arch Badge -->
     <g transform="translate(0, -100)">
-      <rect x="-130" y="-20" width="260" height="40" rx="20" fill="#a855f7"/>
-      <text x="0" y="7" text-anchor="middle" font-family="'Noto Sans KR', sans-serif" font-size="18" font-weight="900" fill="#ffffff">
+      <rect x="-130" y="-20" width="260" height="40" rx="20" fill="${c.badgeBg}"/>
+      <text x="0" y="7" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="18" font-weight="900" fill="#ffffff">
         ${escapeXml(badge)}
       </text>
     </g>
 
     <!-- Main Solid Bold White Headline (Line 1) -->
     <g transform="translate(0, 15)">
-      <text x="0" y="12" text-anchor="middle" font-family="'Noto Sans KR', sans-serif" font-size="140" font-weight="900" fill="#000000" stroke="#000000" stroke-width="24" paint-order="stroke fill" letter-spacing="-4">
+      <text x="0" y="12" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="140" font-weight="900" fill="#000000" stroke="#000000" stroke-width="24" paint-order="stroke fill" letter-spacing="-4">
         ${escapeXml(title1)}
       </text>
-      <text x="0" y="0" text-anchor="middle" font-family="'Noto Sans KR', sans-serif" font-size="140" font-weight="900" fill="#ffffff" stroke="#000000" stroke-width="16" paint-order="stroke fill" letter-spacing="-4">
+      <text x="0" y="0" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="140" font-weight="900" fill="#ffffff" stroke="#000000" stroke-width="16" paint-order="stroke fill" letter-spacing="-4">
         ${escapeXml(title1)}
       </text>
     </g>
 
     <!-- Line 2 (Second Line with High Contrast Color) -->
     <g transform="translate(0, 130)">
-      <text x="0" y="12" text-anchor="middle" font-family="'Noto Sans KR', sans-serif" font-size="148" font-weight="900" fill="#000000" stroke="#000000" stroke-width="24" paint-order="stroke fill" letter-spacing="-4">
+      <text x="0" y="12" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="148" font-weight="900" fill="#000000" stroke="#000000" stroke-width="24" paint-order="stroke fill" letter-spacing="-4">
         ${escapeXml(title2)}
       </text>
-      <text x="0" y="0" text-anchor="middle" font-family="'Noto Sans KR', sans-serif" font-size="148" font-weight="900" fill="#facc15" stroke="#000000" stroke-width="16" paint-order="stroke fill" letter-spacing="-4">
+      <text x="0" y="0" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="148" font-weight="900" fill="${c.title2Color}" stroke="#000000" stroke-width="16" paint-order="stroke fill" letter-spacing="-4">
         ${escapeXml(title2)}
       </text>
     </g>
@@ -790,8 +1009,8 @@ export function renderStyle4_EditorialKinetic(w, h, post) {
 
   <!-- Bottom Center Subtitle Bar -->
   <g transform="translate(${w / 2}, ${h - 55})" filter="url(#megaShadow)">
-    <rect x="-260" y="-20" width="520" height="40" rx="20" fill="#000000" stroke="#38bdf8" stroke-width="2"/>
-    <text x="0" y="6" text-anchor="middle" font-family="'Noto Sans KR', sans-serif" font-size="18" font-weight="800" fill="#ffffff">
+    <rect x="-260" y="-20" width="520" height="40" rx="20" fill="#000000" stroke="${c.subBarBorder}" stroke-width="2"/>
+    <text x="0" y="6" text-anchor="middle" font-family="${FONT_FAMILY}" font-size="18" font-weight="800" fill="#ffffff">
       ✦ ${escapeXml(subTag)}
     </text>
   </g>
@@ -799,20 +1018,22 @@ export function renderStyle4_EditorialKinetic(w, h, post) {
 }
 
 // -----------------------------------------------------------------------------
-// Master Dispatcher: Pure 4-Style Rotation (Exact approved designs)
+// Master Dispatcher: 4 Signature Layouts x 5 Color Palettes (20 Total)
 // -----------------------------------------------------------------------------
 export function renderMasterHookThumbnail(post, index, w = 1280, h = 720) {
-  const styleIdx = index % 4;
-  switch (styleIdx) {
+  const layoutIdx = index % 4;
+  const colorIdx = Math.floor(index / 4) % 5;
+
+  switch (layoutIdx) {
     case 0:
-      return renderStyle1_FreshNews(w, h, post);
+      return renderStyle1_FreshNews(w, h, post, colorIdx);
     case 1:
-      return renderStyle2_ComicPop(w, h, post);
+      return renderStyle2_ComicPop(w, h, post, colorIdx);
     case 2:
-      return renderStyle3_StreetCaution(w, h, post);
+      return renderStyle3_StreetCaution(w, h, post, colorIdx);
     case 3:
     default:
-      return renderStyle4_EditorialKinetic(w, h, post);
+      return renderStyle4_EditorialKinetic(w, h, post, colorIdx);
   }
 }
 
@@ -825,7 +1046,7 @@ export function renderContentAwareBlogSVG(post, w = 1280, h = 720) {
 // Generate All 59 Thumbnails
 // -----------------------------------------------------------------------------
 export async function generateAllHookThumbnails() {
-  console.log('🚀 Restoring Exact 4 Signature Styles with Content-Aware Visual Backgrounds for all 59 posts...');
+  console.log('🚀 Generating Thumbnails with 4 Locked Signature Layouts x 5 Color Patterns (20 Total Variations) + Paperlogy Font...');
   const outDir = path.join(ROOT_DIR, 'public/images/blogs');
   if (!fs.existsSync(outDir)) {
     fs.mkdirSync(outDir, { recursive: true });
@@ -858,7 +1079,7 @@ export async function generateAllHookThumbnails() {
     count++;
   }
 
-  console.log(`✅ Successfully generated ${count} thumbnails matching exact 4 approved signature styles in ${outDir}`);
+  console.log(`✅ Successfully generated ${count} thumbnails matching exact 4 layouts x 5 color themes with Paperlogy font in ${outDir}`);
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
