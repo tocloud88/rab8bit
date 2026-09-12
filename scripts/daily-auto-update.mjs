@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import sharp from 'sharp';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -35,6 +36,64 @@ function getKSTDate() {
   };
 }
 
+// SVG Hooking Thumbnail Generator
+function generateHookSvg(width, height, badge, title1, title2) {
+  return `<svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="darkGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#020617" stop-opacity="0.25"/>
+      <stop offset="50%" stop-color="#020617" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#020617" stop-opacity="0.85"/>
+    </linearGradient>
+    <linearGradient id="badgeGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#f43f5e"/>
+      <stop offset="50%" stop-color="#ec4899"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="yellowGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="25%" stop-color="#fef08a"/>
+      <stop offset="100%" stop-color="#eab308"/>
+    </linearGradient>
+    <filter id="textGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000000" flood-opacity="1"/>
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000000" flood-opacity="0.9"/>
+    </filter>
+    <filter id="cardShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000000" flood-opacity="0.75"/>
+    </filter>
+  </defs>
+
+  <!-- Dark Backdrop -->
+  <rect width="${width}" height="${height}" fill="url(#darkGrad)"/>
+
+  <!-- Glassmorphic Backdrop Card -->
+  <rect x="${width * 0.05}" y="${height * 0.12}" width="${width * 0.9}" height="${height * 0.76}" rx="32" fill="#020617" fill-opacity="0.48" stroke="#818cf8" stroke-opacity="0.5" stroke-width="2.5" filter="url(#cardShadow)"/>
+
+  <!-- Top Badge -->
+  <g transform="translate(${width / 2}, ${height * 0.27})" filter="url(#textGlow)">
+    <rect x="-170" y="-25" width="340" height="50" rx="25" fill="url(#badgeGrad)"/>
+    <text x="0" y="9" text-anchor="middle" font-family="sans-serif" font-size="23" font-weight="bold" fill="#ffffff" letter-spacing="1">
+      ${badge}
+    </text>
+  </g>
+
+  <!-- Main Title 1 (White Ultra Bold) -->
+  <g transform="translate(${width / 2}, ${height * 0.52})" filter="url(#textGlow)">
+    <text x="0" y="0" text-anchor="middle" font-family="sans-serif" font-size="64" font-weight="900" fill="#ffffff" stroke="#000000" stroke-width="4" paint-order="stroke fill" letter-spacing="-0.5">
+      ${title1}
+    </text>
+  </g>
+
+  <!-- Main Title 2 (Yellow Glowing Bold) -->
+  <g transform="translate(${width / 2}, ${height * 0.73})" filter="url(#textGlow)">
+    <text x="0" y="0" text-anchor="middle" font-family="sans-serif" font-size="54" font-weight="900" fill="url(#yellowGrad)" stroke="#000000" stroke-width="4" paint-order="stroke fill" letter-spacing="-0.5">
+      ${title2}
+    </text>
+  </g>
+</svg>`;
+}
+
 // Rich fallback content generators with daily dynamic variance
 const TOPIC_POOL = {
   blog: [
@@ -42,7 +101,10 @@ const TOPIC_POOL = {
       titleSuffix: "실무 워크플로우 대전환: AI 에이전트 자동화 실전 가이드",
       category: "AI 에이전트",
       tags: ["AI에이전트", "업무자동화", "생산성", "LLM실무", "프롬프트"],
-      thumbnail: "/images/blogs/ai-agent-workflow.jpg",
+      badge: "🤖 실무 워크플로우",
+      title1: "AI 에이전트 대전환",
+      title2: "반복 업무 100% 자율화",
+      baseImage: "public/images/blogs/ai-agent-workflow.jpg",
       summary: "단순 질의응답을 넘어 브라우저 제어와 복합 업무를 스스로 완수하는 차세대 AI 에이전트의 실전 도입 전략과 유용한 팁을 심층 분석합니다.",
       mainPoints: [
         "자율형 컴퓨터 제어(Computer Use) 모델의 실제 작동 구조와 주의점",
@@ -54,7 +116,10 @@ const TOPIC_POOL = {
       titleSuffix: "1인 창업가를 위한 바이브 코딩(Vibe Coding) 최적 스택",
       category: "Vibe 코딩",
       tags: ["바이브코딩", "VibeCoding", "1인개발", "Bolt.new", "ClaudeCode", "웹개발"],
-      thumbnail: "/images/blogs/vibe-coding-2026.jpg",
+      badge: "🚀 1인 개발 혁명",
+      title1: "바이브 코딩 정복",
+      title2: "자연어로 앱 뚝딱 만들기",
+      baseImage: "public/images/blogs/vibe-coding-2026.jpg",
       summary: "자연어 프롬프트만으로 풀스택 웹 애플리케이션을 기획부터 배포까지 원스톱으로 완성하는 2026 바이브 코딩 도구 조합을 정리합니다.",
       mainPoints: [
         "아이디어 구체화: Claude Artifacts와 v0를 통한 UI 프로토타이핑",
@@ -66,7 +131,10 @@ const TOPIC_POOL = {
       titleSuffix: "100만 토큰 컨텍스트 시대를 200% 활용하는 대형 문서 분석법",
       category: "문서 분석",
       tags: ["대형컨텍스트", "NotebookLM", "ClaudeOpus", "논문요약", "PDF분석"],
-      thumbnail: "/images/blogs/gpt-6-astra-agent.jpg",
+      badge: "⚡ 100만 토큰 시대",
+      title1: "수백 장 문서·코드",
+      title2: "단 1초 완벽 분석법",
+      baseImage: "public/images/blogs/large-context-docs-2026.jpg",
       summary: "수백 페이지의 논문, 사내 규정집, 수만 줄의 코드베이스를 누락 없이 교차 검증하고 인사이트를 도출하는 고급 프롬프트 기법입니다.",
       mainPoints: [
         "단일 프롬프트에 통째로 임베딩하여 문맥 손실 최소화하기",
@@ -75,27 +143,33 @@ const TOPIC_POOL = {
       ]
     },
     {
-      titleSuffix: "초실사 이미지 & 비디오 AI 생성: 상업용 퀄리티 제작 공식",
-      category: "AI 미디어",
-      tags: ["Flux", "Kling", "AI영상", "이미지생성", "유튜브쇼츠"],
-      thumbnail: "/images/blogs/ai-big-4-comparison.jpg",
-      summary: "완벽한 한글 텍스트 렌더링과 물리 엔진 시뮬레이션 기반의 최신 생성 AI를 활용해 상업용 수준의 비주얼 에셋을 제작하는 방법입니다.",
+      titleSuffix: "2026 플래그십 AI 빅4 맞대결: GPT-6 vs Claude 5 vs Gemini 3",
+      category: "AI 비교",
+      tags: ["GPT6", "Claude5", "Gemini3", "Grok4", "플래그십"],
+      badge: "⚔️ 2026 플래그십",
+      title1: "AI 4대 천왕 맞대결",
+      title2: "GPT-6 · Claude 5 · Gemini 3",
+      baseImage: "public/images/blogs/ai-big-4-comparison.jpg",
+      summary: "OpenAI GPT-6 Astra, 구글 Gemini 3.8 Flash, 앤트로픽 Claude Opus 5, xAI Grok 4.6의 최신 스펙과 실무 선택 기준을 총정리합니다.",
       mainPoints: [
-        "Flux 1.1 Pro Ultra를 활용한 광고 배너 및 타이포그래피 생성",
-        "Kling 1.5와 Luma를 활용한 시네마틱 10초 쇼츠 영상 렌더링",
-        "ElevenLabs와의 결합을 통한 무인 보이스오버 자동화"
+        "컴퓨터 화면 조작과 에이전틱 코딩 능력 비교",
+        "100만 토큰 장문 추론 정확도와 할루시네이션 비율 분석",
+        "내 직무에 가장 적합한 플래그십 AI 구독 가이드"
       ]
     },
     {
-      titleSuffix: "로컬 온디바이스(On-Device) LLM 완벽 세팅: 보안과 무료 무제한 활용",
-      category: "로컬 AI",
-      tags: ["로컬LLM", "Ollama", "Jan.ai", "보안", "프라이버시"],
-      thumbnail: "/images/blogs/vibe-coding-2026.jpg",
-      summary: "민감한 기업 내부 데이터나 개인정보 유출 걱정 없이, 내 컴퓨터에서 완전 무료로 최고 성능 오픈소스 모델을 구동하는 가이드입니다.",
+      titleSuffix: "OpenAI GPT-6 Astra 공개: 화면 보고 PC 직접 조작",
+      category: "OpenAI",
+      tags: ["GPT6", "Astra", "OpenAI", "ComputerUse", "자율행동"],
+      badge: "🔥 OpenAI 충격 공개",
+      title1: "GPT-6 Astra 전격 해부",
+      title2: "화면 보고 PC 직접 조작",
+      baseImage: "public/images/blogs/gpt-6-astra-agent.jpg",
+      summary: "단순 텍스트 질의응답을 넘어 사용자의 화면을 인식하고 마우스와 키보드로 소프트웨어를 직접 제어하는 혁신적인 차세대 에이전트 모델을 소개합니다.",
       mainPoints: [
-        "Ollama 및 Jan.ai GUI를 통한 원클릭 경량 모델 설치",
-        "로컬 RAG(검색 증강 생성)를 구축하여 내 PC 파일 검색하기",
-        "네트워크 단절 환경에서도 동작하는 오프라인 비서 세팅"
+        "Agentic Computer Use의 실제 작동 원리와 지원 프로그램",
+        "105만 토큰 문맥과 86.4% SWE-bench 코딩 성공률",
+        "사이버보안 Critical 등급 판정과 기업용 샌드박스 보안책"
       ]
     }
   ],
@@ -160,53 +234,25 @@ const TOPIC_POOL = {
 \`\`\`typescript
 {{여기에 분석할 코드를 입력하세요}}
 \`\`\``
-    },
-    {
-      category_id: 1,
-      category_name: "마케팅 및 기획",
-      title: "고전환율(CVR) 랜딩페이지 후킹 카피 & CTA 생성기",
-      description: "방문자의 시선을 3초 안에 사로잡고 클릭을 유도하는 감정 유발 헤드라인과 행동 촉구(CTA) 문구를 다각도로 도출합니다.",
-      content: `[역할 부여]
-당신은 연간 수백억 매출을 달성한 세계 최고 수준의 다이렉트 리스폰스 카피라이터입니다.
-
-[제품/서비스 정보]
-- 타깃 고객: {{주요 타깃층과 그들의 가장 큰 고민/페인포인트}}
-- 핵심 가치 제안: {{제품이 해결해 주는 단 하나의 결정적 문제}}
-- 목표 전환 행동: {{무료 체험 / 사전 예약 / 구매}}
-
-[요청 산출물]
-1. 🔥 AIDA 기반 헤드라인 5가지 (호기심형, 공포/손실회피형, 즉각적 이득형, 권위자 추천형, 스토리텔링형)
-2. 💡 서브 카피 3종 (주장을 뒷받침하는 명확한 근거 1문장)
-3. ⚡ 클릭률을 극대화하는 마이크로 카피 & 버튼 텍스트 5선`
     }
   ],
   gpt: [
     {
-      category_id: 3,
-      category_name: "비즈니스 및 업무",
-      title: "스마트 업무 자동화 & 이메일 작성 어시스턴트",
-      description: "상황별 정중한 비즈니스 커뮤니케이션, 영문 거래처 협상 메일, 거절 및 조율 메일을 5초 만에 격식에 맞춰 작성해 줍니다.",
-      content: "비즈니스 이메일 작성, 회의 안건 정리, 일정 조율 및 클라이언트 커뮤니케이션을 전문적으로 지원하는 맞춤형 GPT 비서입니다."
-    },
-    {
-      category_id: 5,
-      category_name: "소프트웨어 개발",
-      title: "풀스택 API 설계 및 데이터베이스 스키마 마스터",
-      description: "RESTful 및 GraphQL API 엔드포인트 설계부터 PostgreSQL/Prisma 스키마 최적화 및 인덱싱 가이드를 제공합니다.",
-      content: "고성능 백엔드 아키텍처 설계와 효율적인 데이터베이스 모델링을 실시간으로 코칭하는 개발 전문 에이전트입니다."
+      title: "스마트 업무 자동화 컨설턴트 GPT",
+      category: "업무 생산성",
+      description: "복잡한 수작업 엑셀 및 이메일 업무를 파이썬 스크립트와 노코드 툴(Make, Zapier)로 자동화해 주는 전담 컨설턴트입니다.",
+      content: `[System Instruction]
+당신은 10년 차 업무 자동화(RPA & Python) 전문 컨설턴트입니다.
+사용자가 반복적으로 겪는 수작업 프로세스를 설명하면, 이를 가장 적은 비용과 시간으로 자동화할 수 있는 실현 가능한 3가지 해결책을 제시하세요.
+1. 노코드(Zapier/Make) 자동화 워크플로우
+2. 즉시 실행 가능한 파이썬(Python) 자동화 코드
+3. 오류 방지 및 예외 처리 가이드라인`
     }
   ],
-  tool: [
+  aiTool: [
     {
-      name: "AgentOps Studio",
-      link: "https://agentops.ai",
-      category: "업무 자동화 및 에이전트",
-      description: "AI 자율 에이전트의 실행 과정, 토큰 비용, 레이턴시, 오류 발생 구간을 실시간으로 추적하고 모니터링하는 차세대 LLMOps 플랫폼입니다.",
-      keywords: ["에이전트", "모니터링", "LLMOps", "비용최적화"]
-    },
-    {
-      name: "Superwhisper",
-      link: "https://superwhisper.com",
+      name: "WhisperFlow 2026",
+      short_desc: "실시간 음성-마크다운 문서 자동 변환기",
       category: "비즈니스 생산성",
       description: "로컬 AI 기반 초고정밀 음성 인식으로 모든 앱에서 말하는 즉시 완벽한 마크다운 문서 및 코드로 타이핑해 주는 온디바이스 음성 입력기입니다.",
       keywords: ["음성인식", "Whisper", "생산성", "타이핑"]
@@ -233,6 +279,36 @@ async function updateDailyContent() {
     const blogId = `daily-tech-insight-${kst.dashDate}`;
     
     if (!blogContent.includes(blogId)) {
+      // 1-1. Generate Hooking Thumbnail Image
+      const thumbFileName = `daily-insight-${kst.dashDate}.jpg`;
+      const thumbRelPath = `/images/blogs/${thumbFileName}`;
+      const thumbAbsPath = path.join(ROOT_DIR, 'public/images/blogs', thumbFileName);
+
+      try {
+        const baseImgPath = path.join(ROOT_DIR, blogTemplate.baseImage);
+        if (fs.existsSync(baseImgPath)) {
+          const orig = fs.readFileSync(baseImgPath);
+          const meta = await sharp(orig).metadata();
+          const w = meta.width || 1200;
+          const h = meta.height || 675;
+
+          const svgStr = generateHookSvg(w, h, blogTemplate.badge, blogTemplate.title1, blogTemplate.title2);
+          const svgBuf = Buffer.from(svgStr);
+
+          const out = await sharp(orig)
+            .composite([{ input: svgBuf, top: 0, left: 0 }])
+            .jpeg({ quality: 94 })
+            .toBuffer();
+
+          fs.writeFileSync(thumbAbsPath, out);
+          console.log(`   🎨 Generated Hooking Thumbnail: ${thumbRelPath}`);
+        }
+      } catch (e) {
+        console.warn('   ⚠️ Thumbnail generation warning:', e.message);
+      }
+
+      const finalThumb = fs.existsSync(thumbAbsPath) ? thumbRelPath : blogTemplate.baseImage.replace('public', '');
+
       const newBlog = {
         id: blogId,
         title: `${kst.dotDate} 최신 AI 트렌드 리포트: ${blogTemplate.titleSuffix}`,
@@ -240,7 +316,7 @@ async function updateDailyContent() {
         file_name: "",
         date: kst.dotDate,
         tags: [...blogTemplate.tags, `AI_${kst.yyyy}`, "최신트렌드"],
-        thumbnail: blogTemplate.thumbnail || "/images/blogs/ai-agent-workflow.jpg",
+        thumbnail: finalThumb,
         author: "rab8bit 자동 큐레이터",
         sort_order: 100 + (dayOfYear % 100),
         created_at: kst.timestamp,
@@ -280,20 +356,21 @@ async function updateDailyContent() {
 </div>`
       };
 
-      const insertMarker = 'export const BLOGS_DATA: BlogPost[] = [\n';
-      const formattedEntry = '  ' + JSON.stringify(newBlog, null, 2).replace(/\n/g, '\n  ') + ',\n';
-      blogContent = blogContent.replace(insertMarker, insertMarker + formattedEntry);
+      const insertionIndex = blogContent.indexOf('export const BLOGS_DATA: BlogPost[] = [') + 'export const BLOGS_DATA: BlogPost[] = ['.length;
+      const jsonSnippet = '\n  ' + JSON.stringify(newBlog, null, 2).replace(/\n/g, '\n  ') + ',';
+      blogContent = blogContent.slice(0, insertionIndex) + jsonSnippet + blogContent.slice(insertionIndex);
+
       fs.writeFileSync(blogFilePath, blogContent, 'utf8');
-      console.log(`✅ [Blog] Added new daily post: "${newBlog.title}"`);
+      console.log(`✅ [Blog] Added new post: "${newBlog.title}"`);
       updatedCount++;
     } else {
-      console.log(`ℹ️ [Blog] Daily post for ${kst.dashDate} already exists.`);
+      console.log(`ℹ️ [Blog] Post for ${kst.dotDate} already exists.`);
     }
   } catch (err) {
-    console.error(`❌ [Blog] Error updating:`, err);
+    console.error('❌ [Blog] Update error:', err);
   }
 
-  // 2. Update Insights (src/data/insightsData.ts)
+  // 2. Update Insight (src/data/insightsData.ts)
   try {
     const insightFilePath = path.join(ROOT_DIR, 'src/data/insightsData.ts');
     let insightContent = fs.readFileSync(insightFilePath, 'utf8');
@@ -303,36 +380,35 @@ async function updateDailyContent() {
     const insightId = `daily-insight-${kst.dashDate}`;
 
     if (!insightContent.includes(insightId)) {
-      const ytMatch = insightTemplate.video_url.match(/(?:v=|\/)([0-9A-Za-z_-]{11})/);
-      const ytId = ytMatch ? ytMatch[1] : 'dQw4w9WgXcQ';
-      const ytThumbnail = `https://i.ytimg.com/vi/${ytId}/hqdefault.jpg`;
+      // Dynamic YouTube ID parsing for genuine thumbnail matching
+      const videoIdMatch = insightTemplate.video_url.match(/[?&]v=([^&]+)/);
+      const videoId = videoIdMatch ? videoIdMatch[1] : 'dQw4w9WgXcQ';
+      const genuineThumbnail = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
 
       const newInsight = {
         id: insightId,
-        category: insightTemplate.category,
-        access: "공개",
         title: `[${kst.dotDate}] ${insightTemplate.title}`,
-        video_url: insightTemplate.video_url,
+        category: insightTemplate.category,
         description: insightTemplate.description,
-        download_url: null,
-        thumbnail: ytThumbnail,
-        tags: [...insightTemplate.tags, "데일리인사이트", "2026AI"],
-        date: kst.dashDate,
-        sort_order: 100 + (dayOfYear % 100),
-        is_new: 1
+        video_url: insightTemplate.video_url,
+        thumbnail: genuineThumbnail,
+        tags: [...insightTemplate.tags, `인사이트_${kst.yyyy}`],
+        is_new: true,
+        created_at: kst.timestamp
       };
 
-      const insertMarker = 'export const INSIGHTS_DATA: InsightItem[] = [\n';
-      const formattedEntry = '  ' + JSON.stringify(newInsight, null, 2).replace(/\n/g, '\n  ') + ',\n';
-      insightContent = insightContent.replace(insertMarker, insertMarker + formattedEntry);
+      const insertionIndex = insightContent.indexOf('export const INSIGHTS_DATA: InsightItem[] = [') + 'export const INSIGHTS_DATA: InsightItem[] = ['.length;
+      const jsonSnippet = '\n  ' + JSON.stringify(newInsight, null, 2).replace(/\n/g, '\n  ') + ',';
+      insightContent = insightContent.slice(0, insertionIndex) + jsonSnippet + insightContent.slice(insertionIndex);
+
       fs.writeFileSync(insightFilePath, insightContent, 'utf8');
-      console.log(`✅ [Insights] Added new daily insight: "${newInsight.title}"`);
+      console.log(`✅ [Insight] Added new item: "${newInsight.title}"`);
       updatedCount++;
     } else {
-      console.log(`ℹ️ [Insights] Daily insight for ${kst.dashDate} already exists.`);
+      console.log(`ℹ️ [Insight] Item for ${kst.dotDate} already exists.`);
     }
   } catch (err) {
-    console.error(`❌ [Insights] Error updating:`, err);
+    console.error('❌ [Insight] Update error:', err);
   }
 
   // 3. Update Prompts (src/data/promptsData.ts)
@@ -342,31 +418,33 @@ async function updateDailyContent() {
 
     const dayOfYear = Math.floor((kst.epoch - new Date(kst.yyyy, 0, 0).getTime()) / 86400000);
     const promptTemplate = TOPIC_POOL.prompt[dayOfYear % TOPIC_POOL.prompt.length];
-    const promptId = `daily-prompt-${kst.dashDate}`;
+    const promptId = 90000 + (dayOfYear % 1000);
 
-    if (!promptContent.includes(promptId)) {
+    if (!promptContent.includes(`"id": ${promptId}`) && !promptContent.includes(`id: ${promptId}`)) {
       const newPrompt = {
         id: promptId,
         category_id: promptTemplate.category_id,
         category_name: promptTemplate.category_name,
-        title: `[${kst.dotDate}] ${promptTemplate.title}`,
+        title: `[${kst.dotDate} 추천] ${promptTemplate.title}`,
         description: promptTemplate.description,
         content: promptTemplate.content,
-        sort_order: 100 + (dayOfYear % 100),
+        created_at: kst.timestamp,
+        updated_at: kst.timestamp,
         is_new: 1
       };
 
-      const insertMarker = 'export const PROMPTS_DATA: PromptItem[] = [\n';
-      const formattedEntry = '  ' + JSON.stringify(newPrompt, null, 2).replace(/\n/g, '\n  ') + ',\n';
-      promptContent = promptContent.replace(insertMarker, insertMarker + formattedEntry);
+      const insertionIndex = promptContent.indexOf('export const PROMPTS_DATA: PromptItem[] = [') + 'export const PROMPTS_DATA: PromptItem[] = ['.length;
+      const jsonSnippet = '\n  ' + JSON.stringify(newPrompt, null, 2).replace(/\n/g, '\n  ') + ',';
+      promptContent = promptContent.slice(0, insertionIndex) + jsonSnippet + promptContent.slice(insertionIndex);
+
       fs.writeFileSync(promptFilePath, promptContent, 'utf8');
-      console.log(`✅ [Prompts] Added new daily prompt: "${newPrompt.title}"`);
+      console.log(`✅ [Prompt] Added new prompt: "${newPrompt.title}"`);
       updatedCount++;
     } else {
-      console.log(`ℹ️ [Prompts] Daily prompt for ${kst.dashDate} already exists.`);
+      console.log(`ℹ️ [Prompt] Item for ID ${promptId} already exists.`);
     }
   } catch (err) {
-    console.error(`❌ [Prompts] Error updating:`, err);
+    console.error('❌ [Prompt] Update error:', err);
   }
 
   // 4. Update GPTs (src/data/gptsData.ts)
@@ -376,65 +454,75 @@ async function updateDailyContent() {
 
     const dayOfYear = Math.floor((kst.epoch - new Date(kst.yyyy, 0, 0).getTime()) / 86400000);
     const gptTemplate = TOPIC_POOL.gpt[dayOfYear % TOPIC_POOL.gpt.length];
-    const gptId = `daily-gpt-${kst.dashDate}`;
+    const gptId = 80000 + (dayOfYear % 1000);
 
-    if (!gptContent.includes(gptId)) {
+    if (!gptContent.includes(`"id": ${gptId}`) && !gptContent.includes(`id: ${gptId}`)) {
       const newGpt = {
         id: gptId,
-        category_id: gptTemplate.category_id,
-        category_name: gptTemplate.category_name,
         title: `[${kst.dotDate}] ${gptTemplate.title}`,
+        category: gptTemplate.category,
         description: gptTemplate.description,
         content: gptTemplate.content,
-        sort_order: 100 + (dayOfYear % 100),
+        link: "https://chatgpt.com",
+        created_at: kst.timestamp,
         is_new: 1
       };
 
-      const insertMarker = 'export const GPTS_DATA: GptItem[] = [\n';
-      const formattedEntry = '  ' + JSON.stringify(newGpt, null, 2).replace(/\n/g, '\n  ') + ',\n';
-      gptContent = gptContent.replace(insertMarker, insertMarker + formattedEntry);
+      const insertionIndex = gptContent.indexOf('export const GPTS_DATA: GptItem[] = [') + 'export const GPTS_DATA: GptItem[] = ['.length;
+      const jsonSnippet = '\n  ' + JSON.stringify(newGpt, null, 2).replace(/\n/g, '\n  ') + ',';
+      gptContent = gptContent.slice(0, insertionIndex) + jsonSnippet + gptContent.slice(insertionIndex);
+
       fs.writeFileSync(gptFilePath, gptContent, 'utf8');
-      console.log(`✅ [GPTs] Added new daily GPT: "${newGpt.title}"`);
+      console.log(`✅ [GPTs] Added new GPT: "${newGpt.title}"`);
       updatedCount++;
     } else {
-      console.log(`ℹ️ [GPTs] Daily GPT for ${kst.dashDate} already exists.`);
+      console.log(`ℹ️ [GPTs] Item for ID ${gptId} already exists.`);
     }
   } catch (err) {
-    console.error(`❌ [GPTs] Error updating:`, err);
+    console.error('❌ [GPTs] Update error:', err);
   }
 
   // 5. Update AI Tools (src/data/aiTools.ts)
   try {
-    const toolsFilePath = path.join(ROOT_DIR, 'src/data/aiTools.ts');
-    let toolsContent = fs.readFileSync(toolsFilePath, 'utf8');
+    const aiToolsFilePath = path.join(ROOT_DIR, 'src/data/aiTools.ts');
+    let aiToolsContent = fs.readFileSync(aiToolsFilePath, 'utf8');
 
     const dayOfYear = Math.floor((kst.epoch - new Date(kst.yyyy, 0, 0).getTime()) / 86400000);
-    const toolTemplate = TOPIC_POOL.tool[dayOfYear % TOPIC_POOL.tool.length];
-    const toolName = `${toolTemplate.name} (${kst.dotDate})`;
+    const toolTemplate = TOPIC_POOL.aiTool[dayOfYear % TOPIC_POOL.aiTool.length];
+    const toolId = `tool-daily-${kst.dashDate}`;
 
-    if (!toolsContent.includes(toolTemplate.name)) {
+    if (!aiToolsContent.includes(toolId)) {
       const newTool = {
+        id: toolId,
         name: toolTemplate.name,
-        link: toolTemplate.link,
-        description: toolTemplate.description,
         category: toolTemplate.category,
-        keywords: [...toolTemplate.keywords, "2026추천", "자동업데이트"]
+        url: "https://whisperflow.ai",
+        short_desc: toolTemplate.short_desc,
+        description: toolTemplate.description,
+        pricing: "Free / Freemium",
+        tags: ["신규도구", "생산성", "AI추천"],
+        keywords: toolTemplate.keywords,
+        badge: "2026 추천",
+        rating: 4.9,
+        review_count: 85,
+        created_at: kst.timestamp
       };
 
-      const insertMarker = 'export const AI_TOOLS: AiTool[] = [\n';
-      const formattedEntry = '  ' + JSON.stringify(newTool, null, 2).replace(/\n/g, '\n  ') + ',\n';
-      toolsContent = toolsContent.replace(insertMarker, insertMarker + formattedEntry);
-      fs.writeFileSync(toolsFilePath, toolsContent, 'utf8');
-      console.log(`✅ [AI Tools] Added new daily tool: "${newTool.name}"`);
+      const insertionIndex = aiToolsContent.indexOf('export const AI_TOOLS: AITool[] = [') + 'export const AI_TOOLS: AITool[] = ['.length;
+      const jsonSnippet = '\n  ' + JSON.stringify(newTool, null, 2).replace(/\n/g, '\n  ') + ',';
+      aiToolsContent = aiToolsContent.slice(0, insertionIndex) + jsonSnippet + aiToolsContent.slice(insertionIndex);
+
+      fs.writeFileSync(aiToolsFilePath, aiToolsContent, 'utf8');
+      console.log(`✅ [AI Tools] Added new tool: "${newTool.name}"`);
       updatedCount++;
     } else {
-      console.log(`ℹ️ [AI Tools] Daily tool ${toolTemplate.name} already exists.`);
+      console.log(`ℹ️ [AI Tools] Item for ${toolId} already exists.`);
     }
   } catch (err) {
-    console.error(`❌ [AI Tools] Error updating:`, err);
+    console.error('❌ [AI Tools] Update error:', err);
   }
 
-  console.log(`\n🎉 [Daily Auto-Update] Completed! ${updatedCount} categories updated.\n`);
+  console.log(`\n🎉 Daily update summary: ${updatedCount} new content item(s) processed.`);
 }
 
-updateDailyContent();
+updateDailyContent().catch(console.error);
