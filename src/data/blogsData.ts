@@ -53,7 +53,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "AI_2026",
       "최신트렌드"
     ],
-    "thumbnail": "/images/blogs/ai-big-4-comparison.jpg",
+    "thumbnail": "/images/blogs/vibe-coding-2026.jpg",
     "author": "rab8bit 자동 큐레이터",
     "sort_order": 156,
     "created_at": "2026-09-13 06:00:00",
@@ -77,7 +77,7 @@ export const BLOGS_DATA: BlogPost[] = [
       "AI_2026",
       "최신트렌드"
     ],
-    "thumbnail": "/images/blogs/ai-big-4-comparison.jpg",
+    "thumbnail": "/images/blogs/ai-agent-workflow.jpg",
     "author": "rab8bit 자동 큐레이터",
     "sort_order": 155,
     "created_at": "2026-09-12 06:00:00",
