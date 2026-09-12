@@ -127,27 +127,42 @@ const TOPIC_POOL = {
       ]
     }
   ],
+  // Korean-First Insights Pool (국내 AI 실무 영상 및 한국인 채널 중심)
   insight: [
     {
-      title: "AI 에이전트로 엑셀 & 데이터 전처리 5분 만에 끝내는 실전 팁",
+      title: "클로드 3.7 소넷 & 하이브리드 추론 모델 실무 활용 가이드",
+      category: "AI 모델 분석",
+      description: "사고 모드(Thinking Mode)와 일반 응답 모드를 자유롭게 전환하며 복잡한 코딩 및 논리 분석 업무를 해결하는 국내 실무진 팁입니다.",
+      tags: ["Claude", "소넷3.7", "추론모델", "AI코딩", "한국실무"],
+      video_url: "https://www.youtube.com/watch?v=kCc8FmEb1nY"
+    },
+    {
+      title: "AI 에이전트로 엑셀 & 데이터 전처리 5분 만에 끝내는 한국형 실전 팁",
       category: "업무 자동화",
       description: "복잡한 수식 없이 자연어로 대용량 CSV/Excel 데이터를 정제하고 피벗 테이블 및 시각화 차트를 즉시 생성하는 방법을 알아봅니다.",
       tags: ["데이터분석", "엑셀자동화", "ChatGPT", "Claude", "실무생산성"],
-      video_url: "https://www.youtube.com/watch?v=3JZ_D3ELwOQ"
+      video_url: "https://www.youtube.com/watch?v=0e3GPea1Tyg"
     },
     {
-      title: "프롬프트 작성 시 흔히 하는 3가지 실수와 즉각적인 개선책",
-      category: "프롬프트 엔지니어링",
-      description: "AI에게 지나치게 모호한 지시를 내리거나 의도를 과도하게 주입하여 발생하는 환각(Hallucination)을 없애는 핵심 템플릿을 소개합니다.",
-      tags: ["프롬프트", "할루시네이션", "질문법", "AI팁"],
-      video_url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-    },
-    {
-      title: "유튜브 쇼츠 & 릴스 제작 시간을 1/10로 줄이는 AI 툴 조합",
-      category: "AI 영상 제작",
-      description: "대본 작성부터 음성 합성, B-roll 영상 클립 생성 및 자막 자동 싱크까지 완전 자동화 파이프라인을 구축하는 노하우입니다.",
-      tags: ["쇼츠제작", "릴스", "Kling", "ElevenLabs", "크리에이터"],
+      title: "노트북LM 200% 활용법: 한국어 공공문서·논문 완벽 분석 노하우",
+      category: "문서 분석",
+      description: "Google NotebookLM을 활용해 HWP 및 PDF 공공 보고서, 사내 규정집을 오류 없이 교차 검증하고 오디오 팟캐스트로 요약하는 실무 파이프라인입니다.",
+      tags: ["NotebookLM", "논문분석", "공공문서", "구글AI", "한국어AI"],
       video_url: "https://www.youtube.com/watch?v=kYV3FwT0tB4"
+    },
+    {
+      title: "한국어 프롬프트 작성 시 흔히 하는 3가지 실수와 즉각적인 개선책",
+      category: "프롬프트 엔지니어링",
+      description: "AI에게 지나치게 모호한 지시를 내리거나 의도를 과도하게 주입하여 발생하는 환각(Hallucination)을 없애는 한국어 맞춤형 프롬프트 템플릿을 소개합니다.",
+      tags: ["프롬프트", "할루시네이션", "질문법", "AI팁", "국내사례"],
+      video_url: "https://www.youtube.com/watch?v=zN8k9t_wV0s"
+    },
+    {
+      title: "1인 창업가를 위한 바이브 코딩(Vibe Coding) 국내 웹서비스 론칭기",
+      category: "바이브 코딩",
+      description: "Cursor와 Bolt.new를 활용해 기획부터 도메인 연결, 결제 연동까지 단 48시간 만에 실전 론칭한 개발 프로세스를 공유합니다.",
+      tags: ["바이브코딩", "Cursor", "Bolt", "1인개발", "웹앱제작"],
+      video_url: "https://www.youtube.com/watch?v=7X8L1p2jK4g"
     }
   ],
   prompt: [
