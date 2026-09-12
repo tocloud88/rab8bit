@@ -15,6 +15,27 @@ export interface InsightItem {
 
 export const INSIGHTS_DATA: InsightItem[] = [
   {
+    "id": "chatgpt-chat-vs-work-selection-guide",
+    "category": "ChatGPT 활용",
+    "access": "공개",
+    "title": "챗GPT Chat vs Work, 헷갈린다면 이 기준으로 고르세요",
+    "video_url": "https://www.youtube.com/watch?v=qNQ6fGB-cWA",
+    "description": "ChatGPT 일반 채팅 모드와 워크스페이스/업무용 작업 모드의 차이점을 명확히 비교하고, 내 실무 환경과 업무 성격에 맞춰 어떤 방식을 선택해야 하는지 핵심 기준을 제시합니다.",
+    "download_url": null,
+    "thumbnail": "https://i.ytimg.com/vi/qNQ6fGB-cWA/hqdefault.jpg",
+    "tags": [
+      "ChatGPT",
+      "챗GPT",
+      "Chat vs Work",
+      "AI실무",
+      "감자나라ai",
+      "챗GPT활용법"
+    ],
+    "date": "2026-09-12",
+    "sort_order": 94,
+    "is_new": 1
+  },
+  {
     "id": "minimax-h3-comfyui-autumn-youth-animation",
     "category": "AI 영상 제작",
     "access": "공개",
