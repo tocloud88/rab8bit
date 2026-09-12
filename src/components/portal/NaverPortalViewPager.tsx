@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import HomePortalPanel from './HomePortalPanel';
 import InsightsDirectory from '../insights/InsightsDirectory';
-import AiToolsDirectory from '../ai-tools/AiToolsDirectory';
+import AiToolsPanel from '../ai-tools/AiToolsPanel';
 import BlogDirectory from '../blog/BlogDirectory';
 import ToolsDirectory from '../tools/ToolsDirectory';
 import PromptsDirectory from '../prompts/PromptsDirectory';
@@ -312,22 +312,7 @@ export default function NaverPortalViewPager({ initialCategoryId = 'home' }: Pro
           </div>
         );
       case 'ai-tools':
-        return (
-          <div className="space-y-6">
-            <div className="text-center max-w-3xl mx-auto space-y-2 py-4 px-4 rounded-3xl stitch-card border border-indigo-500/20">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold">
-                <span>🤖</span> 2026 최신 172+ 엄선 AI 도구
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-                추천 <span className="gradient-text-stitch">AI 웹사이트 & 도구 모음</span>
-              </h2>
-              <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
-                Claude Code, Operator, Flux 1.1, Kling, Bolt.new 등 실무 생산성을 극대화하는 글로벌 AI 도구 모음입니다.
-              </p>
-            </div>
-            <AiToolsDirectory />
-          </div>
-        );
+        return <AiToolsPanel />;
       case 'blog':
         return (
           <div className="space-y-6">

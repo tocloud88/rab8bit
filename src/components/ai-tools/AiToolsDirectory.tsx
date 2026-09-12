@@ -199,8 +199,8 @@ export default function AiToolsDirectory() {
         )}
       </div>
 
-      {/* AI Tools Cards Grid (Mobile 2 cols, Desktop 4 cols) */}
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
+      {/* AI Tools Cards Grid (Mobile 2 cols, Desktop 3 cols with aside) */}
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-3.5 sm:gap-4.5">
         {filteredTools.map((tool) => {
           const isFav = favorites.includes(tool.name);
           const styling = CATEGORY_COLORS[tool.category] || {
