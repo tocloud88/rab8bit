@@ -124,3 +124,102 @@ const relatedPosts = BLOGS_DATA.filter((p) => p.id !== post.id).slice(0, 4);
     </div>
   </div>
 </Layout>
+
+<style is:global>
+  /* Blog Content High-Contrast & Readability Engine */
+  
+  /* Dark Mode Content Overrides */
+  html.dark .blog-content {
+    color: #e2e8f0 !important;
+  }
+  html.dark .blog-content p,
+  html.dark .blog-content li,
+  html.dark .blog-content span {
+    color: #e2e8f0 !important;
+    line-height: 1.8 !important;
+  }
+  html.dark .blog-content strong,
+  html.dark .blog-content b {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+  }
+  html.dark .blog-content h1,
+  html.dark .blog-content h2,
+  html.dark .blog-content h3,
+  html.dark .blog-content h4 {
+    color: #ffffff !important;
+  }
+  html.dark .blog-content div {
+    color: #e2e8f0 !important;
+  }
+  
+  /* Callout & Card Backgrounds in Dark Mode */
+  html.dark .blog-content div[style*="background-color: #f0fdf4"],
+  html.dark .blog-content div[style*="background-color: #eff6ff"],
+  html.dark .blog-content div[style*="background-color: #fbe9e7"],
+  html.dark .blog-content div[style*="background-color: #f8fafc"],
+  html.dark .blog-content div[style*="background: #fff"],
+  html.dark .blog-content div[style*="background-color: #fafafa"] {
+    background: rgba(15, 23, 42, 0.85) !important;
+    border-color: rgba(99, 102, 241, 0.3) !important;
+    color: #e2e8f0 !important;
+  }
+  html.dark .blog-content div[style*="background-color: #fef2f2"] {
+    background: rgba(69, 10, 10, 0.4) !important;
+    border-color: rgba(239, 68, 68, 0.5) !important;
+    color: #fca5a5 !important;
+  }
+  html.dark .blog-content div[style*="linear-gradient"] {
+    color: #ffffff !important;
+  }
+  
+  /* Tables in Dark Mode */
+  html.dark .blog-content table {
+    background-color: rgba(15, 23, 42, 0.8) !important;
+    border-color: rgba(99, 102, 241, 0.3) !important;
+  }
+  html.dark .blog-content th {
+    background: rgba(30, 41, 59, 0.95) !important;
+    color: #ffffff !important;
+    border-color: rgba(99, 102, 241, 0.3) !important;
+  }
+  html.dark .blog-content tr {
+    background-color: transparent !important;
+  }
+  html.dark .blog-content tr:nth-child(even) {
+    background-color: rgba(30, 41, 59, 0.4) !important;
+  }
+  html.dark .blog-content td {
+    color: #e2e8f0 !important;
+    border-color: rgba(99, 102, 241, 0.2) !important;
+  }
+  
+  /* Light Mode Readability */
+  html:not(.dark) .blog-content {
+    color: #1e293b !important;
+  }
+  html:not(.dark) .blog-content p,
+  html:not(.dark) .blog-content li,
+  html:not(.dark) .blog-content span {
+    color: #334155 !important;
+    line-height: 1.8 !important;
+  }
+  html:not(.dark) .blog-content strong,
+  html:not(.dark) .blog-content b {
+    color: #0f172a !important;
+    font-weight: 700 !important;
+  }
+  html:not(.dark) .blog-content table {
+    background-color: #ffffff !important;
+    border-color: #cbd5e1 !important;
+  }
+  html:not(.dark) .blog-content th {
+    background-color: #f1f5f9 !important;
+    color: #0f172a !important;
+    border-color: #cbd5e1 !important;
+  }
+  html:not(.dark) .blog-content td {
+    color: #334155 !important;
+    border-color: #e2e8f0 !important;
+  }
+</style>
