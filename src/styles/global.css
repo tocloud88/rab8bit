@@ -5,6 +5,19 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ============================================================
+   CONTAINER & VIEWPORT WIDTH STANDARDIZATION
+   (Korean Standard Portal Viewport: 1200px for optimal readability & universality)
+   ============================================================ */
+.container,
+.main-container {
+  width: 100%;
+  max-width: 1200px !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* ============================================================
    LIGHT MODE (Default)
    ============================================================ */
 :root {
