@@ -4,7 +4,9 @@ import { INSIGHTS_DATA, type InsightItem } from '../../data/insightsData';
 export default function InsightsDirectory() {
   const [selectedCategory, setSelectedCategory] = useState<string>('전체');
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [activeVideoUrl, setActiveVideoUrl] = useState<string | null>(null);
+  const [selectedInsight, setSelectedInsight] = useState<InsightItem | null>(null);
+  const [isPlayingVideo, setIsPlayingVideo] = useState<boolean>(false);
+  const [copiedLink, setCopiedLink] = useState<boolean>(false);
 
   // Extract unique categories
   const categories = useMemo(() => {
@@ -40,6 +42,39 @@ export default function InsightsDirectory() {
       return `https://www.youtube.com/embed/${id}?autoplay=1`;
     }
     return url;
+  };
+
+  const handleOpenSummary = (item: InsightItem) => {
+    setSelectedInsight(item);
+    setIsPlayingVideo(false);
+    setCopiedLink(false);
+  };
+
+  const handleCopyLink = () => {
+    if (!selectedInsight) return;
+    const shareUrl = selectedInsight.video_url || window.location.href;
+    navigator.clipboard.writeText(shareUrl);
+    setCopiedLink(true);
+    setTimeout(() => setCopiedLink(false), 2000);
+  };
+
+  // Helper to structure 1-minute summary content
+  const renderFormattedDescription = (desc: string) => {
+    const paragraphs = desc.split('\n\n').filter(p => p.trim().length > 0);
+    if (paragraphs.length > 1) {
+      return (
+        <div className="space-y-3 text-slate-300 text-xs sm:text-sm leading-relaxed">
+          {paragraphs.map((p, idx) => (
+            <p key={idx} className="whitespace-pre-line">{p.trim()}</p>
+          ))}
+        </div>
+      );
+    }
+    return (
+      <p className="text-slate-300 text-xs sm:text-sm leading-relaxed whitespace-pre-line">
+        {desc}
+      </p>
+    );
   };
 
   return (
@@ -90,7 +125,8 @@ export default function InsightsDirectory() {
         {filteredItems.map(item => (
           <div
             key={item.id}
-            className="stitch-card rounded-2xl overflow-hidden flex flex-col justify-between group hover:border-indigo-500/50 transition-all duration-300 hover:-translate-y-1"
+            onClick={() => handleOpenSummary(item)}
+            className="stitch-card rounded-2xl overflow-hidden flex flex-col justify-between group hover:border-indigo-500/50 transition-all duration-300 hover:-translate-y-1 cursor-pointer"
           >
             {/* Thumbnail */}
             <div className="relative aspect-video w-full overflow-hidden bg-slate-950">
@@ -141,15 +177,13 @@ export default function InsightsDirectory() {
               )}
 
               {/* Action Buttons */}
-              <div className="pt-2 border-t border-slate-800/80 flex items-center gap-2">
-                {item.video_url && (
-                  <button
-                    onClick={() => setActiveVideoUrl(item.video_url || null)}
-                    className="flex-1 py-1.5 px-2.5 rounded-lg bg-indigo-600/20 hover:bg-indigo-600 text-indigo-300 hover:text-white text-[11px] font-bold transition-colors flex items-center justify-center gap-1 border border-indigo-500/30"
-                  >
-                    <span>▶</span> 영상 시청
-                  </button>
-                )}
+              <div className="pt-2 border-t border-slate-800/80 flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
+                <button
+                  onClick={() => handleOpenSummary(item)}
+                  className="flex-1 py-1.5 px-2.5 rounded-lg bg-gradient-to-r from-indigo-600/30 to-purple-600/30 hover:from-indigo-600 hover:to-purple-600 text-indigo-200 hover:text-white text-[11px] font-bold transition-all flex items-center justify-center gap-1.5 border border-indigo-500/40 shadow-sm"
+                >
+                  <span>📋</span> 요약보기
+                </button>
                 {item.download_url && (
                   <a
                     href={item.download_url}
@@ -173,33 +207,248 @@ export default function InsightsDirectory() {
         </div>
       )}
 
-      {/* Video Modal */}
-      {activeVideoUrl && (
+      {/* Summary & Video Modal */}
+      {selectedInsight && (
         <div
-          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4"
-          onClick={() => setActiveVideoUrl(null)}
+          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 overflow-y-auto animate-fade-in"
+          onClick={() => setSelectedInsight(null)}
         >
           <div
-            className="relative w-full max-w-4xl bg-slate-900 rounded-2xl overflow-hidden border border-indigo-500/30 shadow-2xl"
+            className="relative w-full max-w-3xl bg-slate-900 border border-indigo-500/30 rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl my-auto text-slate-200"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="p-3 bg-slate-950 flex justify-between items-center border-b border-slate-800">
-              <span className="text-xs font-bold text-indigo-400">🎬 영상 시청</span>
+            {/* Modal Header */}
+            <div className="p-4 sm:p-6 bg-slate-950/90 border-b border-slate-800/80 flex items-start justify-between gap-4">
+              <div className="space-y-2">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="px-2.5 py-0.5 rounded-md text-[11px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                    🎬 {selectedInsight.category}
+                  </span>
+                  <span className="px-2.5 py-0.5 rounded-md text-[11px] font-semibold bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 flex items-center gap-1">
+                    ⏱️ 1분 완독 요약
+                  </span>
+                  {selectedInsight.date && (
+                    <span className="text-[11px] text-slate-400">
+                      📅 {selectedInsight.date}
+                    </span>
+                  )}
+                </div>
+                <h2 className="text-base sm:text-xl font-extrabold text-white leading-snug">
+                  {selectedInsight.title}
+                </h2>
+              </div>
               <button
-                onClick={() => setActiveVideoUrl(null)}
-                className="text-slate-400 hover:text-white text-sm font-bold px-2 py-1"
+                onClick={() => setSelectedInsight(null)}
+                className="p-1.5 sm:p-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-400 hover:text-white transition-colors"
+                aria-label="닫기"
               >
-                닫기 ✕
+                ✕
               </button>
             </div>
-            <div className="aspect-video w-full">
-              <iframe
-                src={getEmbedUrl(activeVideoUrl) || ''}
-                title="Insight Video"
-                className="w-full h-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
+
+            {/* Modal Body */}
+            <div className="p-4 sm:p-6 space-y-6 max-h-[75vh] overflow-y-auto">
+              {/* Video Player (Toggleable) */}
+              {isPlayingVideo ? (
+                <div className="space-y-2">
+                  <div className="aspect-video w-full rounded-2xl overflow-hidden bg-black border border-indigo-500/30 shadow-lg">
+                    <iframe
+                      src={getEmbedUrl(selectedInsight.video_url) || ''}
+                      title={selectedInsight.title}
+                      className="w-full h-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+                  <div className="flex items-center justify-between text-xs text-slate-400 px-1">
+                    <span>🎬 유튜브 영상 시청 중</span>
+                    {selectedInsight.video_url && (
+                      <a
+                        href={selectedInsight.video_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-indigo-400 hover:underline font-semibold"
+                      >
+                        유튜브 앱/새 창에서 보기 &rarr;
+                      </a>
+                    )}
+                  </div>
+                </div>
+              ) : (
+                /* Video Play Callout Banner */
+                <div
+                  onClick={() => setIsPlayingVideo(true)}
+                  className="relative group cursor-pointer aspect-video sm:aspect-[21/9] w-full rounded-2xl overflow-hidden bg-slate-950 border border-indigo-500/20 hover:border-indigo-500/60 transition-all shadow-md flex items-center justify-center"
+                >
+                  {selectedInsight.thumbnail ? (
+                    <img
+                      src={selectedInsight.thumbnail}
+                      alt={selectedInsight.title}
+                      className="w-full h-full object-cover opacity-60 group-hover:scale-105 group-hover:opacity-75 transition-all duration-500"
+                    />
+                  ) : null}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+                  <div className="relative z-10 flex flex-col items-center gap-2 text-center p-4">
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-tr from-indigo-600 to-purple-600 text-white flex items-center justify-center text-xl sm:text-2xl shadow-lg shadow-indigo-500/30 group-hover:scale-110 transition-transform">
+                      ▶
+                    </div>
+                    <div>
+                      <span className="text-xs sm:text-sm font-bold text-white group-hover:text-indigo-300 transition-colors">
+                        영상 시청하기 (클릭 시 바로 재생)
+                      </span>
+                      <p className="text-[11px] text-slate-300 mt-0.5">
+                        본문 요약을 먼저 읽어보신 후 영상을 시청하시면 더욱 효과적입니다.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* 1-Minute Executive Summary Section */}
+              <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-indigo-950/40 via-slate-900/80 to-purple-950/30 border border-indigo-500/30 space-y-3">
+                <div className="flex items-center gap-2 text-indigo-300 font-bold text-xs sm:text-sm">
+                  <span>💡</span>
+                  <span>핵심 요약 & 도입</span>
+                </div>
+                {renderFormattedDescription(selectedInsight.description)}
+              </div>
+
+              {/* Structured Key Points (1-Minute Breakdown) */}
+              <div className="space-y-3">
+                <h4 className="text-xs sm:text-sm font-bold text-white flex items-center gap-2">
+                  <span>📌</span>
+                  <span>핵심 포인트 & 실무 적용 가이드</span>
+                </h4>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <div className="p-3.5 rounded-xl bg-slate-800/60 border border-slate-700/60 space-y-1.5">
+                    <div className="text-xs font-bold text-indigo-400 flex items-center gap-1.5">
+                      <span>🎯</span> 1. 핵심 인사이트
+                    </div>
+                    <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed">
+                      기존 방식 대비 차별화된 접근법과 AI 도구의 강점을 최대로 활용하는 핵심 메커니즘을 짚어냅니다.
+                    </p>
+                  </div>
+
+                  <div className="p-3.5 rounded-xl bg-slate-800/60 border border-slate-700/60 space-y-1.5">
+                    <div className="text-xs font-bold text-purple-400 flex items-center gap-1.5">
+                      <span>⚡</span> 2. 실무 워크플로우
+                    </div>
+                    <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed">
+                      프롬프트 작성부터 프롬프트 파이프라인 연동, 자동화 도구 세팅까지 현업에 즉시 적용 가능한 가이드를 제공합니다.
+                    </p>
+                  </div>
+
+                  <div className="p-3.5 rounded-xl bg-slate-800/60 border border-slate-700/60 space-y-1.5">
+                    <div className="text-xs font-bold text-emerald-400 flex items-center gap-1.5">
+                      <span>💡</span> 3. 주의사항 & 꿀팁
+                    </div>
+                    <p className="text-[11px] sm:text-xs text-slate-300 leading-relaxed">
+                      흔히 발생하는 오류와 비효율을 방지하고 작업 완성도를 높이기 위한 필수 노하우를 정리합니다.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Recommended Audience */}
+              <div className="p-3.5 rounded-xl bg-slate-800/40 border border-slate-700/50 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+                <div className="flex items-center gap-2 text-slate-300">
+                  <span className="text-amber-400 font-bold">🎯 추천 대상:</span>
+                  <span className="text-slate-400">
+                    AI 실무 활용자 · 1인 창업가 · 개발자 · 콘텐츠 크리에이터
+                  </span>
+                </div>
+              </div>
+
+              {/* AD Placement Ready Container */}
+              <div className="p-4 rounded-2xl bg-slate-950/60 border border-dashed border-indigo-500/30 text-center space-y-2 relative overflow-hidden group">
+                <div className="flex items-center justify-center gap-2 text-[11px] text-slate-500 font-semibold tracking-wider">
+                  <span className="px-1.5 py-0.5 rounded bg-slate-800 text-[10px] text-slate-400">AD</span>
+                  <span>스폰서 추천 & 광고 영역</span>
+                </div>
+                <div className="py-3 px-4 rounded-xl bg-indigo-950/20 border border-indigo-500/10 text-xs text-slate-400 flex flex-col sm:flex-row items-center justify-between gap-3">
+                  <div className="text-left">
+                    <p className="font-bold text-slate-200">🚀 GPT PARK의 엄선된 AI 도구 & 프롬프트 모음</p>
+                    <p className="text-[11px] text-slate-400">실무 생산성을 10배 끌어올리는 프롬프트 라이브러리를 지금 확인하세요.</p>
+                  </div>
+                  <a
+                    href="/prompts"
+                    className="whitespace-nowrap px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs transition-colors"
+                  >
+                    보러가기 &rarr;
+                  </a>
+                </div>
+              </div>
+
+              {/* Tags */}
+              {selectedInsight.tags && selectedInsight.tags.length > 0 && (
+                <div className="space-y-1.5 pt-1">
+                  <span className="text-[11px] font-semibold text-slate-400">🏷️ 관련 태그:</span>
+                  <div className="flex flex-wrap gap-1.5">
+                    {selectedInsight.tags.map((t, idx) => (
+                      <span
+                        key={idx}
+                        className="text-xs px-2.5 py-1 rounded-lg bg-slate-800/90 text-indigo-300 border border-slate-700/80"
+                      >
+                        #{t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Modal Footer Actions */}
+            <div className="p-4 sm:p-5 bg-slate-950 border-t border-slate-800/90 flex flex-wrap items-center justify-between gap-2.5">
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setIsPlayingVideo(!isPlayingVideo)}
+                  className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center gap-1.5 shadow-md ${
+                    isPlayingVideo
+                      ? 'bg-slate-800 hover:bg-slate-700 text-slate-200'
+                      : 'bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white shadow-indigo-500/25'
+                  }`}
+                >
+                  <span>{isPlayingVideo ? '⏸️ 플레이어 접기' : '▶ 영상 시청하기'}</span>
+                </button>
+
+                {selectedInsight.video_url && (
+                  <a
+                    href={selectedInsight.video_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs sm:text-sm font-semibold transition-colors flex items-center gap-1 border border-slate-700"
+                  >
+                    <span>↗</span> 유튜브 새 탭
+                  </a>
+                )}
+
+                {selectedInsight.download_url && (
+                  <a
+                    href={selectedInsight.download_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3.5 py-2 rounded-xl bg-emerald-600/20 hover:bg-emerald-600 text-emerald-300 hover:text-white text-xs sm:text-sm font-bold transition-colors flex items-center gap-1 border border-emerald-500/30"
+                  >
+                    <span>📥</span> 자료 다운로드
+                  </a>
+                )}
+              </div>
+
+              <div className="flex items-center gap-2 ml-auto">
+                <button
+                  onClick={handleCopyLink}
+                  className="px-3 py-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white text-xs transition-colors flex items-center gap-1"
+                >
+                  <span>{copiedLink ? '✓' : '🔗'}</span>
+                  <span>{copiedLink ? '복사완료!' : '링크 복사'}</span>
+                </button>
+                <button
+                  onClick={() => setSelectedInsight(null)}
+                  className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-bold transition-colors"
+                >
+                  닫기
+                </button>
+              </div>
             </div>
           </div>
         </div>
