@@ -12,11 +12,11 @@ const {
 } = Astro.props;
 ---
 
-<!-- Widescreen Fixed Side Rail Ads (Visible on Display >= 1536px, 160x600 Wide Skyscraper Standard) -->
-<aside aria-label="사이드 스폰서 광고" class="hidden 2xl:block pointer-events-auto">
+<!-- Widescreen Fixed Side Rail Ads (Visible only on ultra-wide screens >= 1680px to prevent content overlap) -->
+<aside aria-label="사이드 스폰서 광고" class="hidden min-[1680px]:block pointer-events-none">
   <!-- Left Side Rail Ad (Wide Skyscraper 160x600) -->
   <div 
-    class="fixed top-24 z-30 w-[160px] aspect-[160/600] transition-all duration-300 left-[max(16px,calc(50%-600px-175px))] group"
+    class="fixed top-24 z-30 w-[160px] aspect-[160/600] transition-all duration-300 left-[calc(50%-640px-175px)] group pointer-events-auto"
   >
     <div class="w-full h-full rounded-2xl overflow-hidden border border-indigo-500/20 bg-slate-950/95 backdrop-blur-xl shadow-2xl flex flex-col justify-between">
       <!-- Ad Header Label -->
@@ -54,7 +54,7 @@ const {
 
   <!-- Right Side Rail Ad (Wide Skyscraper 160x600) -->
   <div 
-    class="fixed top-24 z-30 w-[160px] aspect-[160/600] transition-all duration-300 right-[max(16px,calc(50%-600px-175px))] group"
+    class="fixed top-24 z-30 w-[160px] aspect-[160/600] transition-all duration-300 right-[calc(50%-640px-175px)] group pointer-events-auto"
   >
     <div class="w-full h-full rounded-2xl overflow-hidden border border-indigo-500/20 bg-slate-950/95 backdrop-blur-xl shadow-2xl flex flex-col justify-between">
       <!-- Ad Header Label -->
