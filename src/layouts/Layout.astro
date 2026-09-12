@@ -144,32 +144,40 @@ const navItems = [
       </div>
 
       {/* Sub-Header Mobile Horizontal Scroll Navigation bar (Only on Mobile < 1024px) */}
-      <div id="mobile-nav-bar" class="lg:hidden flex items-center gap-1 py-2 px-3 border-t border-[var(--header-border)] bg-[var(--bg-header)] text-xs overflow-x-auto scrollbar-none scroll-smooth">
-        {navItems.map((item) => {
-          const isActive = item.href === '/' 
-            ? currentPath === '/' 
-            : currentPath.startsWith(item.href);
-          return (
-            <a
-              href={item.href}
-              id={isActive ? 'active-mobile-nav' : undefined}
-              class={`flex items-center gap-1 py-1 px-2.5 rounded-lg whitespace-nowrap transition-colors text-xs shrink-0 ${
-                isActive 
-                  ? 'text-indigo-600 dark:text-indigo-400 font-bold bg-indigo-50 dark:bg-indigo-500/15 border border-indigo-200 dark:border-indigo-500/30 shadow-sm' 
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-900/60'
-              }`}
-            >
-              {item.icon && <span class="text-xs">{item.icon}</span>}
-              <span>{item.label}</span>
-            </a>
-          );
-        })}
+      <div class="lg:hidden relative border-t border-[var(--header-border)] bg-[var(--bg-header)]">
+        {/* Left / Right Scroll Gradient Fades (Naver Style) */}
+        <div class="pointer-events-none absolute left-0 top-0 bottom-0 w-3 bg-gradient-to-r from-[var(--bg-header)] to-transparent z-10"></div>
+        <div class="pointer-events-none absolute right-0 top-0 bottom-0 w-3 bg-gradient-to-l from-[var(--bg-header)] to-transparent z-10"></div>
+
+        <div id="mobile-nav-bar" class="flex items-center gap-1.5 py-2 px-3 text-xs overflow-x-auto scrollbar-none scroll-smooth select-none">
+          {navItems.map((item) => {
+            const isActive = item.href === '/' 
+              ? currentPath === '/' 
+              : currentPath.startsWith(item.href);
+            return (
+              <a
+                href={item.href}
+                id={isActive ? 'active-mobile-nav' : undefined}
+                class={`flex items-center gap-1 py-1.5 px-3 rounded-full whitespace-nowrap transition-all duration-200 text-xs shrink-0 font-medium ${
+                  isActive 
+                    ? 'text-white font-bold bg-gradient-to-r from-indigo-600 to-purple-600 shadow-sm shadow-indigo-500/25 scale-[1.02]' 
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 bg-slate-100 dark:bg-slate-900/60 active:scale-95'
+                }`}
+              >
+                {item.icon && <span class="text-xs">{item.icon}</span>}
+                <span>{item.label}</span>
+              </a>
+            );
+          })}
+        </div>
       </div>
     </header>
 
     {/* Main Container */}
-    <main class="flex-1 container mx-auto px-4 sm:px-6 py-6 md:py-8">
-      <slot />
+    <main class="flex-1 container mx-auto px-4 sm:px-6 py-6 md:py-8 overflow-x-clip">
+      <div id="swipe-content-wrapper" class="w-full flex-1 flex flex-col will-change-transform transition-all duration-200">
+        <slot />
+      </div>
     </main>
 
     {/* Footer */}
@@ -250,88 +258,101 @@ const navItems = [
           {/* Column 2: AI 도구 & 갤러리 */}
           <div class="space-y-3.5">
             <h4 class="font-bold text-slate-900 dark:text-slate-100 uppercase tracking-wider text-[13px] flex items-center gap-1.5">
-              <span>🤖</span> AI 에코시스템
+              <span>🤖</span> AI 도구 & 모델
             </h4>
             <ul class="space-y-2.5">
-              <li>
-                <a href="/blog/ai-big-4-comparison-chatgpt-gemini-claude-grok" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-1">
-                  <span>AI 빅4 완벽 비교</span>
-                  <span class="text-[9px] px-1 py-0.2 rounded bg-rose-500/15 text-rose-500 font-bold">HOT</span>
-                </a>
-              </li>
               <li>
                 <a href="/ai-tools" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center justify-between">
-                  <span>추천 AI 도구 디렉토리</span>
-                  <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-500 font-bold">152+</span>
+                  <span>AI 도구 디렉토리</span>
+                  <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-500 font-bold">120+</span>
                 </a>
               </li>
               <li>
-                <a href="/gallery" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-1">
-                  <span>🍌 바나나 이미지 갤러리</span>
+                <a href="/gallery" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center justify-between">
+                  <span>바나나 AI 갤러리</span>
+                  <span class="text-[10px] px-1.5 py-0.5 rounded bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 font-bold">🍌 80</span>
                 </a>
               </li>
               <li>
-                <a href="/blog/openai-gpt-6-astra-release-analysis" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors flex items-center gap-1">
-                  <span>GPT-6 Astra 분석</span>
-                  <span class="text-[9px] px-1 py-0.2 rounded bg-rose-500/15 text-rose-500 font-bold">NEW</span>
-                </a>
-              </li>
-              <li>
-                <a href="/blog/ai-self-explanation-verification-guide" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                  AI 자기 설명 검증법
-                </a>
-              </li>
-              <li>
-                <a href="/blog/vibe-coding-google-ai-studio-auth" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                  바이브 코딩 가이드
+                <a href="/news" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  AI 테크 브리핑
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Column 3: 인기 생활 유틸리티 */}
+          {/* Column 3: 스마트 계산기 */}
           <div class="space-y-3.5">
             <h4 class="font-bold text-slate-900 dark:text-slate-100 uppercase tracking-wider text-[13px] flex items-center gap-1.5">
-              <span>🛠️</span> 스마트 생활 도구
+              <span>💰</span> 실무 & 금융 도구
             </h4>
             <ul class="space-y-2.5">
               <li>
-                <a href="/tools/lotto-generator" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                  로또 번호 생성기
+                <a href="/tools/salary-calculator" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  2026 연봉 실수령액
                 </a>
               </li>
               <li>
-                <a href="/tools/age-calculator" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                  만 나이 & D-Day 계산기
+                <a href="/tools/severance-pay" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  퇴직금 자동 계산기
                 </a>
               </li>
               <li>
-                <a href="/tools/qr-code" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                  QR 코드 생성기
+                <a href="/tools/loan-calculator" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  대출 원리금 계산기
                 </a>
               </li>
               <li>
-                <a href="/tools/barcode-generator" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                  바코드 생성기
+                <a href="/tools/freelancer-tax" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  3.3% 프리랜서 원천징수
                 </a>
               </li>
               <li>
-                <a href="/tools/unit-converter" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                  단위 변환기
-                </a>
-              </li>
-              <li>
-                <a href="/tools/lunar-converter" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                  음양력 변환기
+                <a href="/tools/realtor-fee" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  부동산 중개보수 계산기
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Column 4: 개발자 & 텍스트 도구 */}
+          {/* Column 4: 라이프스타일 도구 */}
           <div class="space-y-3.5">
             <h4 class="font-bold text-slate-900 dark:text-slate-100 uppercase tracking-wider text-[13px] flex items-center gap-1.5">
-              <span>💻</span> 개발자 유틸리티
+              <span>🎯</span> 일상 편의 & 헬스
+            </h4>
+            <ul class="space-y-2.5">
+              <li>
+                <a href="/tools/dday-calculator" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  스마트 디데이(D-Day)
+                </a>
+              </li>
+              <li>
+                <a href="/tools/bmr-tdee-calc" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  기초대사량 & TDEE
+                </a>
+              </li>
+              <li>
+                <a href="/tools/quit-smoking" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  금연 세이빙 계산기
+                </a>
+              </li>
+              <li>
+                <a href="/tools/tarot-today" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  오늘의 타로 운세
+                </a>
+              </li>
+              <li>
+                <a href="/tools/ladder" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  인터랙티브 사다리타기
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 5: 개발자 & 웹 도구 */}
+          <div class="space-y-3.5">
+            <h4 class="font-bold text-slate-900 dark:text-slate-100 uppercase tracking-wider text-[13px] flex items-center gap-1.5">
+              <span>⚙️</span> 개발자 & 생산성
             </h4>
             <ul class="space-y-2.5">
               <li>
@@ -340,67 +361,23 @@ const navItems = [
                 </a>
               </li>
               <li>
-                <a href="/tools/jwt-decoder" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                  JWT 토큰 디코더
-                </a>
-              </li>
-              <li>
                 <a href="/tools/base64-encoder" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                  Base64 인코더 / 디코더
+                  Base64 인코더/디코더
                 </a>
               </li>
               <li>
-                <a href="/tools/url-encoder" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                  URL 인코더 / 디코더
+                <a href="/tools/regex-tester" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  정규표현식(Regex) 테스터
                 </a>
               </li>
               <li>
                 <a href="/tools/cron-parser" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                  크론(Cron) 표현식 분석기
+                  Cron 표현식 생성기
                 </a>
               </li>
               <li>
-                <a href="/tools/my-ip" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                  내 공인 IP 확인
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 5: 인터랙티브 & 게임 */}
-          <div class="space-y-3.5">
-            <h4 class="font-bold text-slate-900 dark:text-slate-100 uppercase tracking-wider text-[13px] flex items-center gap-1.5">
-              <span>🎮</span> 인터랙티브 & 게임
-            </h4>
-            <ul class="space-y-2.5">
-              <li>
-                <a href="/tools/ladder-game" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                  사다리 타기 게임
-                </a>
-              </li>
-              <li>
-                <a href="/tools/roulette" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                  돌림판 룰렛 게임
-                </a>
-              </li>
-              <li>
-                <a href="/tools/speed-quiz" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                  스피드 퀴즈 & 초성 게임
-                </a>
-              </li>
-              <li>
-                <a href="/tools/qna-a-day" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                  하루 한 질문 문답
-                </a>
-              </li>
-              <li>
-                <a href="/tools/birthday-secret" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                  생일의 비밀 알아보기
-                </a>
-              </li>
-              <li>
-                <a href="/tools/cheer" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                  오늘의 응원 한마디
+                <a href="/tools/qr-code" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  고화질 QR코드 생성기
                 </a>
               </li>
             </ul>
@@ -409,22 +386,17 @@ const navItems = [
           {/* Column 6: 안내 및 정책 */}
           <div class="space-y-3.5">
             <h4 class="font-bold text-slate-900 dark:text-slate-100 uppercase tracking-wider text-[13px] flex items-center gap-1.5">
-              <span>ℹ️</span> 안내 및 정책
+              <span>ℹ️</span> 서비스 & 정책
             </h4>
             <ul class="space-y-2.5">
               <li>
-                <a href="/about" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                  서비스 소개 (About)
-                </a>
-              </li>
-              <li>
                 <a href="/faq" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                  자주 묻는 질문 (FAQ)
+                  자주 묻는 질문(FAQ)
                 </a>
               </li>
               <li>
-                <a href="/contact" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                  문의하기 (Contact)
+                <a href="/privacy-policy" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  개인정보 처리방침
                 </a>
               </li>
               <li>
@@ -433,8 +405,8 @@ const navItems = [
                 </a>
               </li>
               <li>
-                <a href="/privacy-policy" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                  개인정보처리방침
+                <a href="/contact" class="text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                  문의 및 제휴
                 </a>
               </li>
             </ul>
@@ -452,7 +424,7 @@ const navItems = [
       </div>
     </footer>
 
-    {/* Theme Toggle & Mobile Swipe Navigation Client Scripts */}
+    {/* Theme Toggle & Mobile Naver-Style Swipe Navigation Client Scripts */}
     <script is:inline>
       function initThemeToggle() {
         const toggleBtn = document.getElementById('theme-toggle-btn');
@@ -488,10 +460,16 @@ const navItems = [
       }
 
       function initMobileSwipeNavigation() {
-        // Auto center active category in sub-header on load
+        // Auto-center active category in mobile sub-header bar smoothly (Naver style)
         const activeNav = document.getElementById('active-mobile-nav');
-        if (activeNav) {
-          activeNav.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        const navBar = document.getElementById('mobile-nav-bar');
+        if (activeNav && navBar) {
+          requestAnimationFrame(function() {
+            const navRect = navBar.getBoundingClientRect();
+            const itemRect = activeNav.getBoundingClientRect();
+            const scrollLeft = activeNav.offsetLeft - (navRect.width / 2) + (itemRect.width / 2);
+            navBar.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+          });
         }
 
         const categories = [
@@ -513,83 +491,201 @@ const navItems = [
 
         if (currentIndex === -1) {
           if (path === '/') currentIndex = 0;
-          else return; // If on detailed standalone tool / article, don't hijack swipe
+          else return; // Don't hijack swipe on standalone sub-pages
         }
+
+        // Prefetch adjacent category pages for instant Naver-like tab switching
+        const nextTarget = currentIndex < categories.length - 1 ? categories[currentIndex + 1] : null;
+        const prevTarget = currentIndex > 0 ? categories[currentIndex - 1] : null;
+
+        [nextTarget, prevTarget].forEach(function(target) {
+          if (target && !document.querySelector('link[rel="prefetch"][href="' + target.href + '"]')) {
+            const link = document.createElement('link');
+            link.rel = 'prefetch';
+            link.href = target.href;
+            document.head.appendChild(link);
+          }
+        });
+
+        const contentWrapper = document.getElementById('swipe-content-wrapper');
+
+        // Check if entered from previous swipe transition
+        try {
+          const swipeDir = sessionStorage.getItem('rab8bit_swipe_dir');
+          if (swipeDir && contentWrapper) {
+            sessionStorage.removeItem('rab8bit_swipe_dir');
+            contentWrapper.style.transition = 'none';
+            contentWrapper.style.transform = swipeDir === 'next' ? 'translateX(35px)' : 'translateX(-35px)';
+            contentWrapper.style.opacity = '0.4';
+            requestAnimationFrame(function() {
+              contentWrapper.style.transition = 'transform 0.26s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.26s ease-out';
+              contentWrapper.style.transform = 'translateX(0)';
+              contentWrapper.style.opacity = '1';
+            });
+          }
+        } catch(e) {}
 
         let startX = 0;
         let startY = 0;
         let startTime = 0;
         let isTouching = false;
+        let isDirectionLocked = false;
+        let isHorizontalSwipe = false;
+        let currentDeltaX = 0;
+
+        let toast = document.getElementById('swipe-nav-toast');
+        if (!toast) {
+          toast = document.createElement('div');
+          toast.id = 'swipe-nav-toast';
+          toast.className = 'fixed bottom-12 left-1/2 -translate-x-1/2 z-50 px-4 py-2 rounded-full bg-slate-900/95 text-white font-extrabold text-xs shadow-2xl border border-indigo-500/50 backdrop-blur-md transition-all duration-150 pointer-events-none opacity-0 flex items-center gap-2 will-change-transform';
+          document.body.appendChild(toast);
+        }
 
         function onTouchStart(e) {
           if (e.touches.length !== 1) return;
           const target = e.target;
-          // Ignore inputs, game canvases, code blocks, or horizontally scrollable containers
-          if (target && target.closest && target.closest('input, textarea, select, pre, code, canvas, button, [data-no-swipe], .no-swipe, .overflow-x-auto, #mobile-nav-bar')) {
+          // Ignore interactive controls, code blocks, inputs, or horizontal carousel containers
+          if (target && target.closest && target.closest('input, textarea, select, pre, code, canvas, button, a, [data-no-swipe], .no-swipe, .overflow-x-auto, #mobile-nav-bar')) {
             return;
           }
           startX = e.touches[0].clientX;
           startY = e.touches[0].clientY;
           startTime = Date.now();
           isTouching = true;
+          isDirectionLocked = false;
+          isHorizontalSwipe = false;
+          currentDeltaX = 0;
+
+          if (contentWrapper) {
+            contentWrapper.style.transition = 'none';
+          }
+        }
+
+        function onTouchMove(e) {
+          if (!isTouching || e.touches.length !== 1) return;
+          const curX = e.touches[0].clientX;
+          const curY = e.touches[0].clientY;
+          const deltaX = curX - startX;
+          const deltaY = curY - startY;
+
+          // Naver direction lock: Determine within the first 8px of movement
+          if (!isDirectionLocked) {
+            const absX = Math.abs(deltaX);
+            const absY = Math.abs(deltaY);
+            if (absX > 8 || absY > 8) {
+              isDirectionLocked = true;
+              // If vertical movement is dominant, lock to vertical scroll and ignore swipe
+              if (absY >= absX) {
+                isHorizontalSwipe = false;
+                isTouching = false;
+                return;
+              } else {
+                isHorizontalSwipe = true;
+              }
+            }
+          }
+
+          if (!isHorizontalSwipe) return;
+
+          // Prevent native horizontal scroll rubberband
+          if (e.cancelable) {
+            e.preventDefault();
+          }
+
+          // Rubber-band resistance if swiping past edge boundaries
+          let effectiveDeltaX = deltaX;
+          if ((deltaX < 0 && !nextTarget) || (deltaX > 0 && !prevTarget)) {
+            effectiveDeltaX = deltaX * 0.22; // Elastic rubber-band resistance
+          } else {
+            effectiveDeltaX = deltaX * 0.75;
+          }
+
+          currentDeltaX = effectiveDeltaX;
+
+          // Real-time finger follow transform on content wrapper (60/120fps smooth)
+          if (contentWrapper) {
+            const scale = Math.max(0.97, 1 - Math.abs(effectiveDeltaX) * 0.0004);
+            const opacity = Math.max(0.65, 1 - Math.abs(effectiveDeltaX) * 0.001);
+            contentWrapper.style.transform = 'translateX(' + effectiveDeltaX + 'px) scale(' + scale + ')';
+            contentWrapper.style.opacity = opacity;
+          }
+
+          // Show Naver-style dynamic direction toast hint
+          if (Math.abs(deltaX) > 25) {
+            if (deltaX < 0 && nextTarget) {
+              toast.innerHTML = '<span class="text-indigo-400">다음</span> <span>' + nextTarget.label + '</span> <span class="text-indigo-400 text-sm">→</span>';
+              toast.style.opacity = '1';
+              toast.style.transform = 'translate(-50%, -6px) scale(1)';
+            } else if (deltaX > 0 && prevTarget) {
+              toast.innerHTML = '<span class="text-indigo-400 text-sm">←</span> <span class="text-indigo-400">이전</span> <span>' + prevTarget.label + '</span>';
+              toast.style.opacity = '1';
+              toast.style.transform = 'translate(-50%, -6px) scale(1)';
+            }
+          } else {
+            toast.style.opacity = '0';
+          }
         }
 
         function onTouchEnd(e) {
           if (!isTouching) return;
           isTouching = false;
-          if (e.changedTouches.length !== 1) return;
+          if (!isHorizontalSwipe) return;
 
-          const endX = e.changedTouches[0].clientX;
-          const endY = e.changedTouches[0].clientY;
-          const deltaX = endX - startX;
-          const deltaY = endY - startY;
           const duration = Date.now() - startTime;
+          const velocity = Math.abs(currentDeltaX) / Math.max(duration, 1);
 
-          // Swipe criteria: fast (<500ms), long (>60px), and horizontal dominance (|deltaX| > |deltaY| * 1.5)
-          if (duration < 500 && Math.abs(deltaX) > 60 && Math.abs(deltaX) > Math.abs(deltaY) * 1.5) {
-            if (deltaX < 0) {
-              // Swiped Left -> Move to Next Category
-              if (currentIndex < categories.length - 1) {
-                const nextCat = categories[currentIndex + 1];
-                showSwipeFeedback('다음: ' + nextCat.label + ' →');
-                setTimeout(function() {
-                  window.location.href = nextCat.href;
-                }, 120);
+          // Threshold: Fast flick (>0.30px/ms with >25px) or long swipe (>45px)
+          const passedThreshold = Math.abs(currentDeltaX) > 45 || (Math.abs(currentDeltaX) > 25 && velocity > 0.30);
+
+          if (passedThreshold) {
+            if (currentDeltaX < 0 && nextTarget) {
+              // Smooth Slide Out to Left (Naver style)
+              if (contentWrapper) {
+                contentWrapper.style.transition = 'transform 0.22s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.22s ease-out';
+                contentWrapper.style.transform = 'translateX(-105%) scale(0.95)';
+                contentWrapper.style.opacity = '0';
               }
-            } else {
-              // Swiped Right -> Move to Previous Category
-              if (currentIndex > 0) {
-                const prevCat = categories[currentIndex - 1];
-                showSwipeFeedback('← 이전: ' + prevCat.label);
-                setTimeout(function() {
-                  window.location.href = prevCat.href;
-                }, 120);
+              try { sessionStorage.setItem('rab8bit_swipe_dir', 'next'); } catch(e) {}
+              setTimeout(function() {
+                window.location.href = nextTarget.href;
+              }, 140);
+              return;
+            } else if (currentDeltaX > 0 && prevTarget) {
+              // Smooth Slide Out to Right (Naver style)
+              if (contentWrapper) {
+                contentWrapper.style.transition = 'transform 0.22s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.22s ease-out';
+                contentWrapper.style.transform = 'translateX(105%) scale(0.95)';
+                contentWrapper.style.opacity = '0';
               }
+              try { sessionStorage.setItem('rab8bit_swipe_dir', 'prev'); } catch(e) {}
+              setTimeout(function() {
+                window.location.href = prevTarget.href;
+              }, 140);
+              return;
             }
           }
-        }
 
-        function showSwipeFeedback(text) {
-          let toast = document.getElementById('swipe-nav-toast');
-          if (!toast) {
-            toast = document.createElement('div');
-            toast.id = 'swipe-nav-toast';
-            toast.className = 'fixed bottom-10 left-1/2 -translate-x-1/2 z-50 px-4 py-2 rounded-full bg-slate-900/95 text-white font-black text-xs shadow-2xl border border-indigo-500/50 backdrop-blur-md transition-all duration-200 pointer-events-none opacity-0 flex items-center gap-1.5';
-            document.body.appendChild(toast);
+          // Snap back with smooth spring damping (Naver style)
+          if (contentWrapper) {
+            contentWrapper.style.transition = 'transform 0.26s cubic-bezier(0.175, 0.885, 0.32, 1.15), opacity 0.24s ease';
+            contentWrapper.style.transform = 'translateX(0) scale(1)';
+            contentWrapper.style.opacity = '1';
           }
-          toast.textContent = text;
-          toast.style.opacity = '1';
-          toast.style.transform = 'translate(-50%, -8px)';
-          setTimeout(function() {
+          if (toast) {
             toast.style.opacity = '0';
-            toast.style.transform = 'translate(-50%, 0)';
-          }, 350);
+            toast.style.transform = 'translate(-50%, 0) scale(0.95)';
+          }
         }
 
         window.removeEventListener('touchstart', onTouchStart);
+        window.removeEventListener('touchmove', onTouchMove);
         window.removeEventListener('touchend', onTouchEnd);
+        window.removeEventListener('touchcancel', onTouchEnd);
+
         window.addEventListener('touchstart', onTouchStart, { passive: true });
+        window.addEventListener('touchmove', onTouchMove, { passive: false });
         window.addEventListener('touchend', onTouchEnd, { passive: true });
+        window.addEventListener('touchcancel', onTouchEnd, { passive: true });
       }
 
       function initAll() {
