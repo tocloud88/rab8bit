@@ -44,38 +44,8 @@ function calcFontSize(text, baseSize, maxChars) {
 }
 
 import {
-  renderStyle1_EcoClean,
-  renderStyle2_ComicPop,
-  renderStyle3_StreetGraffiti,
-  renderStyle4_EditorialKinetic,
-  calcFontSize,
-  getHashIndex
+  renderContentAwareBlogSVG
 } from './create-hook-thumbnails.mjs';
-
-// Master Dispatcher by Category / Tag with dynamic background variance
-function generateHookSvgByCategory(w, h, blogTemplate, blogId, blogDate) {
-  const cat = (blogTemplate.category || '').toLowerCase();
-  const tags = (blogTemplate.tags || []).map(t => t.toLowerCase());
-
-  const item = {
-    id: blogId || blogTemplate.titleSuffix || 'blog-post',
-    date: blogDate || '2026.09.12',
-    badge: blogTemplate.badge || '2026 최신 트렌드',
-    title1: blogTemplate.title1 || 'AI 혁신 트렌드',
-    title2: blogTemplate.title2 || '실무 완벽 정복',
-    subTag: blogTemplate.subTag || blogTemplate.summary?.slice(0, 32) || '2026 대한민국 1위 AI 포털'
-  };
-
-  if (cat.includes('문서') || tags.some(t => t.includes('컨텍스트') || t.includes('notebooklm'))) {
-    return renderStyle1_EcoClean(w, h, item);
-  } else if (cat.includes('vibe') || tags.some(t => t.includes('바이브') || t.includes('vibecoding') || t.includes('개발'))) {
-    return renderStyle3_StreetGraffiti(w, h, item);
-  } else if (cat.includes('에이전트') || tags.some(t => t.includes('에이전트') || t.includes('자동화'))) {
-    return renderStyle2_ComicPop(w, h, item);
-  } else {
-    return renderStyle4_EditorialKinetic(w, h, item);
-  }
-}
 
 
 // Rich fallback content generators with daily dynamic variance
@@ -269,21 +239,18 @@ async function updateDailyContent() {
       const thumbAbsPath = path.join(ROOT_DIR, 'public/images/blogs', thumbFileName);
 
       try {
-        const baseImgPath = path.join(ROOT_DIR, blogTemplate.baseImage);
-          const resizedBg = await sharp(baseImgPath)
-            .resize(1280, 720, { fit: 'cover', position: 'center' })
-            .toBuffer();
-
-          const svgStr = generateHookSvgByCategory(1280, 720, blogTemplate);
-          const svgBuf = Buffer.from(svgStr);
-
-          const out = await sharp(resizedBg)
-            .composite([{ input: svgBuf, top: 0, left: 0 }])
-            .jpeg({ quality: 95 })
-            .toBuffer();
-
-          fs.writeFileSync(thumbAbsPath, out);
-          console.log(`   🎨 Generated Hooking Thumbnail: ${thumbRelPath}`);
+        const fakePost = {
+          id: blogId,
+          title: `${kst.dotDate} 최신 AI 트렌드 리포트: ${blogTemplate.titleSuffix}`,
+          excerpt: blogTemplate.summary,
+          date: kst.dotDate,
+          tags: blogTemplate.tags || []
+        };
+        const svgStr = renderContentAwareBlogSVG(fakePost, 1280, 720);
+        await sharp(Buffer.from(svgStr))
+          .jpeg({ quality: 92 })
+          .toFile(thumbAbsPath);
+        console.log(`   🎨 Generated Bespoke Content-Aware Thumbnail: ${thumbRelPath}`);
       } catch (e) {
         console.warn('   ⚠️ Thumbnail generation warning:', e.message);
       }
